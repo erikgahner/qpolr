@@ -1,0 +1,14 @@
+---
+output: html_document
+---
+
+# Basics {#basics}
+
+## Objects and functions
+
+--
+
+```{r}
+2+2
+```
+

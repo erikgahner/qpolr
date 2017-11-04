@@ -1,0 +1,4 @@
+book_filename: "qpolr"
+chapter_name: "Chapter "
+rmd_files: ["index.Rmd", "a01-basics.Rmd", "a02-dplyr-tidyr.Rmd", "a03-ggplot2.Rmd", "references.Rmd"]
+download: [["qpolr.pdf", "PDF"], ["qpolr.epub", "EPUB"], ["qpolr.docx", "Word"]]

@@ -1,0 +1,143 @@
+\documentclass[12pt,oneside]{reedthesis}
+
+\usepackage{graphicx,latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{longtable,booktabs,setspace}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Erik Gahner Larsen and Zoltán Fazekas},
+            pdftitle={Quantitative Politics with R},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=blue,
+            pdfborder={0 0 0}}
+\urlstyle{same}
+\usepackage{lmodern}
+\usepackage{float}
+\floatplacement{figure}{H}
+
+\usepackage{rotating}
+
+\usepackage[hmargin=3cm,vmargin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{nag}
+\usepackage{cleveref}
+\usepackage{float}
+\usepackage{dcolumn}
+\usepackage{pdflscape}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{footmisc}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{cleveref}
+\usepackage{longtable}
+
+\renewcommand{\hyperref}[2][???]{\autoref{#1}}
+\def\chapterautorefname{Chapter}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+
+\usepackage{caption}
+\captionsetup{width=5in}
+
+\title{\Huge{ Quantitative Politics with R } \vspace{2em}}
+\author{Erik Gahner Larsen and Zoltán Fazekas}
+\date{November 04, 2017}
+
+\renewcommand{\contentsname}{Table of Contents}
+
+\setlength{\parskip}{0pt}
+
+% Added by CII
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+% End of CII addition
+%%
+%% End Preamble
+%%
+%
+
+\usepackage{MinionPro}
+\linespread{1.3}
+
+\begin{document}
+
+% Everything below added by CII
+      \maketitle
+  
+  \frontmatter % this stuff will be roman-numbered
+  \pagestyle{empty} % this removes page numbers from the frontmatter
+
+  
+  
+      \hypersetup{linkcolor=black}
+    \setcounter{tocdepth}{2}
+    \tableofcontents
+  
+  
+  
+  
+  
+  \mainmatter % here the regular arabic numbering starts
+  \pagestyle{fancyplain} % turns page numbering back on
+
+  \chapter{Introduction}\label{introduction}
+  
+  Test
+  
+  \chapter{Basics}\label{basics}
+  
+  \section{Objects and functions}\label{objects-and-functions}
+  
+  --
+  
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \DecValTok{2+2}
+  \end{Highlighting}
+  \end{Shaded}
+  
+  \begin{verbatim}
+  [1] 4
+  \end{verbatim}
+  
+  \chapter{Data management}\label{data}
+  
+  --
+  
+  \chapter{Data visualization}\label{dataviz}
+  
+  --
+  
+  \texttt{ggplot2} (Wickham, 2009).
+  
+  \backmatter
+  
+  \chapter{References}\label{references}
+  
+  \noindent
+  
+  \setlength{\parindent}{-0.20in} \setlength{\leftskip}{0.20in}
+  \setlength{\parskip}{8pt}
+  
+  \hypertarget{refs}{}
+  \hypertarget{ref-wickham2009}{}
+  Wickham, H. (2009). \emph{Ggplot2: Elegant graphics for data analysis}.
+  Springer-Verlag New York. Retrieved from \url{http://ggplot2.org}
+
+
+  % Index?
+
+\end{document}

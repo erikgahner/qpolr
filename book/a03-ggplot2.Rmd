@@ -1,0 +1,9 @@
+---
+output: html_document
+---
+
+# Data visualization {#dataviz}
+
+--
+
+`ggplot2` [@wickham2009].

@@ -1,0 +1,138 @@
+\documentclass[12pt,oneside]{reedthesis}
+
+\usepackage{graphicx,latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{longtable,booktabs,setspace}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Erik Gahner Larsen and Zoltán Fazekas},
+            pdftitle={Quantitative Politics with R},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=blue,
+            pdfborder={0 0 0}}
+\urlstyle{same}
+\usepackage{lmodern}
+\usepackage{float}
+\floatplacement{figure}{H}
+
+\usepackage{rotating}
+
+\usepackage[hmargin=3cm,vmargin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{nag}
+\usepackage{cleveref}
+\usepackage{float}
+\usepackage{dcolumn}
+\usepackage{pdflscape}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{footmisc}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{cleveref}
+\usepackage{longtable}
+
+\renewcommand{\hyperref}[2][???]{\autoref{#1}}
+\def\chapterautorefname{Chapter}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+
+\usepackage{caption}
+\captionsetup{width=5in}
+
+\title{\Huge{ $title$ } \vspace{2em}}
+\author{$author$}
+\date{$date$}
+
+\renewcommand{\contentsname}{Table of Contents}
+
+\setlength{\parskip}{0pt}
+
+% Added by CII
+$if(space_between_paragraphs)$
+  %\setlength{\parskip}{\baselineskip}
+  \usepackage[parfill]{parskip}
+$endif$
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+$for(header-includes)$
+	$header-includes$
+$endfor$
+% End of CII addition
+%%
+%% End Preamble
+%%
+%
+
+\usepackage{MinionPro}
+\linespread{1.3}
+
+\begin{document}
+
+% Everything below added by CII
+  $if(title)$
+    \maketitle
+  $endif$
+
+  \frontmatter % this stuff will be roman-numbered
+  \pagestyle{empty} % this removes page numbers from the frontmatter
+
+  $if(acknowledgements)$
+    \begin{acknowledgements}
+      $acknowledgements$
+    \end{acknowledgements}
+  $endif$
+
+  $if(preface)$
+    \begin{preface}
+      $preface$
+    \end{preface}
+  $endif$
+
+  $if(toc)$
+    \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
+    \setcounter{tocdepth}{$toc-depth$}
+    \tableofcontents
+  $endif$
+
+  $if(lot)$
+    \listoftables
+  $endif$
+
+  $if(lof)$
+    \listoffigures
+  $endif$
+
+  $if(abstract)$
+    \begin{abstract}
+      $abstract$
+    \end{abstract}
+  $endif$
+
+  $if(dedication)$
+    \begin{dedication}
+      $dedication$
+    \end{dedication}
+  $endif$
+
+  \mainmatter % here the regular arabic numbering starts
+  \pagestyle{fancyplain} % turns page numbering back on
+
+  $body$
+
+
+  % Index?
+
+\end{document}
