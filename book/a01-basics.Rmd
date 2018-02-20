@@ -4,11 +4,428 @@ output: html_document
 
 # Basics {#basics}
 
-## Objects and functions
-
---
+Remember that everything you do in `R` can be written as commands. Repeat what you did in last chapter from your script window: write `2+2` and run the code. This should look like this:
 
 ```{r}
 2+2
+```
+
+You are now able to conduct simple arithmetics. This shows that `R` can be used as a calculatur and you can now call yourself an `R` user. In other words, knowing how to use `R` is not a binary category where you either can use `R` or not, but a continuum where you will always be able to learn more. That's great news! 
+
+## Numbers as data
+
+Next, we will have to learn about variable assignment and in particular how we can work with _objects_. Everything you will use in `R` is saved in objects. This can be everything from a number or a word to complex datasets. A key advantage of this compared to other statistical programmes is that you can have multiple datasets open at the same time. If you, for exampel, want to connect two different surveys, you can have them both loaded at the same time. This is not possible in SPSS and Stata.
+ 
+To save something in an objet, we need to use the _assignment operator_, `<-`, which basically tells `R` that anything on the right side of the operator should be assigned to the object on the left side. Let us try to save the number 2 in the object `x`
+
+```{r results='hide'}
+x <- 2
+```
+
+Now `x` will return the number 2 whenever we use `x`. Let us try to use our object in different simple operations. Write the operations in your R-script and run them individually and see what happens. 
+
+```{r, eval=FALSE}
+x
+x * 2
+x * x 
+x + x
+```
+
+If it is working, `R` should return the values `2`, `4`, `4` and `4`. If you change the object `x` to have the number 3 instead of 2 and run the script again, you should get a new output.[^3] This is great as you only need to change a single number to change the whole procedure. Accordingly, when you are working with scripts, try to save as much you can in objects, so you only need to change numbers once, if you want to make changes. This also reduces the likelihood of you making a mistake.
+
+[^3]: More specifically, `3`, `6`, `9` and `6`.
+
+We can also use our object to create other objects. In the example below we will create a new object `y`. This object returns the sum of `x` and 7.
+
+```{r}
+y <- x + 7
+```
+
+One thing to keep in mind is that we do not get the output in `y` right away. To get the output, we can just write `y`, or we can, when we create the object, include it all in a parenthesis as we do below.
+
+```{r}
+(y <- x + 7)
+```
+
+Luckily, we are not limited to save only one number in an object. On the contrary, in most objects we will be working with, we will have multiple numbers. The code below will return a row of numbers from 1 to 10.
+
+```{r}
+1:10
+```
+
+We can save this row of numbers in an object (using `<-`), but we can also use them directly, e.g. by taking every number in the row and add 2 to all of them.
+
+```{r}
+1:10 + 2
+```
+
+When you will be working with more numbers, you have to tell `R`, that you are working with multiple numbers. To do this, we use the function `c()`. This tells `R` that we are working with a vector.[^5] The function `c()` is short for _concatenate_ or _combine_.[^6] Remember that everything that happens in `R` happens with functions. A vector looks like this:
+
+[^5]: In the example with `1:10`, this is similar to writing `c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)`. In other words, we have a hidden `c()` when we type `1:10`.
+
+[^6]: `c()` creates a vector with _all_ elements in the parenthesis. Since a vector can only have one type of data, and not both numbers and text (cf. next section), `c()` will ensure that all values are reduced to the level all values can work with. Consequently, if just one value is a letter and not a number, all values in the vector will be considered text.
+
+```{r}
+c(2, 2, 2)
+```
+
+This is a _numerical_ vector. Again, a vector is a collection of values of the same type. We can save any vector in an object without any problems. In the code below we save four numbers (14, 6, 23, 2) in the object `x`.
+
+```{r}
+x <- c(14, 6, 23, 2)
+x
+```
+
+We can then use this vector to calculate new numbers (just as we did above with `1:10`), for example by multiplying all the numbers in the vector with 2.
+
+
+```{r}
+x * 2
+```
+
+If we are only interested in a single value from the vector, we can get this value by using brackets, i.e. `[ ]`, which you place just after the objet (so no space between the name of the object and the brackets!). By placing the number 3 in the brackets we can get the third number in the object.
+
+```{r}
+x[3]
+```
+
+As you can see, we get the third element, 23. We can use the same procedure to get all values with the exception of one value by including a negative sign in the brackets. In this example we will get all values except for 2. Also, note that since we are not assigned anything to an object (with `<-`), we are not making any changes to `x`.
+
+```{r}
+x[-2]
+```
+
+Now we can try to use a series of functions on our object. The functions below will return different types of information such as the number of values, the median, the mean, the standard deviation etc.
+
+
+```{r, eval=FALSE}
+length(x)     # length of vector, number of values
+min(x)        # minima value
+max(x)        # maxima value
+median(x)     # the median
+sum(x)        # the sum
+mean(x)       # the mean
+var(x)        # the variance
+sd(x)         # the standard deviation
+```
+
+The functions should return the values 4, 2, 23, 10, 45, 11.25, 86.25 and 9.287088. 
+
+If we for some reason wants to add an extra number to our vector `x`, we can either create a new vector with all the numbers or just overwrite the existing vector with the addition of an extra number:
+
+```{r}
+x <- c(x, 5)
+x
+```
+
+We now have five values in our vector instead of four. The value 5 has the last place in the vector but if we had added 5 before `x` in the code above, 5 would have been in the beginning of the vector.
+
+Try to use the `mean()` function on the new object `x`
+
+```{r}
+mean(x)
+```
+
+Now the mean is 10 (before we added the value 5 to the object the mean was 11.25). 
+
+## Missing values (`NA`)
+
+Up until now we have been lucky that all our "data" has been easy to work with. However, in the real world - and thereby for most of the data we will work with - we will encounter missing values. In Stata you will see that missing values gets a dot ('.'). In `R`, all missing values are denoted `NA`. Let us try to add a missing value to our object `x` and take the mean.
+
+```{r}
+x <- c(x, NA)
+
+mean(x) 
+```
+
+We do not get a mean now but just `NA`. The reason for this is that `R` is unable to calculate the mean of a vector with a missing value included. In order for `R` to calculate the mean now, we need to specifcy that it should remove the missing values before calculating the mean. To do this, we add `na.rm=TRUE` as an _option_ to the function. Most functions have a series of options (more about this later), and the default option for the `mean()` function is not to ignore the missing values.
+
+
+```{r}
+mean(x, na.rm=TRUE)
+```
+
+Now we get the same mean as before we added `NA` to the object. 
+
+## Logical operators
+
+In `R` a lot of what we will be doing is using logical operators, e.g. testing whether something is equal or similar to something else. This is in particular relevant when we have to recode objects and only use specific values. If something is true, we get the value `TRUE`, and if something is false, we get `FALSE`. Try to run the code below and see what information you get (and whether it makes sense).
+
+
+```{r, eval=FALSE}
+x <- 2
+
+x == 2        # equal to
+x == 3        
+x != 2        # not equal to
+x < 1         # less than
+x > 1         # greater than
+x <= 2        # less or equal to
+x >= 2.01     # greater or equal to
+```
+
+The script will return `TRUE`, `FALSE`, `FALSE`, `FALSE`, `TRUE`, `TRUE` and `FALSE`. If you change `x` to 3, the script will return other values. 
+
+## Text as data
+
+In addition to numbers we can also work with text. The difference between text and numbers in `R` is that we use quotation marks to indicate that something is text (and not an object).[^7] As an example, we will create an object called `p` with the political parties from the United Kingdom general election in 2017.
+
+[^7]: Alternatively, you can use ' instead of ". If you want more information on when you should use ' instead of ", see [http://style.tidyverse.org/syntax.html#quotes](http://style.tidyverse.org/syntax.html#quotes).
+
+```{r}
+p <- c("Conservative Party", "Labour Party", "Scottish National Party", 
+       "Liberal Democrats", "Democratic Unionist Party", "Sinn Féin") 
+
+p
+```
+
+To see what type of data we have in our object, `p`, we can use the function `class()`. This function returns information on the type of data we are having in the object. If we use the function on `p`, we can see that the object consists of characters (i.e. _"character"_).
+
+```{r}
+class(p)
+```
+
+To compare, we can do the same thing with our object `x`, which includes numerical values. Here we see that the function `class()` for `x` returns `"numeric"`. The different classes a vector can have is: `character` (text), `numeric` (numbers), `integer` (whole numbers), `factor` (categories) and `logical` (logical). 
+
+```{r}
+class(x)
+```
+
+To test whether our object is numerical or not, we can use the function `is.numeric()`. If the object is numeric, we will get a `TRUE`. If not, we will get a `FALSE`. This logical structure can be used in a lot of different scenarios as we will see later. Similar to `is.numeric()`, we have a function called `is.character()` that will show us whether the object is a charater or not.
+
+```{r, eval=FALSE}
+is.numeric(x)
+is.character(x)
+```
+
+Try to use `is.numeric()` and `is.character()` on the object `p`. 
+
+In the same way we could get specific values from the object when it was numeric, we can get specific values when it is a character object as well.
+
+```{r}
+p[3]
+
+p[-3]
+```
+
+While `p` is a short name for an object and easy to write, it is not telling for what we actually have in the object. Accordingly, let us create a new object called `party` with the same information as in `p`. When you name objects remember that they are case sensitive so `party` will be a different object than `Party`.[^8]
+
+[^8]: If you want more information on how to name objects, see [http://style.tidyverse.org/syntax.html#object-names](http://style.tidyverse.org/syntax.html#object-names).
+
+```{r}
+party <- p
+
+party
+```
+
+## Data frames
+
+In most cases, we will not be working with one variable (e.g. information on party names), but multiple variables. To do this in an easy way, we can create _data frames_ which is similar to a dataset in SPSS and Stata. The good thing about `R`, however, is that we can have multiple data frames open at the same time. The cost of this is that we have to specifcy, when we do something in `R`, exactly what data frame we are using. 
+
+Here we will create a data frame with more information about the parties from the United Kingdom general election, 2017.[^9]
+
+[^9]: The information is taken from [https://en.wikipedia.org/wiki/United_Kingdom_general_election,_2017](https://en.wikipedia.org/wiki/United_Kingdom_general_election,_2017)
+
+As a first step we can create new objects with more information: `leader` (ifnormation on the party leader), `votes` (the vote share in percent), `seats` (the number of seats) and `seats_change` (change in seats from the previous election). Do note that the order is important as we are going to link these objects together in a minute, where the first value in each object is for the Conservative Party, the second for the Labour Party and so on.
+
+```{r}
+leader <- c("Theresa May", "Jeremy Corbyn", "Nicola Sturgeon", 
+            "Tim Farron", "Arlene Foster", "Gerry Adams")
+votes <- c(42.4, 40.0, 3.0, 7.4, 0.9, 0.7)
+seats <- c(317, 262, 35, 12, 10, 7)
+seats_change <- c(-13, 30, -21, 4, 2, 3)
+```
+
+The next thing we have to do is to connect the objects into a single object, i.e. our data frame. A data frame is a collection of different vectors of the same length. In other words, for the objects we have above, as they have the same number of information, they can be connected in a data frame. `R` will return an error message if the vectors do not have the same length.
+
+We can have different types of variables in a data frame, i.e. both numbers and text variables. To create our data frame, we will use the function `data.frame()` and save the data frame in the object `uk2017`. 
+
+```{r}
+uk2017 <- data.frame(party, leader, votes, seats, seats_change)
+
+uk2017 # show the content of the data frame
+```
+
+To see what type of object we are working with, we can use the function `class()` to show that `uk2017` is a data frame.
+
+```{r}
+class(uk2017)
+```
+
+If we would like to know what class the individual variables in our data frame are, we can use the function `sapply()`. This function allows us to apply a function to a list or a vector. Below we apply  `class()` on the individual variables in `uk2017`.
+
+```{r}
+sapply(uk2017, class)
+```
+
+Here we can see that we have data as a `factor` as well as numerical variables. We can get similar information about our data by using the function `str()`. This function returns information on the structure in the data frame.
+
+```{r}
+str(uk2017)
+```
+
+Here we can see that it is a data frame with 6 observations of 5 variables. If the rows (i.e. observations) have names, we can get these by using `rownames()`. We can get the names of the columns, i.e. the variables in our data frame, by using `colnames()`.
+
+```{r}
+colnames(uk2017)
+```
+
+If we want to see the number of columns and rows in our data frame, we can use `ncol()` and `nrow()`.
+
+```{r}
+ncol(uk2017)
+nrow(uk2017)
+```
+
+If we are working with bigger data frames, e.g. a survey with thousands of respondents, it might not be useful to just show the full data frame. One way to see just a few of the observations is by using `head()`. If not specified further, this function will show the first six observations in the data frame. In the example below, we will tell `R` to show the first three observations
+
+```{r}
+head(uk2017, 3)  # show the first three rows
+```
+
+In the same way, we can use `tail()` show the last observations in a data frame. Here we see the last four observations in our data frame.
+
+```{r}
+tail(uk2017, 4)  # show the last four rows
+```
+
+If you want to see your data frame in a new window, you can use the function `View()` (do note the capital letter V - not v).
+
+```{r, eval=FALSE}
+View(uk2017)
+```
+
+```{r View, echo=FALSE, cache=TRUE, fig.cap="Data frame with View(), RStudio", out.extra="scale=0.65"}
+include_graphics(path = "fig/View.png")
+```
+
+When you are working with variables in a data frame, you can use `$` as a _component selector_ to select a variable in a data frame. This is the base R way, i.e. brackets and dollar signs. In the next chapter we will work with other functions that makes it easier to work with data frames. 
+
+If we, for example, want to have all the vote shares in our data frame `uk2017`, we can write `uk2017$votes`.
+
+```{r}
+uk2017$votes
+```
+
+Contrary to working with a vector in a single dimension, we have two dimensions in a data frame (rows horisontally and columns vertically). Just as for a single vector, we need to work with the brackets, `[ ]`, in addition to our object, but we need to specify the rows and columns we are interested in. If we want to work with the first row, we need to specify `[1, ]` after the object. The comma is seperating the information on the rows and columns we want to work with. When we are not specifying anything after the comma, that means we want to have the information for _all_ columns.
+
+```{r}
+uk2017[1,] # first row
+```
+
+Had we also added a number after the comma, we would get the information for that specific column. in the example below we want to have the information on the first row in the first column (i.e. the name of the party on the first row).
+
+```{r}
+uk2017[1, 1] # first row, first column
+```
+
+If we want to have the names of all parties, i.e. the information in the first column, we can specify that we want all rows but only for the first column.
+
+```{r}
+uk2017[, 1] # first column
+```
+
+Interestingly, the functions we have talked about so far can all be applied to data frames. The `summary()` function is very useful if you want to get an overview of all your variables in your data frame. For the numerical variables in the data frame, the function will return information such as the mean and the median.
+
+```{r}
+summary(uk2017)
+```
+
+
+We can also use the functions on our variables as we did above, e.g. to get the maximum number of votes a party got with the function `max()`.
+
+```{r}
+max(uk2017$votes)
+```
+
+If we want to have the value on a specific variable in our data frame, we can use both `$` and `[ ]`. Below we get the second value in the variable `party`.
+
+```{r}
+uk2017$party[2]
+```
+
+To combine a lot of what we have used above, we can get informatin on the name of the party that got the most votes. In order to do this, we specify that we would like to have the name of the party for the party where the number of votes equals the maximum number of votes. In other words, when `uk2017$votes` is equal to `max(uk2017$votes)`, we want to get the information on `uk2017$party`. We use `==` to test whether something is equal to.
+
+```{r}
+uk2017$party[uk2017$votes == max(uk2017$votes)]
+```
+
+As we can see, the Conservative Party got the most votes in the 2017 election. We can use the same procedure if we want to get information on the party that got the minimum number of votes. To do this we use `min()`. Here we can see that this is Sinn Féin in our data frame.
+
+```{r}
+uk2017$party[uk2017$votes == min(uk2017$votes)]
+```
+
+The sky is the limit when it comes t owhat we can do with data frames, including various types of statistical analyses. To give one example, we can use the `lm()` function to conduct an OLS regression with `votes` as the independent variable and `seats` as the dependent variable. First, we save the model in the object `uk2017_lm` and then use `summary()` to get the results.
+
+```{r}
+uk2017_lm <- lm(seats ~ votes, data = uk2017)
+
+summary(uk2017_lm)
+```
+
+
+## Import and export data frames
+
+Most of the data frames we will be working with in `R` are not data frames we will build from scratch but on the contrary data frames we will import from other files such as files made for Stata, SPSS or Excel. The most useful filetype to use when you work with data in files is `.csv`, which stands for _comma-separated values_. This is an open file format and be opened in any software. To export and import data frames to `.csv` files, we can use `write.csv()` and `read.csv()`.
+
+First of all we need to know where `R` is working from, i.e. what our _working directory_ is. To get this you can type `getwd()` and see where your data will be saved. 
+
+```{r, eval=FALSE}
+getwd()
+```
+
+If you would like to change this, you can use the function `setwd()`. This function allows you to change the working directory to whatever folder on your computer you would like to use.
+
+```{r, eval=FALSE}
+setwd("/Dropbox/qpolr/book")
+```
+
+An easy way to control the working directory is to open an R-script directly from the folder so it also opens RStudio that way. This will automatically set the working directory to the folder with the R-script.
+
+Once we know where we will save our data, we can use `write.csv()` to save the data. In the code below we first specify that we want to save the data frame `uk2017` and next the filename of the file (`uk2017.csv`). 
+
+```{r, eval=FALSE}
+write.csv(uk2017, "uk2017.csv")
+```
+
+Do note that we need to put the file in quotation marks. Next, we can import the file into `R` the next time we open `R` with the function `read.csv()` and save the data frame in the object `uk2017`.
+
+```{r, eval=FALSE}
+uk2017 <- read.csv("uk2017.csv")
+```
+
+As with most stuff in `R`, there are multiple ways of doing things. To import and export data, we have packages like `foreign` [@rcoreteam2015foreign], `rio` [@chanetal2016] og `readr` [@wickhamfrancois2015]. If you install and load the package `rio`, you can use the functions `import()` and `export()`.
+
+```{r, eval=FALSE}
+# export data with the rio package
+export(uk2017, "uk2017.csv")
+
+# import data with the rio package
+uk2017 <- import("uk2017.csv")
+```
+
+## Environment
+
+We have worked with a series of different objects. T osee what objects we have in our memory, we can look in the _Environment_ window, but we can also use the function `ls()`(_ls_ is short for _list objects_). 
+
+```{r}
+ls()
+```
+
+If we would like to remove an object from the memory, we can use the function `rm()` (_rm_ is short for _remove_). Below we use `rm()` to remove the object `x` and then `ls()` to check whether `x` is gone.
+
+```{r}
+rm(x)
+
+ls()
+```
+
+If you would like to remove _everything_ in the memory, you can use `ls()` in combination with `rm()`.
+
+```{r}
+rm(list = ls())
+
+ls()
 ```
 

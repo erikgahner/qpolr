@@ -115,7 +115,7 @@ Notice also that we use a function in the bottom, namely `sqrt()`. A lot of what
 
 We highlighted above that one of the key advantages of using `R` is the package system. In `R`, a package is a collection of data and functions that makes it easier for you do to what you want. The sky is the limit and the only thing you need to learn know is how to install and load packages. 
 
-To install packages, you will have to use a function called `install.packages()`. We will install a package that installs a lot of the functions we will be using to manipulate and visualise data. More specifically, we will work within the tidyverse (you can read more at [tidyverse.org](http://tidyverse.org/)). To intall this package type:
+To install packages, you will have to use a function called `install.packages()`. We will install a package that installs a lot of the functions we will be using to manipulate and visualise data. More specifically, we will work within the tidyverse [@wickham2017]. You can read more at [tidyverse.org](http://tidyverse.org/). To intall this package type:
 
 ```{r, eval=FALSE}
 install.packages("tidyverse")
