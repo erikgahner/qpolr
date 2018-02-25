@@ -1,0 +1,204 @@
+---
+output: html_document
+---
+
+# Data management {#data}
+
+There are multiple ways to manage data in `R` and in particular ways to create and change variables in a data frame. In this chapter, we show different ways of working with data frames with a focus on how to change variables. Noteworthy, there are multiple packages we can use to manipulate data farmes, but the best is without a doubt `dplyr` [@wickhamfrancois2016]. 
+
+The package provides some basic functions making it easy to work with data frames. These functions include 
+ `select()`, `filter()`, `arrange()`, `rename()`, `mutate()` og `summarize()`.[^11] `select()` allows you to pick variables by their names. `filter()` allows you to pick observations by their values. `arrange()` allows you to reorder the rows. `rename()` allows you to rename columns. `mutate()` allows you to create new variables based on the values of old variables. `summarize()` allows you to collapse many values to a single summary.
+ 
+[^11]: For another good introduction to `dplyr`, see: [Managing Data Frames with the dplyr package](https://bookdown.org/rdpeng/rprogdatascience/managing-data-frames-with-the-dplyr-package.html).
+ 
+All these functions rely on data frames. In other words, you can not use these functions on other types of data in `R`. Furthermore, they all return a new data frame. 
+
+The `dplyr` package is a part of the `tidyverse`. First, load the `tidyverse`.
+
+```{r, message=FALSE, warning=FALSE}
+library("tidyverse")
+```
+
+We will use the dataset we created in the previous chapter. If you do not have it, you can download it here: [http://qpolr.com/data/uk2017.csv](http://qpolr.com/data/uk2017.csv)
+
+```{r, eval=FALSE}
+uk2017 <- import("uk2017.csv")
+```
+
+To see the information in the dataset, use `head()`.
+
+```{r}
+head(uk2017)
+```
+
+## Selecting variables: `select()`
+
+When we work with large datasets, we often want to select the few variables that are of key interest to our project. For this, the `select()` function is perfect. If we only want to have information on the party name and the votes in the `uk2017` data frame, we can write:
+
+```{r}
+select(uk2017, party, votes)
+```
+
+There are multiple different functions that can help us finding specific variables in the data frame. We can use `contains()`, if we want to include variables that contain a specific word in the variable name. In the example below we look for variables that contain `seat`.
+
+```{r}
+select(uk2017, contains("seat"))
+```
+
+Other noteworthy functions that can be of help similar to `contains()` are functions such as `starts_with()`, `ends_with()`, `matches()`, `num_range()`, `one_of()` and `everything()`. The last function, `everything()` is helpful if we want to move a variable to the beginning of our data frame.
+
+```{r}
+select(uk2017, votes, everything())
+```
+
+We can use the negative sign if we want to remove a variable from the data frame.
+
+```{r}
+select(uk2017, -leader)
+```
+
+## Selecting observations: `filter()`
+
+To select only some of the observations in our data frame, but for all variables, we can use the function `filter()`. In the example below we select the observations in our data frame with a positive value on `seats_change` (i.e. greater than 0).
+
+```{r}
+filter(uk2017, seats_change > 0)
+```
+
+Importantly, we are _not_ making any changes to the data frame `uk2017`. This will only hapen if we replace our existing data frame or create a new data frame. In the example below we create a new data frame, `uk2017_seatlosers`, with the observations losing seats from 2015 to 2017.
+
+```{r}
+uk2017_seatlosers <- filter(uk2017, seats_change < 0)
+uk2017_seatlosers
+```
+
+Last, if we want to drop observations that contain missing values on specific variables, we can use the function `drop_na()`.
+
+## Sorting observations: `arrange()`
+
+We can use the function `arrange()` if we want to change the order of observations. In the example below we sort our data frame according to how many votes the party got, with the party getting the least votes in the top of our data frame. 
+
+```{r}
+arrange(uk2017, votes)
+```
+
+If we prefer to have the parties with the maximum number of votes in the top, we can use the negative sign (`-`).
+
+```{r}
+arrange(uk2017, -votes)
+```
+
+## Rename variables: `rename()`
+
+In the case we have a variable we would prefer having another name, we can use the function `rename()`. In the example below we change the name of `party` to `party_name`.
+
+```{r}
+rename(uk2017, party_name = party)
+```
+
+## Create variables: `mutate()`
+
+The best way to create a new variable from existing variables in our data frame is to use the function `mutate()`. In the example below we create a new variable, `votes_m` with information on how many percentage points a party is from the average number of votes a party got.
+
+```{r}
+mutate(uk2017, votes_m = votes - mean(votes))
+```
+
+In another example we use the `sum()` function as well to find the proportion of seats a party got in a variable, `seats_prop`.
+
+```{r}
+mutate(uk2017, seats_prop = seats / sum(seats))
+```
+
+## The pipe operator: `%>%`
+
+So far we have looked at a series of different functions. In most cases we want to combine these functions, e.g. when we both have to select specific variables and observations. Luckikly, there is nothing against using one function nested within another, as the example below shows.
+
+```{r}
+filter(select(uk2017, party, votes), seats_change > 0)
+```
+
+The problem is that it can be complicated to read, especially when as the number of functions we use increase. Furthermore, the likelihood of making a stupid mistake, e.g. by including an extra `(` or `)` increases substantially. Luckily, we can use the pipe operator, `%>%`, to make our code more readable.
+
+The operator relies on a step-wise logic so we first specify the data frame and then a line for each function we want to run on the data frame.
+
+In the example below we do the same as above but in a way that is easier to follow.
+
+```{r}
+uk2017 %>% 
+  select(party, votes) %>%
+  filter(seats_change > 0)
+```
+
+On the first line, we show that we are using the data frame `uk2017`. We end this line with `%>%`, telling `R` that we are not done yet but will have to put this into the function on the line below. The next line uses the input from the previous line and selects `party` and `votes` from the data frame. This line also ends with the pipe, `%>%`. The third line shows the observations in our data frame where `seats_change` is greater than 0. Note that we did not select `seats_change` as a variable with `select()`, so this is not crucial in order to use it (as long as it is in the `uk2017` data frame). Last, we do _not_ end with a pipe as we are now done.
+
+## Running functions on variables: `apply()`
+
+If we would like to run a function on some of our rows or columns we can use the function `apply()`. For example, we can get the average number of votes and seats for parties with a positive value on `seats_change` (i.e. parties with an increase in seats from 2015 to 2017. 
+
+The addition here is the function `apply()` on the data frame used above. The first thing we specify here is `MARGIN`, i.e. whether we want to run a function on our rows (1) or columns (2). The next thing we specify is the function together with any relevant options.
+
+```{r}
+uk2017 %>%
+  filter(seats_change > 0) %>%
+  select(votes, seats) %>%
+  apply(MARGIN = 2, FUN = mean, na.rm = TRUE)
+```
+
+In the case you want to apply a function to both rows and columns, you will have to specify `c(1, 2)`. It is not important to mention `MARGIN` eller `FUN` if you have the order right. In other words, we can simplify our example to the code below.
+
+```{r}
+uk2017 %>%
+  filter(seats_change > 0) %>%
+  select(votes, seats) %>%
+  apply(2, mean)
+```
+
+## Aggregating variables: `summarize()` and `group_by()`
+
+If we want to create new variables with aggregated information, similar to the information we got in the previous section, we can use the function `summarize()`. In the example below we get a data frame with information on the number of observatins, given by `n()`, the minimum number of votes a party got (`votes_min`), the maximum number of votes a party got (`votes_max`) and the average number of votes a party got (`votes_mean`) (all in percentages).
+
+```{r}
+uk2017 %>%
+  summarize(party = n(), 
+            votes_min = min(votes), 
+            votes_max = max(votes), 
+            votes_mean = mean(votes))
+```
+
+If we want this information for different groups, we can supply with `group_by()`. In the example below we will like to have the information both for parties with an increase in seats from 2015 to 2017 and not.
+
+```{r}
+uk2017 %>%
+  group_by(seats_change > 0) %>%
+  summarize(party = n(), 
+            votes_min = min(votes), 
+            votes_max = max(votes), 
+            votes_mean = mean(votes))
+```
+
+In the example, you can see the aggregated information. `T` is short for `TRUE` and is the aggregated information for the observations where `seats_change` is greater than 0.
+
+## Recoding variables: `recode()`
+
+In a lot of cases we want to recode the information in a single variable. To do this, we can use `recode()`. Importantly, this function works for individual variables and not for a data frame. Let us use the `leader` variable in `uk2017` as an example.
+
+```{r}
+uk2017$leader 
+```
+
+In the case that we want to replace Tim Farron in the variable with a new guy, we can do that with the code below.
+
+```{r}
+recode(uk2017$leader, "Tim Farron" = "New guy")
+```
+
+Noteworthy, we do not create any changes to the `leader` variable. If we want to save the changes, we can save the new variable to our data frame.
+
+```{r}
+uk2017$leader_new <- recode(uk2017$leader, "Tim Farron" = "New guy")
+
+uk2017$leader_new
+```
+
+Last, `dplyr` in the `tidyverse` is not the only package with a `recode()` function. The package `car` [@foxweisberg2011] has a similar function worth exploring.

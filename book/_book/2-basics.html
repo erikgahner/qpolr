@@ -25,6 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
+<meta name="date" content="2018-02-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,7 +33,7 @@
   
   
 <link rel="prev" href="index.html">
-<link rel="next" href="3-references.html">
+<link rel="next" href="3-data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -116,7 +117,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
 <li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-references.html"><a href="3-references.html"><i class="fa fa-check"></i><b>3</b> References</a></li>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#rename-variables-rename"><i class="fa fa-check"></i><b>3.4</b> Rename variables: <code>rename()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#create-variables-mutate"><i class="fa fa-check"></i><b>3.5</b> Create variables: <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#the-pipe-operator"><i class="fa fa-check"></i><b>3.6</b> The pipe operator: <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#recoding-variables-recode"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>recode()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-references.html"><a href="4-references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -174,7 +186,7 @@ x</code></pre></div>
 <p>We can then use this vector to calculate new numbers (just as we did above with <code>1:10</code>), for example by multiplying all the numbers in the vector with 2.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
 <pre><code>[1] 28 12 46  4</code></pre>
-<p>If we are only interested in a single value from the vector, we can get this value by using brackets, i.e. <code>[ ]</code>, which you place just after the objet (so no space between the name of the object and the brackets!). By placing the number 3 in the brackets we can get the third number in the object.</p>
+<p>If we are only interested in a single value from the vector, we can get this value by using brackets, i.e. <code>[ ]</code>, which you place just after the object (so no space between the name of the object and the brackets!). By placing the number 3 in the brackets we can get the third number in the object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">3</span>]</code></pre></div>
 <pre><code>[1] 23</code></pre>
 <p>As you can see, we get the third element, 23. We can use the same procedure to get all values with the exception of one value by including a negative sign in the brackets. In this example we will get all values except for 2. Also, note that since we are not assigned anything to an object (with <code>&lt;-</code>), we are not making any changes to <code>x</code>.</p>
@@ -437,16 +449,7 @@ uk2017 &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
 
 <span class="kw">ls</span>()</code></pre></div>
-<pre><code>character(0)</code></pre>
 
-<!--
-The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
--->
-
-<!-- 
-If you'd like to change the name of the bibliography to something else,
-delete "References" and replace it.
--->
 </div>
 </div>
 <div class="footnotes">
@@ -466,7 +469,7 @@ delete "References" and replace it.
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

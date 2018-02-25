@@ -83,7 +83,7 @@ We can then use this vector to calculate new numbers (just as we did above with 
 x * 2
 ```
 
-If we are only interested in a single value from the vector, we can get this value by using brackets, i.e. `[ ]`, which you place just after the objet (so no space between the name of the object and the brackets!). By placing the number 3 in the brackets we can get the third number in the object.
+If we are only interested in a single value from the vector, we can get this value by using brackets, i.e. `[ ]`, which you place just after the object (so no space between the name of the object and the brackets!). By placing the number 3 in the brackets we can get the third number in the object.
 
 ```{r}
 x[3]
@@ -423,7 +423,7 @@ ls()
 
 If you would like to remove _everything_ in the memory, you can use `ls()` in combination with `rm()`.
 
-```{r}
+```{r, eval=FALSE}
 rm(list = ls())
 
 ls()

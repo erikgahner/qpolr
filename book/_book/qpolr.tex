@@ -51,7 +51,7 @@
 
 \title{\Huge{ Quantitative Politics with R } \vspace{2em}}
 \author{Erik Gahner Larsen and Zoltán Fazekas}
-\date{Februar 20, 2018}
+\date{February 25, 2018}
 
 \renewcommand{\contentsname}{Table of Contents}
 
@@ -507,9 +507,9 @@
   \end{verbatim}
   If we are only interested in a single value from the vector, we can get
   this value by using brackets, i.e. \texttt{{[}\ {]}}, which you place
-  just after the objet (so no space between the name of the object and the
-  brackets!). By placing the number 3 in the brackets we can get the third
-  number in the object.
+  just after the object (so no space between the name of the object and
+  the brackets!). By placing the number 3 in the brackets we can get the
+  third number in the object.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{x[}\DecValTok{3}\NormalTok{]}
@@ -1199,9 +1199,483 @@
   \KeywordTok{ls}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
+  \chapter{Data management}\label{data}
+  
+  There are multiple ways to manage data in \texttt{R} and in particular
+  ways to create and change variables in a data frame. In this chapter, we
+  show different ways of working with data frames with a focus on how to
+  change variables. Noteworthy, there are multiple packages we can use to
+  manipulate data farmes, but the best is without a doubt \texttt{dplyr}
+  (Hadley Wickham \& Francois, 2016).
+  
+  The package provides some basic functions making it easy to work with
+  data frames. These functions include \texttt{select()},
+  \texttt{filter()}, \texttt{arrange()}, \texttt{rename()},
+  \texttt{mutate()} og \texttt{summarize()}.\footnote{For another good
+    introduction to \texttt{dplyr}, see:
+    \href{https://bookdown.org/rdpeng/rprogdatascience/managing-data-frames-with-the-dplyr-package.html}{Managing
+    Data Frames with the dplyr package}.} \texttt{select()} allows you to
+  pick variables by their names. \texttt{filter()} allows you to pick
+  observations by their values. \texttt{arrange()} allows you to reorder
+  the rows. \texttt{rename()} allows you to rename columns.
+  \texttt{mutate()} allows you to create new variables based on the values
+  of old variables. \texttt{summarize()} allows you to collapse many
+  values to a single summary.
+  
+  All these functions rely on data frames. In other words, you can not use
+  these functions on other types of data in \texttt{R}. Furthermore, they
+  all return a new data frame.
+  
+  The \texttt{dplyr} package is a part of the \texttt{tidyverse}. First,
+  load the \texttt{tidyverse}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  We will use the dataset we created in the previous chapter. If you do
+  not have it, you can download it here:
+  \url{http://qpolr.com/data/uk2017.csv}
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017 <-}\StringTok{ }\KeywordTok{import}\NormalTok{(}\StringTok{"uk2017.csv"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To see the information in the dataset, use \texttt{head()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(uk2017)}
+  \end{Highlighting}
+  \end{Shaded}
   \begin{verbatim}
-  character(0)
+                        party          leader votes seats seats_change
+  1        Conservative Party     Theresa May  42.4   317          -13
+  2              Labour Party   Jeremy Corbyn  40.0   262           30
+  3   Scottish National Party Nicola Sturgeon   3.0    35          -21
+  4         Liberal Democrats      Tim Farron   7.4    12            4
+  5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+  6                 Sinn Féin     Gerry Adams   0.7     7            3
   \end{verbatim}
+  \section{\texorpdfstring{Selecting variables:
+  \texttt{select()}}{Selecting variables: select()}}\label{selecting-variables-select}
+  
+  When we work with large datasets, we often want to select the few
+  variables that are of key interest to our project. For this, the
+  \texttt{select()} function is perfect. If we only want to have
+  information on the party name and the votes in the \texttt{uk2017} data
+  frame, we can write:
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{select}\NormalTok{(uk2017, party, votes)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party votes
+  1        Conservative Party  42.4
+  2              Labour Party  40.0
+  3   Scottish National Party   3.0
+  4         Liberal Democrats   7.4
+  5 Democratic Unionist Party   0.9
+  6                 Sinn Féin   0.7
+  \end{verbatim}
+  There are multiple different functions that can help us finding specific
+  variables in the data frame. We can use \texttt{contains()}, if we want
+  to include variables that contain a specific word in the variable name.
+  In the example below we look for variables that contain \texttt{seat}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{select}\NormalTok{(uk2017, }\KeywordTok{contains}\NormalTok{(}\StringTok{"seat"}\NormalTok{))}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+    seats seats_change
+  1   317          -13
+  2   262           30
+  3    35          -21
+  4    12            4
+  5    10            2
+  6     7            3
+  \end{verbatim}
+  Other noteworthy functions that can be of help similar to
+  \texttt{contains()} are functions such as \texttt{starts\_with()},
+  \texttt{ends\_with()}, \texttt{matches()}, \texttt{num\_range()},
+  \texttt{one\_of()} and \texttt{everything()}. The last function,
+  \texttt{everything()} is helpful if we want to move a variable to the
+  beginning of our data frame.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{select}\NormalTok{(uk2017, votes, }\KeywordTok{everything}\NormalTok{())}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+    votes                     party          leader seats seats_change
+  1  42.4        Conservative Party     Theresa May   317          -13
+  2  40.0              Labour Party   Jeremy Corbyn   262           30
+  3   3.0   Scottish National Party Nicola Sturgeon    35          -21
+  4   7.4         Liberal Democrats      Tim Farron    12            4
+  5   0.9 Democratic Unionist Party   Arlene Foster    10            2
+  6   0.7                 Sinn Féin     Gerry Adams     7            3
+  \end{verbatim}
+  We can use the negative sign if we want to remove a variable from the
+  data frame.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{select}\NormalTok{(uk2017, }\OperatorTok{-}\NormalTok{leader)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party votes seats seats_change
+  1        Conservative Party  42.4   317          -13
+  2              Labour Party  40.0   262           30
+  3   Scottish National Party   3.0    35          -21
+  4         Liberal Democrats   7.4    12            4
+  5 Democratic Unionist Party   0.9    10            2
+  6                 Sinn Féin   0.7     7            3
+  \end{verbatim}
+  \section{\texorpdfstring{Selecting observations:
+  \texttt{filter()}}{Selecting observations: filter()}}\label{selecting-observations-filter}
+  
+  To select only some of the observations in our data frame, but for all
+  variables, we can use the function \texttt{filter()}. In the example
+  below we select the observations in our data frame with a positive value
+  on \texttt{seats\_change} (i.e.~greater than 0).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{filter}\NormalTok{(uk2017, seats_change }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party        leader votes seats seats_change
+  1              Labour Party Jeremy Corbyn  40.0   262           30
+  2         Liberal Democrats    Tim Farron   7.4    12            4
+  3 Democratic Unionist Party Arlene Foster   0.9    10            2
+  4                 Sinn Féin   Gerry Adams   0.7     7            3
+  \end{verbatim}
+  Importantly, we are \emph{not} making any changes to the data frame
+  \texttt{uk2017}. This will only hapen if we replace our existing data
+  frame or create a new data frame. In the example below we create a new
+  data frame, \texttt{uk2017\_seatlosers}, with the observations losing
+  seats from 2015 to 2017.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017_seatlosers <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(uk2017, seats_change }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{)}
+  \NormalTok{uk2017_seatlosers}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                      party          leader votes seats seats_change
+  1      Conservative Party     Theresa May  42.4   317          -13
+  2 Scottish National Party Nicola Sturgeon   3.0    35          -21
+  \end{verbatim}
+  Last, if we want to drop observations that contain missing values on
+  specific variables, we can use the function \texttt{drop\_na()}.
+  
+  \section{\texorpdfstring{Sorting observations:
+  \texttt{arrange()}}{Sorting observations: arrange()}}\label{sorting-observations-arrange}
+  
+  We can use the function \texttt{arrange()} if we want to change the
+  order of observations. In the example below we sort our data frame
+  according to how many votes the party got, with the party getting the
+  least votes in the top of our data frame.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{arrange}\NormalTok{(uk2017, votes)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party          leader votes seats seats_change
+  1                 Sinn Féin     Gerry Adams   0.7     7            3
+  2 Democratic Unionist Party   Arlene Foster   0.9    10            2
+  3   Scottish National Party Nicola Sturgeon   3.0    35          -21
+  4         Liberal Democrats      Tim Farron   7.4    12            4
+  5              Labour Party   Jeremy Corbyn  40.0   262           30
+  6        Conservative Party     Theresa May  42.4   317          -13
+  \end{verbatim}
+  If we prefer to have the parties with the maximum number of votes in the
+  top, we can use the negative sign (\texttt{-}).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{arrange}\NormalTok{(uk2017, }\OperatorTok{-}\NormalTok{votes)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party          leader votes seats seats_change
+  1        Conservative Party     Theresa May  42.4   317          -13
+  2              Labour Party   Jeremy Corbyn  40.0   262           30
+  3         Liberal Democrats      Tim Farron   7.4    12            4
+  4   Scottish National Party Nicola Sturgeon   3.0    35          -21
+  5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+  6                 Sinn Féin     Gerry Adams   0.7     7            3
+  \end{verbatim}
+  \section{\texorpdfstring{Rename variables:
+  \texttt{rename()}}{Rename variables: rename()}}\label{rename-variables-rename}
+  
+  In the case we have a variable we would prefer having another name, we
+  can use the function \texttt{rename()}. In the example below we change
+  the name of \texttt{party} to \texttt{party\_name}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{rename}\NormalTok{(uk2017, }\DataTypeTok{party_name =}\NormalTok{ party)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                   party_name          leader votes seats seats_change
+  1        Conservative Party     Theresa May  42.4   317          -13
+  2              Labour Party   Jeremy Corbyn  40.0   262           30
+  3   Scottish National Party Nicola Sturgeon   3.0    35          -21
+  4         Liberal Democrats      Tim Farron   7.4    12            4
+  5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+  6                 Sinn Féin     Gerry Adams   0.7     7            3
+  \end{verbatim}
+  \section{\texorpdfstring{Create variables:
+  \texttt{mutate()}}{Create variables: mutate()}}\label{create-variables-mutate}
+  
+  The best way to create a new variable from existing variables in our
+  data frame is to use the function \texttt{mutate()}. In the example
+  below we create a new variable, \texttt{votes\_m} with information on
+  how many percentage points a party is from the average number of votes a
+  party got.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{mutate}\NormalTok{(uk2017, }\DataTypeTok{votes_m =}\NormalTok{ votes }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(votes))}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party          leader votes seats seats_change
+  1        Conservative Party     Theresa May  42.4   317          -13
+  2              Labour Party   Jeremy Corbyn  40.0   262           30
+  3   Scottish National Party Nicola Sturgeon   3.0    35          -21
+  4         Liberal Democrats      Tim Farron   7.4    12            4
+  5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+  6                 Sinn Féin     Gerry Adams   0.7     7            3
+       votes_m
+  1  26.666667
+  2  24.266667
+  3 -12.733333
+  4  -8.333333
+  5 -14.833333
+  6 -15.033333
+  \end{verbatim}
+  In another example we use the \texttt{sum()} function as well to find
+  the proportion of seats a party got in a variable, \texttt{seats\_prop}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{mutate}\NormalTok{(uk2017, }\DataTypeTok{seats_prop =}\NormalTok{ seats }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(seats))}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party          leader votes seats seats_change
+  1        Conservative Party     Theresa May  42.4   317          -13
+  2              Labour Party   Jeremy Corbyn  40.0   262           30
+  3   Scottish National Party Nicola Sturgeon   3.0    35          -21
+  4         Liberal Democrats      Tim Farron   7.4    12            4
+  5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+  6                 Sinn Féin     Gerry Adams   0.7     7            3
+    seats_prop
+  1 0.49300156
+  2 0.40746501
+  3 0.05443235
+  4 0.01866252
+  5 0.01555210
+  6 0.01088647
+  \end{verbatim}
+  \section{\texorpdfstring{The pipe operator:
+  \texttt{\%\textgreater{}\%}}{The pipe operator: \%\textgreater{}\%}}\label{the-pipe-operator}
+  
+  So far we have looked at a series of different functions. In most cases
+  we want to combine these functions, e.g.~when we both have to select
+  specific variables and observations. Luckikly, there is nothing against
+  using one function nested within another, as the example below shows.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{filter}\NormalTok{(}\KeywordTok{select}\NormalTok{(uk2017, party, votes), seats_change }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party votes
+  1              Labour Party  40.0
+  2         Liberal Democrats   7.4
+  3 Democratic Unionist Party   0.9
+  4                 Sinn Féin   0.7
+  \end{verbatim}
+  The problem is that it can be complicated to read, especially when as
+  the number of functions we use increase. Furthermore, the likelihood of
+  making a stupid mistake, e.g.~by including an extra \texttt{(} or
+  \texttt{)} increases substantially. Luckily, we can use the pipe
+  operator, \texttt{\%\textgreater{}\%}, to make our code more readable.
+  
+  The operator relies on a step-wise logic so we first specify the data
+  frame and then a line for each function we want to run on the data
+  frame.
+  
+  In the example below we do the same as above but in a way that is easier
+  to follow.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017 }\OperatorTok{%>%}\StringTok{ }
+  \StringTok{  }\KeywordTok{select}\NormalTok{(party, votes) }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{filter}\NormalTok{(seats_change }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party votes
+  1              Labour Party  40.0
+  2         Liberal Democrats   7.4
+  3 Democratic Unionist Party   0.9
+  4                 Sinn Féin   0.7
+  \end{verbatim}
+  On the first line, we show that we are using the data frame
+  \texttt{uk2017}. We end this line with \texttt{\%\textgreater{}\%},
+  telling \texttt{R} that we are not done yet but will have to put this
+  into the function on the line below. The next line uses the input from
+  the previous line and selects \texttt{party} and \texttt{votes} from the
+  data frame. This line also ends with the pipe,
+  \texttt{\%\textgreater{}\%}. The third line shows the observations in
+  our data frame where \texttt{seats\_change} is greater than 0. Note that
+  we did not select \texttt{seats\_change} as a variable with
+  \texttt{select()}, so this is not crucial in order to use it (as long as
+  it is in the \texttt{uk2017} data frame). Last, we do \emph{not} end
+  with a pipe as we are now done.
+  
+  \section{\texorpdfstring{Running functions on variables:
+  \texttt{apply()}}{Running functions on variables: apply()}}\label{running-functions-on-variables-apply}
+  
+  If we would like to run a function on some of our rows or columns we can
+  use the function \texttt{apply()}. For example, we can get the average
+  number of votes and seats for parties with a positive value on
+  \texttt{seats\_change} (i.e.~parties with an increase in seats from 2015
+  to 2017.
+  
+  The addition here is the function \texttt{apply()} on the data frame
+  used above. The first thing we specify here is \texttt{MARGIN},
+  i.e.~whether we want to run a function on our rows (1) or columns (2).
+  The next thing we specify is the function together with any relevant
+  options.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017 }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{filter}\NormalTok{(seats_change }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{select}\NormalTok{(votes, seats) }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ mean, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  votes seats 
+  12.25 72.75 
+  \end{verbatim}
+  In the case you want to apply a function to both rows and columns, you
+  will have to specify \texttt{c(1,\ 2)}. It is not important to mention
+  \texttt{MARGIN} eller \texttt{FUN} if you have the order right. In other
+  words, we can simplify our example to the code below.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017 }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{filter}\NormalTok{(seats_change }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{select}\NormalTok{(votes, seats) }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{apply}\NormalTok{(}\DecValTok{2}\NormalTok{, mean)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  votes seats 
+  12.25 72.75 
+  \end{verbatim}
+  \section{\texorpdfstring{Aggregating variables: \texttt{summarize()} and
+  \texttt{group\_by()}}{Aggregating variables: summarize() and group\_by()}}\label{aggregating-variables-summarize-and-group_by}
+  
+  If we want to create new variables with aggregated information, similar
+  to the information we got in the previous section, we can use the
+  function \texttt{summarize()}. In the example below we get a data frame
+  with information on the number of observatins, given by \texttt{n()},
+  the minimum number of votes a party got (\texttt{votes\_min}), the
+  maximum number of votes a party got (\texttt{votes\_max}) and the
+  average number of votes a party got (\texttt{votes\_mean}) (all in
+  percentages).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017 }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{party =} \KeywordTok{n}\NormalTok{(), }
+              \DataTypeTok{votes_min =} \KeywordTok{min}\NormalTok{(votes), }
+              \DataTypeTok{votes_max =} \KeywordTok{max}\NormalTok{(votes), }
+              \DataTypeTok{votes_mean =} \KeywordTok{mean}\NormalTok{(votes))}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+    party votes_min votes_max votes_mean
+  1     6       0.7      42.4   15.73333
+  \end{verbatim}
+  If we want this information for different groups, we can supply with
+  \texttt{group\_by()}. In the example below we will like to have the
+  information both for parties with an increase in seats from 2015 to 2017
+  and not.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017 }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{group_by}\NormalTok{(seats_change }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{party =} \KeywordTok{n}\NormalTok{(), }
+              \DataTypeTok{votes_min =} \KeywordTok{min}\NormalTok{(votes), }
+              \DataTypeTok{votes_max =} \KeywordTok{max}\NormalTok{(votes), }
+              \DataTypeTok{votes_mean =} \KeywordTok{mean}\NormalTok{(votes))}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  # A tibble: 2 x 5
+    `seats_change > 0` party votes_min votes_max votes_mean
+    <lgl>              <int>     <dbl>     <dbl>      <dbl>
+  1 F                      2     3.00       42.4       22.7
+  2 T                      4     0.700      40.0       12.2
+  \end{verbatim}
+  In the example, you can see the aggregated information. \texttt{T} is
+  short for \texttt{TRUE} and is the aggregated information for the
+  observations where \texttt{seats\_change} is greater than 0.
+  
+  \section{\texorpdfstring{Recoding variables:
+  \texttt{recode()}}{Recoding variables: recode()}}\label{recoding-variables-recode}
+  
+  In a lot of cases we want to recode the information in a single
+  variable. To do this, we can use \texttt{recode()}. Importantly, this
+  function works for individual variables and not for a data frame. Let us
+  use the \texttt{leader} variable in \texttt{uk2017} as an example.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017}\OperatorTok{$}\NormalTok{leader }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] Theresa May     Jeremy Corbyn   Nicola Sturgeon Tim Farron     
+  [5] Arlene Foster   Gerry Adams    
+  6 Levels: Arlene Foster Gerry Adams Jeremy Corbyn ... Tim Farron
+  \end{verbatim}
+  In the case that we want to replace Tim Farron in the variable with a
+  new guy, we can do that with the code below.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{recode}\NormalTok{(uk2017}\OperatorTok{$}\NormalTok{leader, }\StringTok{"Tim Farron"}\NormalTok{ =}\StringTok{ "New guy"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] Theresa May     Jeremy Corbyn   Nicola Sturgeon New guy        
+  [5] Arlene Foster   Gerry Adams    
+  6 Levels: Arlene Foster Gerry Adams Jeremy Corbyn ... New guy
+  \end{verbatim}
+  Noteworthy, we do not create any changes to the \texttt{leader}
+  variable. If we want to save the changes, we can save the new variable
+  to our data frame.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017}\OperatorTok{$}\NormalTok{leader_new <-}\StringTok{ }\KeywordTok{recode}\NormalTok{(uk2017}\OperatorTok{$}\NormalTok{leader, }\StringTok{"Tim Farron"}\NormalTok{ =}\StringTok{ "New guy"}\NormalTok{)}
+  
+  \NormalTok{uk2017}\OperatorTok{$}\NormalTok{leader_new}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] Theresa May     Jeremy Corbyn   Nicola Sturgeon New guy        
+  [5] Arlene Foster   Gerry Adams    
+  6 Levels: Arlene Foster Gerry Adams Jeremy Corbyn ... New guy
+  \end{verbatim}
+  Last, \texttt{dplyr} in the \texttt{tidyverse} is not the only package
+  with a \texttt{recode()} function. The package \texttt{car} (Fox \&
+  Weisberg, 2011) has a similar function worth exploring.
+  
   \backmatter
   
   \chapter{References}\label{references}
@@ -1216,6 +1690,11 @@
   Chan, C., Chan, G. C. H., \& Leeper, T. J. (2016). \emph{Rio: A
   swiss-army knife for data file i/o}.
   
+  \hypertarget{ref-foxweisberg2011}{}
+  Fox, J., \& Weisberg, S. (2011). \emph{An R companion to applied
+  regression} (Second). Thousand Oaks CA: Sage. Retrieved from
+  \url{http://socserv.socsci.mcmaster.ca/jfox/Books/Companion}
+  
   \hypertarget{ref-rcoreteam2015foreign}{}
   R Core Team. (2015). \emph{Foreign: Read data stored by minitab, s, sas,
   spss, stata, systat, weka, dBase, ...} Retrieved from
@@ -1229,6 +1708,11 @@
   \hypertarget{ref-wickhamfrancois2015}{}
   Wickham, H., \& Francois, R. (2015). \emph{Readr: Read tabular data}.
   Retrieved from \url{http://CRAN.R-project.org/package=readr}
+  
+  \hypertarget{ref-wickhamfrancois2016}{}
+  Wickham, H., \& Francois, R. (2016). \emph{Dplyr: A grammar of data
+  manipulation}. Retrieved from
+  \url{http://CRAN.R-project.org/package=dplyr}
 
 
   % Index?

@@ -25,13 +25,14 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
+<meta name="date" content="2018-02-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="2-basics.html">
+<link rel="prev" href="3-data.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -116,7 +117,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
 <li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-references.html"><a href="3-references.html"><i class="fa fa-check"></i><b>3</b> References</a></li>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#rename-variables-rename"><i class="fa fa-check"></i><b>3.4</b> Rename variables: <code>rename()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#create-variables-mutate"><i class="fa fa-check"></i><b>3.5</b> Create variables: <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#the-pipe-operator"><i class="fa fa-check"></i><b>3.6</b> The pipe operator: <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#recoding-variables-recode"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>recode()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-references.html"><a href="4-references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -137,7 +149,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="references" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> References</h1>
+<h1><span class="header-section-number">Chapter 4</span> References</h1>
 <!--
 To remove the indentation of the first entry.
 -->
@@ -155,6 +167,9 @@ This is just for testing with more citations for the bibliography at the end.  A
 <p>Chan, C., Chan, G. C. H., &amp; Leeper, T. J. (2016). <em>Rio: A swiss-army knife for data file i/o</em>.</p>
 </div>
 <div>
+<p>Fox, J., &amp; Weisberg, S. (2011). <em>An R companion to applied regression</em> (Second). Thousand Oaks CA: Sage. Retrieved from <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion" class="uri">http://socserv.socsci.mcmaster.ca/jfox/Books/Companion</a></p>
+</div>
+<div>
 <p>R Core Team. (2015). <em>Foreign: Read data stored by minitab, s, sas, spss, stata, systat, weka, dBase, ...</em> Retrieved from <a href="http://CRAN.R-project.org/package=foreign" class="uri">http://CRAN.R-project.org/package=foreign</a></p>
 </div>
 <div>
@@ -163,8 +178,12 @@ This is just for testing with more citations for the bibliography at the end.  A
 <div>
 <p>Wickham, H., &amp; Francois, R. (2015). <em>Readr: Read tabular data</em>. Retrieved from <a href="http://CRAN.R-project.org/package=readr" class="uri">http://CRAN.R-project.org/package=readr</a></p>
 </div>
+<div>
+<p>Wickham, H., &amp; Francois, R. (2016). <em>Dplyr: A grammar of data manipulation</em>. Retrieved from <a href="http://CRAN.R-project.org/package=dplyr" class="uri">http://CRAN.R-project.org/package=dplyr</a></p>
 </div>
 </div>
+</div>
+
 
 
 
@@ -181,7 +200,7 @@ This is just for testing with more citations for the bibliography at the end.  A
           </div>
         </div>
       </div>
-<a href="2-basics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

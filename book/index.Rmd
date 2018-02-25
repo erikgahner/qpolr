@@ -8,6 +8,7 @@ output:
   thesisdown::thesis_pdf: default
 #  thesisdown::thesis_gitbook: default
 #  thesisdown::thesis_epub: default
+#  thesisdown::thesis_word: default
 bibliography: references.bib
 csl: apa.csl
 lot: false
