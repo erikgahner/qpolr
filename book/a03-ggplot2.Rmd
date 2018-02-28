@@ -2,8 +2,433 @@
 output: html_document
 ---
 
-# Data visualization {#dataviz}
+# Data visualisation {#dataviz}
 
---
+Visualising data is important [@healymoody2014, @kastellecleoni2007, @schwabish2014]. As with everything in `R`, there are a lot of different ways to visualise data. One simple way to visualise data is to use _base_ functions in `R` (i.e. functions that come when you install the `R` language). Below you will see an example on this.
 
-`ggplot2` [@wickham2009].
+```{r}
+plot(x=uk2017$votes, y=uk2017$seats)
+```
+
+There is nothing inherently wrong with using a function like this, but the moment we want to tweak the figure, it gets complicated. Accordingly, we will not use the standard functions in `R` but the package `ggplot2` [@wickham2009]. This package makes it easy to create beautiful figures in `R`.
+
+`ggplot2` creates more beautiful figures with better defaults, it is very customizable, it works within the tidyverse (together with `dplyr`, introduced in the previous chapter), and for those reasons it is becoming incredibly popular among practitioners and academics alike. That being said, there is an element of personal preference when it comes to data visualisations and `ggplot2` is not perfect. While the defaults are good, they could be better. Furthermore, there are functions in the package you should _never_ use (such as `qplot()`, short for _quick plot_).
+
+## The basics of `ggplot2`
+
+You can load `ggplot2` by loading the `tidyverse` (alternatively you can just load the `ggplot2` package).
+
+```{r eval=FALSE}
+library("tidyverse")
+```
+
+The two g's (`gg`) i `ggplot2` is short for _grammar of graphics_. The philosophy is that we are working with building blocks in the form of a sentence structure, where we can add more components to our visualisation, e.g. change colours and add text. This makes it easy to first create a figure and then tweak it till we are satisfied.
+
+These building blocks are: 
+
+1. Data (the data frame we will be using)
+2. Aesthetics (the variables we will be working with)
+3. Geometric objects (the type of visualisation)
+4. Theme adjustments (size, text, colours etc.)
+
+### Data
+
+The function we will be using is `ggplot()`. The first thing we always have to specify in our function is the data frame. In other words, you will _always_ have to use a data frame.
+
+```{r eval=FALSE}
+ggplot(uk2017)
+```
+
+Do note that if you run the code above - and have the `uk2017` in your working memory, we will not get anything but an empty plot. The only thing we have done so far is telling `R` that we would like to create a coordinate system and data from `uk2017` should play some role, but this is of course not enough.
+
+### Aesthetics
+
+The next thing we have to specify is what variables in the data frame we will be using and what role they play. To do this we will use the function `aes()` _within_ the `ggplot()` function after the data frame (remember the comma after the data frame).
+
+```{r eval=FALSE}
+ggplot(uk2017, aes(x = votes, y = seats))
+```
+
+In the example above we specify that we are working with _two_ variables, x and y. If you only will be working with one variable (e.g. a histogram), you should of course only specificy one variable, x. However, now we have only told `R` what variables we would like to work with, but it is still not enough to actually create a figure.
+
+### Geometric objects
+
+Now we will need to add the geometric object, we would like to visualise. We need to go to a new line and tell `R` to follow along. To do this, we add a plus (`+`) at the end of the line. On the new line we add the type of geometric object (`geom_`), we want add. To replicate the plot above we use `geom_point()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(uk2017, aes(x = votes, y = seats)) +
+  geom_point()
+```
+
+This is a standard `ggplot2` plot with all its defaults. If we instead a scatter plot wanted a line plot, we can change `geom_point()` to `geom_line()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(uk2017, aes(x = votes, y = seats)) +
+  geom_line()
+```
+
+The above figure is somewhat misleading so it is just to show the logic of the how geometric objects work. Interestingly, we can add multiple geometric objects to the same plot. Below, we add both geometric objects used above.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(uk2017, aes(x = votes, y = seats)) +
+  geom_line() +
+  geom_point()
+```
+
+### Theme adjustments
+
+What you will see in a typical plot is that it is not done. The axes simply have the variable names, the colours are not great etc. Accordingly, we often need to add and change elements of our plot. Here we add the theme of the plot (described in detail below).
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(uk2017, aes(x=votes, y=seats)) +
+  geom_point() +
+  theme_minimal()
+```
+
+We can also easily change the labels by using `xlab()` and `ylab()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(uk2017, aes(x=votes, y=seats)) +
+  geom_point() +
+  theme_minimal() +
+  ylab("Seats") +
+  xlab("Votes (%)")
+```
+
+This is the basic logic of `ggplot2`. 
+
+## Introducing the data: `ess_uk.csv`
+
+The data we have used so far is a data frame with a limited set of obsevations. However, in most cases you will be working with a substanstially greater number of observations. We could in principle use the data we have used so far in this book for our visualisations, but that would not be representative for the data you will be using.
+
+Here we will be using a few variables with data from the European Social Survey from 2016 in the United Kingdom. You can download the data from: [http://qpolr.com/data/ess_uk.csv](http://qpolr.com/data/ess_uk.csv)
+
+When you have the data, use `read.csv()` to import the data into `R` and save it in the object `ess`. Remember to have the correct working directory and specify the correct place for your file. 
+
+```{r}
+ess <- read.csv("../data/ess_uk.csv")
+```
+
+To see what types of observations we have in the dataset, we first use the `head()` function.
+
+```{r}
+head(ess)
+```
+
+Here we can see the following variables:
+
+- `male`: Gender of respondent
+- `age`: Age of respondent
+- `income`: Income decile
+- `lrscale`: Left-right ideology
+- `polintr`: Political interest
+- `trstplt`: Trust in politicians
+
+We use `summary()` to get summary statistics for all the variables.
+
+```{r}
+summary(ess)
+```
+
+## Plotting one variable: distributions
+
+Table \@ref(tab:distributions) shows the geometric objects we will be working with below. In addition to the name of the object, you will also find a link where you can find more illustrations and examples on how they work.
+
+| Name          | Function           | Cookbook for R                                                                         |
+|---------------|--------------------|----------------------------------------------------------------------------------------------|
+| Bar plot      | `geom_bar()`       | [Bar and line graphs](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/)       |
+| Histogram     | `geom_histogram()` | [Plotting distributions](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/) |
+| Density plot | `geom_density()`   | [Plotting distributions](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/) |
+Table: (\#tab:distributions) Selected geometric objects with `ggplot2`
+
+### Bar plot
+
+The first plot we will do is a bar plot. To do this we use the political interest variable (`polintr`) and `geom_bar()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=polintr)) +
+  geom_bar() 
+```
+
+
+### Histograms
+
+The next figure we will work with is the histogram. Here we will plot the distribution of age (the `age` variable) and use `geom_histogram()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age)) +
+  geom_histogram() 
+```
+
+As you can see, we get a message about the use of a default binwidth. This is to emphasize the importance of specifying the binwidth yourself. We can change the bin width by adding `binwidth` to `geom_histogram()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age)) +
+  geom_histogram(binwidth = 5)
+```
+
+Play around with different binwidths to see how it affects the distribution in the figure.
+
+### Density plots
+
+The histogram is not the only way to show the distribution of a variable. To make a density plot, you can use `geom_density()`. We use the `age` variable again. 
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age)) +
+  geom_density() 
+```
+
+Do compare the density plot to the histograms above.
+
+## Plotting two variables: relationships
+
+To show how different variables are related, Table \@ref(tab:distributions) shows the geometric objects we will be working with below as well as link where you can find more information.
+
+
+| Name          | Function           | Cookbook for R                                                                         |
+|---------------|--------------------|----------------------------------------------------------------------------------------------|
+| Box plot       | `geom_boxplot()`   | [Plotting distributions](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/) |
+| Scatter plot  | `geom_point()`     | [Scatterplots](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/)                     |
+Table: (\#tab:relationships) Selected geometric objects for relations in `ggplot2`
+
+### Box plot
+
+For the box plot, we will be using `geom_boxplot()` to show how trust in politicians are related to political interest.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=polintr, group=polintr, y=trstplt)) +
+  geom_boxplot() 
+```
+
+Here we can see that people more interested in politics also show greater levels of trust in politicians.
+
+### Scatter plots
+
+To illustrate the relation between age and ideology, measured with the variables `age` and `lrscale`, we will create a scatter plot with `geom_point()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale)) +
+  geom_point() 
+```
+
+When we are working with a lot of observations, there will be an overlap. To show all of the observations, we can add some small, random noise to the observations, so we can see more of them. To do this, we can use `geom_jitter()` instead of `geom_point()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale)) +
+  geom_jitter() 
+```
+
+We can also use `geom_point(position = "jitter")` instead of Instead of `geom_jitter()`.
+
+### Line plots
+
+To create a regression line we can use the `geom_smooth()` function. Here we will again look at the relation between `age` and `lrscale`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale)) +
+  geom_smooth()
+```
+Here we can see that as age increases, so does peoples' left-right political orientation. As we can also see, this is a smoothing function. To have a linear line instead we can specify that we will be using `method="lm"` as an option.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale)) +
+  geom_smooth(method="lm")
+```
+
+## Manipulating plots 
+
+### Themes
+
+As you could see in the plots above, we have used a default theme in `ggplot2`. Table \@ref(tab:ggthemes) shows a series of themes to be found in `ggplot2`
+ and the package [`ggthemes`](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html). These are just a selection of some of the themes.
+
+| Function                | Package    | Description                        |
+|-------------------------|------------|------------------------------------|
+| theme_bw()              | `ggplot2`  | Black elements on white background |
+| theme_minimal()         | `ggplot2`  | Minimalistic                       |
+| theme_classic()         | `ggplot2`  | Theme without grid lines           |
+| theme_base()            | `ggthemes` | Copy of the base theme in `R`      |
+| theme_economist()       | `ggthemes` | The Economist theme                |
+| theme_fivethirtyeight() | `ggthemes` | FiveThirtyEight theme              |
+| theme_tufte()           | `ggthemes` | @tufte1983 theme                   |
+Table: (\#tab:ggthemes) Selected themes for `ggplot2`
+
+Figure \@ref(fig:ggthemes) shows the look of the different themes. The order is: Standard, `theme_bw()`, `theme_minimal()`, `theme_classic()`, `theme_base()`, `theme_economist()`, 
+`theme_fivethirtyeight()`, `theme_tufte()`.
+
+```{r ggthemes, fig.width=5, fig.height=6, fig.cap="Eight themes", echo=FALSE, message=FALSE, warning=FALSE}
+library("ggplot2")
+library("ggthemes")
+library("grid")
+library("gridExtra")
+
+set.seed(1337)
+
+dat <- data.frame(xvar = 1:20 + rnorm(20, sd=3),
+                  yvar = 1:20 + rnorm(20, sd=3))
+
+
+plot.standard <- ggplot(dat, aes(x=xvar, y=yvar)) +
+  geom_point(size=2) +
+  ylab("") + xlab("theme()")
+
+plot.bw <- plot.standard + theme_bw() + xlab("theme_bw()")
+plot.minimal <- plot.standard + theme_minimal() + xlab("theme_minimal()")
+plot.classic <- plot.standard + theme_classic() + xlab("theme_classic()")
+plot.base <- plot.standard + theme_base() + xlab("theme_base()")
+plot.economist <- plot.standard + theme_economist() + xlab("theme_economist()")
+plot.fivethirtyeight <- plot.standard + theme_fivethirtyeight() + xlab("theme_fivethirtyeight()")
+plot.tufte <- plot.standard + theme_tufte() + xlab("theme_tufte()")
+
+grid.arrange(plot.standard, plot.bw, plot.minimal, plot.classic, plot.base, plot.economist, plot.fivethirtyeight, plot.tufte, ncol=2)
+```
+
+You can find a lot more resources online related to `ggplot2`. In addition to the links above, do consult [ggthemr](https://github.com/cttobin/ggthemr) and [ggplot2 extensions](https://www.ggplot2-exts.org/).
+
+Below, we will be using `theme_minimal()` as the theme when we work with out plots.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale)) +
+  geom_point(position = "jitter") + 
+  geom_smooth(method="lm", se=FALSE) +
+  theme_minimal()
+```
+
+### Colours
+
+If we want to change the colours of the points in our plot, we can add the `colour=""` option to our geometric objects. In the example below we change the colour of our points from black to red.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale)) +
+  geom_point(position = "jitter", colour="red") + 
+  geom_smooth(method="lm", se=FALSE) +
+  theme_minimal()
+```
+
+If we want to give points a value based on the value of a specific variable, we need to specificy this within `aes()`. To illustrate this, let us first create a factor variable for gender.
+
+```{r}
+ess$gender <- ifelse(ess$male == 1, "Male", "Female")
+```
+
+When we add `fill=gender, colour=gender` to our `aes()`, we will see different colours for men and women.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale, fill=gender, colour=gender)) +
+  geom_point(position = "jitter") + 
+  geom_smooth(method="lm", se=FALSE) +
+  theme_minimal()
+```
+
+If we want to change these colours, we can use `scale_colour_manual()`.
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale, fill=gender, colour=gender)) +
+  geom_point(position = "jitter") + 
+  geom_smooth(method="lm", se=FALSE) +
+  scale_colour_manual(values = c("red", "blue")) +
+  theme_minimal()
+```
+
+The colours are very bright. If we want to make them less so we can add `alpha` to `geom_point()` to add transparency to the points. Below we use an alpha of 0.4 (if we want more transparency we can use a lower alpha level).
+
+```{r, fig.width=5, fig.height=3, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale, fill=gender, colour=gender)) +
+  geom_point(position = "jitter", alpha=0.4) + 
+  geom_smooth(method="lm", se=FALSE) +
+  scale_colour_manual(values = c("red", "blue")) +
+  theme_minimal()
+```
+
+### Labels
+
+Make sure that your figure have labels that helps the reader understand what is going on. To do this, you can add `labs()` to your figure. Here we will add a title, subtitle and caption.
+  
+```{r, fig.width=5, fig.height=5, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale, fill=gender, colour=gender)) +
+  geom_point(position = "jitter", alpha=0.4) + 
+  geom_smooth(method="lm", se=FALSE) +
+  scale_colour_manual(values = c("red", "blue")) +
+  theme_minimal() + 
+  labs(
+    title = "Age and ideology in the United Kingdom",
+    subtitle = "The relation between age and ideology for men and women",
+    caption = "Data from the European Social Survey"
+  )
+```
+
+### Axes
+
+Related to labels are the axes. Always label the axes so they have meaningful names. The variable name is not a meaningful name. As both our variables are continuous, we will use `scale_x_continuous()` and `scale_y_continuous()`. Last, we also specify that we want the plot to show all labels on `lrscale` (from 0 to 10).
+
+```{r, fig.width=7, fig.height=5, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale, fill=gender, colour=gender)) +
+  geom_point(position = "jitter", alpha=0.4) + 
+  geom_smooth(method="lm", se=FALSE) +
+  scale_colour_manual(values = c("red", "blue")) +
+  theme_minimal() + 
+  labs(
+    title = "Age and ideology in the United Kingdom",
+    subtitle = "The relation between age and ideology for men and women",
+    caption = "Data from the European Social Survey"
+  ) +
+  scale_y_continuous("Left-right ideology", breaks=0:10, labels=0:10) +
+  scale_x_continuous("Age (years)") 
+```
+
+### Confidence intervals
+
+We can have confidence intervals in our figure by not having `se` (standard errors) to `FALSE`. To show the confidence intervals better we do not include the scatter plot and only focus on the region where we have our estimates.
+
+```{r, fig.width=7, fig.height=5, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale, fill=gender, colour=gender)) +
+  scale_colour_manual(values = c("red", "blue")) +
+  theme_minimal() + 
+  labs(
+    title = "Age and ideology in the United Kingdom",
+    subtitle = "The relation between age and ideology for men and women",
+    caption = "Data from the European Social Survey"
+  ) +
+  scale_y_continuous("Left-right ideology") +
+  scale_x_continuous("Age (years)") +
+  geom_smooth(method="lm")
+```
+
+### Making multiple plots in one
+
+If we would prefer to have the plots for different observations, we can specify that with `facet_grid()`.
+
+```{r, fig.width=7, fig.height=5, fig.align="center", warning=FALSE}
+ggplot(ess, aes(x=age, y=lrscale, fill=gender, colour=gender)) +
+  scale_colour_manual(values = c("red", "blue")) +
+  theme_minimal() + 
+  labs(
+    title = "Age and ideology in the United Kingdom",
+    subtitle = "The relation between age and ideology for men and women",
+    caption = "Data from the European Social Survey"
+  ) +
+  scale_y_continuous("Left-right ideology") +
+  scale_x_continuous("Age (years)") +
+  geom_smooth(method="lm") +
+  facet_grid(~ gender)
+```
+
+## Saving plots
+
+When you have a plot you would like to save, you can use `ggsave()`. Do keep in mind that it will only save the last plot you have created.
+
+```{r, eval=FALSE}
+ggsave("fig1-age_ideology.png")
+```
+
+The figure will be saved in your working directory. The file type `.png` can be replaced to whatever format you would prefer your figure to be in. If you have saved your figure in an object, you can save it by specifying this before the file name.
+
+```{r, eval=FALSE}
+ggsave(fig1, "fig1-age_ideology.png")
+```
+
+Often you will see that you are not totally satisfied with the size of your figure. To change this, you can use `width` and `height`.
+
+```{r, eval=FALSE}
+ggsave(fig1, "fig1-age_ideology.png", width = 4, height = 4)
+```

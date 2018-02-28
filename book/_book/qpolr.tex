@@ -51,7 +51,7 @@
 
 \title{\Huge{ Quantitative Politics with R } \vspace{2em}}
 \author{Erik Gahner Larsen and Zoltán Fazekas}
-\date{February 25, 2018}
+\date{February 28, 2018}
 
 \renewcommand{\contentsname}{Table of Contents}
 
@@ -1238,7 +1238,7 @@
   \url{http://qpolr.com/data/uk2017.csv}
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{uk2017 <-}\StringTok{ }\KeywordTok{import}\NormalTok{(}\StringTok{"uk2017.csv"}\NormalTok{)}
+  \NormalTok{uk2017 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"uk2017.csv"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
   To see the information in the dataset, use \texttt{head()}.
@@ -1676,6 +1676,672 @@
   with a \texttt{recode()} function. The package \texttt{car} (Fox \&
   Weisberg, 2011) has a similar function worth exploring.
   
+  \chapter{Data visualisation}\label{dataviz}
+  
+  Visualising data is important (Healy \& Moody, 2014, Kastellec \& Leoni
+  (2007), Schwabish (2014)). As with everything in \texttt{R}, there are a
+  lot of different ways to visualise data. One simple way to visualise
+  data is to use \emph{base} functions in \texttt{R} (i.e.~functions that
+  come when you install the \texttt{R} language). Below you will see an
+  example on this.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{seats)}
+  \end{Highlighting}
+  \end{Shaded}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-80-1.pdf}
+  
+  There is nothing inherently wrong with using a function like this, but
+  the moment we want to tweak the figure, it gets complicated.
+  Accordingly, we will not use the standard functions in \texttt{R} but
+  the package \texttt{ggplot2} (H. Wickham, 2009). This package makes it
+  easy to create beautiful figures in \texttt{R}.
+  
+  \texttt{ggplot2} creates more beautiful figures with better defaults, it
+  is very customizable, it works within the tidyverse (together with
+  \texttt{dplyr}, introduced in the previous chapter), and for those
+  reasons it is becoming incredibly popular among practitioners and
+  academics alike. That being said, there is an element of personal
+  preference when it comes to data visualisations and \texttt{ggplot2} is
+  not perfect. While the defaults are good, they could be better.
+  Furthermore, there are functions in the package you should \emph{never}
+  use (such as \texttt{qplot()}, short for \emph{quick plot}).
+  
+  \section{\texorpdfstring{The basics of
+  \texttt{ggplot2}}{The basics of ggplot2}}\label{the-basics-of-ggplot2}
+  
+  You can load \texttt{ggplot2} by loading the \texttt{tidyverse}
+  (alternatively you can just load the \texttt{ggplot2} package).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  The two g's (\texttt{gg}) i \texttt{ggplot2} is short for \emph{grammar
+  of graphics}. The philosophy is that we are working with building blocks
+  in the form of a sentence structure, where we can add more components to
+  our visualisation, e.g.~change colours and add text. This makes it easy
+  to first create a figure and then tweak it till we are satisfied.
+  
+  These building blocks are:
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Data (the data frame we will be using)
+  \item
+    Aesthetics (the variables we will be working with)
+  \item
+    Geometric objects (the type of visualisation)
+  \item
+    Theme adjustments (size, text, colours etc.)
+  \end{enumerate}
+  \subsection{Data}\label{data}
+  
+  The function we will be using is \texttt{ggplot()}. The first thing we
+  always have to specify in our function is the data frame. In other
+  words, you will \emph{always} have to use a data frame.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(uk2017)}
+  \end{Highlighting}
+  \end{Shaded}
+  Do note that if you run the code above - and have the \texttt{uk2017} in
+  your working memory, we will not get anything but an empty plot. The
+  only thing we have done so far is telling \texttt{R} that we would like
+  to create a coordinate system and data from \texttt{uk2017} should play
+  some role, but this is of course not enough.
+  
+  \subsection{Aesthetics}\label{aesthetics}
+  
+  The next thing we have to specify is what variables in the data frame we
+  will be using and what role they play. To do this we will use the
+  function \texttt{aes()} \emph{within} the \texttt{ggplot()} function
+  after the data frame (remember the comma after the data frame).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ votes, }\DataTypeTok{y =}\NormalTok{ seats))}
+  \end{Highlighting}
+  \end{Shaded}
+  In the example above we specify that we are working with \emph{two}
+  variables, x and y. If you only will be working with one variable
+  (e.g.~a histogram), you should of course only specificy one variable, x.
+  However, now we have only told \texttt{R} what variables we would like
+  to work with, but it is still not enough to actually create a figure.
+  
+  \subsection{Geometric objects}\label{geometric-objects}
+  
+  Now we will need to add the geometric object, we would like to
+  visualise. We need to go to a new line and tell \texttt{R} to follow
+  along. To do this, we add a plus (\texttt{+}) at the end of the line. On
+  the new line we add the type of geometric object (\texttt{geom\_}), we
+  want add. To replicate the plot above we use \texttt{geom\_point()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ votes, }\DataTypeTok{y =}\NormalTok{ seats)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-84-1} \end{center}
+  
+  This is a standard \texttt{ggplot2} plot with all its defaults. If we
+  instead a scatter plot wanted a line plot, we can change
+  \texttt{geom\_point()} to \texttt{geom\_line()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ votes, }\DataTypeTok{y =}\NormalTok{ seats)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-85-1} \end{center}
+  
+  The above figure is somewhat misleading so it is just to show the logic
+  of the how geometric objects work. Interestingly, we can add multiple
+  geometric objects to the same plot. Below, we add both geometric objects
+  used above.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ votes, }\DataTypeTok{y =}\NormalTok{ seats)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-86-1} \end{center}
+  
+  \subsection{Theme adjustments}\label{theme-adjustments}
+  
+  What you will see in a typical plot is that it is not done. The axes
+  simply have the variable names, the colours are not great etc.
+  Accordingly, we often need to add and change elements of our plot. Here
+  we add the theme of the plot (described in detail below).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{seats)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-87-1} \end{center}
+  
+  We can also easily change the labels by using \texttt{xlab()} and
+  \texttt{ylab()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{seats)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Seats"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Votes (%)"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-88-1} \end{center}
+  
+  This is the basic logic of \texttt{ggplot2}.
+  
+  \section{\texorpdfstring{Introducing the data:
+  \texttt{ess\_uk.csv}}{Introducing the data: ess\_uk.csv}}\label{introducing-the-data-ess_uk.csv}
+  
+  The data we have used so far is a data frame with a limited set of
+  obsevations. However, in most cases you will be working with a
+  substanstially greater number of observations. We could in principle use
+  the data we have used so far in this book for our visualisations, but
+  that would not be representative for the data you will be using.
+  
+  Here we will be using a few variables with data from the European Social
+  Survey from 2016 in the United Kingdom. You can download the data from:
+  \url{http://qpolr.com/data/ess_uk.csv}
+  
+  When you have the data, use \texttt{read.csv()} to import the data into
+  \texttt{R} and save it in the object \texttt{ess}. Remember to have the
+  correct working directory and specify the correct place for your file.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ess <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../data/ess_uk.csv"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To see what types of observations we have in the dataset, we first use
+  the \texttt{head()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(ess)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+    male age income lrscale polintr trstplt
+  1    1  53      5       8       3       5
+  2    1  60     10       1       4       1
+  3    0  54      2       5       3       5
+  4    0  52      6       0       3       0
+  5    1  28      3       3       1       4
+  6    1  30     NA      NA       1      NA
+  \end{verbatim}
+  Here we can see the following variables:
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{male}: Gender of respondent
+  \item
+    \texttt{age}: Age of respondent
+  \item
+    \texttt{income}: Income decile
+  \item
+    \texttt{lrscale}: Left-right ideology
+  \item
+    \texttt{polintr}: Political interest
+  \item
+    \texttt{trstplt}: Trust in politicians
+  \end{itemize}
+  We use \texttt{summary()} to get summary statistics for all the
+  variables.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{summary}\NormalTok{(ess)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+        male             age            income          lrscale      
+   Min.   :0.0000   Min.   :15.00   Min.   : 1.000   Min.   : 0.000  
+   1st Qu.:0.0000   1st Qu.:37.00   1st Qu.: 3.000   1st Qu.: 4.000  
+   Median :0.0000   Median :53.00   Median : 5.000   Median : 5.000  
+   Mean   :0.4417   Mean   :52.65   Mean   : 5.063   Mean   : 5.022  
+   3rd Qu.:1.0000   3rd Qu.:67.50   3rd Qu.: 7.000   3rd Qu.: 6.000  
+   Max.   :1.0000   Max.   :94.00   Max.   :10.000   Max.   :10.000  
+                    NA's   :14      NA's   :96       NA's   :48      
+      polintr         trstplt      
+   Min.   :1.000   Min.   : 0.000  
+   1st Qu.:2.000   1st Qu.: 2.000  
+   Median :3.000   Median : 4.000  
+   Mean   :2.677   Mean   : 3.909  
+   3rd Qu.:3.000   3rd Qu.: 5.000  
+   Max.   :4.000   Max.   :10.000  
+                   NA's   :9       
+  \end{verbatim}
+  \section{Plotting one variable:
+  distributions}\label{plotting-one-variable-distributions}
+  
+  Table \ref{tab:distributions} shows the geometric objects we will be
+  working with below. In addition to the name of the object, you will also
+  find a link where you can find more illustrations and examples on how
+  they work.
+  \begin{longtable}[]{@{}lll@{}}
+  \caption{\label{tab:distributions} Selected geometric objects with
+  \texttt{ggplot2}}\tabularnewline
+  \toprule
+  Name & Function & Cookbook for R\tabularnewline
+  \midrule
+  \endfirsthead
+  \toprule
+  Name & Function & Cookbook for R\tabularnewline
+  \midrule
+  \endhead
+  Bar plot & \texttt{geom\_bar()} &
+  \href{http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/}{Bar
+  and line graphs}\tabularnewline
+  Histogram & \texttt{geom\_histogram()} &
+  \href{http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/}{Plotting
+  distributions}\tabularnewline
+  Density plot & \texttt{geom\_density()} &
+  \href{http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/}{Plotting
+  distributions}\tabularnewline
+  \bottomrule
+  \end{longtable}
+  \subsection{Bar plot}\label{bar-plot}
+  
+  The first plot we will do is a bar plot. To do this we use the political
+  interest variable (\texttt{polintr}) and \texttt{geom\_bar()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{polintr)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-92-1} \end{center}
+  
+  \subsection{Histograms}\label{histograms}
+  
+  The next figure we will work with is the histogram. Here we will plot
+  the distribution of age (the \texttt{age} variable) and use
+  \texttt{geom\_histogram()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+  \end{verbatim}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-93-1} \end{center}
+  
+  As you can see, we get a message about the use of a default binwidth.
+  This is to emphasize the importance of specifying the binwidth yourself.
+  We can change the bin width by adding \texttt{binwidth} to
+  \texttt{geom\_histogram()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-94-1} \end{center}
+  
+  Play around with different binwidths to see how it affects the
+  distribution in the figure.
+  
+  \subsection{Density plots}\label{density-plots}
+  
+  The histogram is not the only way to show the distribution of a
+  variable. To make a density plot, you can use \texttt{geom\_density()}.
+  We use the \texttt{age} variable again.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_density}\NormalTok{() }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-95-1} \end{center}
+  
+  Do compare the density plot to the histograms above.
+  
+  \section{Plotting two variables:
+  relationships}\label{plotting-two-variables-relationships}
+  
+  To show how different variables are related, Table
+  \ref{tab:distributions} shows the geometric objects we will be working
+  with below as well as link where you can find more information.
+  \begin{longtable}[]{@{}lll@{}}
+  \caption{\label{tab:relationships} Selected geometric objects for relations
+  in \texttt{ggplot2}}\tabularnewline
+  \toprule
+  Name & Function & Cookbook for R\tabularnewline
+  \midrule
+  \endfirsthead
+  \toprule
+  Name & Function & Cookbook for R\tabularnewline
+  \midrule
+  \endhead
+  Box plot & \texttt{geom\_boxplot()} &
+  \href{http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/}{Plotting
+  distributions}\tabularnewline
+  Scatter plot & \texttt{geom\_point()} &
+  \href{http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/}{Scatterplots}\tabularnewline
+  \bottomrule
+  \end{longtable}
+  \subsection{Box plot}\label{box-plot}
+  
+  For the box plot, we will be using \texttt{geom\_boxplot()} to show how
+  trust in politicians are related to political interest.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{polintr, }\DataTypeTok{group=}\NormalTok{polintr, }\DataTypeTok{y=}\NormalTok{trstplt)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-96-1} \end{center}
+  
+  Here we can see that people more interested in politics also show
+  greater levels of trust in politicians.
+  
+  \subsection{Scatter plots}\label{scatter-plots}
+  
+  To illustrate the relation between age and ideology, measured with the
+  variables \texttt{age} and \texttt{lrscale}, we will create a scatter
+  plot with \texttt{geom\_point()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-97-1} \end{center}
+  
+  When we are working with a lot of observations, there will be an
+  overlap. To show all of the observations, we can add some small, random
+  noise to the observations, so we can see more of them. To do this, we
+  can use \texttt{geom\_jitter()} instead of \texttt{geom\_point()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-98-1} \end{center}
+  
+  We can also use \texttt{geom\_point(position\ =\ "jitter")} instead of
+  Instead of \texttt{geom\_jitter()}.
+  
+  \subsection{Line plots}\label{line-plots}
+  
+  To create a regression line we can use the \texttt{geom\_smooth()}
+  function. Here we will again look at the relation between \texttt{age}
+  and \texttt{lrscale}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  `geom_smooth()` using method = 'loess'
+  \end{verbatim}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-99-1} \end{center}
+  
+  Here we can see that as age increases, so does peoples' left-right
+  political orientation. As we can also see, this is a smoothing function.
+  To have a linear line instead we can specify that we will be using
+  \texttt{method="lm"} as an option.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-100-1} \end{center}
+  
+  \section{Manipulating plots}\label{manipulating-plots}
+  
+  \subsection{Themes}\label{themes}
+  
+  As you could see in the plots above, we have used a default theme in
+  \texttt{ggplot2}. Table \ref{tab:ggthemes} shows a series of themes to
+  be found in \texttt{ggplot2} and the package
+  \href{https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html}{\texttt{ggthemes}}.
+  These are just a selection of some of the themes.
+  \begin{longtable}[]{@{}lll@{}}
+  \caption{\label{tab:ggthemes} Selected themes for
+  \texttt{ggplot2}}\tabularnewline
+  \toprule
+  Function & Package & Description\tabularnewline
+  \midrule
+  \endfirsthead
+  \toprule
+  Function & Package & Description\tabularnewline
+  \midrule
+  \endhead
+  theme\_bw() & \texttt{ggplot2} & Black elements on white
+  background\tabularnewline
+  theme\_minimal() & \texttt{ggplot2} & Minimalistic\tabularnewline
+  theme\_classic() & \texttt{ggplot2} & Theme without grid
+  lines\tabularnewline
+  theme\_base() & \texttt{ggthemes} & Copy of the base theme in
+  \texttt{R}\tabularnewline
+  theme\_economist() & \texttt{ggthemes} & The Economist
+  theme\tabularnewline
+  theme\_fivethirtyeight() & \texttt{ggthemes} & FiveThirtyEight
+  theme\tabularnewline
+  theme\_tufte() & \texttt{ggthemes} & Tufte (1983) theme\tabularnewline
+  \bottomrule
+  \end{longtable}
+  Figure \ref{fig:ggthemes} shows the look of the different themes. The
+  order is: Standard, \texttt{theme\_bw()}, \texttt{theme\_minimal()},
+  \texttt{theme\_classic()}, \texttt{theme\_base()},
+  \texttt{theme\_economist()}, \texttt{theme\_fivethirtyeight()},
+  \texttt{theme\_tufte()}.
+  \begin{figure}
+  \centering
+  \includegraphics{qpolr_files/figure-latex/ggthemes-1.pdf}
+  \caption{\label{fig:ggthemes}Eight themes}
+  \end{figure}
+  You can find a lot more resources online related to \texttt{ggplot2}. In
+  addition to the links above, do consult
+  \href{https://github.com/cttobin/ggthemr}{ggthemr} and
+  \href{https://www.ggplot2-exts.org/}{ggplot2 extensions}.
+  
+  Below, we will be using \texttt{theme\_minimal()} as the theme when we
+  work with out plots.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-101-1} \end{center}
+  
+  \subsection{Colours}\label{colours}
+  
+  If we want to change the colours of the points in our plot, we can add
+  the \texttt{colour=""} option to our geometric objects. In the example
+  below we change the colour of our points from black to red.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-102-1} \end{center}
+  
+  If we want to give points a value based on the value of a specific
+  variable, we need to specificy this within \texttt{aes()}. To illustrate
+  this, let us first create a factor variable for gender.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ess}\OperatorTok{$}\NormalTok{gender <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(ess}\OperatorTok{$}\NormalTok{male }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  When we add \texttt{fill=gender,\ colour=gender} to our \texttt{aes()},
+  we will see different colours for men and women.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-104-1} \end{center}
+  
+  If we want to change these colours, we can use
+  \texttt{scale\_colour\_manual()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-105-1} \end{center}
+  
+  The colours are very bright. If we want to make them less so we can add
+  \texttt{alpha} to \texttt{geom\_point()} to add transparency to the
+  points. Below we use an alpha of 0.4 (if we want more transparency we
+  can use a lower alpha level).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-106-1} \end{center}
+  
+  \subsection{Labels}\label{labels}
+  
+  Make sure that your figure have labels that helps the reader understand
+  what is going on. To do this, you can add \texttt{labs()} to your
+  figure. Here we will add a title, subtitle and caption.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{labs}\NormalTok{(}
+      \DataTypeTok{title =} \StringTok{"Age and ideology in the United Kingdom"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between age and ideology for men and women"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the European Social Survey"}
+  \NormalTok{  )}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-107-1} \end{center}
+  
+  \subsection{Axes}\label{axes}
+  
+  Related to labels are the axes. Always label the axes so they have
+  meaningful names. The variable name is not a meaningful name. As both
+  our variables are continuous, we will use
+  \texttt{scale\_x\_continuous()} and \texttt{scale\_y\_continuous()}.
+  Last, we also specify that we want the plot to show all labels on
+  \texttt{lrscale} (from 0 to 10).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{labs}\NormalTok{(}
+      \DataTypeTok{title =} \StringTok{"Age and ideology in the United Kingdom"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between age and ideology for men and women"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the European Social Survey"}
+  \NormalTok{  ) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\StringTok{"Left-right ideology"}\NormalTok{, }\DataTypeTok{breaks=}\DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{labels=}\DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\StringTok{"Age (years)"}\NormalTok{) }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-108-1} \end{center}
+  
+  \subsection{Confidence intervals}\label{confidence-intervals}
+  
+  We can have confidence intervals in our figure by not having \texttt{se}
+  (standard errors) to \texttt{FALSE}. To show the confidence intervals
+  better we do not include the scatter plot and only focus on the region
+  where we have our estimates.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{labs}\NormalTok{(}
+      \DataTypeTok{title =} \StringTok{"Age and ideology in the United Kingdom"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between age and ideology for men and women"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the European Social Survey"}
+  \NormalTok{  ) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\StringTok{"Left-right ideology"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\StringTok{"Age (years)"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-109-1} \end{center}
+  
+  \subsection{Making multiple plots in
+  one}\label{making-multiple-plots-in-one}
+  
+  If we would prefer to have the plots for different observations, we can
+  specify that with \texttt{facet\_grid()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{labs}\NormalTok{(}
+      \DataTypeTok{title =} \StringTok{"Age and ideology in the United Kingdom"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between age and ideology for men and women"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the European Social Survey"}
+  \NormalTok{  ) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\StringTok{"Left-right ideology"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\StringTok{"Age (years)"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{gender)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-110-1} \end{center}
+  
+  \section{Saving plots}\label{saving-plots}
+  
+  When you have a plot you would like to save, you can use
+  \texttt{ggsave()}. Do keep in mind that it will only save the last plot
+  you have created.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggsave}\NormalTok{(}\StringTok{"fig1-age_ideology.png"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  The figure will be saved in your working directory. The file type
+  \texttt{.png} can be replaced to whatever format you would prefer your
+  figure to be in. If you have saved your figure in an object, you can
+  save it by specifying this before the file name.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggsave}\NormalTok{(fig1, }\StringTok{"fig1-age_ideology.png"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  Often you will see that you are not totally satisfied with the size of
+  your figure. To change this, you can use \texttt{width} and
+  \texttt{height}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggsave}\NormalTok{(fig1, }\StringTok{"fig1-age_ideology.png"}\NormalTok{, }\DataTypeTok{width =} \DecValTok{4}\NormalTok{, }\DataTypeTok{height =} \DecValTok{4}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
   \backmatter
   
   \chapter{References}\label{references}
@@ -1695,10 +2361,31 @@
   regression} (Second). Thousand Oaks CA: Sage. Retrieved from
   \url{http://socserv.socsci.mcmaster.ca/jfox/Books/Companion}
   
+  \hypertarget{ref-healymoody2014}{}
+  Healy, K., \& Moody, J. (2014). Data visualization in sociology.
+  \emph{Annual Review of Sociology}, \emph{40}, 105--128.
+  
+  \hypertarget{ref-kastellecleoni2007}{}
+  Kastellec, J. P., \& Leoni, E. L. (2007). Using graphs instead of tables
+  in political science. \emph{Perspectives on Politics}, \emph{5}(4),
+  755--771.
+  
   \hypertarget{ref-rcoreteam2015foreign}{}
   R Core Team. (2015). \emph{Foreign: Read data stored by minitab, s, sas,
   spss, stata, systat, weka, dBase, ...} Retrieved from
   \url{http://CRAN.R-project.org/package=foreign}
+  
+  \hypertarget{ref-schwabish2014}{}
+  Schwabish, J. A. (2014). An economist's guide to visualizing data.
+  \emph{Journal of Economic Perspectives}, \emph{28}(1), 209--234.
+  
+  \hypertarget{ref-tufte1983}{}
+  Tufte, E. R. (1983). \emph{The visual display of quantitative
+  information}. Graphics Press.
+  
+  \hypertarget{ref-wickham2009}{}
+  Wickham, H. (2009). \emph{Ggplot2: Elegant graphics for data analysis}.
+  Springer-Verlag New York. Retrieved from \url{http://ggplot2.org}
   
   \hypertarget{ref-wickham2017}{}
   Wickham, H. (2017). \emph{Tidyverse: Easily install and load the

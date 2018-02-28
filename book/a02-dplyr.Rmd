@@ -22,7 +22,7 @@ library("tidyverse")
 We will use the dataset we created in the previous chapter. If you do not have it, you can download it here: [http://qpolr.com/data/uk2017.csv](http://qpolr.com/data/uk2017.csv)
 
 ```{r, eval=FALSE}
-uk2017 <- import("uk2017.csv")
+uk2017 <- read.csv("uk2017.csv")
 ```
 
 To see the information in the dataset, use `head()`.

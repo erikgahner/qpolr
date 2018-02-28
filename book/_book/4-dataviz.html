@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quantitative Politics with R</title>
+  <meta name="description" content="Quantitative Politics with R">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Quantitative Politics with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Quantitative Politics with R" />
+  
+  
+  
+
+<meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
+
+
+<meta name="date" content="2018-02-28">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="3-data.html">
+<link rel="next" href="5-references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <code>R</code>?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing <code>R</code></a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages"><i class="fa fa-check"></i><b>1.4</b> Installing <code>R</code> packages</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#errors-and-help"><i class="fa fa-check"></i><b>1.5</b> Errors and help</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-basics.html"><a href="2-basics.html#numbers-as-data"><i class="fa fa-check"></i><b>2.1</b> Numbers as data</a></li>
+<li class="chapter" data-level="2.2" data-path="2-basics.html"><a href="2-basics.html#missing-values-na"><i class="fa fa-check"></i><b>2.2</b> Missing values (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.3" data-path="2-basics.html"><a href="2-basics.html#logical-operators"><i class="fa fa-check"></i><b>2.3</b> Logical operators</a></li>
+<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#text-as-data"><i class="fa fa-check"></i><b>2.4</b> Text as data</a></li>
+<li class="chapter" data-level="2.5" data-path="2-basics.html"><a href="2-basics.html#data-frames"><i class="fa fa-check"></i><b>2.5</b> Data frames</a></li>
+<li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
+<li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#rename-variables-rename"><i class="fa fa-check"></i><b>3.4</b> Rename variables: <code>rename()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#create-variables-mutate"><i class="fa fa-check"></i><b>3.5</b> Create variables: <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#the-pipe-operator"><i class="fa fa-check"></i><b>3.6</b> The pipe operator: <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#recoding-variables-recode"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>recode()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-dataviz.html"><a href="4-dataviz.html"><i class="fa fa-check"></i><b>4</b> Data visualisation</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-dataviz.html"><a href="4-dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>4.1</b> The basics of <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="3-data.html"><a href="3-data.html#data"><i class="fa fa-check"></i><b>4.1.1</b> Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-dataviz.html"><a href="4-dataviz.html#aesthetics"><i class="fa fa-check"></i><b>4.1.2</b> Aesthetics</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-dataviz.html"><a href="4-dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>4.1.3</b> Geometric objects</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-dataviz.html"><a href="4-dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>4.1.4</b> Theme adjustments</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-dataviz.html"><a href="4-dataviz.html#introducing-the-data-ess_uk.csv"><i class="fa fa-check"></i><b>4.2</b> Introducing the data: <code>ess_uk.csv</code></a></li>
+<li class="chapter" data-level="4.3" data-path="4-dataviz.html"><a href="4-dataviz.html#plotting-one-variable-distributions"><i class="fa fa-check"></i><b>4.3</b> Plotting one variable: distributions</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-dataviz.html"><a href="4-dataviz.html#bar-plot"><i class="fa fa-check"></i><b>4.3.1</b> Bar plot</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-dataviz.html"><a href="4-dataviz.html#histograms"><i class="fa fa-check"></i><b>4.3.2</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-dataviz.html"><a href="4-dataviz.html#density-plots"><i class="fa fa-check"></i><b>4.3.3</b> Density plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-dataviz.html"><a href="4-dataviz.html#plotting-two-variables-relationships"><i class="fa fa-check"></i><b>4.4</b> Plotting two variables: relationships</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="4-dataviz.html"><a href="4-dataviz.html#box-plot"><i class="fa fa-check"></i><b>4.4.1</b> Box plot</a></li>
+<li class="chapter" data-level="4.4.2" data-path="4-dataviz.html"><a href="4-dataviz.html#scatter-plots"><i class="fa fa-check"></i><b>4.4.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.4.3" data-path="4-dataviz.html"><a href="4-dataviz.html#line-plots"><i class="fa fa-check"></i><b>4.4.3</b> Line plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="4-dataviz.html"><a href="4-dataviz.html#manipulating-plots"><i class="fa fa-check"></i><b>4.5</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="4-dataviz.html"><a href="4-dataviz.html#themes"><i class="fa fa-check"></i><b>4.5.1</b> Themes</a></li>
+<li class="chapter" data-level="4.5.2" data-path="4-dataviz.html"><a href="4-dataviz.html#colours"><i class="fa fa-check"></i><b>4.5.2</b> Colours</a></li>
+<li class="chapter" data-level="4.5.3" data-path="4-dataviz.html"><a href="4-dataviz.html#labels"><i class="fa fa-check"></i><b>4.5.3</b> Labels</a></li>
+<li class="chapter" data-level="4.5.4" data-path="4-dataviz.html"><a href="4-dataviz.html#axes"><i class="fa fa-check"></i><b>4.5.4</b> Axes</a></li>
+<li class="chapter" data-level="4.5.5" data-path="4-dataviz.html"><a href="4-dataviz.html#confidence-intervals"><i class="fa fa-check"></i><b>4.5.5</b> Confidence intervals</a></li>
+<li class="chapter" data-level="4.5.6" data-path="4-dataviz.html"><a href="4-dataviz.html#making-multiple-plots-in-one"><i class="fa fa-check"></i><b>4.5.6</b> Making multiple plots in one</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="4-dataviz.html"><a href="4-dataviz.html#saving-plots"><i class="fa fa-check"></i><b>4.6</b> Saving plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-references.html"><a href="5-references.html"><i class="fa fa-check"></i><b>5</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Politics with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dataviz" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Data visualisation</h1>
+<p>Visualising data is important <span class="citation">(Healy &amp; Moody, 2014, <span class="citation">Kastellec &amp; Leoni (2007)</span>, <span class="citation">Schwabish (2014)</span>)</span>. As with everything in <code>R</code>, there are a lot of different ways to visualise data. One simple way to visualise data is to use <em>base</em> functions in <code>R</code> (i.e. functions that come when you install the <code>R</code> language). Below you will see an example on this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>uk2017<span class="op">$</span>votes, <span class="dt">y=</span>uk2017<span class="op">$</span>seats)</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There is nothing inherently wrong with using a function like this, but the moment we want to tweak the figure, it gets complicated. Accordingly, we will not use the standard functions in <code>R</code> but the package <code>ggplot2</code> <span class="citation">(H. Wickham, 2009)</span>. This package makes it easy to create beautiful figures in <code>R</code>.</p>
+<p><code>ggplot2</code> creates more beautiful figures with better defaults, it is very customizable, it works within the tidyverse (together with <code>dplyr</code>, introduced in the previous chapter), and for those reasons it is becoming incredibly popular among practitioners and academics alike. That being said, there is an element of personal preference when it comes to data visualisations and <code>ggplot2</code> is not perfect. While the defaults are good, they could be better. Furthermore, there are functions in the package you should <em>never</em> use (such as <code>qplot()</code>, short for <em>quick plot</em>).</p>
+<div id="the-basics-of-ggplot2" class="section level2">
+<h2><span class="header-section-number">4.1</span> The basics of <code>ggplot2</code></h2>
+<p>You can load <code>ggplot2</code> by loading the <code>tidyverse</code> (alternatively you can just load the <code>ggplot2</code> package).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>The two g’s (<code>gg</code>) i <code>ggplot2</code> is short for <em>grammar of graphics</em>. The philosophy is that we are working with building blocks in the form of a sentence structure, where we can add more components to our visualisation, e.g. change colours and add text. This makes it easy to first create a figure and then tweak it till we are satisfied.</p>
+<p>These building blocks are:</p>
+<ol style="list-style-type: decimal">
+<li>Data (the data frame we will be using)</li>
+<li>Aesthetics (the variables we will be working with)</li>
+<li>Geometric objects (the type of visualisation)</li>
+<li>Theme adjustments (size, text, colours etc.)</li>
+</ol>
+<div id="data" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Data</h3>
+<p>The function we will be using is <code>ggplot()</code>. The first thing we always have to specify in our function is the data frame. In other words, you will <em>always</em> have to use a data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(uk2017)</code></pre></div>
+<p>Do note that if you run the code above - and have the <code>uk2017</code> in your working memory, we will not get anything but an empty plot. The only thing we have done so far is telling <code>R</code> that we would like to create a coordinate system and data from <code>uk2017</code> should play some role, but this is of course not enough.</p>
+</div>
+<div id="aesthetics" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Aesthetics</h3>
+<p>The next thing we have to specify is what variables in the data frame we will be using and what role they play. To do this we will use the function <code>aes()</code> <em>within</em> the <code>ggplot()</code> function after the data frame (remember the comma after the data frame).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(uk2017, <span class="kw">aes</span>(<span class="dt">x =</span> votes, <span class="dt">y =</span> seats))</code></pre></div>
+<p>In the example above we specify that we are working with <em>two</em> variables, x and y. If you only will be working with one variable (e.g. a histogram), you should of course only specificy one variable, x. However, now we have only told <code>R</code> what variables we would like to work with, but it is still not enough to actually create a figure.</p>
+</div>
+<div id="geometric-objects" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> Geometric objects</h3>
+<p>Now we will need to add the geometric object, we would like to visualise. We need to go to a new line and tell <code>R</code> to follow along. To do this, we add a plus (<code>+</code>) at the end of the line. On the new line we add the type of geometric object (<code>geom_</code>), we want add. To replicate the plot above we use <code>geom_point()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(uk2017, <span class="kw">aes</span>(<span class="dt">x =</span> votes, <span class="dt">y =</span> seats)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-84-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>This is a standard <code>ggplot2</code> plot with all its defaults. If we instead a scatter plot wanted a line plot, we can change <code>geom_point()</code> to <code>geom_line()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(uk2017, <span class="kw">aes</span>(<span class="dt">x =</span> votes, <span class="dt">y =</span> seats)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-85-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>The above figure is somewhat misleading so it is just to show the logic of the how geometric objects work. Interestingly, we can add multiple geometric objects to the same plot. Below, we add both geometric objects used above.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(uk2017, <span class="kw">aes</span>(<span class="dt">x =</span> votes, <span class="dt">y =</span> seats)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-86-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="theme-adjustments" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> Theme adjustments</h3>
+<p>What you will see in a typical plot is that it is not done. The axes simply have the variable names, the colours are not great etc. Accordingly, we often need to add and change elements of our plot. Here we add the theme of the plot (described in detail below).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(uk2017, <span class="kw">aes</span>(<span class="dt">x=</span>votes, <span class="dt">y=</span>seats)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-87-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>We can also easily change the labels by using <code>xlab()</code> and <code>ylab()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(uk2017, <span class="kw">aes</span>(<span class="dt">x=</span>votes, <span class="dt">y=</span>seats)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Seats&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Votes (%)&quot;</span>)</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-88-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>This is the basic logic of <code>ggplot2</code>.</p>
+</div>
+</div>
+<div id="introducing-the-data-ess_uk.csv" class="section level2">
+<h2><span class="header-section-number">4.2</span> Introducing the data: <code>ess_uk.csv</code></h2>
+<p>The data we have used so far is a data frame with a limited set of obsevations. However, in most cases you will be working with a substanstially greater number of observations. We could in principle use the data we have used so far in this book for our visualisations, but that would not be representative for the data you will be using.</p>
+<p>Here we will be using a few variables with data from the European Social Survey from 2016 in the United Kingdom. You can download the data from: <a href="http://qpolr.com/data/ess_uk.csv" class="uri">http://qpolr.com/data/ess_uk.csv</a></p>
+<p>When you have the data, use <code>read.csv()</code> to import the data into <code>R</code> and save it in the object <code>ess</code>. Remember to have the correct working directory and specify the correct place for your file.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ess &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../data/ess_uk.csv&quot;</span>)</code></pre></div>
+<p>To see what types of observations we have in the dataset, we first use the <code>head()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ess)</code></pre></div>
+<pre><code>  male age income lrscale polintr trstplt
+1    1  53      5       8       3       5
+2    1  60     10       1       4       1
+3    0  54      2       5       3       5
+4    0  52      6       0       3       0
+5    1  28      3       3       1       4
+6    1  30     NA      NA       1      NA</code></pre>
+<p>Here we can see the following variables:</p>
+<ul>
+<li><code>male</code>: Gender of respondent</li>
+<li><code>age</code>: Age of respondent</li>
+<li><code>income</code>: Income decile</li>
+<li><code>lrscale</code>: Left-right ideology</li>
+<li><code>polintr</code>: Political interest</li>
+<li><code>trstplt</code>: Trust in politicians</li>
+</ul>
+<p>We use <code>summary()</code> to get summary statistics for all the variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(ess)</code></pre></div>
+<pre><code>      male             age            income          lrscale      
+ Min.   :0.0000   Min.   :15.00   Min.   : 1.000   Min.   : 0.000  
+ 1st Qu.:0.0000   1st Qu.:37.00   1st Qu.: 3.000   1st Qu.: 4.000  
+ Median :0.0000   Median :53.00   Median : 5.000   Median : 5.000  
+ Mean   :0.4417   Mean   :52.65   Mean   : 5.063   Mean   : 5.022  
+ 3rd Qu.:1.0000   3rd Qu.:67.50   3rd Qu.: 7.000   3rd Qu.: 6.000  
+ Max.   :1.0000   Max.   :94.00   Max.   :10.000   Max.   :10.000  
+                  NA&#39;s   :14      NA&#39;s   :96       NA&#39;s   :48      
+    polintr         trstplt      
+ Min.   :1.000   Min.   : 0.000  
+ 1st Qu.:2.000   1st Qu.: 2.000  
+ Median :3.000   Median : 4.000  
+ Mean   :2.677   Mean   : 3.909  
+ 3rd Qu.:3.000   3rd Qu.: 5.000  
+ Max.   :4.000   Max.   :10.000  
+                 NA&#39;s   :9       </code></pre>
+</div>
+<div id="plotting-one-variable-distributions" class="section level2">
+<h2><span class="header-section-number">4.3</span> Plotting one variable: distributions</h2>
+<p>Table <a href="4-dataviz.html#tab:distributions">4.1</a> shows the geometric objects we will be working with below. In addition to the name of the object, you will also find a link where you can find more illustrations and examples on how they work.</p>
+<table>
+<caption><span id="tab:distributions">Table 4.1: </span> Selected geometric objects with <code>ggplot2</code></caption>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Function</th>
+<th>Cookbook for R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bar plot</td>
+<td><code>geom_bar()</code></td>
+<td><a href="http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/">Bar and line graphs</a></td>
+</tr>
+<tr class="even">
+<td>Histogram</td>
+<td><code>geom_histogram()</code></td>
+<td><a href="http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/">Plotting distributions</a></td>
+</tr>
+<tr class="odd">
+<td>Density plot</td>
+<td><code>geom_density()</code></td>
+<td><a href="http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/">Plotting distributions</a></td>
+</tr>
+</tbody>
+</table>
+<div id="bar-plot" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Bar plot</h3>
+<p>The first plot we will do is a bar plot. To do this we use the political interest variable (<code>polintr</code>) and <code>geom_bar()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>polintr)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>() </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-92-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="histograms" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Histograms</h3>
+<p>The next figure we will work with is the histogram. Here we will plot the distribution of age (the <code>age</code> variable) and use <code>geom_histogram()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() </code></pre></div>
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-93-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>As you can see, we get a message about the use of a default binwidth. This is to emphasize the importance of specifying the binwidth yourself. We can change the bin width by adding <code>binwidth</code> to <code>geom_histogram()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>)</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-94-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Play around with different binwidths to see how it affects the distribution in the figure.</p>
+</div>
+<div id="density-plots" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Density plots</h3>
+<p>The histogram is not the only way to show the distribution of a variable. To make a density plot, you can use <code>geom_density()</code>. We use the <code>age</code> variable again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>() </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-95-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Do compare the density plot to the histograms above.</p>
+</div>
+</div>
+<div id="plotting-two-variables-relationships" class="section level2">
+<h2><span class="header-section-number">4.4</span> Plotting two variables: relationships</h2>
+<p>To show how different variables are related, Table <a href="4-dataviz.html#tab:distributions">4.1</a> shows the geometric objects we will be working with below as well as link where you can find more information.</p>
+<table>
+<caption><span id="tab:relationships">Table 4.2: </span> Selected geometric objects for relations in <code>ggplot2</code></caption>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Function</th>
+<th>Cookbook for R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Box plot</td>
+<td><code>geom_boxplot()</code></td>
+<td><a href="http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/">Plotting distributions</a></td>
+</tr>
+<tr class="even">
+<td>Scatter plot</td>
+<td><code>geom_point()</code></td>
+<td><a href="http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/">Scatterplots</a></td>
+</tr>
+</tbody>
+</table>
+<div id="box-plot" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Box plot</h3>
+<p>For the box plot, we will be using <code>geom_boxplot()</code> to show how trust in politicians are related to political interest.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>polintr, <span class="dt">group=</span>polintr, <span class="dt">y=</span>trstplt)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-96-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Here we can see that people more interested in politics also show greater levels of trust in politicians.</p>
+</div>
+<div id="scatter-plots" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Scatter plots</h3>
+<p>To illustrate the relation between age and ideology, measured with the variables <code>age</code> and <code>lrscale</code>, we will create a scatter plot with <code>geom_point()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-97-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>When we are working with a lot of observations, there will be an overlap. To show all of the observations, we can add some small, random noise to the observations, so we can see more of them. To do this, we can use <code>geom_jitter()</code> instead of <code>geom_point()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>() </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-98-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>We can also use <code>geom_point(position = &quot;jitter&quot;)</code> instead of Instead of <code>geom_jitter()</code>.</p>
+</div>
+<div id="line-plots" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> Line plots</h3>
+<p>To create a regression line we can use the <code>geom_smooth()</code> function. Here we will again look at the relation between <code>age</code> and <code>lrscale</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre></div>
+<pre><code>`geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-99-1.png" width="480" style="display: block; margin: auto;" /> Here we can see that as age increases, so does peoples’ left-right political orientation. As we can also see, this is a smoothing function. To have a linear line instead we can specify that we will be using <code>method=&quot;lm&quot;</code> as an option.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-100-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="manipulating-plots" class="section level2">
+<h2><span class="header-section-number">4.5</span> Manipulating plots</h2>
+<div id="themes" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Themes</h3>
+<p>As you could see in the plots above, we have used a default theme in <code>ggplot2</code>. Table <a href="4-dataviz.html#tab:ggthemes">4.3</a> shows a series of themes to be found in <code>ggplot2</code> and the package <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html"><code>ggthemes</code></a>. These are just a selection of some of the themes.</p>
+<table>
+<caption><span id="tab:ggthemes">Table 4.3: </span> Selected themes for <code>ggplot2</code></caption>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Package</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>theme_bw()</td>
+<td><code>ggplot2</code></td>
+<td>Black elements on white background</td>
+</tr>
+<tr class="even">
+<td>theme_minimal()</td>
+<td><code>ggplot2</code></td>
+<td>Minimalistic</td>
+</tr>
+<tr class="odd">
+<td>theme_classic()</td>
+<td><code>ggplot2</code></td>
+<td>Theme without grid lines</td>
+</tr>
+<tr class="even">
+<td>theme_base()</td>
+<td><code>ggthemes</code></td>
+<td>Copy of the base theme in <code>R</code></td>
+</tr>
+<tr class="odd">
+<td>theme_economist()</td>
+<td><code>ggthemes</code></td>
+<td>The Economist theme</td>
+</tr>
+<tr class="even">
+<td>theme_fivethirtyeight()</td>
+<td><code>ggthemes</code></td>
+<td>FiveThirtyEight theme</td>
+</tr>
+<tr class="odd">
+<td>theme_tufte()</td>
+<td><code>ggthemes</code></td>
+<td><span class="citation">Tufte (1983)</span> theme</td>
+</tr>
+</tbody>
+</table>
+<p>Figure <a href="4-dataviz.html#fig:ggthemes">4.1</a> shows the look of the different themes. The order is: Standard, <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>, <code>theme_base()</code>, <code>theme_economist()</code>, <code>theme_fivethirtyeight()</code>, <code>theme_tufte()</code>.</p>
+<div class="figure" style="text-align: center"><span id="fig:ggthemes"></span>
+<img src="qpolr_files/figure-html/ggthemes-1.png" alt="Eight themes" width="480" />
+<p class="caption">
+Figure 4.1: Eight themes
+</p>
+</div>
+<p>You can find a lot more resources online related to <code>ggplot2</code>. In addition to the links above, do consult <a href="https://github.com/cttobin/ggthemr">ggthemr</a> and <a href="https://www.ggplot2-exts.org/">ggplot2 extensions</a>.</p>
+<p>Below, we will be using <code>theme_minimal()</code> as the theme when we work with out plots.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-101-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="colours" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Colours</h3>
+<p>If we want to change the colours of the points in our plot, we can add the <code>colour=&quot;&quot;</code> option to our geometric objects. In the example below we change the colour of our points from black to red.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-102-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>If we want to give points a value based on the value of a specific variable, we need to specificy this within <code>aes()</code>. To illustrate this, let us first create a factor variable for gender.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ess<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">ifelse</span>(ess<span class="op">$</span>male <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>)</code></pre></div>
+<p>When we add <code>fill=gender, colour=gender</code> to our <code>aes()</code>, we will see different colours for men and women.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale, <span class="dt">fill=</span>gender, <span class="dt">colour=</span>gender)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-104-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>If we want to change these colours, we can use <code>scale_colour_manual()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale, <span class="dt">fill=</span>gender, <span class="dt">colour=</span>gender)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-105-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>The colours are very bright. If we want to make them less so we can add <code>alpha</code> to <code>geom_point()</code> to add transparency to the points. Below we use an alpha of 0.4 (if we want more transparency we can use a lower alpha level).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale, <span class="dt">fill=</span>gender, <span class="dt">colour=</span>gender)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-106-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="labels" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> Labels</h3>
+<p>Make sure that your figure have labels that helps the reader understand what is going on. To do this, you can add <code>labs()</code> to your figure. Here we will add a title, subtitle and caption.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale, <span class="dt">fill=</span>gender, <span class="dt">colour=</span>gender)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Age and ideology in the United Kingdom&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between age and ideology for men and women&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the European Social Survey&quot;</span>
+  )</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-107-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="axes" class="section level3">
+<h3><span class="header-section-number">4.5.4</span> Axes</h3>
+<p>Related to labels are the axes. Always label the axes so they have meaningful names. The variable name is not a meaningful name. As both our variables are continuous, we will use <code>scale_x_continuous()</code> and <code>scale_y_continuous()</code>. Last, we also specify that we want the plot to show all labels on <code>lrscale</code> (from 0 to 10).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale, <span class="dt">fill=</span>gender, <span class="dt">colour=</span>gender)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Age and ideology in the United Kingdom&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between age and ideology for men and women&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the European Social Survey&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Left-right ideology&quot;</span>, <span class="dt">breaks=</span><span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">labels=</span><span class="dv">0</span><span class="op">:</span><span class="dv">10</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;Age (years)&quot;</span>) </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-108-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="confidence-intervals" class="section level3">
+<h3><span class="header-section-number">4.5.5</span> Confidence intervals</h3>
+<p>We can have confidence intervals in our figure by not having <code>se</code> (standard errors) to <code>FALSE</code>. To show the confidence intervals better we do not include the scatter plot and only focus on the region where we have our estimates.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale, <span class="dt">fill=</span>gender, <span class="dt">colour=</span>gender)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Age and ideology in the United Kingdom&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between age and ideology for men and women&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the European Social Survey&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Left-right ideology&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;Age (years)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-109-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="making-multiple-plots-in-one" class="section level3">
+<h3><span class="header-section-number">4.5.6</span> Making multiple plots in one</h3>
+<p>If we would prefer to have the plots for different observations, we can specify that with <code>facet_grid()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>lrscale, <span class="dt">fill=</span>gender, <span class="dt">colour=</span>gender)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Age and ideology in the United Kingdom&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between age and ideology for men and women&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the European Social Survey&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Left-right ideology&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;Age (years)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>gender)</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-110-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="saving-plots" class="section level2">
+<h2><span class="header-section-number">4.6</span> Saving plots</h2>
+<p>When you have a plot you would like to save, you can use <code>ggsave()</code>. Do keep in mind that it will only save the last plot you have created.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="st">&quot;fig1-age_ideology.png&quot;</span>)</code></pre></div>
+<p>The figure will be saved in your working directory. The file type <code>.png</code> can be replaced to whatever format you would prefer your figure to be in. If you have saved your figure in an object, you can save it by specifying this before the file name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(fig1, <span class="st">&quot;fig1-age_ideology.png&quot;</span>)</code></pre></div>
+<p>Often you will see that you are not totally satisfied with the size of your figure. To change this, you can use <code>width</code> and <code>height</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(fig1, <span class="st">&quot;fig1-age_ideology.png&quot;</span>, <span class="dt">width =</span> <span class="dv">4</span>, <span class="dt">height =</span> <span class="dv">4</span>)</code></pre></div>
+
+<!--
+The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+-->
+
+<!-- 
+If you'd like to change the name of the bibliography to something else,
+delete "References" and replace it.
+-->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["qpolr.pdf", "PDF"], ["qpolr.epub", "EPUB"], ["qpolr.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
