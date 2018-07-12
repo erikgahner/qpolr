@@ -51,7 +51,7 @@
 
 \title{\Huge{ Quantitative Politics with R } \vspace{2em}}
 \author{Erik Gahner Larsen and Zoltán Fazekas}
-\date{February 28, 2018}
+\date{July 12, 2018}
 
 \renewcommand{\contentsname}{Table of Contents}
 
@@ -110,35 +110,39 @@
   
   If you want to conduct quantitative analyses of political phenomena,
   \texttt{R} is by far the best software you can use. Importantly, data
-  analysis is no longer restricted to analyzing survey data, but does now
-  include social media data, texts, images, geographic data (\emph{GIS}),
-  and so forth.
+  analysis is no longer restricted to analyzing survey data but also
+  social media data, texts, images, geographic data (\emph{GIS}), and so
+  forth. For that and other reasons listed below, \texttt{R} is a good
+  thing to learn.
   
   In this book, we aim to provide an easily accessible introduction to
-  \texttt{R} for the study of different types of data. The book will teach
-  you how to get different types of data into \texttt{R} and manipulate,
-  analyze and visualize the data.
+  \texttt{R} for the study of different types of political data.
+  Specifically, the book will teach you how to get different types of
+  political data into \texttt{R} and manipulate, analyze and visualize the
+  output.
   
-  Compared to other statistical softwares, such as Excel, SPSS, Stata and
-  SAS, you will experience that \texttt{R} is completely different. First
-  in a bad way: things are not as easy as they used to be. Then in a good
+  Compared to other statistical packages, such as Excel, SPSS, Stata and
+  SAS, you will experience that \texttt{R} is somewhat different. First in
+  a bad way: things are not as easy as they used to be. Then in a good
   way: once you learn how to do different tasks in \texttt{R}, you will be
-  ashamed when you look back at the old you doing analyses in SPSS.
+  ashamed when you look back at the old you doing analyses in SPSS or
+  something just as embarrasing.
   
-  In this chapter you will find an introduction to \texttt{R}. First, we
-  ask the obvious and important question, why R? Second, we help you
-  install what you need. Third, we introduce you to the basic logic of
-  \texttt{R} so you are ready for the chapters to come.
+  In this chapter you will find an introduction to \texttt{R}. The
+  introduction takes place in three steps. First, we ask the obvious and
+  important question, why R? Second, we help you install what you need.
+  Third, we introduce the basic logic of \texttt{R} so you are ready for
+  the chapters to come.
   
   \section{\texorpdfstring{Why \texttt{R}?}{Why R?}}\label{why-r}
   
   First, \texttt{R} is an \emph{open source} statistical programming
   language. \texttt{R} is free, and while you might not pay for Stata or
-  SPSS because you are a student, you will not have free access to this
-  forever. This is not the case with \texttt{R}. On the contrary, you will
+  SPSS because you are a student, you will not have free access forever.
+  This is not the case with \texttt{R}. On the contrary, you will
   \emph{never} have to pay for \texttt{R}.
   
-  Second, \texttt{R} provides a series of opportunities you don't have in
+  Second, \texttt{R} provides a series of opportunities you do not have in
   SPSS and Stata. \texttt{R} has an impressive package ecosystem on CRAN
   (the \textbf{c}omprehensive \textbf{R} \textbf{a}rchive
   \textbf{n}etwork) with more than 12,000 packages created by other users
@@ -146,30 +150,29 @@
   
   Third, some of the most beautiful figures you will find today are
   created in \texttt{R}. Big media outlets such as The New York Times and
-  FiveThirtyEight use \texttt{R} to create figures. In particular the
-  package \texttt{ggplot2} is popular to create figures and we will work
-  with this package below.
+  FiveThirtyEight use \texttt{R} to create figures. Specifically, they use
+  the package \texttt{ggplot2}, a very popular package used to create
+  figures. We will work with this package later.
   
   Fourth, there is a great community of \texttt{R} users that are able to
   help you when you encounter a problem (which you undoubtly will).
   \texttt{R} is a very popular software and in great demand meaning that
   you will not be the first (nor the last) to experience specific issues
-  in your data analysis. Accordingly, you will find a lot of help on
-  Google and other places to a much greater extent than for other types of
-  software.
+  in \texttt{R}. Accordingly, you will find a lot of help on Google and
+  other places to a much greater extent than for other types of software.
   
   Fifth, while you can't do as much point-and-click as in SPSS and Stata,
-  this approach facilitates that you can reproduce your work. When you are
-  doing something i \texttt{R} with commands (in a script) is it easy to
-  document. So, while you do not see a pedagogical graphical user
-  interface in \texttt{R} with a limited set of buttons to click, this is
-  more of an advantage than a limitation.
+  this approach facilitates that you can reproduce your work. In other
+  words, it is easy to document what you are doing in \texttt{R} with
+  commands (in a script). So, while you do not see a pedagogical graphical
+  user interface in \texttt{R} with a limited set of buttons to click,
+  this is more of an advantage than a limitation.
   
   \section{\texorpdfstring{Installing
   \texttt{R}}{Installing R}}\label{installing-r}
   
-  To install the \texttt{R}, you will have to install 1) the \texttt{R}
-  language and 2) RStudio, the graphical user interface. To install the
+  To install \texttt{R}, you will have to install 1) the \texttt{R}
+  language and 2) the graphical user interface RStudio. To install the
   \texttt{R} language, follow this procedure:
   \begin{enumerate}
   \def\labelenumi{\arabic{enumi}.}
@@ -207,7 +210,7 @@
   you did download the correct file \emph{and} that your computer meets
   the requirements. If you did this and still encounter problems, you
   should get an error message you can type into Google and find relevant
-  information on what to do.
+  information on what to do next.
   
   You should now have the \texttt{R} language installed on your computer.
   
@@ -244,16 +247,18 @@
   \end{figure}
   In the figure, we have emphasized the four windows: script, environment,
   output, and console. The \emph{script} is where you will have your
-  \texttt{R} code and make changes. The \emph{environment} is where you
-  can see what datasets, variables and other parts you have loaded into R.
-  The \emph{output} is where you can see figures you create. The
-  \emph{console} is where you can see some output and run commands.
+  \texttt{R} code and can add code and make changes to your script. The
+  \emph{environment} is where you can see what datasets, variables and
+  other parts you have loaded into \texttt{R}. The \emph{output} is where
+  you can see the figures you create as well as documents. The
+  \emph{console} is where you can see your output and run commands.
   
-  Everything you do in \texttt{R} can be written as commands. This ensures
-  that you will always be able to document your work (in your script). In
-  the console, you can see a prompt (\texttt{\textgreater{}}). Here, you
-  can write what what you want \texttt{R} to do. Try to write \texttt{2+2}
-  and hit \texttt{Enter}. This should look like this:
+  Importantly, everything you do in \texttt{R} can be written as commands.
+  This ensures that you will always be able to document your work (in the
+  \texttt{script} window). In the console, you can see a prompt
+  (\texttt{\textgreater{}}). Here, you can write what what you want
+  \texttt{R} to do. Try to write \texttt{2+2} and hit \texttt{Enter}. This
+  should look like the following:
   \begin{Shaded}
   \begin{Highlighting}[]
   \DecValTok{2}\OperatorTok{+}\DecValTok{2}
@@ -267,8 +272,9 @@
   script. Even better, you should write your commands in the script and
   ``run'' them from there. If you write \texttt{2+2} in the script, you
   can mark it and press \texttt{CTRL+R} (Windows) or \texttt{CMD+ENTER}
-  (Mac). Then it will run the part of the script that is marked in the
-  console. Insert the code below in your script and run it in the console:
+  (Mac). Then it will run the part of the script you have marked. Insert
+  the code below in your script, mark it, run it and see how the output
+  shows up in the console:
   \begin{Shaded}
   \begin{Highlighting}[]
   \DecValTok{50}\OperatorTok{*}\DecValTok{149}
@@ -285,7 +291,7 @@
   document everything you do in your script.
   
   Notice also that we use a function in the bottom, namely
-  \texttt{sqrt()}. A lot of what we will be doing in \texttt{R} is with
+  \texttt{sqrt()}. A lot of what we will be doing in \texttt{R} works via
   functions. For example, to calculate a mean later we will use the
   \texttt{mean()} function. In the next section we will use functions to
   install and load packages.
@@ -293,11 +299,11 @@
   \section{\texorpdfstring{Installing \texttt{R}
   packages}{Installing R packages}}\label{installing-r-packages}
   
-  We highlighted above that one of the key advantages of using \texttt{R}
-  is the package system. In \texttt{R}, a package is a collection of data
-  and functions that makes it easier for you do to what you want. The sky
-  is the limit and the only thing you need to learn know is how to install
-  and load packages.
+  We highlighted that one of the key advantages of using \texttt{R} is the
+  package system. In \texttt{R}, a package is a collection of data and
+  functions that makes it easier for you to do what you want. The sky is
+  the limit and the only thing you need to learn now is how to install and
+  load packages.
   
   To install packages, you will have to use a function called
   \texttt{install.packages()}. We will install a package that installs a
@@ -319,9 +325,9 @@
   While you only need to install a package once, you need to load the
   package every time you open \texttt{R}. This is a good thing as you
   don't want to have all your installed \texttt{R} packages working at the
-  same time. For this reason, most scripts begin with loading the packages
-  that is needed. To load a package, we use the function
-  \texttt{library()}:
+  same time if you don't need them. For this reason, most scripts begin
+  with loading the packages that you need. To load a package, we use the
+  function \texttt{library()}:
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
@@ -356,8 +362,9 @@
   \chapter{Basics}\label{basics}
   
   Remember that everything you do in \texttt{R} can be written as
-  commands. Repeat what you did in last chapter from your script window:
-  write \texttt{2+2} and run the code. This should look like this:
+  commands. Repeat what you did in the last chapter from your script
+  window: write \texttt{2+2} and run the code. This should look like the
+  output below.
   \begin{Shaded}
   \begin{Highlighting}[]
   \DecValTok{2}\OperatorTok{+}\DecValTok{2}
@@ -378,17 +385,17 @@
   Next, we will have to learn about variable assignment and in particular
   how we can work with \emph{objects}. Everything you will use in
   \texttt{R} is saved in objects. This can be everything from a number or
-  a word to complex datasets. A key advantage of this compared to other
-  statistical programmes is that you can have multiple datasets open at
-  the same time. If you, for exampel, want to connect two different
-  surveys, you can have them both loaded at the same time. This is not
-  possible in SPSS and Stata.
+  a word to complex datasets. A key advantage of this, compared to other
+  statistical programmes, is that you can have multiple datasets open at
+  the same time. If you, for example, want to connect two different
+  surveys, you can have them both loaded in the memory at the same time
+  and work with them. This is not possible in SPSS or Stata.
   
-  To save something in an objet, we need to use the \emph{assignment
+  To save something in an object, we need to use the \emph{assignment
   operator}, \texttt{\textless{}-}, which basically tells \texttt{R} that
   anything on the right side of the operator should be assigned to the
   object on the left side. Let us try to save the number 2 in the object
-  \texttt{x}
+  \texttt{x}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{x <-}\StringTok{ }\DecValTok{2}
@@ -396,8 +403,8 @@
   \end{Shaded}
   Now \texttt{x} will return the number 2 whenever we use \texttt{x}. Let
   us try to use our object in different simple operations. Write the
-  operations in your R-script and run them individually and see what
-  happens.
+  operations below in your \texttt{R}-script and run them individually and
+  see what happens.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{x}
@@ -411,10 +418,10 @@
   \texttt{x} to have the number 3 instead of 2 and run the script again,
   you should get a new output.\footnote{More specifically, \texttt{3},
     \texttt{6}, \texttt{9} and \texttt{6}.} This is great as you only need
-  to change a single number to change the whole procedure. Accordingly,
-  when you are working with scripts, try to save as much you can in
-  objects, so you only need to change numbers once, if you want to make
-  changes. This also reduces the likelihood of you making a mistake.
+  to change a single number to change the output from the whole procedure.
+  Accordingly, when you are working with scripts, try to save as much you
+  can in objects, so you only need to change numbers once, if you want to
+  make changes. This also reduces the likelihood of making mistakes.
   
   We can also use our object to create other objects. In the example below
   we will create a new object \texttt{y}. This object returns the sum of
@@ -425,9 +432,17 @@
   \end{Highlighting}
   \end{Shaded}
   One thing to keep in mind is that we do not get the output in \texttt{y}
-  right away. To get the output, we can just write \texttt{y}, or we can,
-  when we create the object, include it all in a parenthesis as we do
-  below.
+  right away. To get the output, we can just write \texttt{y}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{y}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] 9
+  \end{verbatim}
+  Alternatively, when we create the object, we can include it all in a
+  parenthesis as we do below.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{(y <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{7}\NormalTok{)}
@@ -447,8 +462,8 @@
   \begin{verbatim}
    [1]  1  2  3  4  5  6  7  8  9 10
   \end{verbatim}
-  We can save this row of numbers in an object (using
-  \texttt{\textless{}-}), but we can also use them directly, e.g.~by
+  We can save this row of numbers in an object (again using
+  \texttt{\textless{}-}), but we can also work with them directly, e.g.~by
   taking every number in the row and add 2 to all of them.
   \begin{Shaded}
   \begin{Highlighting}[]
@@ -458,21 +473,21 @@
   \begin{verbatim}
    [1]  3  4  5  6  7  8  9 10 11 12
   \end{verbatim}
-  When you will be working with more numbers, you have to tell \texttt{R},
+  When you will be working with more numbers, you have to tell \texttt{R}
   that you are working with multiple numbers. To do this, we use the
   function \texttt{c()}. This tells \texttt{R} that we are working with a
   vector.\footnote{In the example with \texttt{1:10}, this is similar to
-    writing \texttt{c(1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10)}. In other
-    words, we have a hidden \texttt{c()} when we type \texttt{1:10}.} The
-  function \texttt{c()} is short for \emph{concatenate} or
-  \emph{combine}.\footnote{\texttt{c()} creates a vector with \emph{all}
-    elements in the parenthesis. Since a vector can only have one type of
-    data, and not both numbers and text (cf.~next section), \texttt{c()}
-    will ensure that all values are reduced to the level all values can
-    work with. Consequently, if just one value is a letter and not a
-    number, all values in the vector will be considered text.} Remember
-  that everything that happens in \texttt{R} happens with functions. A
-  vector looks like this:
+    writing \texttt{c(1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10)} and
+    \texttt{c(1:10)}. In other words, we have a hidden \texttt{c()} when
+    we type \texttt{1:10}.} The function \texttt{c()} is short for
+  \emph{concatenate} or \emph{combine}.\footnote{\texttt{c()} creates a
+    vector with \emph{all} elements in the parenthesis. Since a vector can
+    only have one type of data, and not both numbers and text (cf.~next
+    section), \texttt{c()} will ensure that all values are reduced to the
+    level all values can work with. Consequently, if just one value is a
+    letter and not a number, all values in the vector will be considered
+    text.} Remember that everything happening in \texttt{R} happens with
+  functions. A vector can look like this:
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)}
@@ -481,10 +496,9 @@
   \begin{verbatim}
   [1] 2 2 2
   \end{verbatim}
-  This is a \emph{numerical} vector. Again, a vector is a collection of
-  values of the same type. We can save any vector in an object without any
-  problems. In the code below we save four numbers (14, 6, 23, 2) in the
-  object \texttt{x}.
+  This is a \emph{numerical} vector. A vector is a collection of values of
+  the same type. We can save any vector in an object. In the code below we
+  save four numbers (14, 6, 23, 2) in the object \texttt{x}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{2}\NormalTok{)}
@@ -508,8 +522,8 @@
   If we are only interested in a single value from the vector, we can get
   this value by using brackets, i.e. \texttt{{[}\ {]}}, which you place
   just after the object (so no space between the name of the object and
-  the brackets!). By placing the number 3 in the brackets we can get the
-  third number in the object.
+  the brackets!). By placing the number 3 in the brackets we get the third
+  number in the object.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{x[}\DecValTok{3}\NormalTok{]}
@@ -520,10 +534,10 @@
   \end{verbatim}
   As you can see, we get the third element, 23. We can use the same
   procedure to get all values with the exception of one value by including
-  a negative sign in the brackets. In this example we will get all values
-  except for 2. Also, note that since we are not assigned anything to an
-  object (with \texttt{\textless{}-}), we are not making any changes to
-  \texttt{x}.
+  a negative sign in the brackets. In the example below we will get all
+  values except for 2. Also, note that since we are not assigning anything
+  to an object (with \texttt{\textless{}-}), we are not making any changes
+  to \texttt{x}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{x[}\OperatorTok{-}\DecValTok{2}\NormalTok{]}
@@ -533,8 +547,8 @@
   [1] 14 23  2
   \end{verbatim}
   Now we can try to use a series of functions on our object. The functions
-  below will return different types of information such as the number of
-  values, the median, the mean, the standard deviation etc.
+  below will return different types of information such as the median, the
+  mean, the standard deviation etc.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{length}\NormalTok{(x)     }\CommentTok{# length of vector, number of values}
@@ -581,10 +595,10 @@
   \section{\texorpdfstring{Missing values
   (\texttt{NA})}{Missing values (NA)}}\label{missing-values-na}
   
-  Up until now we have been lucky that all our ``data'' has been easy to
-  work with. However, in the real world - and thereby for most of the data
-  we will work with - we will encounter missing values. In Stata you will
-  see that missing values gets a dot (`.'). In \texttt{R}, all missing
+  Up until now we have been lucky that all of our ``data'' has been easy
+  to work with. However, in the real world - and thereby for most of the
+  data we will work with - we will encounter missing values. In Stata you
+  will see that missing values get a dot (`.'). In \texttt{R}, all missing
   values are denoted \texttt{NA}. Let us try to add a missing value to our
   object \texttt{x} and take the mean.
   \begin{Shaded}
@@ -600,10 +614,10 @@
   We do not get a mean now but just \texttt{NA}. The reason for this is
   that \texttt{R} is unable to calculate the mean of a vector with a
   missing value included. In order for \texttt{R} to calculate the mean
-  now, we need to specifcy that it should remove the missing values before
+  now, we need to specify that it should remove the missing values before
   calculating the mean. To do this, we add \texttt{na.rm=TRUE} as an
   \emph{option} to the function. Most functions have a series of options
-  (more about this later), and the default option for the \texttt{mean()}
+  (more on this later), and the default option for the \texttt{mean()}
   function is not to ignore the missing values.
   \begin{Shaded}
   \begin{Highlighting}[]
@@ -633,21 +647,21 @@
   \NormalTok{x }\OperatorTok{!=}\StringTok{ }\DecValTok{2}        \CommentTok{# not equal to}
   \NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{1}         \CommentTok{# less than}
   \NormalTok{x }\OperatorTok{>}\StringTok{ }\DecValTok{1}         \CommentTok{# greater than}
-  \NormalTok{x }\OperatorTok{<=}\StringTok{ }\DecValTok{2}        \CommentTok{# less or equal to}
-  \NormalTok{x }\OperatorTok{>=}\StringTok{ }\FloatTok{2.01}     \CommentTok{# greater or equal to}
+  \NormalTok{x }\OperatorTok{<=}\StringTok{ }\DecValTok{2}        \CommentTok{# less than or equal to}
+  \NormalTok{x }\OperatorTok{>=}\StringTok{ }\FloatTok{2.01}     \CommentTok{# greater than or equal to}
   \end{Highlighting}
   \end{Shaded}
   The script will return \texttt{TRUE}, \texttt{FALSE}, \texttt{FALSE},
   \texttt{FALSE}, \texttt{TRUE}, \texttt{TRUE} and \texttt{FALSE}. If you
-  change \texttt{x} to 3, the script will return other values.
+  change \texttt{x} to 3, the script will (logically) return other values.
   
   \section{Text as data}\label{text-as-data}
   
-  In addition to numbers we can also work with text. The difference
-  between text and numbers in \texttt{R} is that we use quotation marks to
-  indicate that something is text (and not an object).\footnote{Alternatively,
-    you can use ' instead of ``. If you want more information on when you
-    should use ' instead of'', see
+  In addition to numbers we can and will also work with text. The
+  difference between text and numbers in \texttt{R} is that we use
+  quotation marks to indicate that something is text (and not an
+  object).\footnote{Alternatively, you can use ' instead of ``. If you
+    want more information on when you should use ' instead of'', see
     \url{http://style.tidyverse.org/syntax.html\#quotes}.} As an example,
   we will create an object called \texttt{p} with the political parties
   from the United Kingdom general election in 2017.
@@ -680,7 +694,7 @@
   To compare, we can do the same thing with our object \texttt{x}, which
   includes numerical values. Here we see that the function
   \texttt{class()} for \texttt{x} returns \texttt{"numeric"}. The
-  different classes a vector can have is: \texttt{character} (text),
+  different classes a vector can have are: \texttt{character} (text),
   \texttt{numeric} (numbers), \texttt{integer} (whole numbers),
   \texttt{factor} (categories) and \texttt{logical} (logical).
   \begin{Shaded}
@@ -694,8 +708,8 @@
   To test whether our object is numerical or not, we can use the function
   \texttt{is.numeric()}. If the object is numeric, we will get a
   \texttt{TRUE}. If not, we will get a \texttt{FALSE}. This logical
-  structure can be used in a lot of different scenarios as we will see
-  later. Similar to \texttt{is.numeric()}, we have a function called
+  structure can be used in a lot of different scenarios (as we will see
+  later). Similar to \texttt{is.numeric()}, we have a function called
   \texttt{is.character()} that will show us whether the object is a
   charater or not.
   \begin{Shaded}
@@ -707,6 +721,39 @@
   Try to use \texttt{is.numeric()} and \texttt{is.character()} on the
   object \texttt{p}.
   
+  To get the number of characters for each element in our object, we can
+  use the function \texttt{nchar()}:
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{nchar}\NormalTok{(p)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] 18 12 23 17 25  9
+  \end{verbatim}
+  We can also convert the characters in different ways. First, we can
+  convert all characters to uppercase with \texttt{toupper()}. Second, we
+  can concert all characters to lowercase with \texttt{tolower()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{toupper}\NormalTok{(p)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] "CONSERVATIVE PARTY"        "LABOUR PARTY"             
+  [3] "SCOTTISH NATIONAL PARTY"   "LIBERAL DEMOCRATS"        
+  [5] "DEMOCRATIC UNIONIST PARTY" "SINN FÉIN"                
+  \end{verbatim}
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{tolower}\NormalTok{(p) }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] "conservative party"        "labour party"             
+  [3] "scottish national party"   "liberal democrats"        
+  [5] "democratic unionist party" "sinn féin"                
+  \end{verbatim}
   In the same way we could get specific values from the object when it was
   numeric, we can get specific values when it is a character object as
   well.
@@ -729,7 +776,7 @@
   [5] "Sinn Féin"                
   \end{verbatim}
   While \texttt{p} is a short name for an object and easy to write, it is
-  not telling for what we actually have in the object. Accordingly, let us
+  not telling for what we actually have stored in the object. Let us
   create a new object called \texttt{party} with the same information as
   in \texttt{p}. When you name objects remember that they are case
   sensitive so \texttt{party} will be a different object than
@@ -751,11 +798,11 @@
   \section{Data frames}\label{data-frames}
   
   In most cases, we will not be working with one variable
-  (e.g.~information on party names), but multiple variables. To do this in
+  (e.g.~information on party names) but multiple variables. To do this in
   an easy way, we can create \emph{data frames} which is similar to a
   dataset in SPSS and Stata. The good thing about \texttt{R}, however, is
   that we can have multiple data frames open at the same time. The cost of
-  this is that we have to specifcy, when we do something in \texttt{R},
+  this is that we have to specify, when we do something in \texttt{R},
   exactly what data frame we are using.
   
   Here we will create a data frame with more information about the parties
@@ -764,7 +811,7 @@
     \url{https://en.wikipedia.org/wiki/United_Kingdom_general_election,_2017}}
   
   As a first step we can create new objects with more information:
-  \texttt{leader} (ifnormation on the party leader), \texttt{votes} (the
+  \texttt{leader} (information on the party leader), \texttt{votes} (the
   vote share in percent), \texttt{seats} (the number of seats) and
   \texttt{seats\_change} (change in seats from the previous election). Do
   note that the order is important as we are going to link these objects
@@ -807,7 +854,7 @@
   6                 Sinn Féin     Gerry Adams   0.7     7            3
   \end{verbatim}
   To see what type of object we are working with, we can use the function
-  \texttt{class()} to show that \texttt{uk2017} is a data frame.
+  \texttt{class()} again to show that \texttt{uk2017} is a data frame.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{class}\NormalTok{(uk2017)}
@@ -832,7 +879,7 @@
   Here we can see that we have data as a \texttt{factor} as well as
   numerical variables. We can get similar information about our data by
   using the function \texttt{str()}. This function returns information on
-  the structure in the data frame.
+  the structure of the data frame.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{str}\NormalTok{(uk2017)}
@@ -846,10 +893,10 @@
    $ seats       : num  317 262 35 12 10 7
    $ seats_change: num  -13 30 -21 4 2 3
   \end{verbatim}
-  Here we can see that it is a data frame with 6 observations of 5
-  variables. If the rows (i.e.~observations) have names, we can get these
-  by using \texttt{rownames()}. We can get the names of the columns,
-  i.e.~the variables in our data frame, by using \texttt{colnames()}.
+  We can see that it is a data frame with 6 observations of 5 variables.
+  If the rows (i.e.~observations) have names, we can get these by using
+  \texttt{rownames()}. We can get the names of the columns, i.e.~the
+  variables in our data frame, by using \texttt{colnames()}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{colnames}\NormalTok{(uk2017)}
@@ -878,11 +925,11 @@
   [1] 6
   \end{verbatim}
   If we are working with bigger data frames, e.g.~a survey with thousands
-  of respondents, it might not be useful to just show the full data frame.
-  One way to see just a few of the observations is by using
-  \texttt{head()}. If not specified further, this function will show the
-  first six observations in the data frame. In the example below, we will
-  tell \texttt{R} to show the first three observations
+  of respondents, it might not be useful to show the full data frame. One
+  way to see a few of the observations is by using \texttt{head()}. If not
+  specified further, this function will show the first six observations in
+  the data frame. In the example below, we will tell \texttt{R} to show
+  the first three observations
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{head}\NormalTok{(uk2017, }\DecValTok{3}\NormalTok{)  }\CommentTok{# show the first three rows}
@@ -894,9 +941,9 @@
   2            Labour Party   Jeremy Corbyn  40.0   262           30
   3 Scottish National Party Nicola Sturgeon   3.0    35          -21
   \end{verbatim}
-  In the same way, we can use \texttt{tail()} show the last observations
-  in a data frame. Here we see the last four observations in our data
-  frame.
+  In the same way, we can use \texttt{tail()} to show the last
+  observations in a data frame. Here we see the last four observations in
+  our data frame.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{tail}\NormalTok{(uk2017, }\DecValTok{4}\NormalTok{)  }\CommentTok{# show the last four rows}
@@ -938,12 +985,13 @@
   Contrary to working with a vector in a single dimension, we have two
   dimensions in a data frame (rows horisontally and columns vertically).
   Just as for a single vector, we need to work with the brackets,
-  \texttt{{[}\ {]}}, in addition to our object, but we need to specify the
-  rows and columns we are interested in. If we want to work with the first
-  row, we need to specify \texttt{{[}1,\ {]}} after the object. The comma
-  is seperating the information on the rows and columns we want to work
-  with. When we are not specifying anything after the comma, that means we
-  want to have the information for \emph{all} columns.
+  \texttt{{[}\ {]}}, in addition to our object. However, now we need to
+  specify the rows \emph{and} columns we are interested in. If we want to
+  work with the first row, we need to specify \texttt{{[}1,\ {]}} after
+  the object. The comma is seperating the information on the rows and
+  columns we want to work with. When we are not specifying anything after
+  the comma, that means we want to have the information for \emph{all}
+  columns.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{uk2017[}\DecValTok{1}\NormalTok{,] }\CommentTok{# first row}
@@ -982,8 +1030,8 @@
   \end{verbatim}
   Interestingly, the functions we have talked about so far can all be
   applied to data frames. The \texttt{summary()} function is very useful
-  if you want to get an overview of all your variables in your data frame.
-  For the numerical variables in the data frame, the function will return
+  if you want to get an overview of all variables in your data frame. For
+  the numerical variables in the data frame, the function will return
   information such as the mean and the median.
   \begin{Shaded}
   \begin{Highlighting}[]
@@ -1017,7 +1065,7 @@
   \begin{verbatim}
   [1] 42.4
   \end{verbatim}
-  If we want to have the value on a specific variable in our data frame,
+  If we want to have the value of a specific variable in our data frame,
   we can use both \texttt{\$} and \texttt{{[}\ {]}}. Below we get the
   second value in the variable \texttt{party}.
   \begin{Shaded}
@@ -1029,14 +1077,14 @@
   [1] Labour Party
   6 Levels: Conservative Party Democratic Unionist Party ... Sinn Féin
   \end{verbatim}
-  To combine a lot of what we have used above, we can get informatin on
-  the name of the party that got the most votes. In order to do this, we
-  specify that we would like to have the name of the party for the party
-  where the number of votes equals the maximum number of votes. In other
-  words, when \texttt{uk2017\$votes} is equal to
+  To illustrate how we can combine a lot of what we have used above, we
+  can get informatin on the name of the party that got the most votes. In
+  order to do this, we specify that we would like to have the name of the
+  party for the party where the number of votes equals the maximum number
+  of votes. In other words, when \texttt{uk2017\$votes} is equal to
   \texttt{max(uk2017\$votes)}, we want to get the information on
-  \texttt{uk2017\$party}. We use \texttt{==} to test whether something is
-  equal to.
+  \texttt{uk2017\$party}. We use the logical operator \texttt{==} to test
+  whether something is equal to.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{uk2017}\OperatorTok{$}\NormalTok{party[uk2017}\OperatorTok{$}\NormalTok{votes }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(uk2017}\OperatorTok{$}\NormalTok{votes)]}
@@ -1060,12 +1108,13 @@
   [1] Sinn Féin
   6 Levels: Conservative Party Democratic Unionist Party ... Sinn Féin
   \end{verbatim}
-  The sky is the limit when it comes t owhat we can do with data frames,
+  The sky is the limit when it comes to what we can do with data frames,
   including various types of statistical analyses. To give one example, we
   can use the \texttt{lm()} function to conduct an OLS regression with
   \texttt{votes} as the independent variable and \texttt{seats} as the
-  dependent variable. First, we save the model in the object
-  \texttt{uk2017\_lm} and then use \texttt{summary()} to get the results.
+  dependent variable (more on this specific function in \texttt{R} later).
+  First, we save the model in the object \texttt{uk2017\_lm} and then use
+  \texttt{summary()} to get the results.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{uk2017_lm <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(seats }\OperatorTok{~}\StringTok{ }\NormalTok{votes, }\DataTypeTok{data =}\NormalTok{ uk2017)}
@@ -1093,6 +1142,10 @@
   Multiple R-squared:  0.9758,    Adjusted R-squared:  0.9697 
   F-statistic: 161.2 on 1 and 4 DF,  p-value: 0.0002216
   \end{verbatim}
+  The coefficient for \texttt{votes} is positive and statistically
+  significant (\(p<0.05\)). In other words, as the vote share increases,
+  so does the number of seats.
+  
   \section{Import and export data
   frames}\label{import-and-export-data-frames}
   
@@ -1101,13 +1154,17 @@
   we will import from other files such as files made for Stata, SPSS or
   Excel. The most useful filetype to use when you work with data in files
   is \texttt{.csv}, which stands for \emph{comma-separated values}. This
-  is an open file format and be opened in any software. To export and
+  is an open file format and can be opened in any software. To export and
   import data frames to \texttt{.csv} files, we can use
   \texttt{write.csv()} and \texttt{read.csv()}.
   
   First of all we need to know where \texttt{R} is working from, i.e.~what
-  our \emph{working directory} is. To get this you can type
-  \texttt{getwd()} and see where your data will be saved.
+  our \emph{working directory} is. In other words, we need to tell
+  \texttt{R} where it should be saving the file and - when we want to
+  import a data frame - where to look for a file. To see where \texttt{R}
+  is currently working from (the \emph{working directory}) you can type
+  \texttt{getwd()}. This will return the place where \texttt{R} is
+  currently going to save the file if we do not change it.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{getwd}\NormalTok{()}
@@ -1115,15 +1172,22 @@
   \end{Shaded}
   If you would like to change this, you can use the function
   \texttt{setwd()}. This function allows you to change the working
-  directory to whatever folder on your computer you would like to use.
+  directory to whatever folder on your computer you would like to use. In
+  the code below I change the working directory to the folder
+  \texttt{book} in the folder \texttt{qpolr} in the Dropbox folder. Do
+  also note that we are using forward slash (\texttt{/}) and not backslash
+  (\texttt{\textbackslash{}}).
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{setwd}\NormalTok{(}\StringTok{"/Dropbox/qpolr/book"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  An easy way to control the working directory is to open an R-script
-  directly from the folder so it also opens RStudio that way. This will
-  automatically set the working directory to the folder with the R-script.
+  An easy way to control the working directory is to open an
+  \texttt{R}-script directly from the folder you want to have as your
+  working directory. Specifically, instead of opening RStudio and finding
+  the script, find the script in your folder and open RStudio that way.
+  This will automatically set the working directory to the folder with the
+  \texttt{R}-script.
   
   Once we know where we will save our data, we can use
   \texttt{write.csv()} to save the data. In the code below we first
@@ -1146,7 +1210,7 @@
   As with most stuff in \texttt{R}, there are multiple ways of doing
   things. To import and export data, we have packages like
   \texttt{foreign} (R Core Team, 2015), \texttt{rio} (C. Chan, Chan, \&
-  Leeper, 2016) og \texttt{readr} (H. Wickham \& Francois, 2015). If you
+  Leeper, 2016) and \texttt{readr} (H. Wickham \& Francois, 2015). If you
   install and load the package \texttt{rio}, you can use the functions
   \texttt{import()} and \texttt{export()}.
   \begin{Shaded}
@@ -1160,7 +1224,7 @@
   \end{Shaded}
   \section{Environment}\label{environment}
   
-  We have worked with a series of different objects. T osee what objects
+  We have worked with a series of different objects. To see what objects
   we have in our memory, we can look in the \emph{Environment} window, but
   we can also use the function \texttt{ls()}(\emph{ls} is short for
   \emph{list objects}).
@@ -1202,16 +1266,18 @@
   \chapter{Data management}\label{data}
   
   There are multiple ways to manage data in \texttt{R} and in particular
-  ways to create and change variables in a data frame. In this chapter, we
-  show different ways of working with data frames with a focus on how to
-  change variables. Noteworthy, there are multiple packages we can use to
-  manipulate data farmes, but the best is without a doubt \texttt{dplyr}
-  (Hadley Wickham \& Francois, 2016).
+  different ways to create and change variables in a data frame. In this
+  chapter, we show different ways of working with data frames with a focus
+  on how to change and create new variables. Noteworthy, there are
+  multiple packages we can use to manipulate data frames, but the best is
+  without a doubt \texttt{dplyr} (Hadley Wickham \& Francois, 2016). This
+  is part of the \texttt{tidyverse} package so you do not need to install
+  any new packages if you have already installed \texttt{tidyverse}.
   
   The package provides some basic functions making it easy to work with
   data frames. These functions include \texttt{select()},
   \texttt{filter()}, \texttt{arrange()}, \texttt{rename()},
-  \texttt{mutate()} og \texttt{summarize()}.\footnote{For another good
+  \texttt{mutate()} and \texttt{summarize()}.\footnote{For another good
     introduction to \texttt{dplyr}, see:
     \href{https://bookdown.org/rdpeng/rprogdatascience/managing-data-frames-with-the-dplyr-package.html}{Managing
     Data Frames with the dplyr package}.} \texttt{select()} allows you to
@@ -1224,18 +1290,19 @@
   
   All these functions rely on data frames. In other words, you can not use
   these functions on other types of data in \texttt{R}. Furthermore, they
-  all return a new data frame.
+  all return a new data frame that you will need to save in a new object
+  or overwrite the existing object with your data frame.
   
-  The \texttt{dplyr} package is a part of the \texttt{tidyverse}. First,
-  load the \texttt{tidyverse}.
+  As the \texttt{dplyr} package is part of the \texttt{tidyverse}, the
+  first thing we do is to call the \texttt{tidyverse}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
   We will use the dataset we created in the previous chapter. If you do
-  not have it, you can download it here:
-  \url{http://qpolr.com/data/uk2017.csv}
+  not have it, you can download it here (make sure to have the data file
+  saved in your working directory): \url{http://qpolr.com/data/uk2017.csv}
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{uk2017 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"uk2017.csv"}\NormalTok{)}
@@ -1260,7 +1327,7 @@
   \texttt{select()}}{Selecting variables: select()}}\label{selecting-variables-select}
   
   When we work with large datasets, we often want to select the few
-  variables that are of key interest to our project. For this, the
+  variables that are of key interest to our project. For this task the
   \texttt{select()} function is perfect. If we only want to have
   information on the party name and the votes in the \texttt{uk2017} data
   frame, we can write:
@@ -1278,10 +1345,19 @@
   5 Democratic Unionist Party   0.9
   6                 Sinn Féin   0.7
   \end{verbatim}
-  There are multiple different functions that can help us finding specific
+  Again, this is not saved in a new data frame. If we want to save this in
+  a new data frame, say \texttt{uk2017\_pv}, we need to assign the output
+  from \texttt{select()} to our object.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{uk2017_pv <-}\StringTok{ }\KeywordTok{select}\NormalTok{(uk2017, party, votes)}
+  \end{Highlighting}
+  \end{Shaded}
+  There are multiple different functions that can help us find specific
   variables in the data frame. We can use \texttt{contains()}, if we want
   to include variables that contain a specific word in the variable name.
-  In the example below we look for variables that contain \texttt{seat}.
+  In the example below we look for variables that contain the text
+  \texttt{seat}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{select}\NormalTok{(uk2017, }\KeywordTok{contains}\NormalTok{(}\StringTok{"seat"}\NormalTok{))}
@@ -1296,8 +1372,8 @@
   5    10            2
   6     7            3
   \end{verbatim}
-  Other noteworthy functions that can be of help similar to
-  \texttt{contains()} are functions such as \texttt{starts\_with()},
+  Other noteworthy functions similar to \texttt{contains()} that can be of
+  help are functions such as \texttt{starts\_with()},
   \texttt{ends\_with()}, \texttt{matches()}, \texttt{num\_range()},
   \texttt{one\_of()} and \texttt{everything()}. The last function,
   \texttt{everything()} is helpful if we want to move a variable to the
@@ -1316,8 +1392,8 @@
   5   0.9 Democratic Unionist Party   Arlene Foster    10            2
   6   0.7                 Sinn Féin     Gerry Adams     7            3
   \end{verbatim}
-  We can use the negative sign if we want to remove a variable from the
-  data frame.
+  Last, we can use the negative sign if we want to remove a variable from
+  the data frame.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{select}\NormalTok{(uk2017, }\OperatorTok{-}\NormalTok{leader)}
@@ -1345,6 +1421,9 @@
   \end{Highlighting}
   \end{Shaded}
   \begin{verbatim}
+  Warning: package 'bindrcpp' was built under R version 3.4.4
+  \end{verbatim}
+  \begin{verbatim}
                         party        leader votes seats seats_change
   1              Labour Party Jeremy Corbyn  40.0   262           30
   2         Liberal Democrats    Tim Farron   7.4    12            4
@@ -1352,10 +1431,10 @@
   4                 Sinn Féin   Gerry Adams   0.7     7            3
   \end{verbatim}
   Importantly, we are \emph{not} making any changes to the data frame
-  \texttt{uk2017}. This will only hapen if we replace our existing data
-  frame or create a new data frame. In the example below we create a new
-  data frame, \texttt{uk2017\_seatlosers}, with the observations losing
-  seats from 2015 to 2017.
+  \texttt{uk2017}. Again, this will only hapen if we replace our existing
+  data frame or create a new data frame. In the example below we create a
+  new data frame, \texttt{uk2017\_seatlosers}, with the observations
+  losing seats from 2015 to 2017.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{uk2017_seatlosers <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(uk2017, seats_change }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{)}
@@ -1391,8 +1470,8 @@
   5              Labour Party   Jeremy Corbyn  40.0   262           30
   6        Conservative Party     Theresa May  42.4   317          -13
   \end{verbatim}
-  If we prefer to have the parties with the maximum number of votes in the
-  top, we can use the negative sign (\texttt{-}).
+  If we prefer to have the parties with the greatest number of votes in
+  the top, we can use the negative sign (\texttt{-}).
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{arrange}\NormalTok{(uk2017, }\OperatorTok{-}\NormalTok{votes)}
@@ -1410,9 +1489,9 @@
   \section{\texorpdfstring{Rename variables:
   \texttt{rename()}}{Rename variables: rename()}}\label{rename-variables-rename}
   
-  In the case we have a variable we would prefer having another name, we
-  can use the function \texttt{rename()}. In the example below we change
-  the name of \texttt{party} to \texttt{party\_name}.
+  In the case that we have a variable we would prefer having another name,
+  we can use the function \texttt{rename()}. In the example below we
+  change the name of \texttt{party} to \texttt{party\_name}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{rename}\NormalTok{(uk2017, }\DataTypeTok{party_name =}\NormalTok{ party)}
@@ -1434,7 +1513,7 @@
   data frame is to use the function \texttt{mutate()}. In the example
   below we create a new variable, \texttt{votes\_m} with information on
   how many percentage points a party is from the average number of votes a
-  party got.
+  party got in the election.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{mutate}\NormalTok{(uk2017, }\DataTypeTok{votes_m =}\NormalTok{ votes }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(votes))}
@@ -1456,8 +1535,8 @@
   5 -14.833333
   6 -15.033333
   \end{verbatim}
-  In another example we use the \texttt{sum()} function as well to find
-  the proportion of seats a party got in a variable, \texttt{seats\_prop}.
+  We can also use the \texttt{sum()} function to find the proportion of
+  seats a party got in a variable, \texttt{seats\_prop}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{mutate}\NormalTok{(uk2017, }\DataTypeTok{seats_prop =}\NormalTok{ seats }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(seats))}
@@ -1498,11 +1577,11 @@
   3 Democratic Unionist Party   0.9
   4                 Sinn Féin   0.7
   \end{verbatim}
-  The problem is that it can be complicated to read, especially when as
-  the number of functions we use increase. Furthermore, the likelihood of
+  The problem is that it can be complicated to read, especially as the
+  number of functions we use increases. Furthermore, the likelihood of
   making a stupid mistake, e.g.~by including an extra \texttt{(} or
-  \texttt{)} increases substantially. Luckily, we can use the pipe
-  operator, \texttt{\%\textgreater{}\%}, to make our code more readable.
+  \texttt{)} increases substantially. We can use the pipe operator,
+  \texttt{\%\textgreater{}\%}, to make our code more readable.
   
   The operator relies on a step-wise logic so we first specify the data
   frame and then a line for each function we want to run on the data
@@ -1535,16 +1614,16 @@
   we did not select \texttt{seats\_change} as a variable with
   \texttt{select()}, so this is not crucial in order to use it (as long as
   it is in the \texttt{uk2017} data frame). Last, we do \emph{not} end
-  with a pipe as we are now done.
+  with a pipe as we are done and do not want to do more to our data frame.
   
   \section{\texorpdfstring{Running functions on variables:
   \texttt{apply()}}{Running functions on variables: apply()}}\label{running-functions-on-variables-apply}
   
-  If we would like to run a function on some of our rows or columns we can
-  use the function \texttt{apply()}. For example, we can get the average
-  number of votes and seats for parties with a positive value on
+  If we would like to run a function on some of our rows or columns, we
+  can use the function \texttt{apply()}. For example, we can get the
+  average number of votes and seats for parties with a positive value on
   \texttt{seats\_change} (i.e.~parties with an increase in seats from 2015
-  to 2017.
+  to 2017).
   
   The addition here is the function \texttt{apply()} on the data frame
   used above. The first thing we specify here is \texttt{MARGIN},
@@ -1565,7 +1644,7 @@
   \end{verbatim}
   In the case you want to apply a function to both rows and columns, you
   will have to specify \texttt{c(1,\ 2)}. It is not important to mention
-  \texttt{MARGIN} eller \texttt{FUN} if you have the order right. In other
+  \texttt{MARGIN} or \texttt{FUN} if you have the order right. In other
   words, we can simplify our example to the code below.
   \begin{Shaded}
   \begin{Highlighting}[]
@@ -1604,9 +1683,8 @@
   1     6       0.7      42.4   15.73333
   \end{verbatim}
   If we want this information for different groups, we can supply with
-  \texttt{group\_by()}. In the example below we will like to have the
-  information both for parties with an increase in seats from 2015 to 2017
-  and not.
+  \texttt{group\_by()}. In the example below we get the same information
+  for parties with an increase in seats from 2015 to 2017 and not.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{uk2017 }\OperatorTok{%>%}
@@ -1676,6 +1754,303 @@
   with a \texttt{recode()} function. The package \texttt{car} (Fox \&
   Weisberg, 2011) has a similar function worth exploring.
   
+  \chapter{Getting data}\label{datadownload}
+  
+  There are multiple ways you can get data into \texttt{R}. In this
+  chapter we introduce different strategies for getting data into
+  \texttt{R} from a variety of political data sources. First, we look at
+  data included in packages. Second, we show how you can find datasets
+  online and introduce a resource with a lot of links to political
+  datasets. Third, we introduce a series of different packages that makes
+  it easy to get data into \texttt{R}.
+  
+  Throughout the chapter we will use the \texttt{tidyverse} package so
+  make sure to load this.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \section{Using data from data
+  packages}\label{using-data-from-data-packages}
+  
+  A lot of the packages we are working with, including packages in the
+  \texttt{tidyverse}, include datasets. To illustrate this, we will be
+  using the package \texttt{poliscidata}.\footnote{For more information on
+    the package and the included packages, see:
+    \url{https://cran.r-project.org/web/packages/poliscidata/poliscidata.pdf}}
+  The first thing we will need to do is to install the package.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{install.packages}\NormalTok{(}\StringTok{"poliscidata"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  Next, we will need to load the package with \texttt{library()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"poliscidata"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  There are multiple datasets in the \texttt{poliscidata} package. We will
+  focus on the dataset \texttt{states}, a dataset with variables about the
+  50 states in the United States. We use the function \texttt{names()} to
+  get a list of all variables in the data frame states (it takes up a lot
+  of space but gives an indication of the variety of variables in the data
+  frame).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{names}\NormalTok{(states)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+    [1] "abort_rank3"       "abortion_rank12"   "adv_or_more"      
+    [4] "ba_or_more"        "cig_tax12"         "cig_tax12_3"      
+    [7] "conserv_advantage" "conserv_public"    "dem_advantage"    
+   [10] "govt_worker"       "gun_rank3"         "gun_rank11"       
+   [13] "gun_scale11"       "hr_cons_rank11"    "hr_conserv11"     
+   [16] "hr_lib_rank11"     "hr_liberal11"      "hs_or_more"       
+   [19] "obama2012"         "obama_win12"       "pop2000"          
+   [22] "pop2010"           "pop2010_hun_thou"  "popchng0010"      
+   [25] "popchngpct"        "pot_policy"        "prochoice"        
+   [28] "prolife"           "relig_cath"        "relig_prot"       
+   [31] "relig_high"        "relig_low"         "religiosity3"     
+   [34] "romney2012"        "smokers12"         "stateid"          
+   [37] "to_0812"           "uninsured_pct"     "abort_rate05"     
+   [40] "abort_rate08"      "abortlaw3"         "abortlaw10"       
+   [43] "alcohol"           "attend_pct"        "battle04"         
+   [46] "blkleg"            "blkpct04"          "blkpct08"         
+   [49] "blkpct10"          "bush00"            "bush04"           
+   [52] "carfatal"          "carfatal07"        "cig_tax"          
+   [55] "cig_tax_3"         "cigarettes"        "college"          
+   [58] "conpct_m"          "cons_hr06"         "cons_hr09"        
+   [61] "cook_index"        "cook_index3"       "defexpen"         
+   [64] "demhr11"           "dem_hr09"          "demnat06"         
+   [67] "dempct_m"          "demstate06"        "demstate09"       
+   [70] "demstate13"        "density"           "division"         
+   [73] "earmarks_pcap"     "evm"               "evo"              
+   [76] "evo2012"           "evr2012"           "gay_policy"       
+   [79] "gay_policy2"       "gay_policy_con"    "gay_support"      
+   [82] "gay_support3"      "gb_win00"          "gb_win04"         
+   [85] "gore00"            "gun_check"         "gun_dealer"       
+   [88] "gun_murder10"      "gun_rank_rev"      "gunlaw_rank"      
+   [91] "gunlaw_rank3_rev"  "gunlaw_scale"      "hispanic04"       
+   [94] "hispanic08"        "hispanic10"        "indpct_m"         
+   [97] "kerry04"           "libpct_m"          "mccain08"         
+  [100] "modpct_m"          "nader00"           "obama08"          
+  [103] "obama_win08"       "over64"            "permit"           
+  [106] "pop_18_24"         "pop_18_24_10"      "prcapinc"         
+  [109] "region"            "relig_import"      "religiosity"      
+  [112] "reppct_m"          "rtw"               "secularism"       
+  [115] "secularism3"       "seniority_sen2"    "south"            
+  [118] "state"             "to_0004"           "to_0408"          
+  [121] "trnout00"          "trnout04"          "unemploy"         
+  [124] "union04"           "union07"           "union10"          
+  [127] "urban"             "vep00_turnout"     "vep04_turnout"    
+  [130] "vep08_turnout"     "vep12_turnout"     "womleg_2007"      
+  [133] "womleg_2010"       "womleg_2011"       "womleg_2015"      
+  \end{verbatim}
+  While the data is available, it is not possible to see in the
+  \emph{Environment} window. To see the data frame, we can save
+  \texttt{states} in an object of the same name.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{states <-}\StringTok{ }\NormalTok{states}
+  \end{Highlighting}
+  \end{Shaded}
+  Now we can see in the \texttt{Environment} window that we have 50
+  observations of 135 variables. We will be using this data later, but for
+  now we will see that we have actual data. Using the \texttt{table()}
+  function we can show the distribution of observations in the
+  \texttt{gay\_policy} variable, showing data on the Billman's policy
+  scale (4 ordinal categories).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{table}\NormalTok{(states}\OperatorTok{$}\NormalTok{gay_policy)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  
+       Most liberal           Liberal      Conservative Most conservative 
+                  6                14                10                20 
+  \end{verbatim}
+  Here we see that 6 states have a most liberal score, 14 have a liberal
+  score, 10 have a conservative score, and 6 have a most conservative
+  score.
+  
+  \section{Download data from webpages}\label{download-data-from-webpages}
+  
+  A lot of the political datasets you will find are available online and
+  can be downloaded for free. A free resource with an overview of
+  political datasets can be found here:
+  \url{https://github.com/erikgahner/PolData}
+  
+  In this dataset with political datasets, you can find datasets from
+  different topics (international relations, political institutions,
+  democracy etc.). For each dataset you will also be able to see whether
+  it is possible to download the data for free, and if so, what the link
+  to the dataset is.
+  
+  To illustrate this, we can find the link to download the Global Media
+  Freedom dataset. The dataset is available as a \texttt{.csv} file and
+  get into \texttt{R} with the \texttt{read.csv()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{gmd <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}
+    \StringTok{"http://faculty.uml.edu/Jenifer_whittenwoodring/GMFD_V2.csv"}
+  \NormalTok{  )}
+  \end{Highlighting}
+  \end{Shaded}
+  The dataset consists of the following four variables: \texttt{id},
+  \texttt{year}, \texttt{country}, \texttt{mediascore}.
+  
+  In the next sections, we will introduce different packages, that can
+  make it easier to work with different datasets.
+  
+  \section{\texorpdfstring{Data: European Social Survey
+  (\texttt{essurvey})}{Data: European Social Survey (essurvey)}}\label{data-european-social-survey-essurvey}
+  
+  To get data from European Social Survey (ESS), we will be using the
+  \texttt{essurvey} package. If you do not have a free user, the first
+  step is to go online and create a user:
+  \url{http://www.europeansocialsurvey.org/user/new}
+  
+  The next thing you need to do is to install the package.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{install.packages}\NormalTok{(}\StringTok{"essurvey"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  And then load the package.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"essurvey"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  Now you need to set the email you used to register an account. If you
+  don't do this, ESS will not be able to confirm that you have an account,
+  and you will not be able to get access to the data.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{set_email}\NormalTok{(}\StringTok{"your@mail.com"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  There are multiple functions to use in order to get data, and for an
+  overview of some of them, check out
+  \url{https://ropensci.github.io/essurvey/}.
+  
+  Here, we will provide an example on how to reproduce the main result in
+  Larsen (2018). Here we use the \texttt{import\_country()} function to
+  import data from Denmark in Round 6 of the ESS.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ess <-}\StringTok{ }\KeywordTok{import_country}\NormalTok{(}\StringTok{"Denmark"}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  All the recodings are made with the \texttt{mutate()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ess <-}\StringTok{ }\NormalTok{ess }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+      \DataTypeTok{stfgov =} \KeywordTok{ifelse}\NormalTok{(stfgov }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{, }\OtherTok{NA}\NormalTok{, stfgov),}
+      \DataTypeTok{reform =} \KeywordTok{case_when}\NormalTok{(inwmme }\OperatorTok{<}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ }\DecValTok{0}\NormalTok{,}
+  \NormalTok{                       inwmme }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{&}\StringTok{ }\NormalTok{inwdde }\OperatorTok{<}\StringTok{ }\DecValTok{19} \OperatorTok{~}\StringTok{ }\DecValTok{0}\NormalTok{,}
+  \NormalTok{                       inwmme }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{&}\StringTok{ }\NormalTok{inwdde }\OperatorTok{>}\StringTok{ }\DecValTok{19} \OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{,}
+  \NormalTok{                       inwmme }\OperatorTok{>}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{,}
+                         \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_real_}\NormalTok{)}
+  \NormalTok{  )}
+  \end{Highlighting}
+  \end{Shaded}
+  And the regression model can be achieved with the \texttt{lm()}
+  function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{lm}\NormalTok{(stfgov }\OperatorTok{~}\StringTok{ }\NormalTok{reform, }\DataTypeTok{data=}\NormalTok{ess)}
+  \end{Highlighting}
+  \end{Shaded}
+  \section{\texorpdfstring{Data: Manifesto Project Dataset
+  (\texttt{manifestoR})}{Data: Manifesto Project Dataset (manifestoR)}}\label{data-manifesto-project-dataset-manifestor}
+  
+  To use data from the Manifesto Project Dataset, you need to create an
+  account as well. This can be done at:
+  \url{https://manifesto-project.wzb.eu/signup}
+  
+  Next, install and load the package.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \CommentTok{# install the package}
+  \KeywordTok{install.packages}\NormalTok{(}\StringTok{"manifestoR"}\NormalTok{)}
+  
+  \CommentTok{# load the package}
+  \KeywordTok{library}\NormalTok{(}\StringTok{"manifestoR"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  You now need to go to your profile page at
+  \url{https://manifesto-project.wzb.eu/}. You will need to click on the
+  button to get an API key. You can now click `download API Key file
+  (txt)' and place this file in your working directory - or copy your key
+  and use the code below.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{mp_setapikey}\NormalTok{(}\DataTypeTok{key =} \StringTok{"yourKeyHere"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  You are now able to download text data from the Manifesto Project into
+  \texttt{R}. We use the \texttt{mp\_corpus()} function to download
+  election programmes texts and codings, in this case from Denmark.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{manifesto_dk <-}\StringTok{ }\KeywordTok{mp_corpus}\NormalTok{(countryname }\OperatorTok{==}\StringTok{ "Denmark"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To see some of the content from the manifesto data, you can try the code
+  below.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(}\KeywordTok{content}\NormalTok{(manifesto_dk[[}\DecValTok{1}\NormalTok{]]))}
+  \end{Highlighting}
+  \end{Shaded}
+  If you want to find a more detailed description of how to look at the
+  data, please see
+  \url{https://cran.r-project.org/web/packages/manifestoR/vignettes/manifestoRworkflow.pdf}.
+  
+  \section{\texorpdfstring{Data: Varieties of Democracy
+  (\texttt{vdem})}{Data: Varieties of Democracy (vdem)}}\label{data-varieties-of-democracy-vdem}
+  
+  To get data from Varieties of Democracy into \texttt{R}, we are going to
+  use the \texttt{vdem} package. This package is not on \texttt{CRAN}, and
+  accordingly, we cannot use \texttt{install.packages()} to install it.
+  Instead, we will have to use the function \texttt{install\_github()} as
+  it is on GitHub. In order to do this, you need to have the package
+  \texttt{devtools}. To install this package, you can uncomment the first
+  line below. The second line says that we are using the
+  \texttt{install\_github()} function from the \texttt{devtools} package
+  (with \texttt{::}).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \CommentTok{#install.packages("devtools")}
+  \NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"xmarquez/vdem"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  When the package is installed, use \texttt{library()} to load it.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"vdem"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To get the main democracy indices from the data, we can use the
+  \texttt{extract\_vdem()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{vdem_data <-}\StringTok{ }\KeywordTok{extract_vdem}\NormalTok{(}\DataTypeTok{section_number =} \DecValTok{1}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  This gives us a dataset with 17,604 observations of 55 variables. To see
+  the first observations, use \texttt{head()} (output not shown).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(vdem_data)}
+  \end{Highlighting}
+  \end{Shaded}
   \chapter{Data visualisation}\label{dataviz}
   
   Visualising data is important (Healy \& Moody, 2014, Kastellec \& Leoni
@@ -1689,7 +2064,7 @@
   \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{seats)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-80-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-105-1.pdf}
   
   There is nothing inherently wrong with using a function like this, but
   the moment we want to tweak the figure, it gets complicated.
@@ -1782,7 +2157,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-84-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-109-1} \end{center}
   
   This is a standard \texttt{ggplot2} plot with all its defaults. If we
   instead a scatter plot wanted a line plot, we can change
@@ -1793,7 +2168,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-85-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-110-1} \end{center}
   
   The above figure is somewhat misleading so it is just to show the logic
   of the how geometric objects work. Interestingly, we can add multiple
@@ -1806,7 +2181,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-86-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-111-1} \end{center}
   
   \subsection{Theme adjustments}\label{theme-adjustments}
   
@@ -1821,7 +2196,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-87-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-112-1} \end{center}
   
   We can also easily change the labels by using \texttt{xlab()} and
   \texttt{ylab()}.
@@ -1834,7 +2209,7 @@
   \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Votes (%)"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-88-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-113-1} \end{center}
   
   This is the basic logic of \texttt{ggplot2}.
   
@@ -1955,7 +2330,7 @@
   \StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-92-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-117-1} \end{center}
   
   \subsection{Histograms}\label{histograms}
   
@@ -1971,7 +2346,7 @@
   \begin{verbatim}
   `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
   \end{verbatim}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-93-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-118-1} \end{center}
   
   As you can see, we get a message about the use of a default binwidth.
   This is to emphasize the importance of specifying the binwidth yourself.
@@ -1983,7 +2358,7 @@
   \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-94-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-119-1} \end{center}
   
   Play around with different binwidths to see how it affects the
   distribution in the figure.
@@ -1999,7 +2374,7 @@
   \StringTok{  }\KeywordTok{geom_density}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-95-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-120-1} \end{center}
   
   Do compare the density plot to the histograms above.
   
@@ -2037,7 +2412,7 @@
   \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-96-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-121-1} \end{center}
   
   Here we can see that people more interested in politics also show
   greater levels of trust in politicians.
@@ -2053,7 +2428,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-97-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-122-1} \end{center}
   
   When we are working with a lot of observations, there will be an
   overlap. To show all of the observations, we can add some small, random
@@ -2065,7 +2440,7 @@
   \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-98-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-123-1} \end{center}
   
   We can also use \texttt{geom\_point(position\ =\ "jitter")} instead of
   Instead of \texttt{geom\_jitter()}.
@@ -2082,9 +2457,9 @@
   \end{Highlighting}
   \end{Shaded}
   \begin{verbatim}
-  `geom_smooth()` using method = 'loess'
+  `geom_smooth()` using method = 'loess' and formula 'y ~ x'
   \end{verbatim}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-99-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-124-1} \end{center}
   
   Here we can see that as age increases, so does peoples' left-right
   political orientation. As we can also see, this is a smoothing function.
@@ -2096,7 +2471,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-100-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-125-1} \end{center}
   
   \section{Manipulating plots}\label{manipulating-plots}
   
@@ -2157,7 +2532,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-101-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-126-1} \end{center}
   
   \subsection{Colours}\label{colours}
   
@@ -2172,7 +2547,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-102-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-127-1} \end{center}
   
   If we want to give points a value based on the value of a specific
   variable, we need to specificy this within \texttt{aes()}. To illustrate
@@ -2192,7 +2567,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-104-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-129-1} \end{center}
   
   If we want to change these colours, we can use
   \texttt{scale\_colour\_manual()}.
@@ -2205,7 +2580,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-105-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-130-1} \end{center}
   
   The colours are very bright. If we want to make them less so we can add
   \texttt{alpha} to \texttt{geom\_point()} to add transparency to the
@@ -2220,7 +2595,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-106-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-131-1} \end{center}
   
   \subsection{Labels}\label{labels}
   
@@ -2241,7 +2616,7 @@
   \NormalTok{  )}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-107-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-132-1} \end{center}
   
   \subsection{Axes}\label{axes}
   
@@ -2267,7 +2642,7 @@
   \StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\StringTok{"Age (years)"}\NormalTok{) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-108-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-133-1} \end{center}
   
   \subsection{Confidence intervals}\label{confidence-intervals}
   
@@ -2290,7 +2665,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-109-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-134-1} \end{center}
   
   \subsection{Making multiple plots in
   one}\label{making-multiple-plots-in-one}
@@ -2313,7 +2688,7 @@
   \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{gender)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-110-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-135-1} \end{center}
   
   \section{Saving plots}\label{saving-plots}
   
@@ -2369,6 +2744,11 @@
   Kastellec, J. P., \& Leoni, E. L. (2007). Using graphs instead of tables
   in political science. \emph{Perspectives on Politics}, \emph{5}(4),
   755--771.
+  
+  \hypertarget{ref-larsen2018}{}
+  Larsen, E. G. (2018). Welfare retrenchments and government support:
+  Evidence from a natural experiment. \emph{European Sociological Review},
+  \emph{34}(1), 40--51.
   
   \hypertarget{ref-rcoreteam2015foreign}{}
   R Core Team. (2015). \emph{Foreign: Read data stored by minitab, s, sas,
