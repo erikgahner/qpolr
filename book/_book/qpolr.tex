@@ -1699,8 +1699,8 @@
   # A tibble: 2 x 5
     `seats_change > 0` party votes_min votes_max votes_mean
     <lgl>              <int>     <dbl>     <dbl>      <dbl>
-  1 F                      2     3.00       42.4       22.7
-  2 T                      4     0.700      40.0       12.2
+  1 FALSE                  2       3        42.4       22.7
+  2 TRUE                   4       0.7      40         12.2
   \end{verbatim}
   In the example, you can see the aggregated information. \texttt{T} is
   short for \texttt{TRUE} and is the aggregated information for the
@@ -2053,12 +2053,11 @@
   \end{Shaded}
   \chapter{Data visualisation}\label{dataviz}
   
-  Visualising data is important (Healy \& Moody, 2014, Kastellec \& Leoni
-  (2007), Schwabish (2014)). As with everything in \texttt{R}, there are a
-  lot of different ways to visualise data. One simple way to visualise
-  data is to use \emph{base} functions in \texttt{R} (i.e.~functions that
-  come when you install the \texttt{R} language). Below you will see an
-  example on this.
+  Visualising data is important (Healy \& Moody, 2014). As with everything
+  in \texttt{R}, there are a lot of different ways to visualise data. One
+  simple way to visualise data is to use \emph{base} functions in
+  \texttt{R} (i.e.~functions that come when you install the \texttt{R}
+  language). Below you will see an example on this.
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{seats)}
@@ -2073,14 +2072,14 @@
   easy to create beautiful figures in \texttt{R}.
   
   \texttt{ggplot2} creates more beautiful figures with better defaults, it
-  is very customizable, it works within the tidyverse (together with
-  \texttt{dplyr}, introduced in the previous chapter), and for those
-  reasons it is becoming incredibly popular among practitioners and
-  academics alike. That being said, there is an element of personal
-  preference when it comes to data visualisations and \texttt{ggplot2} is
-  not perfect. While the defaults are good, they could be better.
-  Furthermore, there are functions in the package you should \emph{never}
-  use (such as \texttt{qplot()}, short for \emph{quick plot}).
+  is very customizable, and it works within the tidyverse (together with
+  \texttt{dplyr}). For those reasons it is becoming incredibly popular
+  among practitioners and academics alike. That being said, there is an
+  element of personal preference when it comes to data visualisations and
+  \texttt{ggplot2} is not perfect. While the defaults are good, they could
+  be better. Furthermore, there are functions in the package you should
+  \emph{never} use (such as \texttt{qplot()}, short for \emph{quick
+  plot}).
   
   \section{\texorpdfstring{The basics of
   \texttt{ggplot2}}{The basics of ggplot2}}\label{the-basics-of-ggplot2}
@@ -2092,11 +2091,12 @@
   \KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  The two g's (\texttt{gg}) i \texttt{ggplot2} is short for \emph{grammar
-  of graphics}. The philosophy is that we are working with building blocks
-  in the form of a sentence structure, where we can add more components to
-  our visualisation, e.g.~change colours and add text. This makes it easy
-  to first create a figure and then tweak it till we are satisfied.
+  The two g's (\texttt{gg}) in \texttt{ggplot2} are short for
+  \emph{grammar of graphics}. The philosophy is that we are working with
+  building blocks in the form of a sentence structure where we can add
+  more components to our visualisation, e.g.~change colours and add text.
+  This makes it easy to first create a figure and then tweak it till we
+  are satisfied.
   
   These building blocks are:
   \begin{enumerate}
@@ -2113,15 +2113,23 @@
   \end{enumerate}
   \subsection{Data}\label{data}
   
-  The function we will be using is \texttt{ggplot()}. The first thing we
-  always have to specify in our function is the data frame. In other
-  words, you will \emph{always} have to use a data frame.
+  The function we will be using is \texttt{ggplot()}. Here, we will be
+  using the \texttt{states} data from the \texttt{poliscidata} package
+  introduced in Chapter \ref{datadownload}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(uk2017)}
+  \KeywordTok{library}\NormalTok{(}\StringTok{"poliscidata"}\NormalTok{)}
+  \NormalTok{states <-}\StringTok{ }\NormalTok{states}
   \end{Highlighting}
   \end{Shaded}
-  Do note that if you run the code above - and have the \texttt{uk2017} in
+  The first thing we always have to specify in our function is the data
+  frame. In other words, you will \emph{always} have to use a data frame.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(states)}
+  \end{Highlighting}
+  \end{Shaded}
+  Do note that if you run the code above - and have the \texttt{states} in
   your working memory, we will not get anything but an empty plot. The
   only thing we have done so far is telling \texttt{R} that we would like
   to create a coordinate system and data from \texttt{uk2017} should play
@@ -2135,14 +2143,16 @@
   after the data frame (remember the comma after the data frame).
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ votes, }\DataTypeTok{y =}\NormalTok{ seats))}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ abort_rate08, }\DataTypeTok{y =}\NormalTok{ obama2012))}
   \end{Highlighting}
   \end{Shaded}
   In the example above we specify that we are working with \emph{two}
-  variables, x and y. If you only will be working with one variable
-  (e.g.~a histogram), you should of course only specificy one variable, x.
-  However, now we have only told \texttt{R} what variables we would like
-  to work with, but it is still not enough to actually create a figure.
+  variables, x (Number of abortions per 1,000 women aged 15-44 in 2008)
+  and y (Obama vote share in 2012). If you only will be working with one
+  variable (e.g.~a histogram), you should of course only specificy one
+  variable, x. However, now we have only told \texttt{R} what variables we
+  would like to work with, but it is still not enough to actually create a
+  figure.
   
   \subsection{Geometric objects}\label{geometric-objects}
   
@@ -2153,22 +2163,22 @@
   want add. To replicate the plot above we use \texttt{geom\_point()}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ votes, }\DataTypeTok{y =}\NormalTok{ seats)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ abort_rate08, }\DataTypeTok{y =}\NormalTok{ obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-109-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-110-1} \end{center}
   
   This is a standard \texttt{ggplot2} plot with all its defaults. If we
   instead a scatter plot wanted a line plot, we can change
   \texttt{geom\_point()} to \texttt{geom\_line()}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ votes, }\DataTypeTok{y =}\NormalTok{ seats)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ abort_rate08, }\DataTypeTok{y =}\NormalTok{ obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-110-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-111-1} \end{center}
   
   The above figure is somewhat misleading so it is just to show the logic
   of the how geometric objects work. Interestingly, we can add multiple
@@ -2176,12 +2186,12 @@
   used above.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ votes, }\DataTypeTok{y =}\NormalTok{ seats)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ abort_rate08, }\DataTypeTok{y =}\NormalTok{ obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-111-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-112-1} \end{center}
   
   \subsection{Theme adjustments}\label{theme-adjustments}
   
@@ -2191,106 +2201,28 @@
   we add the theme of the plot (described in detail below).
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{seats)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ abort_rate08, }\DataTypeTok{y =}\NormalTok{ obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-112-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-113-1} \end{center}
   
   We can also easily change the labels by using \texttt{xlab()} and
   \texttt{ylab()}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(uk2017, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{seats)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ abort_rate08, }\DataTypeTok{y =}\NormalTok{ obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Seats"}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Votes (%)"}\NormalTok{)}
+  \StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Obama vote share in 2012"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-113-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-114-1} \end{center}
   
   This is the basic logic of \texttt{ggplot2}.
   
-  \section{\texorpdfstring{Introducing the data:
-  \texttt{ess\_uk.csv}}{Introducing the data: ess\_uk.csv}}\label{introducing-the-data-ess_uk.csv}
-  
-  The data we have used so far is a data frame with a limited set of
-  obsevations. However, in most cases you will be working with a
-  substanstially greater number of observations. We could in principle use
-  the data we have used so far in this book for our visualisations, but
-  that would not be representative for the data you will be using.
-  
-  Here we will be using a few variables with data from the European Social
-  Survey from 2016 in the United Kingdom. You can download the data from:
-  \url{http://qpolr.com/data/ess_uk.csv}
-  
-  When you have the data, use \texttt{read.csv()} to import the data into
-  \texttt{R} and save it in the object \texttt{ess}. Remember to have the
-  correct working directory and specify the correct place for your file.
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{ess <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../data/ess_uk.csv"}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
-  To see what types of observations we have in the dataset, we first use
-  the \texttt{head()} function.
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{head}\NormalTok{(ess)}
-  \end{Highlighting}
-  \end{Shaded}
-  \begin{verbatim}
-    male age income lrscale polintr trstplt
-  1    1  53      5       8       3       5
-  2    1  60     10       1       4       1
-  3    0  54      2       5       3       5
-  4    0  52      6       0       3       0
-  5    1  28      3       3       1       4
-  6    1  30     NA      NA       1      NA
-  \end{verbatim}
-  Here we can see the following variables:
-  \begin{itemize}
-  \tightlist
-  \item
-    \texttt{male}: Gender of respondent
-  \item
-    \texttt{age}: Age of respondent
-  \item
-    \texttt{income}: Income decile
-  \item
-    \texttt{lrscale}: Left-right ideology
-  \item
-    \texttt{polintr}: Political interest
-  \item
-    \texttt{trstplt}: Trust in politicians
-  \end{itemize}
-  We use \texttt{summary()} to get summary statistics for all the
-  variables.
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{summary}\NormalTok{(ess)}
-  \end{Highlighting}
-  \end{Shaded}
-  \begin{verbatim}
-        male             age            income          lrscale      
-   Min.   :0.0000   Min.   :15.00   Min.   : 1.000   Min.   : 0.000  
-   1st Qu.:0.0000   1st Qu.:37.00   1st Qu.: 3.000   1st Qu.: 4.000  
-   Median :0.0000   Median :53.00   Median : 5.000   Median : 5.000  
-   Mean   :0.4417   Mean   :52.65   Mean   : 5.063   Mean   : 5.022  
-   3rd Qu.:1.0000   3rd Qu.:67.50   3rd Qu.: 7.000   3rd Qu.: 6.000  
-   Max.   :1.0000   Max.   :94.00   Max.   :10.000   Max.   :10.000  
-                    NA's   :14      NA's   :96       NA's   :48      
-      polintr         trstplt      
-   Min.   :1.000   Min.   : 0.000  
-   1st Qu.:2.000   1st Qu.: 2.000  
-   Median :3.000   Median : 4.000  
-   Mean   :2.677   Mean   : 3.909  
-   3rd Qu.:3.000   3rd Qu.: 5.000  
-   Max.   :4.000   Max.   :10.000  
-                   NA's   :9       
-  \end{verbatim}
   \section{Plotting one variable:
   distributions}\label{plotting-one-variable-distributions}
   
@@ -2322,31 +2254,32 @@
   \end{longtable}
   \subsection{Bar plot}\label{bar-plot}
   
-  The first plot we will do is a bar plot. To do this we use the political
-  interest variable (\texttt{polintr}) and \texttt{geom\_bar()}.
+  The first plot we will do is a bar plot. To do this we use a variable on
+  the number of restrictions on abortion (\texttt{abortlaw10}) and
+  \texttt{geom\_bar()}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{polintr)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abortlaw10)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-117-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-115-1} \end{center}
   
   \subsection{Histograms}\label{histograms}
   
   The next figure we will work with is the histogram. Here we will plot
-  the distribution of age (the \texttt{age} variable) and use
-  \texttt{geom\_histogram()}.
+  the distribution of Obama's vote share in 2012 (the \texttt{obama2012}
+  variable) and use \texttt{geom\_histogram()}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
   \begin{verbatim}
   `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
   \end{verbatim}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-118-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-116-1} \end{center}
   
   As you can see, we get a message about the use of a default binwidth.
   This is to emphasize the importance of specifying the binwidth yourself.
@@ -2354,11 +2287,11 @@
   \texttt{geom\_histogram()}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-119-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-117-1} \end{center}
   
   Play around with different binwidths to see how it affects the
   distribution in the figure.
@@ -2367,14 +2300,14 @@
   
   The histogram is not the only way to show the distribution of a
   variable. To make a density plot, you can use \texttt{geom\_density()}.
-  We use the \texttt{age} variable again.
+  We use the \texttt{obama2012} variable again.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_density}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-120-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-118-1} \end{center}
   
   Do compare the density plot to the histograms above.
   
@@ -2405,73 +2338,75 @@
   \subsection{Box plot}\label{box-plot}
   
   For the box plot, we will be using \texttt{geom\_boxplot()} to show how
-  trust in politicians are related to political interest.
+  the vote share for Obama is related to abortion laws (here with the
+  \texttt{abortlaw3} variable, i.e.~abortion restrictions with three tiers
+  of number of restrictions).
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{polintr, }\DataTypeTok{group=}\NormalTok{polintr, }\DataTypeTok{y=}\NormalTok{trstplt)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abortlaw3, }\DataTypeTok{group=}\NormalTok{abortlaw3, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-119-1} \end{center}
+  
+  Here we can see that Obama got a greater vote share in states with less
+  restrictions on abortion.
+  
+  \subsection{Scatter plots}\label{scatter-plots}
+  
+  To illustrate the relation between number of abortions and Obama's vote
+  share, measured with the variables \texttt{abort\_rate08} and
+  \texttt{obama2012}, we will create a scatter plot with
+  \texttt{geom\_point()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-120-1} \end{center}
+  
+  If we are working with a lot of observations, there will be an overlap
+  in the points. To show all of the observations, we can add some small,
+  random noise to the observations, so we can see more of them. To do
+  this, we can use \texttt{geom\_jitter()} instead of
+  \texttt{geom\_point()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
   \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-121-1} \end{center}
   
-  Here we can see that people more interested in politics also show
-  greater levels of trust in politicians.
-  
-  \subsection{Scatter plots}\label{scatter-plots}
-  
-  To illustrate the relation between age and ideology, measured with the
-  variables \texttt{age} and \texttt{lrscale}, we will create a scatter
-  plot with \texttt{geom\_point()}.
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
-  \end{Highlighting}
-  \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-122-1} \end{center}
-  
-  When we are working with a lot of observations, there will be an
-  overlap. To show all of the observations, we can add some small, random
-  noise to the observations, so we can see more of them. To do this, we
-  can use \texttt{geom\_jitter()} instead of \texttt{geom\_point()}.
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }
-  \end{Highlighting}
-  \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-123-1} \end{center}
-  
   We can also use \texttt{geom\_point(position\ =\ "jitter")} instead of
-  Instead of \texttt{geom\_jitter()}.
+  Instead of \texttt{geom\_jitter()}. However, in this particular case, as
+  we only have 50 observations, it is not a major concern.
   
   \subsection{Line plots}\label{line-plots}
   
   To create a regression line we can use the \texttt{geom\_smooth()}
-  function. Here we will again look at the relation between \texttt{age}
-  and \texttt{lrscale}.
+  function. Here we will again look at the relation between
+  \texttt{abort\_rate08} and \texttt{obama2012}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{verbatim}
-  `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-  \end{verbatim}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-124-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-122-1} \end{center}
   
-  Here we can see that as age increases, so does peoples' left-right
-  political orientation. As we can also see, this is a smoothing function.
-  To have a linear line instead we can specify that we will be using
+  Here we can see that as the abortion rate increases, so does the vote
+  share for Obama. As we can also see, this is a smoothing function. To
+  have a linear line instead we can specify that we will be using
   \texttt{method="lm"} as an option.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-125-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-123-1} \end{center}
   
   \section{Manipulating plots}\label{manipulating-plots}
   
@@ -2479,7 +2414,7 @@
   
   As you could see in the plots above, we have used a default theme in
   \texttt{ggplot2}. Table \ref{tab:ggthemes} shows a series of themes to
-  be found in \texttt{ggplot2} and the package
+  be found in \texttt{ggplot2}and the package
   \href{https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html}{\texttt{ggthemes}}.
   These are just a selection of some of the themes.
   \begin{longtable}[]{@{}lll@{}}
@@ -2526,76 +2461,71 @@
   work with out plots.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-126-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-124-1} \end{center}
   
   \subsection{Colours}\label{colours}
   
   If we want to change the colours of the points in our plot, we can add
   the \texttt{colour=""} option to our geometric objects. In the example
-  below we change the colour of our points from black to red.
+  below we change the colour of our points from black to red and the
+  colour of the line to black.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-127-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-125-1} \end{center}
   
   If we want to give points a value based on the value of a specific
-  variable, we need to specificy this within \texttt{aes()}. To illustrate
-  this, let us first create a factor variable for gender.
+  variable, we need to specificy this within \texttt{aes()}. When we add
+  \texttt{colour=abortlaw3} to our \texttt{aes()}, we will see different
+  colours for states with different restrictions on abortion.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{ess}\OperatorTok{$}\NormalTok{gender <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(ess}\OperatorTok{$}\NormalTok{male }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
-  When we add \texttt{fill=gender,\ colour=gender} to our \texttt{aes()},
-  we will see different colours for men and women.
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3)) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-129-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-126-1} \end{center}
   
   If we want to change these colours, we can use
   \texttt{scale\_colour\_manual()}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3)) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-130-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-127-1} \end{center}
   
   The colours are very bright. If we want to make them less so we can add
   \texttt{alpha} to \texttt{geom\_point()} to add transparency to the
-  points. Below we use an alpha of 0.4 (if we want more transparency we
+  points. Below we use an alpha of 0.7 (if we want more transparency we
   can use a lower alpha level).
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3), }\DataTypeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-131-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-128-1} \end{center}
   
   \subsection{Labels}\label{labels}
   
@@ -2604,68 +2534,86 @@
   figure. Here we will add a title, subtitle and caption.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3), }\DataTypeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{labs}\NormalTok{(}
-      \DataTypeTok{title =} \StringTok{"Age and ideology in the United Kingdom"}\NormalTok{,}
-      \DataTypeTok{subtitle =} \StringTok{"The relation between age and ideology for men and women"}\NormalTok{,}
-      \DataTypeTok{caption =} \StringTok{"Data from the European Social Survey"}
-  \NormalTok{  )}
+      \DataTypeTok{title =} \StringTok{"Abortion and the Obama vote"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between number of abortions and vote share for Obama"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the poliscidata R package"}\NormalTok{,}
+      \DataTypeTok{colour =} \StringTok{"Abortion restrictions"}
+  \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-132-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-129-1} \end{center}
+  
+  Last, we can see that the legend title is \texttt{abortlaw3}. We can
+  change this by adding \texttt{colour} to \texttt{labs()} as well.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3), }\DataTypeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{labs}\NormalTok{(}
+      \DataTypeTok{title =} \StringTok{"Abortion and the Obama vote"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between number of abortions and vote share for Obama"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the poliscidata R package"}\NormalTok{,}
+      \DataTypeTok{colour =} \StringTok{"Abortion restrictions"}
+  \NormalTok{  ) }
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-130-1} \end{center}
   
   \subsection{Axes}\label{axes}
   
   Related to labels are the axes. Always label the axes so they have
-  meaningful names. The variable name is not a meaningful name. As both
-  our variables are continuous, we will use
-  \texttt{scale\_x\_continuous()} and \texttt{scale\_y\_continuous()}.
-  Last, we also specify that we want the plot to show all labels on
-  \texttt{lrscale} (from 0 to 10).
+  meaningful names. The variable name is not a meaningful name. We add
+  \texttt{x} and \texttt{y} to the \texttt{labs()} addition in our plot.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3), }\DataTypeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{labs}\NormalTok{(}
-      \DataTypeTok{title =} \StringTok{"Age and ideology in the United Kingdom"}\NormalTok{,}
-      \DataTypeTok{subtitle =} \StringTok{"The relation between age and ideology for men and women"}\NormalTok{,}
-      \DataTypeTok{caption =} \StringTok{"Data from the European Social Survey"}
-  \NormalTok{  ) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\StringTok{"Left-right ideology"}\NormalTok{, }\DataTypeTok{breaks=}\DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{labels=}\DecValTok{0}\OperatorTok{:}\DecValTok{10}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\StringTok{"Age (years)"}\NormalTok{) }
+      \DataTypeTok{title =} \StringTok{"Abortion and the Obama vote"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between number of abortions and vote share for Obama"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the poliscidata R package"}\NormalTok{,}
+      \DataTypeTok{colour =} \StringTok{"Abortion restrictions"}\NormalTok{,}
+      \DataTypeTok{y =} \StringTok{"Obama vote share in 2012"}\NormalTok{,}
+      \DataTypeTok{x =} \StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}
+  \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-133-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-131-1} \end{center}
   
   \subsection{Confidence intervals}\label{confidence-intervals}
   
   We can have confidence intervals in our figure by not having \texttt{se}
-  (standard errors) to \texttt{FALSE}. To show the confidence intervals
-  better we do not include the scatter plot and only focus on the region
-  where we have our estimates.
+  (standard errors) set to \texttt{FALSE}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3), }\DataTypeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{labs}\NormalTok{(}
-      \DataTypeTok{title =} \StringTok{"Age and ideology in the United Kingdom"}\NormalTok{,}
-      \DataTypeTok{subtitle =} \StringTok{"The relation between age and ideology for men and women"}\NormalTok{,}
-      \DataTypeTok{caption =} \StringTok{"Data from the European Social Survey"}
-  \NormalTok{  ) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\StringTok{"Left-right ideology"}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\StringTok{"Age (years)"}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
+      \DataTypeTok{title =} \StringTok{"Abortion and the Obama vote"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between number of abortions and vote share for Obama"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the poliscidata R package"}\NormalTok{,}
+      \DataTypeTok{colour =} \StringTok{"Abortion restrictions"}\NormalTok{,}
+      \DataTypeTok{y =} \StringTok{"Obama vote share in 2012"}\NormalTok{,}
+      \DataTypeTok{x =} \StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}
+  \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-134-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-132-1} \end{center}
   
   \subsection{Making multiple plots in
   one}\label{making-multiple-plots-in-one}
@@ -2674,21 +2622,23 @@
   specify that with \texttt{facet\_grid()}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggplot}\NormalTok{(ess, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age, }\DataTypeTok{y=}\NormalTok{lrscale, }\DataTypeTok{fill=}\NormalTok{gender, }\DataTypeTok{colour=}\NormalTok{gender)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3), }\DataTypeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }\OperatorTok{+}
   \StringTok{  }\KeywordTok{labs}\NormalTok{(}
-      \DataTypeTok{title =} \StringTok{"Age and ideology in the United Kingdom"}\NormalTok{,}
-      \DataTypeTok{subtitle =} \StringTok{"The relation between age and ideology for men and women"}\NormalTok{,}
-      \DataTypeTok{caption =} \StringTok{"Data from the European Social Survey"}
+      \DataTypeTok{title =} \StringTok{"Abortion and the Obama vote"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between number of abortions and vote share for Obama"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the poliscidata R package"}\NormalTok{,}
+      \DataTypeTok{colour =} \StringTok{"Abortion restrictions"}\NormalTok{,}
+      \DataTypeTok{y =} \StringTok{"Obama vote share in 2012"}\NormalTok{,}
+      \DataTypeTok{x =} \StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}
   \NormalTok{  ) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\StringTok{"Left-right ideology"}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\StringTok{"Age (years)"}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{) }\OperatorTok{+}
-  \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{gender)}
+  \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{abortlaw3)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-135-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-133-1} \end{center}
   
   \section{Saving plots}\label{saving-plots}
   
@@ -2697,7 +2647,7 @@
   you have created.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggsave}\NormalTok{(}\StringTok{"fig1-age_ideology.png"}\NormalTok{)}
+  \KeywordTok{ggsave}\NormalTok{(}\StringTok{"fig1-abortion.png"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
   The figure will be saved in your working directory. The file type
@@ -2706,7 +2656,7 @@
   save it by specifying this before the file name.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggsave}\NormalTok{(fig1, }\StringTok{"fig1-age_ideology.png"}\NormalTok{)}
+  \KeywordTok{ggsave}\NormalTok{(fig1, }\StringTok{"fig1-abortion.png"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
   Often you will see that you are not totally satisfied with the size of
@@ -2714,7 +2664,7 @@
   \texttt{height}.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \KeywordTok{ggsave}\NormalTok{(fig1, }\StringTok{"fig1-age_ideology.png"}\NormalTok{, }\DataTypeTok{width =} \DecValTok{4}\NormalTok{, }\DataTypeTok{height =} \DecValTok{4}\NormalTok{)}
+  \KeywordTok{ggsave}\NormalTok{(fig1, }\StringTok{"fig1-abortion.png"}\NormalTok{, }\DataTypeTok{width =} \DecValTok{4}\NormalTok{, }\DataTypeTok{height =} \DecValTok{4}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
   \backmatter
@@ -2740,11 +2690,6 @@
   Healy, K., \& Moody, J. (2014). Data visualization in sociology.
   \emph{Annual Review of Sociology}, \emph{40}, 105--128.
   
-  \hypertarget{ref-kastellecleoni2007}{}
-  Kastellec, J. P., \& Leoni, E. L. (2007). Using graphs instead of tables
-  in political science. \emph{Perspectives on Politics}, \emph{5}(4),
-  755--771.
-  
   \hypertarget{ref-larsen2018}{}
   Larsen, E. G. (2018). Welfare retrenchments and government support:
   Evidence from a natural experiment. \emph{European Sociological Review},
@@ -2754,10 +2699,6 @@
   R Core Team. (2015). \emph{Foreign: Read data stored by minitab, s, sas,
   spss, stata, systat, weka, dBase, ...} Retrieved from
   \url{http://CRAN.R-project.org/package=foreign}
-  
-  \hypertarget{ref-schwabish2014}{}
-  Schwabish, J. A. (2014). An economist's guide to visualizing data.
-  \emph{Journal of Economic Perspectives}, \emph{28}(1), 209--234.
   
   \hypertarget{ref-tufte1983}{}
   Tufte, E. R. (1983). \emph{The visual display of quantitative
