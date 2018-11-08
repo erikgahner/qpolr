@@ -2,7 +2,7 @@
 output: html_document
 ---
 
-# Getting data {#datadownload}
+# Get existing data {#datadownload}
 
 There are multiple ways you can get data into `R`. In this chapter we introduce different strategies for getting data into `R` from a variety of political data sources. First, we look at data included in packages. Second, we show how you can find datasets online and introduce a resource with a lot of links to political datasets. Third, we introduce a series of different packages that makes it easy to get data into `R`. 
 

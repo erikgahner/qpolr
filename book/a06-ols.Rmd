@@ -1,0 +1,133 @@
+---
+output: html_document
+---
+
+# (PART) Regression {-}
+
+# OLS regression {#olsreg}
+
+To provide a simple example of how to conduct an OLS regression, we will use the same data as in the visualisation chapter, i.e. the `states` data frame from the package `poliscidata`.
+
+```{r, message=FALSE, warning=FALSE}
+library("poliscidata")
+
+states <- states
+```
+
+
+## Bivariate linear regression
+
+To conduct a bivariate linear regression, we use the `lm()` function (short for linear models). We need to specify the dependent variable, independent variable and the data frame. Below we specify `obama2012` as the dependent variable and `abort_rate08` as the independent variable. Notice that we use the `~` symbol to separate the dependent variable from the independent variable. We save the output in the object `reg_obama`.
+
+```{r, message=FALSE, warning=FALSE}
+reg_obama <- lm(obama2012 ~ abort_rate08, data = states)
+```
+
+If we type `reg_obama`, we can see the intercept and coefficient in the model.
+
+```{r, message=FALSE, warning=FALSE}
+reg_obama
+```
+
+Here we see that the intercept is 35.26, which is the predicted vote share for Obama in 2012 when we extrapolate to a state with an abortion rate of 0. The coefficient is 0.83, which is the increase in the vote share for Obama when there is an one-unit increase in the abortion rate.
+
+However, this is not enough information. We need, for example, also information on the standard errors as well as model statistics. To get this, we use the function `summary()` on our object.
+
+
+```{r, message=FALSE, warning=FALSE}
+summary(reg_obama)
+```
+
+Here we can see that the estimate for `abort_rate08` is statistically significant. We can further see that the R-squared is 0.46 which indicates that 46% of the variation in the vote share is explained by our independent variable.
+
+To convert the results from our analysis into a data frame, we can use the package `broom` [@Robinson2018].
+
+
+```{r, message=FALSE, warning=FALSE}
+library("broom")
+```
+
+As a first example, we can save the estimates and test statistics in a data frame by using the function `tidy()`. We save the output in a new object `reg_obama_tidy` and show this output as well.
+
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+reg_obama_tidy <- tidy(reg_obama)
+
+reg_obama_tidy
+```
+
+This is useful if you would like to visualise the results. However, often we also want to save predictions and residuals based on our model. To do this, we can use the function `augment()`. Below we save the output in the object `reg_obama_aug`.
+
+
+```{r, message=FALSE, warning=FALSE}
+reg_obama_aug <- augment(reg_obama)
+```
+
+
+To see the data in the new object, use `head()`. Here you see that there is a variable called `.fitted`. This variable is the predicted value for each observation.
+
+```{r, message=FALSE, warning=FALSE}
+head(reg_obama_aug)
+```
+
+We can use this data frame to visualise the residuals (with the colour red below).
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(reg_obama_aug, aes(x=abort_rate08, y=obama2012)) +
+  geom_segment(aes(xend=abort_rate08, y=obama2012, yend=.fitted), 
+        colour="red") +
+  geom_point() +
+  geom_line(aes(x=abort_rate08, y=.fitted)) 
+```
+
+## Multiple linear regression
+
+To conduct a multiple linear regression, we simply need to add an extra variable to our model. Accordingly, the only difference between the example above and the example here is the addition of a new variable. Here, we want to examine whether the effect of `abort_rate08` holds when we control for population density (`density`). Notice that we add a `+` before adding the variable to the list of variables.
+
+```{r, message=FALSE, warning=FALSE}
+reg_obama_full <- lm(obama2012 ~ abort_rate08 + density, data = states)
+```
+
+We use the `summary()` function to get the output of the model.
+
+```{r, message=FALSE, warning=FALSE}
+summary(reg_obama_full)
+```
+
+In the output we see that the coefficient for `abort_rate08` is slightly smaller compared to the bivariate model but still statistically significant. Again we can use the `tidy()` function to get a data frame with the results.
+
+```{r, message=FALSE, warning=FALSE}
+reg_obama_full_tidy <- tidy(reg_obama_full)
+```
+
+We further calculate the 95% confidence intervals for the estimates.
+
+```{r, message=FALSE, warning=FALSE}
+reg_obama_full_tidy <- reg_obama_full_tidy %>%
+  mutate(
+    ci_low = estimate - 1.96 * std.error,
+    ci_high = estimate + 1.96 * std.error
+  ) 
+```
+
+We can then visualise the results.
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(reg_obama_full_tidy, aes(estimate, term, xmin = ci_low, 
+                                xmax = ci_high, height = 0)) +
+     geom_point() +
+     geom_vline(xintercept = 0) +
+     geom_errorbarh()
+```
+
+In some cases the intercept is not relevant. In the code below, we use the `filter()` function to visualise all effects except for the intercept.
+
+```{r, message=FALSE, warning=FALSE}
+reg_obama_full_tidy %>%
+  filter(term != "(Intercept)") %>%
+  ggplot(aes(estimate, term, xmin = ci_low, 
+             xmax = ci_high, height = 0)) +
+     geom_point() +
+     geom_vline(xintercept = 0) +
+     geom_errorbarh()
+```

@@ -1,0 +1,327 @@
+---
+output: html_document
+---
+
+# Create data {#create}
+
+In this chapter we will introduce different ways to create your own data. Specifically, we will show how to create data from existing files, how to scrape tables from webpages and how to get data from Twitter.
+
+## Create data from files
+
+You will often encounter that the data of interest is not available in a format or structure that you will need for your analysis. Accordingly, as a first step, you will need to collect multiple files and turn them into a single dataset. 
+
+Here, we will use the example of election results from the Electoral Calculus. The example is from Matt Riggott (see the script [here](https://github.com/flother/british-party-support/blob/master/british-party-support.R)) and shows how we can download multiple files and connect them into a single dataset. Each file we will work with contains the election results from general elections in the UK.
+
+As always, the first thing we will do is to load the `tidyverse` package.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+library("tidyverse")
+```
+
+Next, to get a sense of the data we will be looking at, go to your browser (e.g. Google Chrome or Safari) and open this link: [https://www.electoralcalculus.co.uk/electdata_1955.txt](https://www.electoralcalculus.co.uk/electdata_1955.txt)
+
+In this file, you will see multiple lines. These are the election results from 1955 (as indicated by the filename, `electdata_1955.txt`. The first line in the file is: `Name;MP;Area;County;Electorate;CON;LAB;LIB;NAT;MIN;OTH`. These are the variable names and are separated by `;`. By using the function `read_delim()` from the `tidyverse` package, we can load this file into `R` as a data frame. Notice that we specify that `;` is used to separate fields. We save the file in the object `el_1955`.
+
+```{r, message=FALSE, warning=FALSE}
+el_1955 <- read_delim(
+  "https://www.electoralcalculus.co.uk/electdata_1955.txt", 
+  delim = ";"
+  )
+```
+
+To inspect the data, we can use the function `head()`.
+
+```{r, message=FALSE, warning=FALSE}
+head(el_1955)
+```
+
+The above output shows that the data is loaded succesfully and saved in a data frame. We could do this for all elections manually, but that would take a lot of time and increase the odds of making mistakes. Instead, we will create a function that downloads all files. First, we specify the elections we are interested in (from 1955 to 2017) and save this information in the object `election_years`.
+
+```{r, message=FALSE, warning=FALSE}
+election_years <- c("1955", "1959", "1964", "1966", "1970", "1974feb",
+"1974oct", "1979", "1983", "1987", "1992ob", "1997",
+"2001ob", "2005ob", "2010", "2015", "2017")
+```
+
+Second, we use `read_delim()` again, but as part as a function where we use the `read_delim()` on the year we specify. We call this function `read_election_data()`.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+read_election_data <- function(election) {
+  url <- paste0("http://www.electoralcalculus.co.uk/electdata_", 
+                election, ".txt")
+  read_delim(url, delim = ";") %>%
+  mutate(year = election)
+}
+```
+
+With this function, we can specify any election year and get the data, e.g. `read_election_data(2017)` to get the data from 2017. Here, we use `lapply()` to run the function on all the election years mentioned in the object `election_years` above. To connect all elections, we use the function `bind_rows()`. We save the output in the object `elections`.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+elections <- bind_rows(lapply(election_years, read_election_data))
+```
+
+To see whether it has worked, use `head()` on the object (output not shown).
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+head(elections)
+```
+
+## Scrape data from tables
+
+To scrape data from tables online, we use the `rvest` package. Remember to install it if you haven't already done so.
+
+```{r, message=FALSE, warning=FALSE}
+library("rvest")
+```
+
+In the example below, we will show how to easily scrape a table from a Wikipedia page. The first thing we do is to specify the link to the Wikipedia page and save it in the object `url`. In the example we will be looking at the election results from the 2014 European Parliament election in the United Kingdom.
+
+```{r, message=FALSE, warning=FALSE}
+url <- c(
+  "https://en.wikipedia.org/wiki/European_Parliament_election,_2014_(United_Kingdom)"
+  )
+```
+
+Next, we use the `read_html()` function to save the content on the Wikipedia page. We save the data in the object `wikipage`
+
+```{r, message=FALSE, warning=FALSE}
+wikipage <- read_html(url)
+```
+
+We can use the function `class()` to see what type of content we have in the object.
+
+```{r, message=FALSE, warning=FALSE}
+class(wikipage)
+```
+
+Here, we see that we have an xml_document and xml_node in our object. We want to save the tables in our data. To do this, we use the function `html_nodes()`.
+
+```{r, message=FALSE, warning=FALSE}
+data_table <- html_nodes(wikipage, "table")
+```
+
+If you type `data_table`, you can see an overview of all the tables we have saved. Here, we would like to use the data on the number of votes the different parties got in the 2014 European Parliament election in the United Kingdom. We can see that this table is number 14 in our object. We save this table in the object `data_results`.
+
+```{r, message=FALSE, warning=FALSE}
+data_results <- data_table[[14]] 
+```
+
+We can now use the function `html_table()` to save the table as a data frame. We use the option `fill=TRUE` as there are empty cells in the table. We save the table in the object `ep14_raw`.
+
+```{r, message=FALSE, warning=FALSE}
+ep14_raw <- html_table(data_results, fill=TRUE)
+```
+
+To ensure that it is a data frame we are working with, we can use the function `class()` again.
+
+```{r, message=FALSE, warning=FALSE}
+class(ep14_raw)
+```
+
+We call the object `ep14_raw` as it is a raw table that needs further changes before we are satisfied. To get a sense of one of the issues with the data frame, we look at the last observations in the data frame with `tail()`.
+
+```{r, message=FALSE, warning=FALSE}
+tail(ep14_raw)
+```
+
+Here we see that the last three rows are aggregated numbers unrelated to the votes for the individual parties. Accordingly, we would like to remove these observations. To remove the specific rows, we save the object without observations 32, 33 and 34.
+
+```{r, message=FALSE, warning=FALSE}
+ep14_raw <- ep14_raw[-c(32:34), ]
+```
+
+Next, we use `head()` to see what our data frame looks like for the first observations.
+
+```{r, message=FALSE, warning=FALSE}
+head(ep14_raw)
+```
+
+We see two main issues. First, that the variable names are not unique and will need to be changed. We are interested in four of the variables, namely the name of the party, the number of votes, the vote share and the number of seats. We give the relevant variables names and give the other variables unimportant names (as we are going to ignore those).
+
+```{r, message=FALSE, warning=FALSE}
+names(ep14_raw) <- c("V1", "party", "votes", "share", "V5", 
+                     "seats", "V7", "V8", "V9", "V10")
+```
+
+
+Next, we can see that the first row is not an observation but variable names as well. Accordingly, we need to remove this observation as well.
+
+```{r, message=FALSE, warning=FALSE}
+ep14_raw <- ep14_raw[-c(1), ]
+```
+
+To remove the irrelevant variables in our data frame, we use the `select()` function to select the relevant variables.
+
+```{r, message=FALSE, warning=FALSE}
+ep14_raw <- ep14_raw %>%
+  select(party, votes, share, seats)
+```
+
+The last thing to do is to tell `R` that three variables, `votes`, `share` and `seats` are numeric. Notice how we use the function `gsub()` to get rid of commas. We save this data frame in the object `ep14`.
+
+```{r, message=FALSE, warning=FALSE}
+ep14 <- ep14_raw %>%
+  mutate(
+    votes = as.numeric(gsub(",","", votes)),
+    share = as.numeric(share),
+    seats = as.numeric(seats)
+  )
+```
+
+Inspect the final data frame. In this case, we do not have a lot of observations and we simply show them all.
+
+```{r, message=FALSE, warning=FALSE}
+ep14
+```
+
+
+Last, we create a figure showing the vote share and seats for the parties (notice that you will also need the package `ggrepel` to create the figure).
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(ep14, aes(x = share, y = seats)) +
+  geom_point() +
+  theme_minimal() +
+  ggrepel::geom_text_repel(
+    aes(label = ifelse(share > 15, party, NA)),
+      size = 4.5,
+      point.padding = .2,
+      box.padding = .4
+    ) +
+  labs(
+    y = "Number of seats",
+    x = "Vote share",
+    title = "2014 European Parliament election, United Kingdom"
+  )
+```
+
+## Scrape political speeches 
+
+A lot of the text we can scrape online is not in the form of spreadsheets but in the form of nothing but text. To show how to scrape such text, we will focus on British political speeches from [http://www.britishpoliticalspeech.org/speech-archive.htm](http://www.britishpoliticalspeech.org/speech-archive.htm).
+
+Specifically, we will select the speech the Leader's speech by Theresa May in Manchester from 2017. First, as in the previous example, we specify the url of the page we would like to scrape. In this speech, Theresa May is talking extensively about the British Dream.
+
+```{r, message=FALSE, warning=FALSE}
+url <- c(
+  "http://www.britishpoliticalspeech.org/speech-archive.htm?speech=367"
+  )
+```
+
+To get the content of the page with the speech, we save the content of the page in the object `speechpage`.
+
+
+```{r, message=FALSE, warning=FALSE}
+speechpage <- read_html(url)
+```
+
+Next, to select the actual part of the page containing the speech, we select the content within the `<p></p>` tags.
+
+```{r, message=FALSE, warning=FALSE}
+data_speech <- html_nodes(speechpage, "p")
+```
+
+To get the actual text, we use the function `html_text()`.
+
+```{r, message=FALSE, warning=FALSE}
+data_speech_text <- html_text(data_speech)
+```
+
+Now we have all the text we need to use. However, to create a dataset with the words in the speech, we will use some functions from the package `tidytext` (as always, remember to install the package if you do not already have it installed) [@tidytext2016].
+
+```{r, message=FALSE, warning=FALSE}
+library("tidytext")
+```
+
+The first function we are going to use is not part of the package but will be used to convert our speech into a data frame using the `data_frame()` function.
+
+```{r, message=FALSE, warning=FALSE}
+data_speech_df <- data_frame(text = data_speech_text)
+```
+
+While in a data frame, it is still just a lot of sentences on different rows. To unnest all the sentences in our text column into a word column, we use the function `unnest_tokens()`.
+
+```{r, message=FALSE, warning=FALSE}
+words <- data_speech_df %>% unnest_tokens(word, text)
+```
+
+This gives os an object, `words`, with 7,116 observations. However, a lot of these words are irrelevant stop words (most common words that we are not interested in such as _the_, _is_, _at_, _which_) that we would like to remove. We use the `anti_join()` function to remove all stop words.
+
+```{r, message=FALSE, warning=FALSE}
+words <- words %>% anti_join(stop_words, by = "word")
+```
+
+Last, we can count the words in the speech and calculate the number of occurences. 
+
+```{r, message=FALSE, warning=FALSE}
+words %>% count(word, sort = TRUE)
+```
+
+We see that _people_ is mentioned 49 times, and _britain_ is mentioned 36 times. _dream_ and _british_ are mentioned 33 and 29 times, respectively. 
+
+## Get data from Twitter
+
+To get data from Twitter, we are going to use the `rtweet` package [@rtweet-package]. The first thing we do is to load the package (remember to install if if you have not already done so). You can find more information about the package here: [https://rtweet.info/](https://rtweet.info/)
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+library("rtweet")
+```
+
+### Data on twitter user
+
+To get data on a Twitter user, we can use different functions. Here, we will use the `get_friends()` function to get information on the people Donald Trump is following.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+trump_following <- get_friends("realDonaldTrump")
+```
+
+When we do that, all we get is a series of user IDs for the people Donald Trump is following. We can use the `lookup_users()` function toget more information about the individual accounts.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+trump_following <- lookup_users(trump_following$user_id)
+```
+
+This gives us a lot more information on the individual users, including their Twitter handle, name and description. To see all the information saved, you can use the `names()` function.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+names(trump_following)
+```
+
+To save information on the user ID, the handle, name and the description, we create a new object called `trump_data` just with these variables.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+trump_data <- trump_following %>% 
+  select(user_id, screen_name, name, description) 
+```
+
+You can use `head(trump_data)` to see what the data looks like.
+
+Next, we can use the `get_favorites()` function to get data on the tweets a user has favorited. Here, we save the favorites from Boris Johnson and save it in the object `tweets_bj`.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+tweets_bj <- get_favorites("BorisJohnson")
+```
+
+To get a sense of what this data looks like, you can use the `head()` function.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+head(tweets_bj)
+```
+
+### Data on trends
+
+To get data on what is trending in a certain part of the world, we can use the `get_trends()` function. Below, we get the 50 most trending topics in the United Kingdom. On October 29, 2018, `#NationalCatDay` and `Angela Merkel` are both trending (not for the same reason though).
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+trends_uk <- get_trends("united kingdom")
+```
+
+### Data on tweets
+
+Last, to get data on specific tweets, we use the `search_tweets()` function. Below, we get the most recent 100 tweets mentioning `brexit`. We also specify that we are not interested in retweets.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+brexit <- search_tweets(
+  "brexit", n = 100, include_rts = FALSE
+)
+```
+
+This gives us a data frame with 100 observations and 88 variables. You can use the `names()` function to get a list of all variables in the data frame.

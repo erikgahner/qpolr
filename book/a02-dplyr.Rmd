@@ -2,6 +2,8 @@
 output: html_document
 ---
 
+# (PART) Working with data {-}
+
 # Data management {#data}
 
 There are multiple ways to manage data in `R` and in particular different ways to create and change variables in a data frame. In this chapter, we show different ways of working with data frames with a focus on how to change and create new variables. Noteworthy, there are multiple packages we can use to manipulate data frames, but the best is without a doubt `dplyr` [@wickhamfrancois2016]. This is part of the `tidyverse` package so you do not need to install any new packages if you have already installed `tidyverse`.

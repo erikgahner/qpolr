@@ -51,7 +51,7 @@
 
 \title{\Huge{ Quantitative Politics with R } \vspace{2em}}
 \author{Erik Gahner Larsen and Zoltán Fazekas}
-\date{July 12, 2018}
+\date{November 08, 2018}
 
 \renewcommand{\contentsname}{Table of Contents}
 
@@ -964,7 +964,7 @@
   \end{Highlighting}
   \end{Shaded}
   \begin{figure}
-  \includegraphics[scale=0.65]{fig/View} \caption{Data frame with View(), RStudio}\label{fig:View}
+  \includegraphics[width=14.69in,scale=0.65]{fig/View} \caption{Data frame with View(), RStudio}\label{fig:View}
   \end{figure}
   When you are working with variables in a data frame, you can use
   \texttt{\$} as a \emph{component selector} to select a variable in a
@@ -1263,6 +1263,9 @@
   \KeywordTok{ls}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
+  \chapter*{(PART) Working with data}\label{part-working-with-data}
+  \addcontentsline{toc}{chapter}{(PART) Working with data}
+  
   \chapter{Data management}\label{data}
   
   There are multiple ways to manage data in \texttt{R} and in particular
@@ -1754,7 +1757,7 @@
   with a \texttt{recode()} function. The package \texttt{car} (Fox \&
   Weisberg, 2011) has a similar function worth exploring.
   
-  \chapter{Getting data}\label{datadownload}
+  \chapter{Get existing data}\label{datadownload}
   
   There are multiple ways you can get data into \texttt{R}. In this
   chapter we introduce different strategies for getting data into
@@ -2051,6 +2054,545 @@
   \KeywordTok{head}\NormalTok{(vdem_data)}
   \end{Highlighting}
   \end{Shaded}
+  \chapter{Create data}\label{create}
+  
+  In this chapter we will introduce different ways to create your own
+  data. Specifically, we will show how to create data from existing files,
+  how to scrape tables from webpages and how to get data from Twitter.
+  
+  \section{Create data from files}\label{create-data-from-files}
+  
+  You will often encounter that the data of interest is not available in a
+  format or structure that you will need for your analysis. Accordingly,
+  as a first step, you will need to collect multiple files and turn them
+  into a single dataset.
+  
+  Here, we will use the example of election results from the Electoral
+  Calculus. The example is from Matt Riggott (see the script
+  \href{https://github.com/flother/british-party-support/blob/master/british-party-support.R}{here})
+  and shows how we can download multiple files and connect them into a
+  single dataset. Each file we will work with contains the election
+  results from general elections in the UK.
+  
+  As always, the first thing we will do is to load the \texttt{tidyverse}
+  package.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  Next, to get a sense of the data we will be looking at, go to your
+  browser (e.g.~Google Chrome or Safari) and open this link:
+  \url{https://www.electoralcalculus.co.uk/electdata_1955.txt}
+  
+  In this file, you will see multiple lines. These are the election
+  results from 1955 (as indicated by the filename,
+  \texttt{electdata\_1955.txt}. The first line in the file is:
+  \texttt{Name;MP;Area;County;Electorate;CON;LAB;LIB;NAT;MIN;OTH}. These
+  are the variable names and are separated by \texttt{;}. By using the
+  function \texttt{read\_delim()} from the \texttt{tidyverse} package, we
+  can load this file into \texttt{R} as a data frame. Notice that we
+  specify that \texttt{;} is used to separate fields. We save the file in
+  the object \texttt{el\_1955}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{el_}\DecValTok{1955}\NormalTok{ <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}
+    \StringTok{"https://www.electoralcalculus.co.uk/electdata_1955.txt"}\NormalTok{, }
+    \DataTypeTok{delim =} \StringTok{";"}
+  \NormalTok{  )}
+  \end{Highlighting}
+  \end{Shaded}
+  To inspect the data, we can use the function \texttt{head()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(el_}\DecValTok{1955}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  # A tibble: 6 x 11
+    Name   MP     Area County Electorate   CON   LAB   LIB   NAT   MIN   OTH
+    <chr>  <chr> <int> <chr>       <int> <int> <int> <int> <int> <int> <int>
+  1 Abing~ AMS ~    12 Berks~      58487 25613 16979  8634     0     0     0
+  2 Accri~ H Hy~     4 Lanca~      50938 21157 22502     0     0     0     0
+  3 Acton  JA S~    11 Ealing      49373 20120 20645     0     0     0     0
+  4 Alder~ E Er~    12 Hamps~      54209 22701 13129  4232     0     0     0
+  5 Altri~ FJ E~     4 Centr~      61525 30586 12174  6436     0     0     0
+  6 Arund~ HB K~    12 West ~      69034 35180 15188     0     0     0     0
+  \end{verbatim}
+  The above output shows that the data is loaded succesfully and saved in
+  a data frame. We could do this for all elections manually, but that
+  would take a lot of time and increase the odds of making mistakes.
+  Instead, we will create a function that downloads all files. First, we
+  specify the elections we are interested in (from 1955 to 2017) and save
+  this information in the object \texttt{election\_years}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{election_years <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1955"}\NormalTok{, }\StringTok{"1959"}\NormalTok{, }\StringTok{"1964"}\NormalTok{, }\StringTok{"1966"}\NormalTok{, }\StringTok{"1970"}\NormalTok{, }\StringTok{"1974feb"}\NormalTok{,}
+  \StringTok{"1974oct"}\NormalTok{, }\StringTok{"1979"}\NormalTok{, }\StringTok{"1983"}\NormalTok{, }\StringTok{"1987"}\NormalTok{, }\StringTok{"1992ob"}\NormalTok{, }\StringTok{"1997"}\NormalTok{,}
+  \StringTok{"2001ob"}\NormalTok{, }\StringTok{"2005ob"}\NormalTok{, }\StringTok{"2010"}\NormalTok{, }\StringTok{"2015"}\NormalTok{, }\StringTok{"2017"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  Second, we use \texttt{read\_delim()} again, but as part as a function
+  where we use the \texttt{read\_delim()} on the year we specify. We call
+  this function \texttt{read\_election\_data()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{read_election_data <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(election) \{}
+  \NormalTok{  url <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"http://www.electoralcalculus.co.uk/electdata_"}\NormalTok{, }
+  \NormalTok{                election, }\StringTok{".txt"}\NormalTok{)}
+    \KeywordTok{read_delim}\NormalTok{(url, }\DataTypeTok{delim =} \StringTok{";"}\NormalTok{) }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =}\NormalTok{ election)}
+  \NormalTok{\}}
+  \end{Highlighting}
+  \end{Shaded}
+  With this function, we can specify any election year and get the data,
+  e.g. \texttt{read\_election\_data(2017)} to get the data from 2017.
+  Here, we use \texttt{lapply()} to run the function on all the election
+  years mentioned in the object \texttt{election\_years} above. To connect
+  all elections, we use the function \texttt{bind\_rows()}. We save the
+  output in the object \texttt{elections}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{elections <-}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(}\KeywordTok{lapply}\NormalTok{(election_years, read_election_data))}
+  \end{Highlighting}
+  \end{Shaded}
+  To see whether it has worked, use \texttt{head()} on the object (output
+  not shown).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(elections)}
+  \end{Highlighting}
+  \end{Shaded}
+  \section{Scrape data from tables}\label{scrape-data-from-tables}
+  
+  To scrape data from tables online, we use the \texttt{rvest} package.
+  Remember to install it if you haven't already done so.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"rvest"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  In the example below, we will show how to easily scrape a table from a
+  Wikipedia page. The first thing we do is to specify the link to the
+  Wikipedia page and save it in the object \texttt{url}. In the example we
+  will be looking at the election results from the 2014 European
+  Parliament election in the United Kingdom.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{url <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+    \StringTok{"https://en.wikipedia.org/wiki/European_Parliament_election,_2014_(United_Kingdom)"}
+  \NormalTok{  )}
+  \end{Highlighting}
+  \end{Shaded}
+  Next, we use the \texttt{read\_html()} function to save the content on
+  the Wikipedia page. We save the data in the object \texttt{wikipage}
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{wikipage <-}\StringTok{ }\KeywordTok{read_html}\NormalTok{(url)}
+  \end{Highlighting}
+  \end{Shaded}
+  We can use the function \texttt{class()} to see what type of content we
+  have in the object.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{class}\NormalTok{(wikipage)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] "xml_document" "xml_node"    
+  \end{verbatim}
+  Here, we see that we have an xml\_document and xml\_node in our object.
+  We want to save the tables in our data. To do this, we use the function
+  \texttt{html\_nodes()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{data_table <-}\StringTok{ }\KeywordTok{html_nodes}\NormalTok{(wikipage, }\StringTok{"table"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  If you type \texttt{data\_table}, you can see an overview of all the
+  tables we have saved. Here, we would like to use the data on the number
+  of votes the different parties got in the 2014 European Parliament
+  election in the United Kingdom. We can see that this table is number 14
+  in our object. We save this table in the object \texttt{data\_results}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{data_results <-}\StringTok{ }\NormalTok{data_table[[}\DecValTok{14}\NormalTok{]] }
+  \end{Highlighting}
+  \end{Shaded}
+  We can now use the function \texttt{html\_table()} to save the table as
+  a data frame. We use the option \texttt{fill=TRUE} as there are empty
+  cells in the table. We save the table in the object \texttt{ep14\_raw}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ep14_raw <-}\StringTok{ }\KeywordTok{html_table}\NormalTok{(data_results, }\DataTypeTok{fill=}\OtherTok{TRUE}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To ensure that it is a data frame we are working with, we can use the
+  function \texttt{class()} again.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{class}\NormalTok{(ep14_raw)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  [1] "data.frame"
+  \end{verbatim}
+  We call the object \texttt{ep14\_raw} as it is a raw table that needs
+  further changes before we are satisfied. To get a sense of one of the
+  issues with the data frame, we look at the last observations in the data
+  frame with \texttt{tail()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{tail}\NormalTok{(ep14_raw)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+               Party           Party      Votes Votes Votes Seats Seats
+  29                            NI21     10,553   0.1   New     0      
+  30                     Peace Party     10,130   0.1           0      
+  31                          Others     55,011   0.3   3.4     0      
+  32     Valid Votes     Valid Votes 16,454,950  99.5          73     1
+  33  Rejected Votes  Rejected Votes     90,812   0.6                  
+  34 Overall turnout Overall turnout 16,545,762  35.6   0.9            
+     Seats   NA   NA
+  29       <NA> <NA>
+  30       <NA> <NA>
+  31       <NA> <NA>
+  32       <NA> <NA>
+  33       <NA> <NA>
+  34                
+  \end{verbatim}
+  Here we see that the last three rows are aggregated numbers unrelated to
+  the votes for the individual parties. Accordingly, we would like to
+  remove these observations. To remove the specific rows, we save the
+  object without observations 32, 33 and 34.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ep14_raw <-}\StringTok{ }\NormalTok{ep14_raw[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{32}\OperatorTok{:}\DecValTok{34}\NormalTok{), ]}
+  \end{Highlighting}
+  \end{Shaded}
+  Next, we use \texttt{head()} to see what our data frame looks like for
+  the first observations.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(ep14_raw)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+    Party                 Party     Votes Votes Votes Seats  Seats Seats
+  1 Party                 Party     Votes Votes Votes Seats Number     %
+  2       UK Independence Party 4,376,635  26.6  10.6    24     11  32.9
+  3                Labour Party 4,020,646  24.4   9.2    20      7  27.4
+  4          Conservative Party 3,792,549  23.1   3.8    19      7  26.0
+  5                 Green Party 1,136,670   6.9   0.9     3      1   4.1
+  6           Liberal Democrats 1,087,633   6.6   6.7     1     10   1.4
+      NA    NA
+  1  +/- Seats
+  2 <NA>  <NA>
+  3 <NA>  <NA>
+  4 <NA>  <NA>
+  5 <NA>  <NA>
+  6 <NA>  <NA>
+  \end{verbatim}
+  We see two main issues. First, that the variable names are not unique
+  and will need to be changed. We are interested in four of the variables,
+  namely the name of the party, the number of votes, the vote share and
+  the number of seats. We give the relevant variables names and give the
+  other variables unimportant names (as we are going to ignore those).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{names}\NormalTok{(ep14_raw) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"V1"}\NormalTok{, }\StringTok{"party"}\NormalTok{, }\StringTok{"votes"}\NormalTok{, }\StringTok{"share"}\NormalTok{, }\StringTok{"V5"}\NormalTok{, }
+                       \StringTok{"seats"}\NormalTok{, }\StringTok{"V7"}\NormalTok{, }\StringTok{"V8"}\NormalTok{, }\StringTok{"V9"}\NormalTok{, }\StringTok{"V10"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  Next, we can see that the first row is not an observation but variable
+  names as well. Accordingly, we need to remove this observation as well.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ep14_raw <-}\StringTok{ }\NormalTok{ep14_raw[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{), ]}
+  \end{Highlighting}
+  \end{Shaded}
+  To remove the irrelevant variables in our data frame, we use the
+  \texttt{select()} function to select the relevant variables.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ep14_raw <-}\StringTok{ }\NormalTok{ep14_raw }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{select}\NormalTok{(party, votes, share, seats)}
+  \end{Highlighting}
+  \end{Shaded}
+  The last thing to do is to tell \texttt{R} that three variables,
+  \texttt{votes}, \texttt{share} and \texttt{seats} are numeric. Notice
+  how we use the function \texttt{gsub()} to get rid of commas. We save
+  this data frame in the object \texttt{ep14}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ep14 <-}\StringTok{ }\NormalTok{ep14_raw }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+      \DataTypeTok{votes =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, votes)),}
+      \DataTypeTok{share =} \KeywordTok{as.numeric}\NormalTok{(share),}
+      \DataTypeTok{seats =} \KeywordTok{as.numeric}\NormalTok{(seats)}
+  \NormalTok{  )}
+  \end{Highlighting}
+  \end{Shaded}
+  Inspect the final data frame. In this case, we do not have a lot of
+  observations and we simply show them all.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{ep14}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                           party   votes share seats
+  1        UK Independence Party 4376635  26.6    24
+  2                 Labour Party 4020646  24.4    20
+  3           Conservative Party 3792549  23.1    19
+  4                  Green Party 1136670   6.9     3
+  5            Liberal Democrats 1087633   6.6     1
+  6      Scottish National Party  389503   2.4     2
+  7  An Independence from Europe  235124   1.4     0
+  8       British National Party  179694   1.1     0
+  9                    Sinn Féin  159813   1.0     1
+  10                         DUP  131163   0.8     1
+  11           English Democrats  126024   0.8     0
+  12                 Plaid Cymru  111864   0.7     1
+  13        Scottish Green Party  108305   0.7     0
+  14       Ulster Unionist Party   83438   0.5     1
+  15                        SDLP   81594   0.5     0
+  16                         TUV   75806   0.5     0
+  17  Christian Peoples Alliance   50222   0.3     0
+  18                    Alliance   44432   0.3     0
+  19                       No2EU   31757   0.1     0
+  20   4 Freedoms Party (UK EPP)   28014   0.2     0
+  21  We Demand a Referendum Now   23426   0.1     0
+  22                         NHA   23253   0.1     0
+  23        Animal Welfare Party   21092   0.1     0
+  24               Britain First   20272   0.1     0
+  25             Yorkshire First   19017   0.1     0
+  26             Europeans Party   10712   0.1     0
+  27                  Green (NI)   10598   0.1     0
+  28                        NI21   10553   0.1     0
+  29                 Peace Party   10130   0.1     0
+  30                      Others   55011   0.3     0
+  \end{verbatim}
+  Last, we create a figure showing the vote share and seats for the
+  parties (notice that you will also need the package \texttt{ggrepel} to
+  create the figure).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(ep14, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ share, }\DataTypeTok{y =}\NormalTok{ seats)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\NormalTok{ggrepel}\OperatorTok{::}\KeywordTok{geom_text_repel}\NormalTok{(}
+      \KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{ifelse}\NormalTok{(share }\OperatorTok{>}\StringTok{ }\DecValTok{15}\NormalTok{, party, }\OtherTok{NA}\NormalTok{)),}
+        \DataTypeTok{size =} \FloatTok{4.5}\NormalTok{,}
+        \DataTypeTok{point.padding =}\NormalTok{ .}\DecValTok{2}\NormalTok{,}
+        \DataTypeTok{box.padding =}\NormalTok{ .}\DecValTok{4}
+  \NormalTok{    ) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{labs}\NormalTok{(}
+      \DataTypeTok{y =} \StringTok{"Number of seats"}\NormalTok{,}
+      \DataTypeTok{x =} \StringTok{"Vote share"}\NormalTok{,}
+      \DataTypeTok{title =} \StringTok{"2014 European Parliament election, United Kingdom"}
+  \NormalTok{  )}
+  \end{Highlighting}
+  \end{Shaded}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-128-1.pdf}
+  
+  \section{Scrape political speeches}\label{scrape-political-speeches}
+  
+  A lot of the text we can scrape online is not in the form of
+  spreadsheets but in the form of nothing but text. To show how to scrape
+  such text, we will focus on British political speeches from
+  \url{http://www.britishpoliticalspeech.org/speech-archive.htm}.
+  
+  Specifically, we will select the speech the Leader's speech by Theresa
+  May in Manchester from 2017. First, as in the previous example, we
+  specify the url of the page we would like to scrape. In this speech,
+  Theresa May is talking extensively about the British Dream.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{url <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+    \StringTok{"http://www.britishpoliticalspeech.org/speech-archive.htm?speech=367"}
+  \NormalTok{  )}
+  \end{Highlighting}
+  \end{Shaded}
+  To get the content of the page with the speech, we save the content of
+  the page in the object \texttt{speechpage}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{speechpage <-}\StringTok{ }\KeywordTok{read_html}\NormalTok{(url)}
+  \end{Highlighting}
+  \end{Shaded}
+  Next, to select the actual part of the page containing the speech, we
+  select the content within the
+  \texttt{\textless{}p\textgreater{}\textless{}/p\textgreater{}} tags.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{data_speech <-}\StringTok{ }\KeywordTok{html_nodes}\NormalTok{(speechpage, }\StringTok{"p"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To get the actual text, we use the function \texttt{html\_text()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{data_speech_text <-}\StringTok{ }\KeywordTok{html_text}\NormalTok{(data_speech)}
+  \end{Highlighting}
+  \end{Shaded}
+  Now we have all the text we need to use. However, to create a dataset
+  with the words in the speech, we will use some functions from the
+  package \texttt{tidytext} (as always, remember to install the package if
+  you do not already have it installed) (Silge \& Robinson, 2016).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"tidytext"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  The first function we are going to use is not part of the package but
+  will be used to convert our speech into a data frame using the
+  \texttt{data\_frame()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{data_speech_df <-}\StringTok{ }\KeywordTok{data_frame}\NormalTok{(}\DataTypeTok{text =}\NormalTok{ data_speech_text)}
+  \end{Highlighting}
+  \end{Shaded}
+  While in a data frame, it is still just a lot of sentences on different
+  rows. To unnest all the sentences in our text column into a word column,
+  we use the function \texttt{unnest\_tokens()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{words <-}\StringTok{ }\NormalTok{data_speech_df }\OperatorTok{%>%}\StringTok{ }\KeywordTok{unnest_tokens}\NormalTok{(word, text)}
+  \end{Highlighting}
+  \end{Shaded}
+  This gives os an object, \texttt{words}, with 7,116 observations.
+  However, a lot of these words are irrelevant stop words (most common
+  words that we are not interested in such as \emph{the}, \emph{is},
+  \emph{at}, \emph{which}) that we would like to remove. We use the
+  \texttt{anti\_join()} function to remove all stop words.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{words <-}\StringTok{ }\NormalTok{words }\OperatorTok{%>%}\StringTok{ }\KeywordTok{anti_join}\NormalTok{(stop_words, }\DataTypeTok{by =} \StringTok{"word"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  Last, we can count the words in the speech and calculate the number of
+  occurences.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{words }\OperatorTok{%>%}\StringTok{ }\KeywordTok{count}\NormalTok{(word, }\DataTypeTok{sort =} \OtherTok{TRUE}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  # A tibble: 1,280 x 2
+     word        n
+     <chr>   <int>
+   1 people     49
+   2 britain    36
+   3 country    34
+   4 dream      33
+   5 world      30
+   6 british    29
+   7 that’s     21
+   8 party      19
+   9 it’s       17
+  10 free       16
+  # ... with 1,270 more rows
+  \end{verbatim}
+  We see that \emph{people} is mentioned 49 times, and \emph{britain} is
+  mentioned 36 times. \emph{dream} and \emph{british} are mentioned 33 and
+  29 times, respectively.
+  
+  \section{Get data from Twitter}\label{get-data-from-twitter}
+  
+  To get data from Twitter, we are going to use the \texttt{rtweet}
+  package (Kearney, 2018). The first thing we do is to load the package
+  (remember to install if if you have not already done so). You can find
+  more information about the package here: \url{https://rtweet.info/}
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"rtweet"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \subsection{Data on twitter user}\label{data-on-twitter-user}
+  
+  To get data on a Twitter user, we can use different functions. Here, we
+  will use the \texttt{get\_friends()} function to get information on the
+  people Donald Trump is following.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{trump_following <-}\StringTok{ }\KeywordTok{get_friends}\NormalTok{(}\StringTok{"realDonaldTrump"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  When we do that, all we get is a series of user IDs for the people
+  Donald Trump is following. We can use the \texttt{lookup\_users()}
+  function toget more information about the individual accounts.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{trump_following <-}\StringTok{ }\KeywordTok{lookup_users}\NormalTok{(trump_following}\OperatorTok{$}\NormalTok{user_id)}
+  \end{Highlighting}
+  \end{Shaded}
+  This gives us a lot more information on the individual users, including
+  their Twitter handle, name and description. To see all the information
+  saved, you can use the \texttt{names()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{names}\NormalTok{(trump_following)}
+  \end{Highlighting}
+  \end{Shaded}
+  To save information on the user ID, the handle, name and the
+  description, we create a new object called \texttt{trump\_data} just
+  with these variables.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{trump_data <-}\StringTok{ }\NormalTok{trump_following }\OperatorTok{%>%}\StringTok{ }
+  \StringTok{  }\KeywordTok{select}\NormalTok{(user_id, screen_name, name, description) }
+  \end{Highlighting}
+  \end{Shaded}
+  You can use \texttt{head(trump\_data)} to see what the data looks like.
+  
+  Next, we can use the \texttt{get\_favorites()} function to get data on
+  the tweets a user has favorited. Here, we save the favorites from Boris
+  Johnson and save it in the object \texttt{tweets\_bj}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{tweets_bj <-}\StringTok{ }\KeywordTok{get_favorites}\NormalTok{(}\StringTok{"BorisJohnson"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To get a sense of what this data looks like, you can use the
+  \texttt{head()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(tweets_bj)}
+  \end{Highlighting}
+  \end{Shaded}
+  \subsection{Data on trends}\label{data-on-trends}
+  
+  To get data on what is trending in a certain part of the world, we can
+  use the \texttt{get\_trends()} function. Below, we get the 50 most
+  trending topics in the United Kingdom. On October 29, 2018,
+  \texttt{\#NationalCatDay} and \texttt{Angela\ Merkel} are both trending
+  (not for the same reason though).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{trends_uk <-}\StringTok{ }\KeywordTok{get_trends}\NormalTok{(}\StringTok{"united kingdom"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \subsection{Data on tweets}\label{data-on-tweets}
+  
+  Last, to get data on specific tweets, we use the
+  \texttt{search\_tweets()} function. Below, we get the most recent 100
+  tweets mentioning \texttt{brexit}. We also specify that we are not
+  interested in retweets.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{brexit <-}\StringTok{ }\KeywordTok{search_tweets}\NormalTok{(}
+    \StringTok{"brexit"}\NormalTok{, }\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{include_rts =} \OtherTok{FALSE}
+  \NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  This gives us a data frame with 100 observations and 88 variables. You
+  can use the \texttt{names()} function to get a list of all variables in
+  the data frame.
+  
+  \chapter*{(PART) Presenting data}\label{part-presenting-data}
+  \addcontentsline{toc}{chapter}{(PART) Presenting data}
+  
   \chapter{Data visualisation}\label{dataviz}
   
   Visualising data is important (Healy \& Moody, 2014). As with everything
@@ -2063,7 +2605,7 @@
   \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{seats)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-105-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-147-1.pdf}
   
   There is nothing inherently wrong with using a function like this, but
   the moment we want to tweak the figure, it gets complicated.
@@ -2167,7 +2709,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-110-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-152-1} \end{center}
   
   This is a standard \texttt{ggplot2} plot with all its defaults. If we
   instead a scatter plot wanted a line plot, we can change
@@ -2178,7 +2720,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-111-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-153-1} \end{center}
   
   The above figure is somewhat misleading so it is just to show the logic
   of the how geometric objects work. Interestingly, we can add multiple
@@ -2191,7 +2733,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-112-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-154-1} \end{center}
   
   \subsection{Theme adjustments}\label{theme-adjustments}
   
@@ -2206,7 +2748,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-113-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-155-1} \end{center}
   
   We can also easily change the labels by using \texttt{xlab()} and
   \texttt{ylab()}.
@@ -2219,7 +2761,7 @@
   \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-114-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-156-1} \end{center}
   
   This is the basic logic of \texttt{ggplot2}.
   
@@ -2263,7 +2805,7 @@
   \StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-115-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-157-1} \end{center}
   
   \subsection{Histograms}\label{histograms}
   
@@ -2279,7 +2821,7 @@
   \begin{verbatim}
   `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
   \end{verbatim}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-116-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-158-1} \end{center}
   
   As you can see, we get a message about the use of a default binwidth.
   This is to emphasize the importance of specifying the binwidth yourself.
@@ -2291,7 +2833,7 @@
   \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-117-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-159-1} \end{center}
   
   Play around with different binwidths to see how it affects the
   distribution in the figure.
@@ -2307,7 +2849,7 @@
   \StringTok{  }\KeywordTok{geom_density}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-118-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-160-1} \end{center}
   
   Do compare the density plot to the histograms above.
   
@@ -2347,7 +2889,7 @@
   \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-119-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-161-1} \end{center}
   
   Here we can see that Obama got a greater vote share in states with less
   restrictions on abortion.
@@ -2364,7 +2906,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-120-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-162-1} \end{center}
   
   If we are working with a lot of observations, there will be an overlap
   in the points. To show all of the observations, we can add some small,
@@ -2377,7 +2919,7 @@
   \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-121-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-163-1} \end{center}
   
   We can also use \texttt{geom\_point(position\ =\ "jitter")} instead of
   Instead of \texttt{geom\_jitter()}. However, in this particular case, as
@@ -2394,7 +2936,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-122-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-164-1} \end{center}
   
   Here we can see that as the abortion rate increases, so does the vote
   share for Obama. As we can also see, this is a smoothing function. To
@@ -2406,7 +2948,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-123-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-165-1} \end{center}
   
   \section{Manipulating plots}\label{manipulating-plots}
   
@@ -2467,7 +3009,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-124-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-166-1} \end{center}
   
   \subsection{Colours}\label{colours}
   
@@ -2483,7 +3025,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-125-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-167-1} \end{center}
   
   If we want to give points a value based on the value of a specific
   variable, we need to specificy this within \texttt{aes()}. When we add
@@ -2497,7 +3039,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-126-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-168-1} \end{center}
   
   If we want to change these colours, we can use
   \texttt{scale\_colour\_manual()}.
@@ -2510,7 +3052,7 @@
   \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-127-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-169-1} \end{center}
   
   The colours are very bright. If we want to make them less so we can add
   \texttt{alpha} to \texttt{geom\_point()} to add transparency to the
@@ -2525,7 +3067,7 @@
   \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-128-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-170-1} \end{center}
   
   \subsection{Labels}\label{labels}
   
@@ -2547,7 +3089,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-129-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-171-1} \end{center}
   
   Last, we can see that the legend title is \texttt{abortlaw3}. We can
   change this by adding \texttt{colour} to \texttt{labs()} as well.
@@ -2566,7 +3108,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-130-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-172-1} \end{center}
   
   \subsection{Axes}\label{axes}
   
@@ -2590,7 +3132,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-131-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-173-1} \end{center}
   
   \subsection{Confidence intervals}\label{confidence-intervals}
   
@@ -2613,7 +3155,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-132-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-174-1} \end{center}
   
   \subsection{Making multiple plots in
   one}\label{making-multiple-plots-in-one}
@@ -2638,7 +3180,7 @@
   \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{abortlaw3)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-133-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-175-1} \end{center}
   
   \section{Saving plots}\label{saving-plots}
   
@@ -2667,6 +3209,241 @@
   \KeywordTok{ggsave}\NormalTok{(fig1, }\StringTok{"fig1-abortion.png"}\NormalTok{, }\DataTypeTok{width =} \DecValTok{4}\NormalTok{, }\DataTypeTok{height =} \DecValTok{4}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
+  \chapter*{(PART) Regression}\label{part-regression}
+  \addcontentsline{toc}{chapter}{(PART) Regression}
+  
+  \chapter{OLS regression}\label{olsreg}
+  
+  To provide a simple example of how to conduct an OLS regression, we will
+  use the same data as in the visualisation chapter, i.e.~the
+  \texttt{states} data frame from the package \texttt{poliscidata}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"poliscidata"}\NormalTok{)}
+  
+  \NormalTok{states <-}\StringTok{ }\NormalTok{states}
+  \end{Highlighting}
+  \end{Shaded}
+  \section{Bivariate linear regression}\label{bivariate-linear-regression}
+  
+  To conduct a bivariate linear regression, we use the \texttt{lm()}
+  function (short for linear models). We need to specify the dependent
+  variable, independent variable and the data frame. Below we specify
+  \texttt{obama2012} as the dependent variable and \texttt{abort\_rate08}
+  as the independent variable. Notice that we use the
+  \texttt{\textasciitilde{}} symbol to separate the dependent variable
+  from the independent variable. We save the output in the object
+  \texttt{reg\_obama}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(obama2012 }\OperatorTok{~}\StringTok{ }\NormalTok{abort_rate08, }\DataTypeTok{data =}\NormalTok{ states)}
+  \end{Highlighting}
+  \end{Shaded}
+  If we type \texttt{reg\_obama}, we can see the intercept and coefficient
+  in the model.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  
+  Call:
+  lm(formula = obama2012 ~ abort_rate08, data = states)
+  
+  Coefficients:
+   (Intercept)  abort_rate08  
+       35.2589        0.8257  
+  \end{verbatim}
+  Here we see that the intercept is 35.26, which is the predicted vote
+  share for Obama in 2012 when we extrapolate to a state with an abortion
+  rate of 0. The coefficient is 0.83, which is the increase in the vote
+  share for Obama when there is an one-unit increase in the abortion rate.
+  
+  However, this is not enough information. We need, for example, also
+  information on the standard errors as well as model statistics. To get
+  this, we use the function \texttt{summary()} on our object.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{summary}\NormalTok{(reg_obama)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  
+  Call:
+  lm(formula = obama2012 ~ abort_rate08, data = states)
+  
+  Residuals:
+       Min       1Q   Median       3Q      Max 
+  -16.1208  -5.6516   0.6785   4.7242  20.9904 
+  
+  Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+  (Intercept)   35.2589     2.2970  15.350  < 2e-16 ***
+  abort_rate08   0.8257     0.1297   6.366 6.91e-08 ***
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+  
+  Residual standard error: 7.654 on 48 degrees of freedom
+  Multiple R-squared:  0.4578,    Adjusted R-squared:  0.4465 
+  F-statistic: 40.52 on 1 and 48 DF,  p-value: 6.912e-08
+  \end{verbatim}
+  Here we can see that the estimate for \texttt{abort\_rate08} is
+  statistically significant. We can further see that the R-squared is 0.46
+  which indicates that 46\% of the variation in the vote share is
+  explained by our independent variable.
+  
+  To convert the results from our analysis into a data frame, we can use
+  the package \texttt{broom} (Robinson, 2018).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"broom"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  As a first example, we can save the estimates and test statistics in a
+  data frame by using the function \texttt{tidy()}. We save the output in
+  a new object \texttt{reg\_obama\_tidy} and show this output as well.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama_tidy <-}\StringTok{ }\KeywordTok{tidy}\NormalTok{(reg_obama)}
+  
+  \NormalTok{reg_obama_tidy}
+  \end{Highlighting}
+  \end{Shaded}
+  This is useful if you would like to visualise the results. However,
+  often we also want to save predictions and residuals based on our model.
+  To do this, we can use the function \texttt{augment()}. Below we save
+  the output in the object \texttt{reg\_obama\_aug}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama_aug <-}\StringTok{ }\KeywordTok{augment}\NormalTok{(reg_obama)}
+  \end{Highlighting}
+  \end{Shaded}
+  To see the data in the new object, use \texttt{head()}. Here you see
+  that there is a variable called \texttt{.fitted}. This variable is the
+  predicted value for each observation.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{head}\NormalTok{(reg_obama_aug)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+    obama2012 abort_rate08  .fitted  .se.fit    .resid       .hat   .sigma
+  1     40.81         12.0 45.16673 1.179911 -4.356729 0.02376297 7.708398
+  2     38.36         12.0 45.16673 1.179911 -6.806729 0.02376297 7.669635
+  3     36.88          8.7 42.44207 1.406179 -5.562068 0.03375074 7.691025
+  4     44.45         15.2 47.80882 1.083835 -3.358825 0.02005065 7.719335
+  5     60.19         27.6 58.04695 1.893732  2.143053 0.06121236 7.728453
+  6     51.45         15.7 48.22165 1.082515  3.228348 0.02000184 7.720544
+        .cooksd .std.resid
+  1 0.004039088 -0.5760815
+  2 0.009859143 -0.9000401
+  3 0.009544419 -0.7392523
+  4 0.002010333 -0.4432886
+  5 0.002722341  0.2889684
+  6 0.001852473  0.4260579
+  \end{verbatim}
+  We can use this data frame to visualise the residuals (with the colour
+  red below).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(reg_obama_aug, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xend=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012, }\DataTypeTok{yend=}\NormalTok{.fitted), }
+          \DataTypeTok{colour=}\StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{.fitted)) }
+  \end{Highlighting}
+  \end{Shaded}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-187-1.pdf}
+  
+  \section{Multiple linear regression}\label{multiple-linear-regression}
+  
+  To conduct a multiple linear regression, we simply need to add an extra
+  variable to our model. Accordingly, the only difference between the
+  example above and the example here is the addition of a new variable.
+  Here, we want to examine whether the effect of \texttt{abort\_rate08}
+  holds when we control for population density (\texttt{density}). Notice
+  that we add a \texttt{+} before adding the variable to the list of
+  variables.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama_full <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(obama2012 }\OperatorTok{~}\StringTok{ }\NormalTok{abort_rate08 }\OperatorTok{+}\StringTok{ }\NormalTok{density, }\DataTypeTok{data =}\NormalTok{ states)}
+  \end{Highlighting}
+  \end{Shaded}
+  We use the \texttt{summary()} function to get the output of the model.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{summary}\NormalTok{(reg_obama_full)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  
+  Call:
+  lm(formula = obama2012 ~ abort_rate08 + density, data = states)
+  
+  Residuals:
+       Min       1Q   Median       3Q      Max 
+  -16.1719  -5.5567  -0.2101   4.3195  21.5132 
+  
+  Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+  (Intercept)  36.019160   2.328169  15.471  < 2e-16 ***
+  abort_rate08  0.681420   0.161482   4.220 0.000111 ***
+  density       0.007656   0.005214   1.468 0.148669    
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+  
+  Residual standard error: 7.564 on 47 degrees of freedom
+  Multiple R-squared:  0.4815,    Adjusted R-squared:  0.4595 
+  F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07
+  \end{verbatim}
+  In the output we see that the coefficient for \texttt{abort\_rate08} is
+  slightly smaller compared to the bivariate model but still statistically
+  significant. Again we can use the \texttt{tidy()} function to get a data
+  frame with the results.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama_full_tidy <-}\StringTok{ }\KeywordTok{tidy}\NormalTok{(reg_obama_full)}
+  \end{Highlighting}
+  \end{Shaded}
+  We further calculate the 95\% confidence intervals for the estimates.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama_full_tidy <-}\StringTok{ }\NormalTok{reg_obama_full_tidy }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+      \DataTypeTok{ci_low =}\NormalTok{ estimate }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{std.error,}
+      \DataTypeTok{ci_high =}\NormalTok{ estimate }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{std.error}
+  \NormalTok{  ) }
+  \end{Highlighting}
+  \end{Shaded}
+  We can then visualise the results.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{ggplot}\NormalTok{(reg_obama_full_tidy, }\KeywordTok{aes}\NormalTok{(estimate, term, }\DataTypeTok{xmin =}\NormalTok{ ci_low, }
+                                  \DataTypeTok{xmax =}\NormalTok{ ci_high, }\DataTypeTok{height =} \DecValTok{0}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{     }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+  \StringTok{     }\KeywordTok{geom_vline}\NormalTok{(}\DataTypeTok{xintercept =} \DecValTok{0}\NormalTok{) }\OperatorTok{+}
+  \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-192-1.pdf}
+  
+  In some cases the intercept is not relevant. In the code below, we use
+  the \texttt{filter()} function to visualise all effects except for the
+  intercept.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama_full_tidy }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{filter}\NormalTok{(term }\OperatorTok{!=}\StringTok{ "(Intercept)"}\NormalTok{) }\OperatorTok{%>%}
+  \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(estimate, term, }\DataTypeTok{xmin =}\NormalTok{ ci_low, }
+               \DataTypeTok{xmax =}\NormalTok{ ci_high, }\DataTypeTok{height =} \DecValTok{0}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{     }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+  \StringTok{     }\KeywordTok{geom_vline}\NormalTok{(}\DataTypeTok{xintercept =} \DecValTok{0}\NormalTok{) }\OperatorTok{+}
+  \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
+  \end{Highlighting}
+  \end{Shaded}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-193-1.pdf}
+  
   \backmatter
   
   \chapter{References}\label{references}
@@ -2690,6 +3467,10 @@
   Healy, K., \& Moody, J. (2014). Data visualization in sociology.
   \emph{Annual Review of Sociology}, \emph{40}, 105--128.
   
+  \hypertarget{ref-rtweet-package}{}
+  Kearney, M. W. (2018). \emph{Rtweet: Collecting twitter data}. Retrieved
+  from \url{https://cran.r-project.org/package=rtweet}
+  
   \hypertarget{ref-larsen2018}{}
   Larsen, E. G. (2018). Welfare retrenchments and government support:
   Evidence from a natural experiment. \emph{European Sociological Review},
@@ -2699,6 +3480,16 @@
   R Core Team. (2015). \emph{Foreign: Read data stored by minitab, s, sas,
   spss, stata, systat, weka, dBase, ...} Retrieved from
   \url{http://CRAN.R-project.org/package=foreign}
+  
+  \hypertarget{ref-Robinson2018}{}
+  Robinson, D. (2018). \emph{Broom: Convert statistical analysis objects
+  into tidy data frames}. Retrieved from
+  \url{https://CRAN.R-project.org/package=broom}
+  
+  \hypertarget{ref-tidytext2016}{}
+  Silge, J., \& Robinson, D. (2016). Tidytext: Text mining and analysis
+  using tidy data principles in r. \emph{JOSS}, \emph{1}(3).
+  \url{http://doi.org/10.21105/joss.00037}
   
   \hypertarget{ref-tufte1983}{}
   Tufte, E. R. (1983). \emph{The visual display of quantitative

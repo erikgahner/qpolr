@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2018-07-12">
+<meta name="date" content="2018-11-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="3-data.html">
-<link rel="next" href="5-dataviz.html">
+<link rel="next" href="5-create.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -117,6 +117,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
 <li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
 </ul></li>
+<li class="part"><span><b>I Working with data</b></span></li>
 <li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
 <li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
@@ -128,41 +129,57 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
 <li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#recoding-variables-recode"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>recode()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-datadownload.html"><a href="4-datadownload.html"><i class="fa fa-check"></i><b>4</b> Getting data</a><ul>
+<li class="chapter" data-level="4" data-path="4-datadownload.html"><a href="4-datadownload.html"><i class="fa fa-check"></i><b>4</b> Get existing data</a><ul>
 <li class="chapter" data-level="4.1" data-path="4-datadownload.html"><a href="4-datadownload.html#using-data-from-data-packages"><i class="fa fa-check"></i><b>4.1</b> Using data from data packages</a></li>
 <li class="chapter" data-level="4.2" data-path="4-datadownload.html"><a href="4-datadownload.html#download-data-from-webpages"><i class="fa fa-check"></i><b>4.2</b> Download data from webpages</a></li>
 <li class="chapter" data-level="4.3" data-path="4-datadownload.html"><a href="4-datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>4.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
 <li class="chapter" data-level="4.4" data-path="4-datadownload.html"><a href="4-datadownload.html#data-manifesto-project-dataset-manifestor"><i class="fa fa-check"></i><b>4.4</b> Data: Manifesto Project Dataset (<code>manifestoR</code>)</a></li>
 <li class="chapter" data-level="4.5" data-path="4-datadownload.html"><a href="4-datadownload.html#data-varieties-of-democracy-vdem"><i class="fa fa-check"></i><b>4.5</b> Data: Varieties of Democracy (<code>vdem</code>)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-dataviz.html"><a href="5-dataviz.html"><i class="fa fa-check"></i><b>5</b> Data visualisation</a><ul>
-<li class="chapter" data-level="5.1" data-path="5-dataviz.html"><a href="5-dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>5.1</b> The basics of <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="5.1.1" data-path="3-data.html"><a href="3-data.html#data"><i class="fa fa-check"></i><b>5.1.1</b> Data</a></li>
-<li class="chapter" data-level="5.1.2" data-path="5-dataviz.html"><a href="5-dataviz.html#aesthetics"><i class="fa fa-check"></i><b>5.1.2</b> Aesthetics</a></li>
-<li class="chapter" data-level="5.1.3" data-path="5-dataviz.html"><a href="5-dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>5.1.3</b> Geometric objects</a></li>
-<li class="chapter" data-level="5.1.4" data-path="5-dataviz.html"><a href="5-dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>5.1.4</b> Theme adjustments</a></li>
+<li class="chapter" data-level="5" data-path="5-create.html"><a href="5-create.html"><i class="fa fa-check"></i><b>5</b> Create data</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-create.html"><a href="5-create.html#create-data-from-files"><i class="fa fa-check"></i><b>5.1</b> Create data from files</a></li>
+<li class="chapter" data-level="5.2" data-path="5-create.html"><a href="5-create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>5.2</b> Scrape data from tables</a></li>
+<li class="chapter" data-level="5.3" data-path="5-create.html"><a href="5-create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>5.3</b> Scrape political speeches</a></li>
+<li class="chapter" data-level="5.4" data-path="5-create.html"><a href="5-create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>5.4</b> Get data from Twitter</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-create.html"><a href="5-create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>5.4.1</b> Data on twitter user</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-create.html"><a href="5-create.html#data-on-trends"><i class="fa fa-check"></i><b>5.4.2</b> Data on trends</a></li>
+<li class="chapter" data-level="5.4.3" data-path="5-create.html"><a href="5-create.html#data-on-tweets"><i class="fa fa-check"></i><b>5.4.3</b> Data on tweets</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="5-dataviz.html"><a href="5-dataviz.html#plotting-one-variable-distributions"><i class="fa fa-check"></i><b>5.2</b> Plotting one variable: distributions</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="5-dataviz.html"><a href="5-dataviz.html#bar-plot"><i class="fa fa-check"></i><b>5.2.1</b> Bar plot</a></li>
-<li class="chapter" data-level="5.2.2" data-path="5-dataviz.html"><a href="5-dataviz.html#histograms"><i class="fa fa-check"></i><b>5.2.2</b> Histograms</a></li>
-<li class="chapter" data-level="5.2.3" data-path="5-dataviz.html"><a href="5-dataviz.html#density-plots"><i class="fa fa-check"></i><b>5.2.3</b> Density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="5-dataviz.html"><a href="5-dataviz.html#plotting-two-variables-relationships"><i class="fa fa-check"></i><b>5.3</b> Plotting two variables: relationships</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="5-dataviz.html"><a href="5-dataviz.html#box-plot"><i class="fa fa-check"></i><b>5.3.1</b> Box plot</a></li>
-<li class="chapter" data-level="5.3.2" data-path="5-dataviz.html"><a href="5-dataviz.html#scatter-plots"><i class="fa fa-check"></i><b>5.3.2</b> Scatter plots</a></li>
-<li class="chapter" data-level="5.3.3" data-path="5-dataviz.html"><a href="5-dataviz.html#line-plots"><i class="fa fa-check"></i><b>5.3.3</b> Line plots</a></li>
+<li class="part"><span><b>II Presenting data</b></span></li>
+<li class="chapter" data-level="6" data-path="6-dataviz.html"><a href="6-dataviz.html"><i class="fa fa-check"></i><b>6</b> Data visualisation</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-dataviz.html"><a href="6-dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>6.1</b> The basics of <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="6.1.1" data-path="3-data.html"><a href="3-data.html#data"><i class="fa fa-check"></i><b>6.1.1</b> Data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-dataviz.html"><a href="6-dataviz.html#aesthetics"><i class="fa fa-check"></i><b>6.1.2</b> Aesthetics</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6-dataviz.html"><a href="6-dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>6.1.3</b> Geometric objects</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6-dataviz.html"><a href="6-dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>6.1.4</b> Theme adjustments</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="5-dataviz.html"><a href="5-dataviz.html#manipulating-plots"><i class="fa fa-check"></i><b>5.4</b> Manipulating plots</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="5-dataviz.html"><a href="5-dataviz.html#themes"><i class="fa fa-check"></i><b>5.4.1</b> Themes</a></li>
-<li class="chapter" data-level="5.4.2" data-path="5-dataviz.html"><a href="5-dataviz.html#colours"><i class="fa fa-check"></i><b>5.4.2</b> Colours</a></li>
-<li class="chapter" data-level="5.4.3" data-path="5-dataviz.html"><a href="5-dataviz.html#labels"><i class="fa fa-check"></i><b>5.4.3</b> Labels</a></li>
-<li class="chapter" data-level="5.4.4" data-path="5-dataviz.html"><a href="5-dataviz.html#axes"><i class="fa fa-check"></i><b>5.4.4</b> Axes</a></li>
-<li class="chapter" data-level="5.4.5" data-path="5-dataviz.html"><a href="5-dataviz.html#confidence-intervals"><i class="fa fa-check"></i><b>5.4.5</b> Confidence intervals</a></li>
-<li class="chapter" data-level="5.4.6" data-path="5-dataviz.html"><a href="5-dataviz.html#making-multiple-plots-in-one"><i class="fa fa-check"></i><b>5.4.6</b> Making multiple plots in one</a></li>
+<li class="chapter" data-level="6.2" data-path="6-dataviz.html"><a href="6-dataviz.html#plotting-one-variable-distributions"><i class="fa fa-check"></i><b>6.2</b> Plotting one variable: distributions</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-dataviz.html"><a href="6-dataviz.html#bar-plot"><i class="fa fa-check"></i><b>6.2.1</b> Bar plot</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-dataviz.html"><a href="6-dataviz.html#histograms"><i class="fa fa-check"></i><b>6.2.2</b> Histograms</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-dataviz.html"><a href="6-dataviz.html#density-plots"><i class="fa fa-check"></i><b>6.2.3</b> Density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="5-dataviz.html"><a href="5-dataviz.html#saving-plots"><i class="fa fa-check"></i><b>5.5</b> Saving plots</a></li>
+<li class="chapter" data-level="6.3" data-path="6-dataviz.html"><a href="6-dataviz.html#plotting-two-variables-relationships"><i class="fa fa-check"></i><b>6.3</b> Plotting two variables: relationships</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-dataviz.html"><a href="6-dataviz.html#box-plot"><i class="fa fa-check"></i><b>6.3.1</b> Box plot</a></li>
+<li class="chapter" data-level="6.3.2" data-path="6-dataviz.html"><a href="6-dataviz.html#scatter-plots"><i class="fa fa-check"></i><b>6.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6-dataviz.html"><a href="6-dataviz.html#line-plots"><i class="fa fa-check"></i><b>6.3.3</b> Line plots</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="6-references.html"><a href="6-references.html"><i class="fa fa-check"></i><b>6</b> References</a></li>
+<li class="chapter" data-level="6.4" data-path="6-dataviz.html"><a href="6-dataviz.html#manipulating-plots"><i class="fa fa-check"></i><b>6.4</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="6-dataviz.html"><a href="6-dataviz.html#themes"><i class="fa fa-check"></i><b>6.4.1</b> Themes</a></li>
+<li class="chapter" data-level="6.4.2" data-path="6-dataviz.html"><a href="6-dataviz.html#colours"><i class="fa fa-check"></i><b>6.4.2</b> Colours</a></li>
+<li class="chapter" data-level="6.4.3" data-path="6-dataviz.html"><a href="6-dataviz.html#labels"><i class="fa fa-check"></i><b>6.4.3</b> Labels</a></li>
+<li class="chapter" data-level="6.4.4" data-path="6-dataviz.html"><a href="6-dataviz.html#axes"><i class="fa fa-check"></i><b>6.4.4</b> Axes</a></li>
+<li class="chapter" data-level="6.4.5" data-path="6-dataviz.html"><a href="6-dataviz.html#confidence-intervals"><i class="fa fa-check"></i><b>6.4.5</b> Confidence intervals</a></li>
+<li class="chapter" data-level="6.4.6" data-path="6-dataviz.html"><a href="6-dataviz.html#making-multiple-plots-in-one"><i class="fa fa-check"></i><b>6.4.6</b> Making multiple plots in one</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="6-dataviz.html"><a href="6-dataviz.html#saving-plots"><i class="fa fa-check"></i><b>6.5</b> Saving plots</a></li>
+</ul></li>
+<li class="part"><span><b>III Regression</b></span></li>
+<li class="chapter" data-level="7" data-path="7-olsreg.html"><a href="7-olsreg.html"><i class="fa fa-check"></i><b>7</b> OLS regression</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-olsreg.html"><a href="7-olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>7.1</b> Bivariate linear regression</a></li>
+<li class="chapter" data-level="7.2" data-path="7-olsreg.html"><a href="7-olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-references.html"><a href="8-references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -183,7 +200,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="datadownload" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Getting data</h1>
+<h1><span class="header-section-number">Chapter 4</span> Get existing data</h1>
 <p>There are multiple ways you can get data into <code>R</code>. In this chapter we introduce different strategies for getting data into <code>R</code> from a variety of political data sources. First, we look at data included in packages. Second, we show how you can find datasets online and introduce a resource with a lot of links to political datasets. Third, we introduce a series of different packages that makes it easy to get data into <code>R</code>.</p>
 <p>Throughout the chapter we will use the <code>tidyverse</code> package so make sure to load this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
@@ -328,7 +345,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
         </div>
       </div>
 <a href="3-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="5-dataviz.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="5-create.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
