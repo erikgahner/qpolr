@@ -49,9 +49,16 @@ library("broom")
 
 As a first example, we can save the estimates and test statistics in a data frame by using the function `tidy()`. We save the output in a new object `reg_obama_tidy` and show this output as well.
 
-
-```{r, eval=FALSE, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE}
 reg_obama_tidy <- tidy(reg_obama)
+
+reg_obama_tidy
+```
+
+If we would also like to have the confidence intervals, we can add the `conf.int = TRUE`. 
+
+```{r, message=FALSE, warning=FALSE}
+reg_obama_tidy <- tidy(reg_obama, conf.int = TRUE)
 
 reg_obama_tidy
 ```
@@ -130,4 +137,12 @@ reg_obama_full_tidy %>%
      geom_point() +
      geom_vline(xintercept = 0) +
      geom_errorbarh()
+```
+
+## Diagnostic tests 
+
+diagnostic plots 
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE} 
+library("ggfortify") 
 ```

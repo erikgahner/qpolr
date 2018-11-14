@@ -51,7 +51,7 @@
 
 \title{\Huge{ Quantitative Politics with R } \vspace{2em}}
 \author{Erik Gahner Larsen and Zoltán Fazekas}
-\date{November 08, 2018}
+\date{November 13, 2018}
 
 \renewcommand{\contentsname}{Table of Contents}
 
@@ -3310,6 +3310,28 @@
   \NormalTok{reg_obama_tidy}
   \end{Highlighting}
   \end{Shaded}
+  \begin{verbatim}
+            term  estimate std.error statistic      p.value
+  1  (Intercept) 35.258869 2.2970329 15.349745 3.818291e-20
+  2 abort_rate08  0.825655 0.1297048  6.365649 6.911913e-08
+  \end{verbatim}
+  If we would also like to have the confidence intervals, we can add the
+  \texttt{conf.int\ =\ TRUE}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{reg_obama_tidy <-}\StringTok{ }\KeywordTok{tidy}\NormalTok{(reg_obama, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+  
+  \NormalTok{reg_obama_tidy}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+            term  estimate std.error statistic      p.value   conf.low
+  1  (Intercept) 35.258869 2.2970329 15.349745 3.818291e-20 30.6403753
+  2 abort_rate08  0.825655 0.1297048  6.365649 6.911913e-08  0.5648661
+    conf.high
+  1 39.877364
+  2  1.086444
+  \end{verbatim}
   This is useful if you would like to visualise the results. However,
   often we also want to save predictions and residuals based on our model.
   To do this, we can use the function \texttt{augment()}. Below we save
@@ -3354,7 +3376,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{.fitted)) }
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-187-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-188-1.pdf}
   
   \section{Multiple linear regression}\label{multiple-linear-regression}
   
@@ -3426,7 +3448,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-192-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-193-1.pdf}
   
   In some cases the intercept is not relevant. In the code below, we use
   the \texttt{filter()} function to visualise all effects except for the
@@ -3442,8 +3464,16 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-193-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-194-1.pdf}
   
+  \section{Diagnostic tests}\label{diagnostic-tests}
+  
+  diagnostic plots
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"ggfortify"}\NormalTok{) }
+  \end{Highlighting}
+  \end{Shaded}
   \backmatter
   
   \chapter{References}\label{references}
