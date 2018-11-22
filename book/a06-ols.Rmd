@@ -1,5 +1,7 @@
 ---
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 # (PART) Regression {-}
@@ -141,8 +143,54 @@ reg_obama_full_tidy %>%
 
 ## Diagnostic tests 
 
-diagnostic plots 
+To get diagnostic plots, we will use the `fortify()` function from `ggplot2`. This allows us to get the following variables realted to model fit statistics:
 
-```{r, eval=FALSE, message=FALSE, warning=FALSE} 
-library("ggfortify") 
+1. `.hat`: Diagonal of the hat matrix
+2. `.sigma`: Estimate of residual standard deviation when corresponding observation is dropped from model
+3. `.cooksd`: Cooks distance, using `cooks.distance()`
+4. `.fitted`: Fitted values of model
+5. `.resid`: Residuals
+6. `.stdresid`: Standardised residuals
+
+First, we use `fortify()` on our linear model:
+
+```{r, message=FALSE, warning=FALSE} 
+reg_fortify <- fortify(reg_obama_full)
 ```
+
+To see how our residuals are in relation to our fitted values, we can plot `.fitted` and `.resid`.
+
+```{r, message=FALSE, warning=FALSE} 
+ggplot(reg_fortify, aes(x = .fitted, y = .resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  geom_smooth(se = FALSE) +
+  labs(title = "Residuals vs. Fitted",
+       y = "Residuals",
+       x = "Fitted values")
+```
+
+To see whether our residuals are normally distributed, we create a normal Q-Q plot with the standardized residuals.
+
+```{r, message=FALSE, warning=FALSE} 
+ggplot(reg_fortify) +
+  stat_qq(aes(sample = .stdresid)) +
+  geom_abline() +
+  labs(title = "Normal Q-Q",
+       y = "Standardized residuals",
+       x = "Theoretical Quantiles")
+```
+
+
+To estimate the influence of individual observations, we plot the Cook's distance for each state.
+
+```{r, message=FALSE, warning=FALSE} 
+ggplot(reg_fortify, aes(x = seq_along(.cooksd), y = .cooksd)) +
+  geom_col()  +
+  labs(title = "Cook's distance",
+       y = "Cook's distance",
+       x = "Obs. number")
+```
+
+
+

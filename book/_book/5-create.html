@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2018-11-08">
+<meta name="date" content="2018-11-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -178,6 +178,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7" data-path="7-olsreg.html"><a href="7-olsreg.html"><i class="fa fa-check"></i><b>7</b> OLS regression</a><ul>
 <li class="chapter" data-level="7.1" data-path="7-olsreg.html"><a href="7-olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>7.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="7.2" data-path="7-olsreg.html"><a href="7-olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.3" data-path="7-olsreg.html"><a href="7-olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>7.3</b> Diagnostic tests</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="8-references.html"><a href="8-references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -405,9 +406,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">5.4</span> Get data from Twitter</h2>
 <p>To get data from Twitter, we are going to use the <code>rtweet</code> package <span class="citation">(Kearney, 2018)</span>. The first thing we do is to load the package (remember to install if if you have not already done so). You can find more information about the package here: <a href="https://rtweet.info/" class="uri">https://rtweet.info/</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rtweet&quot;</span>)</code></pre></div>
+<p>Noteworthy, we cannot just collect data without any limits. In most cases, we have a liit of 18,000 observations per 15 minutes.</p>
 <div id="data-on-twitter-user" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Data on twitter user</h3>
-<p>To get data on a Twitter user, we can use different functions. Here, we will use the <code>get_friends()</code> function to get information on the people Donald Trump is following.</p>
+<p>To get data on a Twitter user, we can use different functions. There is a distinction betweeen friends and followers. The accounts a user follows are called friends, whereas followers are the accounts that follow a user. Here, we will use the <code>get_friends()</code> function to get information on the people Donald Trump is following.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trump_following &lt;-<span class="st"> </span><span class="kw">get_friends</span>(<span class="st">&quot;realDonaldTrump&quot;</span>)</code></pre></div>
 <p>When we do that, all we get is a series of user IDs for the people Donald Trump is following. We can use the <code>lookup_users()</code> function toget more information about the individual accounts.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trump_following &lt;-<span class="st"> </span><span class="kw">lookup_users</span>(trump_following<span class="op">$</span>user_id)</code></pre></div>
@@ -416,7 +418,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>To save information on the user ID, the handle, name and the description, we create a new object called <code>trump_data</code> just with these variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trump_data &lt;-<span class="st"> </span>trump_following <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(user_id, screen_name, name, description) </code></pre></div>
-<p>You can use <code>head(trump_data)</code> to see what the data looks like.</p>
+<p>You can use <code>head(trump_data)</code> to see what the data looks like. To get information on the followers of Donald Trump, you can use the <code>get_followers()</code> function. However, this will take a lot of time to get (we are talking days!).</p>
+<p>To search for tweets from specific users, we can use the <code>search_users()</code> function. Below, we search for tweets from users with <code>politics</code> (via Twitters search query).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">politics_users &lt;-<span class="st"> </span><span class="kw">search_users</span>(<span class="st">&quot;politics&quot;</span>, <span class="dt">n =</span> <span class="dv">50</span>)</code></pre></div>
 <p>Next, we can use the <code>get_favorites()</code> function to get data on the tweets a user has favorited. Here, we save the favorites from Boris Johnson and save it in the object <code>tweets_bj</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tweets_bj &lt;-<span class="st"> </span><span class="kw">get_favorites</span>(<span class="st">&quot;BorisJohnson&quot;</span>)</code></pre></div>
 <p>To get a sense of what this data looks like, you can use the <code>head()</code> function.</p>

@@ -265,9 +265,11 @@ To get data from Twitter, we are going to use the `rtweet` package [@rtweet-pack
 library("rtweet")
 ```
 
+Noteworthy, we cannot just collect data without any limits. In most cases, we have a liit of 18,000 observations per 15 minutes.
+
 ### Data on twitter user
 
-To get data on a Twitter user, we can use different functions. Here, we will use the `get_friends()` function to get information on the people Donald Trump is following.
+To get data on a Twitter user, we can use different functions. There is a distinction betweeen friends and followers. The accounts a user follows are called friends, whereas followers are the accounts that follow a user. Here, we will use the `get_friends()` function to get information on the people Donald Trump is following.
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 trump_following <- get_friends("realDonaldTrump")
@@ -292,7 +294,13 @@ trump_data <- trump_following %>%
   select(user_id, screen_name, name, description) 
 ```
 
-You can use `head(trump_data)` to see what the data looks like.
+You can use `head(trump_data)` to see what the data looks like. To get information on the followers of Donald Trump, you can use the `get_followers()` function. However, this will take a lot of time to get (we are talking days!). 
+
+To search for tweets from specific users, we can use the `search_users()` function. Below, we search for tweets from users with `politics` (via Twitters search query).
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+politics_users <- search_users("politics", n = 50)
+```
 
 Next, we can use the `get_favorites()` function to get data on the tweets a user has favorited. Here, we save the favorites from Boris Johnson and save it in the object `tweets_bj`.
 
