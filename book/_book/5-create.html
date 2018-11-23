@@ -141,7 +141,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.2" data-path="5-create.html"><a href="5-create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>5.2</b> Scrape data from tables</a></li>
 <li class="chapter" data-level="5.3" data-path="5-create.html"><a href="5-create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>5.3</b> Scrape political speeches</a></li>
 <li class="chapter" data-level="5.4" data-path="5-create.html"><a href="5-create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>5.4</b> Get data from Twitter</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="5-create.html"><a href="5-create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>5.4.1</b> Data on twitter user</a></li>
+<li class="chapter" data-level="5.4.1" data-path="5-create.html"><a href="5-create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>5.4.1</b> Data on Twitter user</a></li>
 <li class="chapter" data-level="5.4.2" data-path="5-create.html"><a href="5-create.html#data-on-trends"><i class="fa fa-check"></i><b>5.4.2</b> Data on trends</a></li>
 <li class="chapter" data-level="5.4.3" data-path="5-create.html"><a href="5-create.html#data-on-tweets"><i class="fa fa-check"></i><b>5.4.3</b> Data on tweets</a></li>
 </ul></li>
@@ -408,7 +408,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rtweet&quot;</span>)</code></pre></div>
 <p>Noteworthy, we cannot just collect data without any limits. In most cases, we have a liit of 18,000 observations per 15 minutes.</p>
 <div id="data-on-twitter-user" class="section level3">
-<h3><span class="header-section-number">5.4.1</span> Data on twitter user</h3>
+<h3><span class="header-section-number">5.4.1</span> Data on Twitter user</h3>
 <p>To get data on a Twitter user, we can use different functions. There is a distinction betweeen friends and followers. The accounts a user follows are called friends, whereas followers are the accounts that follow a user. Here, we will use the <code>get_friends()</code> function to get information on the people Donald Trump is following.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trump_following &lt;-<span class="st"> </span><span class="kw">get_friends</span>(<span class="st">&quot;realDonaldTrump&quot;</span>)</code></pre></div>
 <p>When we do that, all we get is a series of user IDs for the people Donald Trump is following. We can use the <code>lookup_users()</code> function toget more information about the individual accounts.</p>
@@ -419,6 +419,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trump_data &lt;-<span class="st"> </span>trump_following <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(user_id, screen_name, name, description) </code></pre></div>
 <p>You can use <code>head(trump_data)</code> to see what the data looks like. To get information on the followers of Donald Trump, you can use the <code>get_followers()</code> function. However, this will take a lot of time to get (we are talking days!).</p>
+<p>To get the most recent tweets from, Donald Trump, we can use the <code>get_timeline()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trump_tweets &lt;-<span class="st"> </span><span class="kw">get_timeline</span>(<span class="st">&quot;realDonaldTrump&quot;</span>, <span class="dt">n =</span> <span class="dv">100</span>)</code></pre></div>
 <p>To search for tweets from specific users, we can use the <code>search_users()</code> function. Below, we search for tweets from users with <code>politics</code> (via Twitters search query).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">politics_users &lt;-<span class="st"> </span><span class="kw">search_users</span>(<span class="st">&quot;politics&quot;</span>, <span class="dt">n =</span> <span class="dv">50</span>)</code></pre></div>
 <p>Next, we can use the <code>get_favorites()</code> function to get data on the tweets a user has favorited. Here, we save the favorites from Boris Johnson and save it in the object <code>tweets_bj</code>.</p>
@@ -433,11 +435,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="data-on-tweets" class="section level3">
 <h3><span class="header-section-number">5.4.3</span> Data on tweets</h3>
-<p>Last, to get data on specific tweets, we use the <code>search_tweets()</code> function. Below, we get the most recent 100 tweets mentioning <code>brexit</code>. We also specify that we are not interested in retweets.</p>
+<p>Last, to get data on specific tweets, we first use the <code>search_tweets()</code> function. Below, we get the most recent 100 tweets mentioning <code>brexit</code>. We also specify that we are not interested in retweets.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">brexit &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(
   <span class="st">&quot;brexit&quot;</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span>
 )</code></pre></div>
 <p>This gives us a data frame with 100 observations and 88 variables. You can use the <code>names()</code> function to get a list of all variables in the data frame.</p>
+<p>You can also use the search operators provided by Twitter, e.g. by filtering only tweets linking to news articles.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">news &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="st">&quot;filter:news&quot;</span>, <span class="dt">n =</span> <span class="dv">100</span>)</code></pre></div>
+<p>We acn combine the two searches above and only search for tweets with Brexit related news.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">brexit_news &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="st">&quot;brexit filter:news&quot;</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>If we want to only include tweets with a video, we can use <code>&quot;filter:video&quot;</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">videos &lt;-<span class="st"> </span><span class="kw">search_tweets</span>(<span class="st">&quot;filter:video&quot;</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>To look up data on a specific tweet, use the function <code>lookup_tweets()</code>. You can find the id on a tweet by looking in the url for a tweet (or in the variable <code>status_id</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lookup_tweets</span>(<span class="st">&quot;1065623990746710022&quot;</span>)</code></pre></div>
 
 </div>
 </div>

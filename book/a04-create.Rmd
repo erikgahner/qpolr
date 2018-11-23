@@ -1,5 +1,7 @@
 ---
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Create data {#create}
@@ -267,7 +269,7 @@ library("rtweet")
 
 Noteworthy, we cannot just collect data without any limits. In most cases, we have a liit of 18,000 observations per 15 minutes.
 
-### Data on twitter user
+### Data on Twitter user
 
 To get data on a Twitter user, we can use different functions. There is a distinction betweeen friends and followers. The accounts a user follows are called friends, whereas followers are the accounts that follow a user. Here, we will use the `get_friends()` function to get information on the people Donald Trump is following.
 
@@ -295,6 +297,12 @@ trump_data <- trump_following %>%
 ```
 
 You can use `head(trump_data)` to see what the data looks like. To get information on the followers of Donald Trump, you can use the `get_followers()` function. However, this will take a lot of time to get (we are talking days!). 
+
+To get the most recent tweets from, Donald Trump, we can use the `get_timeline()` function.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+trump_tweets <- get_timeline("realDonaldTrump", n = 100)
+```
 
 To search for tweets from specific users, we can use the `search_users()` function. Below, we search for tweets from users with `politics` (via Twitters search query).
 
@@ -324,7 +332,7 @@ trends_uk <- get_trends("united kingdom")
 
 ### Data on tweets
 
-Last, to get data on specific tweets, we use the `search_tweets()` function. Below, we get the most recent 100 tweets mentioning `brexit`. We also specify that we are not interested in retweets.
+Last, to get data on specific tweets, we first use the `search_tweets()` function. Below, we get the most recent 100 tweets mentioning `brexit`. We also specify that we are not interested in retweets.
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 brexit <- search_tweets(
@@ -333,3 +341,27 @@ brexit <- search_tweets(
 ```
 
 This gives us a data frame with 100 observations and 88 variables. You can use the `names()` function to get a list of all variables in the data frame.
+
+You can also use the search operators provided by Twitter, e.g. by filtering only tweets linking to news articles.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+news <- search_tweets("filter:news", n = 100)
+```
+
+We acn combine the two searches above and only search for tweets with Brexit related news.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+brexit_news <- search_tweets("brexit filter:news", n = 100, include_rts = FALSE)
+```
+
+If we want to only include tweets with a video, we can use `"filter:video"`:
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+videos <- search_tweets("filter:video", n = 100, include_rts = FALSE)
+```
+
+To look up data on a specific tweet, use the function `lookup_tweets()`. You can find the id on a tweet by looking in the url for a tweet (or in the variable `status_id`).
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+lookup_tweets("1065623990746710022")
+```

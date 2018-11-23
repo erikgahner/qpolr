@@ -141,7 +141,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.2" data-path="5-create.html"><a href="5-create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>5.2</b> Scrape data from tables</a></li>
 <li class="chapter" data-level="5.3" data-path="5-create.html"><a href="5-create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>5.3</b> Scrape political speeches</a></li>
 <li class="chapter" data-level="5.4" data-path="5-create.html"><a href="5-create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>5.4</b> Get data from Twitter</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="5-create.html"><a href="5-create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>5.4.1</b> Data on twitter user</a></li>
+<li class="chapter" data-level="5.4.1" data-path="5-create.html"><a href="5-create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>5.4.1</b> Data on Twitter user</a></li>
 <li class="chapter" data-level="5.4.2" data-path="5-create.html"><a href="5-create.html#data-on-trends"><i class="fa fa-check"></i><b>5.4.2</b> Data on trends</a></li>
 <li class="chapter" data-level="5.4.3" data-path="5-create.html"><a href="5-create.html#data-on-tweets"><i class="fa fa-check"></i><b>5.4.3</b> Data on tweets</a></li>
 </ul></li>
@@ -284,7 +284,7 @@ reg_obama_tidy</code></pre></div>
         <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>.fitted)) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-189-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-194-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multiple-linear-regression" class="section level2">
 <h2><span class="header-section-number">7.2</span> Multiple linear regression</h2>
@@ -325,7 +325,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-194-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-199-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In some cases the intercept is not relevant. In the code below, we use the <code>filter()</code> function to visualise all effects except for the intercept.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_full_tidy <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span>
@@ -334,7 +334,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-195-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-200-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="diagnostic-tests" class="section level2">
 <h2><span class="header-section-number">7.3</span> Diagnostic tests</h2>
@@ -357,7 +357,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Residuals vs. Fitted&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Fitted values&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-197-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-202-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To see whether our residuals are normally distributed, we create a normal Q-Q plot with the standardized residuals.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify) <span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_qq</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> .stdresid)) <span class="op">+</span>
@@ -365,14 +365,14 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal Q-Q&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Standardized residuals&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Theoretical Quantiles&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-198-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-203-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To estimate the influence of individual observations, we plot the Cook’s distance for each state.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(.cooksd), <span class="dt">y =</span> .cooksd)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()  <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Obs. number&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-199-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-204-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 <!--
 The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html

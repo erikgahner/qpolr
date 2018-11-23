@@ -2512,7 +2512,7 @@
   Noteworthy, we cannot just collect data without any limits. In most
   cases, we have a liit of 18,000 observations per 15 minutes.
   
-  \subsection{Data on twitter user}\label{data-on-twitter-user}
+  \subsection{Data on Twitter user}\label{data-on-twitter-user}
   
   To get data on a Twitter user, we can use different functions. There is
   a distinction betweeen friends and followers. The accounts a user
@@ -2554,6 +2554,13 @@
   \texttt{get\_followers()} function. However, this will take a lot of
   time to get (we are talking days!).
   
+  To get the most recent tweets from, Donald Trump, we can use the
+  \texttt{get\_timeline()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{trump_tweets <-}\StringTok{ }\KeywordTok{get_timeline}\NormalTok{(}\StringTok{"realDonaldTrump"}\NormalTok{, }\DataTypeTok{n =} \DecValTok{100}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
   To search for tweets from specific users, we can use the
   \texttt{search\_users()} function. Below, we search for tweets from
   users with \texttt{politics} (via Twitters search query).
@@ -2591,7 +2598,7 @@
   \end{Shaded}
   \subsection{Data on tweets}\label{data-on-tweets}
   
-  Last, to get data on specific tweets, we use the
+  Last, to get data on specific tweets, we first use the
   \texttt{search\_tweets()} function. Below, we get the most recent 100
   tweets mentioning \texttt{brexit}. We also specify that we are not
   interested in retweets.
@@ -2606,6 +2613,35 @@
   can use the \texttt{names()} function to get a list of all variables in
   the data frame.
   
+  You can also use the search operators provided by Twitter, e.g.~by
+  filtering only tweets linking to news articles.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{news <-}\StringTok{ }\KeywordTok{search_tweets}\NormalTok{(}\StringTok{"filter:news"}\NormalTok{, }\DataTypeTok{n =} \DecValTok{100}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  We acn combine the two searches above and only search for tweets with
+  Brexit related news.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{brexit_news <-}\StringTok{ }\KeywordTok{search_tweets}\NormalTok{(}\StringTok{"brexit filter:news"}\NormalTok{, }\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{include_rts =} \OtherTok{FALSE}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  If we want to only include tweets with a video, we can use
+  \texttt{"filter:video"}:
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{videos <-}\StringTok{ }\KeywordTok{search_tweets}\NormalTok{(}\StringTok{"filter:video"}\NormalTok{, }\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{include_rts =} \OtherTok{FALSE}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To look up data on a specific tweet, use the function
+  \texttt{lookup\_tweets()}. You can find the id on a tweet by looking in
+  the url for a tweet (or in the variable \texttt{status\_id}).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{lookup_tweets}\NormalTok{(}\StringTok{"1065623990746710022"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
   \chapter*{(PART) Presenting data}\label{part-presenting-data}
   \addcontentsline{toc}{chapter}{(PART) Presenting data}
   
@@ -2621,7 +2657,7 @@
   \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{seats)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-148-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-153-1.pdf}
   
   There is nothing inherently wrong with using a function like this, but
   the moment we want to tweak the figure, it gets complicated.
@@ -2725,7 +2761,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-153-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-158-1} \end{center}
   
   This is a standard \texttt{ggplot2} plot with all its defaults. If we
   instead a scatter plot wanted a line plot, we can change
@@ -2736,7 +2772,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-154-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-159-1} \end{center}
   
   The above figure is somewhat misleading so it is just to show the logic
   of the how geometric objects work. Interestingly, we can add multiple
@@ -2749,7 +2785,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-155-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-160-1} \end{center}
   
   \subsection{Theme adjustments}\label{theme-adjustments}
   
@@ -2764,7 +2800,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-156-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-161-1} \end{center}
   
   We can also easily change the labels by using \texttt{xlab()} and
   \texttt{ylab()}.
@@ -2777,7 +2813,7 @@
   \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-157-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-162-1} \end{center}
   
   This is the basic logic of \texttt{ggplot2}.
   
@@ -2821,7 +2857,7 @@
   \StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-158-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-163-1} \end{center}
   
   \subsection{Histograms}\label{histograms}
   
@@ -2837,7 +2873,7 @@
   \begin{verbatim}
   `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
   \end{verbatim}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-159-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-164-1} \end{center}
   
   As you can see, we get a message about the use of a default binwidth.
   This is to emphasize the importance of specifying the binwidth yourself.
@@ -2849,7 +2885,7 @@
   \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-160-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-165-1} \end{center}
   
   Play around with different binwidths to see how it affects the
   distribution in the figure.
@@ -2865,7 +2901,7 @@
   \StringTok{  }\KeywordTok{geom_density}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-161-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-166-1} \end{center}
   
   Do compare the density plot to the histograms above.
   
@@ -2905,7 +2941,7 @@
   \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-162-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-167-1} \end{center}
   
   Here we can see that Obama got a greater vote share in states with less
   restrictions on abortion.
@@ -2922,7 +2958,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-163-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-168-1} \end{center}
   
   If we are working with a lot of observations, there will be an overlap
   in the points. To show all of the observations, we can add some small,
@@ -2935,7 +2971,7 @@
   \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-164-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-169-1} \end{center}
   
   We can also use \texttt{geom\_point(position\ =\ "jitter")} instead of
   Instead of \texttt{geom\_jitter()}. However, in this particular case, as
@@ -2952,7 +2988,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-165-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-170-1} \end{center}
   
   Here we can see that as the abortion rate increases, so does the vote
   share for Obama. As we can also see, this is a smoothing function. To
@@ -2964,7 +3000,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-166-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-171-1} \end{center}
   
   \section{Manipulating plots}\label{manipulating-plots}
   
@@ -3025,7 +3061,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-167-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-172-1} \end{center}
   
   \subsection{Colours}\label{colours}
   
@@ -3041,7 +3077,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-168-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-173-1} \end{center}
   
   If we want to give points a value based on the value of a specific
   variable, we need to specificy this within \texttt{aes()}. When we add
@@ -3055,7 +3091,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-169-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-174-1} \end{center}
   
   If we want to change these colours, we can use
   \texttt{scale\_colour\_manual()}.
@@ -3068,7 +3104,7 @@
   \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-170-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-175-1} \end{center}
   
   The colours are very bright. If we want to make them less so we can add
   \texttt{alpha} to \texttt{geom\_point()} to add transparency to the
@@ -3083,7 +3119,7 @@
   \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-171-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-176-1} \end{center}
   
   \subsection{Labels}\label{labels}
   
@@ -3105,7 +3141,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-172-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-177-1} \end{center}
   
   Last, we can see that the legend title is \texttt{abortlaw3}. We can
   change this by adding \texttt{colour} to \texttt{labs()} as well.
@@ -3124,7 +3160,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-173-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-178-1} \end{center}
   
   \subsection{Axes}\label{axes}
   
@@ -3148,7 +3184,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-174-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-179-1} \end{center}
   
   \subsection{Confidence intervals}\label{confidence-intervals}
   
@@ -3171,7 +3207,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-175-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-180-1} \end{center}
   
   \subsection{Making multiple plots in
   one}\label{making-multiple-plots-in-one}
@@ -3196,7 +3232,7 @@
   \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{abortlaw3)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-176-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-181-1} \end{center}
   
   \section{Saving plots}\label{saving-plots}
   
@@ -3392,7 +3428,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{.fitted)) }
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-189-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-194-1.pdf}
   
   \section{Multiple linear regression}\label{multiple-linear-regression}
   
@@ -3464,7 +3500,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-194-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-199-1.pdf}
   
   In some cases the intercept is not relevant. In the code below, we use
   the \texttt{filter()} function to visualise all effects except for the
@@ -3480,7 +3516,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-195-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-200-1.pdf}
   
   \section{Diagnostic tests}\label{diagnostic-tests}
   
@@ -3523,7 +3559,7 @@
          \DataTypeTok{x =} \StringTok{"Fitted values"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-197-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-202-1.pdf}
   
   To see whether our residuals are normally distributed, we create a
   normal Q-Q plot with the standardized residuals.
@@ -3537,7 +3573,7 @@
          \DataTypeTok{x =} \StringTok{"Theoretical Quantiles"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-198-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-203-1.pdf}
   
   To estimate the influence of individual observations, we plot the Cook's
   distance for each state.
@@ -3550,7 +3586,7 @@
          \DataTypeTok{x =} \StringTok{"Obs. number"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-199-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-204-1.pdf}
   
   \backmatter
   
