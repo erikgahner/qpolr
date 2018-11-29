@@ -51,7 +51,7 @@
 
 \title{\Huge{ Quantitative Politics with R } \vspace{2em}}
 \author{Erik Gahner Larsen and Zoltán Fazekas}
-\date{November 22, 2018}
+\date{November 29, 2018}
 
 \renewcommand{\contentsname}{Table of Contents}
 
@@ -2102,23 +2102,13 @@
   \NormalTok{  )}
   \end{Highlighting}
   \end{Shaded}
-  To inspect the data, we can use the function \texttt{head()}.
+  To inspect the data, we can use the function \texttt{head()} (output not
+  shown).
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{head}\NormalTok{(el_}\DecValTok{1955}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{verbatim}
-  # A tibble: 6 x 11
-    Name   MP     Area County Electorate   CON   LAB   LIB   NAT   MIN   OTH
-    <chr>  <chr> <int> <chr>       <int> <int> <int> <int> <int> <int> <int>
-  1 Abing~ AMS ~    12 Berks~      58487 25613 16979  8634     0     0     0
-  2 Accri~ H Hy~     4 Lanca~      50938 21157 22502     0     0     0     0
-  3 Acton  JA S~    11 Ealing      49373 20120 20645     0     0     0     0
-  4 Alder~ E Er~    12 Hamps~      54209 22701 13129  4232     0     0     0
-  5 Altri~ FJ E~     4 Centr~      61525 30586 12174  6436     0     0     0
-  6 Arund~ HB K~    12 West ~      69034 35180 15188     0     0     0     0
-  \end{verbatim}
   The above output shows that the data is loaded succesfully and saved in
   a data frame. We could do this for all elections manually, but that
   would take a lot of time and increase the odds of making mistakes.
@@ -2198,9 +2188,6 @@
   \KeywordTok{class}\NormalTok{(wikipage)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{verbatim}
-  [1] "xml_document" "xml_node"    
-  \end{verbatim}
   Here, we see that we have an xml\_document and xml\_node in our object.
   We want to save the tables in our data. To do this, we use the function
   \texttt{html\_nodes()}.
@@ -2234,34 +2221,15 @@
   \KeywordTok{class}\NormalTok{(ep14_raw)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{verbatim}
-  [1] "data.frame"
-  \end{verbatim}
   We call the object \texttt{ep14\_raw} as it is a raw table that needs
   further changes before we are satisfied. To get a sense of one of the
   issues with the data frame, we look at the last observations in the data
-  frame with \texttt{tail()}.
+  frame with \texttt{tail()} (output not shown).
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{tail}\NormalTok{(ep14_raw)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{verbatim}
-               Party           Party      Votes Votes Votes Seats Seats
-  29                            NI21     10,553   0.1   New     0      
-  30                     Peace Party     10,130   0.1           0      
-  31                          Others     55,011   0.3   3.4     0      
-  32     Valid Votes     Valid Votes 16,454,950  99.5          73     1
-  33  Rejected Votes  Rejected Votes     90,812   0.6                  
-  34 Overall turnout Overall turnout 16,545,762  35.6   0.9            
-     Seats   NA   NA
-  29       <NA> <NA>
-  30       <NA> <NA>
-  31       <NA> <NA>
-  32       <NA> <NA>
-  33       <NA> <NA>
-  34                
-  \end{verbatim}
   Here we see that the last three rows are aggregated numbers unrelated to
   the votes for the individual parties. Accordingly, we would like to
   remove these observations. To remove the specific rows, we save the
@@ -2272,28 +2240,12 @@
   \end{Highlighting}
   \end{Shaded}
   Next, we use \texttt{head()} to see what our data frame looks like for
-  the first observations.
+  the first observations (output not shown).
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{head}\NormalTok{(ep14_raw)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{verbatim}
-    Party                 Party     Votes Votes Votes Seats  Seats Seats
-  1 Party                 Party     Votes Votes Votes Seats Number     %
-  2       UK Independence Party 4,376,635  26.6  10.6    24     11  32.9
-  3                Labour Party 4,020,646  24.4   9.2    20      7  27.4
-  4          Conservative Party 3,792,549  23.1   3.8    19      7  26.0
-  5                 Green Party 1,136,670   6.9   0.9     3      1   4.1
-  6           Liberal Democrats 1,087,633   6.6   6.7     1     10   1.4
-      NA    NA
-  1  +/- Seats
-  2 <NA>  <NA>
-  3 <NA>  <NA>
-  4 <NA>  <NA>
-  5 <NA>  <NA>
-  6 <NA>  <NA>
-  \end{verbatim}
   We see two main issues. First, that the variable names are not unique
   and will need to be changed. We are interested in four of the variables,
   namely the name of the party, the number of votes, the vote share and
@@ -2341,42 +2293,9 @@
   \NormalTok{ep14}
   \end{Highlighting}
   \end{Shaded}
-  \begin{verbatim}
-                           party   votes share seats
-  1        UK Independence Party 4376635  26.6    24
-  2                 Labour Party 4020646  24.4    20
-  3           Conservative Party 3792549  23.1    19
-  4                  Green Party 1136670   6.9     3
-  5            Liberal Democrats 1087633   6.6     1
-  6      Scottish National Party  389503   2.4     2
-  7  An Independence from Europe  235124   1.4     0
-  8       British National Party  179694   1.1     0
-  9                    Sinn Féin  159813   1.0     1
-  10                         DUP  131163   0.8     1
-  11           English Democrats  126024   0.8     0
-  12                 Plaid Cymru  111864   0.7     1
-  13        Scottish Green Party  108305   0.7     0
-  14       Ulster Unionist Party   83438   0.5     1
-  15                        SDLP   81594   0.5     0
-  16                         TUV   75806   0.5     0
-  17  Christian Peoples Alliance   50222   0.3     0
-  18                    Alliance   44432   0.3     0
-  19                       No2EU   31757   0.1     0
-  20   4 Freedoms Party (UK EPP)   28014   0.2     0
-  21  We Demand a Referendum Now   23426   0.1     0
-  22                         NHA   23253   0.1     0
-  23        Animal Welfare Party   21092   0.1     0
-  24               Britain First   20272   0.1     0
-  25             Yorkshire First   19017   0.1     0
-  26             Europeans Party   10712   0.1     0
-  27                  Green (NI)   10598   0.1     0
-  28                        NI21   10553   0.1     0
-  29                 Peace Party   10130   0.1     0
-  30                      Others   55011   0.3     0
-  \end{verbatim}
   Last, we create a figure showing the vote share and seats for the
   parties (notice that you will also need the package \texttt{ggrepel} to
-  create the figure).
+  create the figure). (Output not shown)
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{ggplot}\NormalTok{(ep14, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ share, }\DataTypeTok{y =}\NormalTok{ seats)) }\OperatorTok{+}
@@ -2395,8 +2314,6 @@
   \NormalTok{  )}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-128-1.pdf}
-  
   \section{Scrape political speeches}\label{scrape-political-speeches}
   
   A lot of the text we can scrape online is not in the form of
@@ -2478,22 +2395,6 @@
   \NormalTok{words }\OperatorTok{%>%}\StringTok{ }\KeywordTok{count}\NormalTok{(word, }\DataTypeTok{sort =} \OtherTok{TRUE}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{verbatim}
-  # A tibble: 1,280 x 2
-     word        n
-     <chr>   <int>
-   1 people     49
-   2 britain    36
-   3 country    34
-   4 dream      33
-   5 world      30
-   6 british    29
-   7 that’s     21
-   8 party      19
-   9 it’s       17
-  10 free       16
-  # ... with 1,270 more rows
-  \end{verbatim}
   We see that \emph{people} is mentioned 49 times, and \emph{britain} is
   mentioned 36 times. \emph{dream} and \emph{british} are mentioned 33 and
   29 times, respectively.
@@ -2507,6 +2408,15 @@
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{library}\NormalTok{(}\StringTok{"rtweet"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  Next, to make sure you can collect data, you need to have a Twitter
+  user. You can register for free at \url{https://twitter.com/}. You will
+  need this in order to use the \texttt{rstats2twitter} app. Last, make
+  sure to install the \texttt{httpuv} package as well.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"httpuv"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
   Noteworthy, we cannot just collect data without any limits. In most
@@ -2657,7 +2567,7 @@
   \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{seats)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-153-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-154-1.pdf}
   
   There is nothing inherently wrong with using a function like this, but
   the moment we want to tweak the figure, it gets complicated.
@@ -2761,7 +2671,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-158-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-159-1} \end{center}
   
   This is a standard \texttt{ggplot2} plot with all its defaults. If we
   instead a scatter plot wanted a line plot, we can change
@@ -2772,7 +2682,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-159-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-160-1} \end{center}
   
   The above figure is somewhat misleading so it is just to show the logic
   of the how geometric objects work. Interestingly, we can add multiple
@@ -2785,7 +2695,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-160-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-161-1} \end{center}
   
   \subsection{Theme adjustments}\label{theme-adjustments}
   
@@ -2800,7 +2710,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-161-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-162-1} \end{center}
   
   We can also easily change the labels by using \texttt{xlab()} and
   \texttt{ylab()}.
@@ -2813,7 +2723,7 @@
   \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-162-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-163-1} \end{center}
   
   This is the basic logic of \texttt{ggplot2}.
   
@@ -2857,7 +2767,7 @@
   \StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-163-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-164-1} \end{center}
   
   \subsection{Histograms}\label{histograms}
   
@@ -2873,7 +2783,7 @@
   \begin{verbatim}
   `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
   \end{verbatim}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-164-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-165-1} \end{center}
   
   As you can see, we get a message about the use of a default binwidth.
   This is to emphasize the importance of specifying the binwidth yourself.
@@ -2885,7 +2795,7 @@
   \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-165-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-166-1} \end{center}
   
   Play around with different binwidths to see how it affects the
   distribution in the figure.
@@ -2901,7 +2811,7 @@
   \StringTok{  }\KeywordTok{geom_density}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-166-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-167-1} \end{center}
   
   Do compare the density plot to the histograms above.
   
@@ -2941,7 +2851,7 @@
   \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-167-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-168-1} \end{center}
   
   Here we can see that Obama got a greater vote share in states with less
   restrictions on abortion.
@@ -2958,7 +2868,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-168-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-169-1} \end{center}
   
   If we are working with a lot of observations, there will be an overlap
   in the points. To show all of the observations, we can add some small,
@@ -2971,7 +2881,7 @@
   \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-169-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-170-1} \end{center}
   
   We can also use \texttt{geom\_point(position\ =\ "jitter")} instead of
   Instead of \texttt{geom\_jitter()}. However, in this particular case, as
@@ -2988,7 +2898,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-170-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-171-1} \end{center}
   
   Here we can see that as the abortion rate increases, so does the vote
   share for Obama. As we can also see, this is a smoothing function. To
@@ -3000,7 +2910,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-171-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-172-1} \end{center}
   
   \section{Manipulating plots}\label{manipulating-plots}
   
@@ -3061,7 +2971,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-172-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-173-1} \end{center}
   
   \subsection{Colours}\label{colours}
   
@@ -3077,7 +2987,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-173-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-174-1} \end{center}
   
   If we want to give points a value based on the value of a specific
   variable, we need to specificy this within \texttt{aes()}. When we add
@@ -3091,7 +3001,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-174-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-175-1} \end{center}
   
   If we want to change these colours, we can use
   \texttt{scale\_colour\_manual()}.
@@ -3104,7 +3014,7 @@
   \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-175-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-176-1} \end{center}
   
   The colours are very bright. If we want to make them less so we can add
   \texttt{alpha} to \texttt{geom\_point()} to add transparency to the
@@ -3119,7 +3029,7 @@
   \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-176-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-177-1} \end{center}
   
   \subsection{Labels}\label{labels}
   
@@ -3141,7 +3051,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-177-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-178-1} \end{center}
   
   Last, we can see that the legend title is \texttt{abortlaw3}. We can
   change this by adding \texttt{colour} to \texttt{labs()} as well.
@@ -3160,7 +3070,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-178-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-179-1} \end{center}
   
   \subsection{Axes}\label{axes}
   
@@ -3184,7 +3094,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-179-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-180-1} \end{center}
   
   \subsection{Confidence intervals}\label{confidence-intervals}
   
@@ -3207,7 +3117,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-180-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-181-1} \end{center}
   
   \subsection{Making multiple plots in
   one}\label{making-multiple-plots-in-one}
@@ -3232,7 +3142,7 @@
   \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{abortlaw3)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-181-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-182-1} \end{center}
   
   \section{Saving plots}\label{saving-plots}
   
@@ -3428,7 +3338,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{.fitted)) }
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-194-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-195-1.pdf}
   
   \section{Multiple linear regression}\label{multiple-linear-regression}
   
@@ -3500,7 +3410,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-199-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-200-1.pdf}
   
   In some cases the intercept is not relevant. In the code below, we use
   the \texttt{filter()} function to visualise all effects except for the
@@ -3516,7 +3426,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-200-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-201-1.pdf}
   
   \section{Diagnostic tests}\label{diagnostic-tests}
   
@@ -3559,7 +3469,7 @@
          \DataTypeTok{x =} \StringTok{"Fitted values"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-202-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-203-1.pdf}
   
   To see whether our residuals are normally distributed, we create a
   normal Q-Q plot with the standardized residuals.
@@ -3573,7 +3483,7 @@
          \DataTypeTok{x =} \StringTok{"Theoretical Quantiles"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-203-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-204-1.pdf}
   
   To estimate the influence of individual observations, we plot the Cook's
   distance for each state.
@@ -3586,7 +3496,102 @@
          \DataTypeTok{x =} \StringTok{"Obs. number"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-204-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-205-1.pdf}
+  
+  \section{Setting up regression
+  tables}\label{setting-up-regression-tables}
+  
+  To export regression tables from \texttt{R}, we are going to use the
+  package \texttt{stargazer} (remember to install the package if you
+  haven't already done so).
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(}\StringTok{"stargazer"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  First, we use the \texttt{stargazer()} function to show the output from
+  the object \texttt{reg\_obama}. Notice that we also add the option
+  \texttt{type\ =\ "text"}. If we do not do that, we will get the output
+  as LaTeX code.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{stargazer}\NormalTok{(reg_obama, }\DataTypeTok{type =} \StringTok{"text"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  
+  ===============================================
+                          Dependent variable:    
+                      ---------------------------
+                               obama2012         
+  -----------------------------------------------
+  abort_rate08                 0.826***          
+                                (0.130)          
+                                                 
+  Constant                     35.259***         
+                                (2.297)          
+                                                 
+  -----------------------------------------------
+  Observations                    50             
+  R2                             0.458           
+  Adjusted R2                    0.446           
+  Residual Std. Error       7.654 (df = 48)      
+  F Statistic           40.521*** (df = 1; 48)   
+  ===============================================
+  Note:               *p<0.1; **p<0.05; ***p<0.01
+  \end{verbatim}
+  This shows the output from one regression model. To add more regression
+  models to the table, simply add a comma and the name of the object with
+  the model. Below we use the same code as above and add the model with
+  control variables included, \texttt{reg\_obama\_full}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{stargazer}\NormalTok{(reg_obama, reg_obama_full, }\DataTypeTok{type =} \StringTok{"text"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  
+  =================================================================
+                                   Dependent variable:             
+                      ---------------------------------------------
+                                        obama2012                  
+                               (1)                    (2)          
+  -----------------------------------------------------------------
+  abort_rate08               0.826***               0.681***       
+                             (0.130)                (0.161)        
+                                                                   
+  density                                            0.008         
+                                                    (0.005)        
+                                                                   
+  Constant                  35.259***              36.019***       
+                             (2.297)                (2.328)        
+                                                                   
+  -----------------------------------------------------------------
+  Observations                  50                     50          
+  R2                          0.458                  0.482         
+  Adjusted R2                 0.446                  0.459         
+  Residual Std. Error    7.654 (df = 48)        7.564 (df = 47)    
+  F Statistic         40.521*** (df = 1; 48) 21.827*** (df = 2; 47)
+  =================================================================
+  Note:                                 *p<0.1; **p<0.05; ***p<0.01
+  \end{verbatim}
+  \subsection{Exporting the regression
+  table}\label{exporting-the-regression-table}
+  
+  To export the regression table, we use the option \texttt{out} to
+  specify, where we want to save our regresion table. Below we save the
+  table in the file \texttt{tab-regression.htm}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{stargazer}\NormalTok{(reg_obama, reg_obama_full, }\DataTypeTok{type =} \StringTok{"text"}\NormalTok{,}
+            \DataTypeTok{out=}\StringTok{"tab-regression.htm"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  An \texttt{.htm} file is a HTML file you can open in your browser
+  (e.g.~Google Chrome). To get it into Word, simply open the file via
+  Word. You might have to do some extra changes before it is ready for a
+  broader audience. Always try to make your tables look like tables in
+  published articles and books.
   
   \backmatter
   

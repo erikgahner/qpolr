@@ -24,22 +24,22 @@ Next, to get a sense of the data we will be looking at, go to your browser (e.g.
 
 In this file, you will see multiple lines. These are the election results from 1955 (as indicated by the filename, `electdata_1955.txt`. The first line in the file is: `Name;MP;Area;County;Electorate;CON;LAB;LIB;NAT;MIN;OTH`. These are the variable names and are separated by `;`. By using the function `read_delim()` from the `tidyverse` package, we can load this file into `R` as a data frame. Notice that we specify that `;` is used to separate fields. We save the file in the object `el_1955`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 el_1955 <- read_delim(
   "https://www.electoralcalculus.co.uk/electdata_1955.txt", 
   delim = ";"
   )
 ```
 
-To inspect the data, we can use the function `head()`.
+To inspect the data, we can use the function `head()` (output not shown).
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 head(el_1955)
 ```
 
 The above output shows that the data is loaded succesfully and saved in a data frame. We could do this for all elections manually, but that would take a lot of time and increase the odds of making mistakes. Instead, we will create a function that downloads all files. First, we specify the elections we are interested in (from 1955 to 2017) and save this information in the object `election_years`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 election_years <- c("1955", "1959", "1964", "1966", "1970", "1974feb",
 "1974oct", "1979", "1983", "1987", "1992ob", "1997",
 "2001ob", "2005ob", "2010", "2015", "2017")
@@ -78,7 +78,7 @@ library("rvest")
 
 In the example below, we will show how to easily scrape a table from a Wikipedia page. The first thing we do is to specify the link to the Wikipedia page and save it in the object `url`. In the example we will be looking at the election results from the 2014 European Parliament election in the United Kingdom.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 url <- c(
   "https://en.wikipedia.org/wiki/European_Parliament_election,_2014_(United_Kingdom)"
   )
@@ -86,61 +86,61 @@ url <- c(
 
 Next, we use the `read_html()` function to save the content on the Wikipedia page. We save the data in the object `wikipage`
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 wikipage <- read_html(url)
 ```
 
 We can use the function `class()` to see what type of content we have in the object.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 class(wikipage)
 ```
 
 Here, we see that we have an xml_document and xml_node in our object. We want to save the tables in our data. To do this, we use the function `html_nodes()`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 data_table <- html_nodes(wikipage, "table")
 ```
 
 If you type `data_table`, you can see an overview of all the tables we have saved. Here, we would like to use the data on the number of votes the different parties got in the 2014 European Parliament election in the United Kingdom. We can see that this table is number 14 in our object. We save this table in the object `data_results`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 data_results <- data_table[[14]] 
 ```
 
 We can now use the function `html_table()` to save the table as a data frame. We use the option `fill=TRUE` as there are empty cells in the table. We save the table in the object `ep14_raw`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14_raw <- html_table(data_results, fill=TRUE)
 ```
 
 To ensure that it is a data frame we are working with, we can use the function `class()` again.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 class(ep14_raw)
 ```
 
-We call the object `ep14_raw` as it is a raw table that needs further changes before we are satisfied. To get a sense of one of the issues with the data frame, we look at the last observations in the data frame with `tail()`.
+We call the object `ep14_raw` as it is a raw table that needs further changes before we are satisfied. To get a sense of one of the issues with the data frame, we look at the last observations in the data frame with `tail()` (output not shown).
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 tail(ep14_raw)
 ```
 
 Here we see that the last three rows are aggregated numbers unrelated to the votes for the individual parties. Accordingly, we would like to remove these observations. To remove the specific rows, we save the object without observations 32, 33 and 34.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14_raw <- ep14_raw[-c(32:34), ]
 ```
 
-Next, we use `head()` to see what our data frame looks like for the first observations.
+Next, we use `head()` to see what our data frame looks like for the first observations (output not shown).
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 head(ep14_raw)
 ```
 
 We see two main issues. First, that the variable names are not unique and will need to be changed. We are interested in four of the variables, namely the name of the party, the number of votes, the vote share and the number of seats. We give the relevant variables names and give the other variables unimportant names (as we are going to ignore those).
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 names(ep14_raw) <- c("V1", "party", "votes", "share", "V5", 
                      "seats", "V7", "V8", "V9", "V10")
 ```
@@ -148,20 +148,20 @@ names(ep14_raw) <- c("V1", "party", "votes", "share", "V5",
 
 Next, we can see that the first row is not an observation but variable names as well. Accordingly, we need to remove this observation as well.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14_raw <- ep14_raw[-c(1), ]
 ```
 
 To remove the irrelevant variables in our data frame, we use the `select()` function to select the relevant variables.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14_raw <- ep14_raw %>%
   select(party, votes, share, seats)
 ```
 
 The last thing to do is to tell `R` that three variables, `votes`, `share` and `seats` are numeric. Notice how we use the function `gsub()` to get rid of commas. We save this data frame in the object `ep14`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14 <- ep14_raw %>%
   mutate(
     votes = as.numeric(gsub(",","", votes)),
@@ -172,14 +172,14 @@ ep14 <- ep14_raw %>%
 
 Inspect the final data frame. In this case, we do not have a lot of observations and we simply show them all.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14
 ```
 
 
-Last, we create a figure showing the vote share and seats for the parties (notice that you will also need the package `ggrepel` to create the figure).
+Last, we create a figure showing the vote share and seats for the parties (notice that you will also need the package `ggrepel` to create the figure). (Output not shown)
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ggplot(ep14, aes(x = share, y = seats)) +
   geom_point() +
   theme_minimal() +
@@ -202,7 +202,7 @@ A lot of the text we can scrape online is not in the form of spreadsheets but in
 
 Specifically, we will select the speech the Leader's speech by Theresa May in Manchester from 2017. First, as in the previous example, we specify the url of the page we would like to scrape. In this speech, Theresa May is talking extensively about the British Dream.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 url <- c(
   "http://www.britishpoliticalspeech.org/speech-archive.htm?speech=367"
   )
@@ -211,49 +211,49 @@ url <- c(
 To get the content of the page with the speech, we save the content of the page in the object `speechpage`.
 
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 speechpage <- read_html(url)
 ```
 
 Next, to select the actual part of the page containing the speech, we select the content within the `<p></p>` tags.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 data_speech <- html_nodes(speechpage, "p")
 ```
 
 To get the actual text, we use the function `html_text()`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 data_speech_text <- html_text(data_speech)
 ```
 
 Now we have all the text we need to use. However, to create a dataset with the words in the speech, we will use some functions from the package `tidytext` (as always, remember to install the package if you do not already have it installed) [@tidytext2016].
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 library("tidytext")
 ```
 
 The first function we are going to use is not part of the package but will be used to convert our speech into a data frame using the `data_frame()` function.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 data_speech_df <- data_frame(text = data_speech_text)
 ```
 
 While in a data frame, it is still just a lot of sentences on different rows. To unnest all the sentences in our text column into a word column, we use the function `unnest_tokens()`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 words <- data_speech_df %>% unnest_tokens(word, text)
 ```
 
 This gives os an object, `words`, with 7,116 observations. However, a lot of these words are irrelevant stop words (most common words that we are not interested in such as _the_, _is_, _at_, _which_) that we would like to remove. We use the `anti_join()` function to remove all stop words.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 words <- words %>% anti_join(stop_words, by = "word")
 ```
 
 Last, we can count the words in the speech and calculate the number of occurences. 
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 words %>% count(word, sort = TRUE)
 ```
 
@@ -265,6 +265,12 @@ To get data from Twitter, we are going to use the `rtweet` package [@rtweet-pack
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 library("rtweet")
+```
+
+Next, to make sure you can collect data, you need to have a Twitter user. You can register for free at [https://twitter.com/](https://twitter.com/). You will need this in order to use the `rstats2twitter` app. Last, make sure to install the `httpuv` package as well.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+library("httpuv")
 ```
 
 Noteworthy, we cannot just collect data without any limits. In most cases, we have a liit of 18,000 observations per 15 minutes.

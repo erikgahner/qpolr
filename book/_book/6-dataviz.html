@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2018-11-22">
+<meta name="date" content="2018-11-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -179,6 +179,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1" data-path="7-olsreg.html"><a href="7-olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>7.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="7.2" data-path="7-olsreg.html"><a href="7-olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="7.3" data-path="7-olsreg.html"><a href="7-olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>7.3</b> Diagnostic tests</a></li>
+<li class="chapter" data-level="7.4" data-path="7-olsreg.html"><a href="7-olsreg.html#setting-up-regression-tables"><i class="fa fa-check"></i><b>7.4</b> Setting up regression tables</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-olsreg.html"><a href="7-olsreg.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>7.4.1</b> Exporting the regression table</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="8-references.html"><a href="8-references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -204,7 +207,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 6</span> Data visualisation</h1>
 <p>Visualising data is important <span class="citation">(Healy &amp; Moody, 2014)</span>. As with everything in <code>R</code>, there are a lot of different ways to visualise data. One simple way to visualise data is to use <em>base</em> functions in <code>R</code> (i.e. functions that come when you install the <code>R</code> language). Below you will see an example on this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>uk2017<span class="op">$</span>votes, <span class="dt">y=</span>uk2017<span class="op">$</span>seats)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-153-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-154-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>There is nothing inherently wrong with using a function like this, but the moment we want to tweak the figure, it gets complicated. Accordingly, we will not use the standard functions in <code>R</code> but the package <code>ggplot2</code> <span class="citation">(H. Wickham, 2009)</span>. This package makes it easy to create beautiful figures in <code>R</code>.</p>
 <p><code>ggplot2</code> creates more beautiful figures with better defaults, it is very customizable, and it works within the tidyverse (together with <code>dplyr</code>). For those reasons it is becoming incredibly popular among practitioners and academics alike. That being said, there is an element of personal preference when it comes to data visualisations and <code>ggplot2</code> is not perfect. While the defaults are good, they could be better. Furthermore, there are functions in the package you should <em>never</em> use (such as <code>qplot()</code>, short for <em>quick plot</em>).</p>
 <div id="the-basics-of-ggplot2" class="section level2">
@@ -239,16 +242,16 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 <p>Now we will need to add the geometric object, we would like to visualise. We need to go to a new line and tell <code>R</code> to follow along. To do this, we add a plus (<code>+</code>) at the end of the line. On the new line we add the type of geometric object (<code>geom_</code>), we want add. To replicate the plot above we use <code>geom_point()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x =</span> abort_rate08, <span class="dt">y =</span> obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-158-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-159-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>This is a standard <code>ggplot2</code> plot with all its defaults. If we instead a scatter plot wanted a line plot, we can change <code>geom_point()</code> to <code>geom_line()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x =</span> abort_rate08, <span class="dt">y =</span> obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-159-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-160-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The above figure is somewhat misleading so it is just to show the logic of the how geometric objects work. Interestingly, we can add multiple geometric objects to the same plot. Below, we add both geometric objects used above.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x =</span> abort_rate08, <span class="dt">y =</span> obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-160-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-161-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="theme-adjustments" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Theme adjustments</h3>
@@ -256,14 +259,14 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x =</span> abort_rate08, <span class="dt">y =</span> obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-161-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-162-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>We can also easily change the labels by using <code>xlab()</code> and <code>ylab()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x =</span> abort_rate08, <span class="dt">y =</span> obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Obama vote share in 2012&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Number of abortions per 1,000 women aged 15-44 in 2008&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-162-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-163-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>This is the basic logic of <code>ggplot2</code>.</p>
 </div>
 </div>
@@ -302,7 +305,7 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 <p>The first plot we will do is a bar plot. To do this we use a variable on the number of restrictions on abortion (<code>abortlaw10</code>) and <code>geom_bar()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abortlaw10)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>() </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-163-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-164-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="histograms" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Histograms</h3>
@@ -310,11 +313,11 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>() </code></pre></div>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-164-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-165-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>As you can see, we get a message about the use of a default binwidth. This is to emphasize the importance of specifying the binwidth yourself. We can change the bin width by adding <code>binwidth</code> to <code>geom_histogram()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-165-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-166-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Play around with different binwidths to see how it affects the distribution in the figure.</p>
 </div>
 <div id="density-plots" class="section level3">
@@ -322,7 +325,7 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 <p>The histogram is not the only way to show the distribution of a variable. To make a density plot, you can use <code>geom_density()</code>. We use the <code>obama2012</code> variable again.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_density</span>() </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-166-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-167-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Do compare the density plot to the histograms above.</p>
 </div>
 </div>
@@ -356,7 +359,7 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 <p>For the box plot, we will be using <code>geom_boxplot()</code> to show how the vote share for Obama is related to abortion laws (here with the <code>abortlaw3</code> variable, i.e. abortion restrictions with three tiers of number of restrictions).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abortlaw3, <span class="dt">group=</span>abortlaw3, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-167-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-168-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Here we can see that Obama got a greater vote share in states with less restrictions on abortion.</p>
 </div>
 <div id="scatter-plots" class="section level3">
@@ -364,11 +367,11 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 <p>To illustrate the relation between number of abortions and Obama’s vote share, measured with the variables <code>abort_rate08</code> and <code>obama2012</code>, we will create a scatter plot with <code>geom_point()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-168-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-169-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>If we are working with a lot of observations, there will be an overlap in the points. To show all of the observations, we can add some small, random noise to the observations, so we can see more of them. To do this, we can use <code>geom_jitter()</code> instead of <code>geom_point()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_jitter</span>() </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-169-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-170-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>We can also use <code>geom_point(position = &quot;jitter&quot;)</code> instead of Instead of <code>geom_jitter()</code>. However, in this particular case, as we only have 50 observations, it is not a major concern.</p>
 </div>
 <div id="line-plots" class="section level3">
@@ -376,11 +379,11 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 <p>To create a regression line we can use the <code>geom_smooth()</code> function. Here we will again look at the relation between <code>abort_rate08</code> and <code>obama2012</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-170-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-171-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Here we can see that as the abortion rate increases, so does the vote share for Obama. As we can also see, this is a smoothing function. To have a linear line instead we can specify that we will be using <code>method=&quot;lm&quot;</code> as an option.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-171-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-172-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="manipulating-plots" class="section level2">
@@ -448,7 +451,7 @@ Figure 6.1: Eight themes
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-172-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-173-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="colours" class="section level3">
 <h3><span class="header-section-number">6.4.2</span> Colours</h3>
@@ -457,27 +460,27 @@ Figure 6.1: Eight themes
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-173-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-174-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>If we want to give points a value based on the value of a specific variable, we need to specificy this within <code>aes()</code>. When we add <code>colour=abortlaw3</code> to our <code>aes()</code>, we will see different colours for states with different restrictions on abortion.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-174-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-175-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>If we want to change these colours, we can use <code>scale_colour_manual()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-175-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-176-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The colours are very bright. If we want to make them less so we can add <code>alpha</code> to <code>geom_point()</code> to add transparency to the points. Below we use an alpha of 0.7 (if we want more transparency we can use a lower alpha level).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-176-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-177-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="labels" class="section level3">
 <h3><span class="header-section-number">6.4.3</span> Labels</h3>
@@ -493,7 +496,7 @@ Figure 6.1: Eight themes
     <span class="dt">caption =</span> <span class="st">&quot;Data from the poliscidata R package&quot;</span>,
     <span class="dt">colour =</span> <span class="st">&quot;Abortion restrictions&quot;</span>
   ) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-177-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-178-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Last, we can see that the legend title is <code>abortlaw3</code>. We can change this by adding <code>colour</code> to <code>labs()</code> as well.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
@@ -506,7 +509,7 @@ Figure 6.1: Eight themes
     <span class="dt">caption =</span> <span class="st">&quot;Data from the poliscidata R package&quot;</span>,
     <span class="dt">colour =</span> <span class="st">&quot;Abortion restrictions&quot;</span>
   ) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-178-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-179-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="axes" class="section level3">
 <h3><span class="header-section-number">6.4.4</span> Axes</h3>
@@ -524,7 +527,7 @@ Figure 6.1: Eight themes
     <span class="dt">y =</span> <span class="st">&quot;Obama vote share in 2012&quot;</span>,
     <span class="dt">x =</span> <span class="st">&quot;Number of abortions per 1,000 women aged 15-44 in 2008&quot;</span>
   ) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-179-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-180-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="confidence-intervals" class="section level3">
 <h3><span class="header-section-number">6.4.5</span> Confidence intervals</h3>
@@ -542,7 +545,7 @@ Figure 6.1: Eight themes
     <span class="dt">y =</span> <span class="st">&quot;Obama vote share in 2012&quot;</span>,
     <span class="dt">x =</span> <span class="st">&quot;Number of abortions per 1,000 women aged 15-44 in 2008&quot;</span>
   ) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-180-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-181-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="making-multiple-plots-in-one" class="section level3">
 <h3><span class="header-section-number">6.4.6</span> Making multiple plots in one</h3>
@@ -561,7 +564,7 @@ Figure 6.1: Eight themes
     <span class="dt">x =</span> <span class="st">&quot;Number of abortions per 1,000 women aged 15-44 in 2008&quot;</span>
   ) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>abortlaw3)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-181-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-182-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="saving-plots" class="section level2">

@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2018-11-22">
+<meta name="date" content="2018-11-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -179,6 +179,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1" data-path="7-olsreg.html"><a href="7-olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>7.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="7.2" data-path="7-olsreg.html"><a href="7-olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="7.3" data-path="7-olsreg.html"><a href="7-olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>7.3</b> Diagnostic tests</a></li>
+<li class="chapter" data-level="7.4" data-path="7-olsreg.html"><a href="7-olsreg.html#setting-up-regression-tables"><i class="fa fa-check"></i><b>7.4</b> Setting up regression tables</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-olsreg.html"><a href="7-olsreg.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>7.4.1</b> Exporting the regression table</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="8-references.html"><a href="8-references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -284,7 +287,7 @@ reg_obama_tidy</code></pre></div>
         <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>.fitted)) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-194-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-195-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multiple-linear-regression" class="section level2">
 <h2><span class="header-section-number">7.2</span> Multiple linear regression</h2>
@@ -325,7 +328,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-199-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-200-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In some cases the intercept is not relevant. In the code below, we use the <code>filter()</code> function to visualise all effects except for the intercept.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_full_tidy <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span>
@@ -334,7 +337,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-200-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-201-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="diagnostic-tests" class="section level2">
 <h2><span class="header-section-number">7.3</span> Diagnostic tests</h2>
@@ -357,7 +360,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Residuals vs. Fitted&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Fitted values&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-202-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-203-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To see whether our residuals are normally distributed, we create a normal Q-Q plot with the standardized residuals.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify) <span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_qq</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> .stdresid)) <span class="op">+</span>
@@ -365,14 +368,73 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal Q-Q&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Standardized residuals&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Theoretical Quantiles&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-203-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-204-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To estimate the influence of individual observations, we plot the Cook’s distance for each state.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(.cooksd), <span class="dt">y =</span> .cooksd)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()  <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Obs. number&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-204-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-205-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="setting-up-regression-tables" class="section level2">
+<h2><span class="header-section-number">7.4</span> Setting up regression tables</h2>
+<p>To export regression tables from <code>R</code>, we are going to use the package <code>stargazer</code> (remember to install the package if you haven’t already done so).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;stargazer&quot;</span>)</code></pre></div>
+<p>First, we use the <code>stargazer()</code> function to show the output from the object <code>reg_obama</code>. Notice that we also add the option <code>type = &quot;text&quot;</code>. If we do not do that, we will get the output as LaTeX code.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(reg_obama, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</code></pre></div>
+<pre><code>
+===============================================
+                        Dependent variable:    
+                    ---------------------------
+                             obama2012         
+-----------------------------------------------
+abort_rate08                 0.826***          
+                              (0.130)          
+                                               
+Constant                     35.259***         
+                              (2.297)          
+                                               
+-----------------------------------------------
+Observations                    50             
+R2                             0.458           
+Adjusted R2                    0.446           
+Residual Std. Error       7.654 (df = 48)      
+F Statistic           40.521*** (df = 1; 48)   
+===============================================
+Note:               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>This shows the output from one regression model. To add more regression models to the table, simply add a comma and the name of the object with the model. Below we use the same code as above and add the model with control variables included, <code>reg_obama_full</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(reg_obama, reg_obama_full, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</code></pre></div>
+<pre><code>
+=================================================================
+                                 Dependent variable:             
+                    ---------------------------------------------
+                                      obama2012                  
+                             (1)                    (2)          
+-----------------------------------------------------------------
+abort_rate08               0.826***               0.681***       
+                           (0.130)                (0.161)        
+                                                                 
+density                                            0.008         
+                                                  (0.005)        
+                                                                 
+Constant                  35.259***              36.019***       
+                           (2.297)                (2.328)        
+                                                                 
+-----------------------------------------------------------------
+Observations                  50                     50          
+R2                          0.458                  0.482         
+Adjusted R2                 0.446                  0.459         
+Residual Std. Error    7.654 (df = 48)        7.564 (df = 47)    
+F Statistic         40.521*** (df = 1; 48) 21.827*** (df = 2; 47)
+=================================================================
+Note:                                 *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<div id="exporting-the-regression-table" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Exporting the regression table</h3>
+<p>To export the regression table, we use the option <code>out</code> to specify, where we want to save our regresion table. Below we save the table in the file <code>tab-regression.htm</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(reg_obama, reg_obama_full, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>,
+          <span class="dt">out=</span><span class="st">&quot;tab-regression.htm&quot;</span>)</code></pre></div>
+<p>An <code>.htm</code> file is a HTML file you can open in your browser (e.g. Google Chrome). To get it into Word, simply open the file via Word. You might have to do some extra changes before it is ready for a broader audience. Always try to make your tables look like tables in published articles and books.</p>
 
 <!--
 The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
@@ -382,6 +444,7 @@ The bib chunk below must go last in this document according to how R Markdown re
 If you'd like to change the name of the bibliography to something else,
 delete "References" and replace it.
 -->
+</div>
 </div>
 </div>
             </section>

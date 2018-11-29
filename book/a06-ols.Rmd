@@ -193,4 +193,33 @@ ggplot(reg_fortify, aes(x = seq_along(.cooksd), y = .cooksd)) +
 ```
 
 
+## Setting up regression tables
 
+To export regression tables from `R`, we are going to use the package `stargazer` (remember to install the package if you haven't already done so).
+
+```{r, message=FALSE, warning=FALSE} 
+library("stargazer")
+```
+
+First, we use the `stargazer()` function to show the output from the object `reg_obama`. Notice that we also add the option `type = "text"`. If we do not do that, we will get the output as LaTeX code. 
+
+```{r, message=FALSE, warning=FALSE} 
+stargazer(reg_obama, type = "text")
+```
+
+This shows the output from one regression model. To add more regression models to the table, simply add a comma and the name of the object with the model. Below we use the same code as above and add the model with control variables included, `reg_obama_full`.
+
+```{r, message=FALSE, warning=FALSE} 
+stargazer(reg_obama, reg_obama_full, type = "text")
+```
+
+### Exporting the regression table
+
+To export the regression table, we use the option `out` to specify, where we want to save our regresion table. Below we save the table in the file `tab-regression.htm`.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+stargazer(reg_obama, reg_obama_full, type = "text",
+          out="tab-regression.htm")
+```
+
+An `.htm` file is a HTML file you can open in your browser (e.g. Google Chrome). To get it into Word, simply open the file via Word. You might have to do some extra changes before it is ready for a broader audience. Always try to make your tables look like tables in published articles and books.

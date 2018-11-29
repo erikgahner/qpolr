@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2018-11-22">
+<meta name="date" content="2018-11-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -179,6 +179,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1" data-path="7-olsreg.html"><a href="7-olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>7.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="7.2" data-path="7-olsreg.html"><a href="7-olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="7.3" data-path="7-olsreg.html"><a href="7-olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>7.3</b> Diagnostic tests</a></li>
+<li class="chapter" data-level="7.4" data-path="7-olsreg.html"><a href="7-olsreg.html#setting-up-regression-tables"><i class="fa fa-check"></i><b>7.4</b> Setting up regression tables</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-olsreg.html"><a href="7-olsreg.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>7.4.1</b> Exporting the regression table</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="8-references.html"><a href="8-references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -215,17 +218,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <span class="st">&quot;https://www.electoralcalculus.co.uk/electdata_1955.txt&quot;</span>, 
   <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>
   )</code></pre></div>
-<p>To inspect the data, we can use the function <code>head()</code>.</p>
+<p>To inspect the data, we can use the function <code>head()</code> (output not shown).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(el_<span class="dv">1955</span>)</code></pre></div>
-<pre><code># A tibble: 6 x 11
-  Name   MP     Area County Electorate   CON   LAB   LIB   NAT   MIN   OTH
-  &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-1 Abing… AMS …    12 Berks…      58487 25613 16979  8634     0     0     0
-2 Accri… H Hy…     4 Lanca…      50938 21157 22502     0     0     0     0
-3 Acton  JA S…    11 Ealing      49373 20120 20645     0     0     0     0
-4 Alder… E Er…    12 Hamps…      54209 22701 13129  4232     0     0     0
-5 Altri… FJ E…     4 Centr…      61525 30586 12174  6436     0     0     0
-6 Arund… HB K…    12 West …      69034 35180 15188     0     0     0     0</code></pre>
 <p>The above output shows that the data is loaded succesfully and saved in a data frame. We could do this for all elections manually, but that would take a lot of time and increase the odds of making mistakes. Instead, we will create a function that downloads all files. First, we specify the elections we are interested in (from 1955 to 2017) and save this information in the object <code>election_years</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">election_years &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1955&quot;</span>, <span class="st">&quot;1959&quot;</span>, <span class="st">&quot;1964&quot;</span>, <span class="st">&quot;1966&quot;</span>, <span class="st">&quot;1970&quot;</span>, <span class="st">&quot;1974feb&quot;</span>,
 <span class="st">&quot;1974oct&quot;</span>, <span class="st">&quot;1979&quot;</span>, <span class="st">&quot;1983&quot;</span>, <span class="st">&quot;1987&quot;</span>, <span class="st">&quot;1992ob&quot;</span>, <span class="st">&quot;1997&quot;</span>,
@@ -254,7 +248,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wikipage &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</code></pre></div>
 <p>We can use the function <code>class()</code> to see what type of content we have in the object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(wikipage)</code></pre></div>
-<pre><code>[1] &quot;xml_document&quot; &quot;xml_node&quot;    </code></pre>
 <p>Here, we see that we have an xml_document and xml_node in our object. We want to save the tables in our data. To do this, we use the function <code>html_nodes()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_table &lt;-<span class="st"> </span><span class="kw">html_nodes</span>(wikipage, <span class="st">&quot;table&quot;</span>)</code></pre></div>
 <p>If you type <code>data_table</code>, you can see an overview of all the tables we have saved. Here, we would like to use the data on the number of votes the different parties got in the 2014 European Parliament election in the United Kingdom. We can see that this table is number 14 in our object. We save this table in the object <code>data_results</code>.</p>
@@ -263,41 +256,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ep14_raw &lt;-<span class="st"> </span><span class="kw">html_table</span>(data_results, <span class="dt">fill=</span><span class="ot">TRUE</span>)</code></pre></div>
 <p>To ensure that it is a data frame we are working with, we can use the function <code>class()</code> again.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(ep14_raw)</code></pre></div>
-<pre><code>[1] &quot;data.frame&quot;</code></pre>
-<p>We call the object <code>ep14_raw</code> as it is a raw table that needs further changes before we are satisfied. To get a sense of one of the issues with the data frame, we look at the last observations in the data frame with <code>tail()</code>.</p>
+<p>We call the object <code>ep14_raw</code> as it is a raw table that needs further changes before we are satisfied. To get a sense of one of the issues with the data frame, we look at the last observations in the data frame with <code>tail()</code> (output not shown).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(ep14_raw)</code></pre></div>
-<pre><code>             Party           Party      Votes Votes Votes Seats Seats
-29                            NI21     10,553   0.1   New     0      
-30                     Peace Party     10,130   0.1           0      
-31                          Others     55,011   0.3   3.4     0      
-32     Valid Votes     Valid Votes 16,454,950  99.5          73     1
-33  Rejected Votes  Rejected Votes     90,812   0.6                  
-34 Overall turnout Overall turnout 16,545,762  35.6   0.9            
-   Seats   NA   NA
-29       &lt;NA&gt; &lt;NA&gt;
-30       &lt;NA&gt; &lt;NA&gt;
-31       &lt;NA&gt; &lt;NA&gt;
-32       &lt;NA&gt; &lt;NA&gt;
-33       &lt;NA&gt; &lt;NA&gt;
-34                </code></pre>
 <p>Here we see that the last three rows are aggregated numbers unrelated to the votes for the individual parties. Accordingly, we would like to remove these observations. To remove the specific rows, we save the object without observations 32, 33 and 34.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ep14_raw &lt;-<span class="st"> </span>ep14_raw[<span class="op">-</span><span class="kw">c</span>(<span class="dv">32</span><span class="op">:</span><span class="dv">34</span>), ]</code></pre></div>
-<p>Next, we use <code>head()</code> to see what our data frame looks like for the first observations.</p>
+<p>Next, we use <code>head()</code> to see what our data frame looks like for the first observations (output not shown).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ep14_raw)</code></pre></div>
-<pre><code>  Party                 Party     Votes Votes Votes Seats  Seats Seats
-1 Party                 Party     Votes Votes Votes Seats Number     %
-2       UK Independence Party 4,376,635  26.6  10.6    24     11  32.9
-3                Labour Party 4,020,646  24.4   9.2    20      7  27.4
-4          Conservative Party 3,792,549  23.1   3.8    19      7  26.0
-5                 Green Party 1,136,670   6.9   0.9     3      1   4.1
-6           Liberal Democrats 1,087,633   6.6   6.7     1     10   1.4
-    NA    NA
-1  +/- Seats
-2 &lt;NA&gt;  &lt;NA&gt;
-3 &lt;NA&gt;  &lt;NA&gt;
-4 &lt;NA&gt;  &lt;NA&gt;
-5 &lt;NA&gt;  &lt;NA&gt;
-6 &lt;NA&gt;  &lt;NA&gt;</code></pre>
 <p>We see two main issues. First, that the variable names are not unique and will need to be changed. We are interested in four of the variables, namely the name of the party, the number of votes, the vote share and the number of seats. We give the relevant variables names and give the other variables unimportant names (as we are going to ignore those).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(ep14_raw) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;V1&quot;</span>, <span class="st">&quot;party&quot;</span>, <span class="st">&quot;votes&quot;</span>, <span class="st">&quot;share&quot;</span>, <span class="st">&quot;V5&quot;</span>, 
                      <span class="st">&quot;seats&quot;</span>, <span class="st">&quot;V7&quot;</span>, <span class="st">&quot;V8&quot;</span>, <span class="st">&quot;V9&quot;</span>, <span class="st">&quot;V10&quot;</span>)</code></pre></div>
@@ -315,38 +279,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   )</code></pre></div>
 <p>Inspect the final data frame. In this case, we do not have a lot of observations and we simply show them all.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ep14</code></pre></div>
-<pre><code>                         party   votes share seats
-1        UK Independence Party 4376635  26.6    24
-2                 Labour Party 4020646  24.4    20
-3           Conservative Party 3792549  23.1    19
-4                  Green Party 1136670   6.9     3
-5            Liberal Democrats 1087633   6.6     1
-6      Scottish National Party  389503   2.4     2
-7  An Independence from Europe  235124   1.4     0
-8       British National Party  179694   1.1     0
-9                    Sinn Féin  159813   1.0     1
-10                         DUP  131163   0.8     1
-11           English Democrats  126024   0.8     0
-12                 Plaid Cymru  111864   0.7     1
-13        Scottish Green Party  108305   0.7     0
-14       Ulster Unionist Party   83438   0.5     1
-15                        SDLP   81594   0.5     0
-16                         TUV   75806   0.5     0
-17  Christian Peoples Alliance   50222   0.3     0
-18                    Alliance   44432   0.3     0
-19                       No2EU   31757   0.1     0
-20   4 Freedoms Party (UK EPP)   28014   0.2     0
-21  We Demand a Referendum Now   23426   0.1     0
-22                         NHA   23253   0.1     0
-23        Animal Welfare Party   21092   0.1     0
-24               Britain First   20272   0.1     0
-25             Yorkshire First   19017   0.1     0
-26             Europeans Party   10712   0.1     0
-27                  Green (NI)   10598   0.1     0
-28                        NI21   10553   0.1     0
-29                 Peace Party   10130   0.1     0
-30                      Others   55011   0.3     0</code></pre>
-<p>Last, we create a figure showing the vote share and seats for the parties (notice that you will also need the package <code>ggrepel</code> to create the figure).</p>
+<p>Last, we create a figure showing the vote share and seats for the parties (notice that you will also need the package <code>ggrepel</code> to create the figure). (Output not shown)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ep14, <span class="kw">aes</span>(<span class="dt">x =</span> share, <span class="dt">y =</span> seats)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
@@ -361,7 +294,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     <span class="dt">x =</span> <span class="st">&quot;Vote share&quot;</span>,
     <span class="dt">title =</span> <span class="st">&quot;2014 European Parliament election, United Kingdom&quot;</span>
   )</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-128-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="scrape-political-speeches" class="section level2">
 <h2><span class="header-section-number">5.3</span> Scrape political speeches</h2>
@@ -386,26 +318,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span>words <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(stop_words, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>)</code></pre></div>
 <p>Last, we can count the words in the speech and calculate the number of occurences.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code># A tibble: 1,280 x 2
-   word        n
-   &lt;chr&gt;   &lt;int&gt;
- 1 people     49
- 2 britain    36
- 3 country    34
- 4 dream      33
- 5 world      30
- 6 british    29
- 7 that’s     21
- 8 party      19
- 9 it’s       17
-10 free       16
-# ... with 1,270 more rows</code></pre>
 <p>We see that <em>people</em> is mentioned 49 times, and <em>britain</em> is mentioned 36 times. <em>dream</em> and <em>british</em> are mentioned 33 and 29 times, respectively.</p>
 </div>
 <div id="get-data-from-twitter" class="section level2">
 <h2><span class="header-section-number">5.4</span> Get data from Twitter</h2>
 <p>To get data from Twitter, we are going to use the <code>rtweet</code> package <span class="citation">(Kearney, 2018)</span>. The first thing we do is to load the package (remember to install if if you have not already done so). You can find more information about the package here: <a href="https://rtweet.info/" class="uri">https://rtweet.info/</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rtweet&quot;</span>)</code></pre></div>
+<p>Next, to make sure you can collect data, you need to have a Twitter user. You can register for free at <a href="https://twitter.com/" class="uri">https://twitter.com/</a>. You will need this in order to use the <code>rstats2twitter</code> app. Last, make sure to install the <code>httpuv</code> package as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;httpuv&quot;</span>)</code></pre></div>
 <p>Noteworthy, we cannot just collect data without any limits. In most cases, we have a liit of 18,000 observations per 15 minutes.</p>
 <div id="data-on-twitter-user" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Data on Twitter user</h3>
