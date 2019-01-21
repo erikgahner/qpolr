@@ -49,7 +49,7 @@ To convert the results from our analysis into a data frame, we can use the packa
 library("broom")
 ```
 
-As a first example, we can save the estimates and test statistics in a data frame by using the function `tidy()`. We save the output in a new object `reg_obama_tidy` and show this output as well.
+As a first example, we can save the estimates and test statistics in a data frame by using the function `tidy()`. The function is made to summarise information about fit components. We save the output in a new object `reg_obama_tidy` and show this output as well.
 
 ```{r, message=FALSE, warning=FALSE}
 reg_obama_tidy <- tidy(reg_obama)
@@ -65,13 +65,18 @@ reg_obama_tidy <- tidy(reg_obama, conf.int = TRUE)
 reg_obama_tidy
 ```
 
-This is useful if you would like to visualise the results. However, often we also want to save predictions and residuals based on our model. To do this, we can use the function `augment()`. Below we save the output in the object `reg_obama_aug`.
+This is useful if you would like to visualise the results. If we also want goodness of fit measures for the model, such as $R^2$, we can use the function `glance()`.
+
+```{r, message=FALSE, warning=FALSE}
+glance(reg_obama)
+```
+
+Often we also want to save predictions and residuals based on our model. To do this, we can use the function `augment()`. This function adds information about observations to our dataset. Below we save the output in the object `reg_obama_aug`.
 
 
 ```{r, message=FALSE, warning=FALSE}
 reg_obama_aug <- augment(reg_obama)
 ```
-
 
 To see the data in the new object, use `head()`. Here you see that there is a variable called `.fitted`. This variable is the predicted value for each observation.
 

@@ -245,13 +245,13 @@ While in a data frame, it is still just a lot of sentences on different rows. To
 words <- data_speech_df %>% unnest_tokens(word, text)
 ```
 
-This gives os an object, `words`, with 7,116 observations. However, a lot of these words are irrelevant stop words (most common words that we are not interested in such as _the_, _is_, _at_, _which_) that we would like to remove. We use the `anti_join()` function to remove all stop words.
+This gives us an object, `words`, with 7,116 observations. However, a lot of these words are irrelevant stop words (most common words that we are not interested in such as _the_, _is_, _at_, _which_) that we would like to remove. We use the `anti_join()` function to remove all stop words.
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 words <- words %>% anti_join(stop_words, by = "word")
 ```
 
-Last, we can count the words in the speech and calculate the number of occurences. 
+Last, we can count the words in the speech and calculate the number of occurrences. 
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 words %>% count(word, sort = TRUE)

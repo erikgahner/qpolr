@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2018-11-29">
+<meta name="date" content="2019-01-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -147,7 +147,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Presenting data</b></span></li>
-<li class="chapter" data-level="6" data-path="6-dataviz.html"><a href="6-dataviz.html"><i class="fa fa-check"></i><b>6</b> Data visualisation</a><ul>
+<li class="chapter" data-level="6" data-path="6-dataviz.html"><a href="6-dataviz.html"><i class="fa fa-check"></i><b>6</b> Visualisation</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-dataviz.html"><a href="6-dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>6.1</b> The basics of <code>ggplot2</code></a><ul>
 <li class="chapter" data-level="6.1.1" data-path="3-data.html"><a href="3-data.html#data"><i class="fa fa-check"></i><b>6.1.1</b> Data</a></li>
 <li class="chapter" data-level="6.1.2" data-path="6-dataviz.html"><a href="6-dataviz.html#aesthetics"><i class="fa fa-check"></i><b>6.1.2</b> Aesthetics</a></li>
@@ -246,48 +246,52 @@ F-statistic: 40.52 on 1 and 48 DF,  p-value: 6.912e-08</code></pre>
 <p>Here we can see that the estimate for <code>abort_rate08</code> is statistically significant. We can further see that the R-squared is 0.46 which indicates that 46% of the variation in the vote share is explained by our independent variable.</p>
 <p>To convert the results from our analysis into a data frame, we can use the package <code>broom</code> <span class="citation">(Robinson, 2018)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;broom&quot;</span>)</code></pre></div>
-<p>As a first example, we can save the estimates and test statistics in a data frame by using the function <code>tidy()</code>. We save the output in a new object <code>reg_obama_tidy</code> and show this output as well.</p>
+<p>As a first example, we can save the estimates and test statistics in a data frame by using the function <code>tidy()</code>. The function is made to summarise information about fit components. We save the output in a new object <code>reg_obama_tidy</code> and show this output as well.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_tidy &lt;-<span class="st"> </span><span class="kw">tidy</span>(reg_obama)
 
 reg_obama_tidy</code></pre></div>
-<pre><code>          term  estimate std.error statistic      p.value
-1  (Intercept) 35.258869 2.2970329 15.349745 3.818291e-20
-2 abort_rate08  0.825655 0.1297048  6.365649 6.911913e-08</code></pre>
+<pre><code># A tibble: 2 x 5
+  term         estimate std.error statistic  p.value
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)    35.3       2.30      15.3  3.82e-20
+2 abort_rate08    0.826     0.130      6.37 6.91e- 8</code></pre>
 <p>If we would also like to have the confidence intervals, we can add the <code>conf.int = TRUE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_tidy &lt;-<span class="st"> </span><span class="kw">tidy</span>(reg_obama, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)
 
 reg_obama_tidy</code></pre></div>
-<pre><code>          term  estimate std.error statistic      p.value   conf.low
-1  (Intercept) 35.258869 2.2970329 15.349745 3.818291e-20 30.6403753
-2 abort_rate08  0.825655 0.1297048  6.365649 6.911913e-08  0.5648661
-  conf.high
-1 39.877364
-2  1.086444</code></pre>
-<p>This is useful if you would like to visualise the results. However, often we also want to save predictions and residuals based on our model. To do this, we can use the function <code>augment()</code>. Below we save the output in the object <code>reg_obama_aug</code>.</p>
+<pre><code># A tibble: 2 x 7
+  term         estimate std.error statistic  p.value conf.low conf.high
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)    35.3       2.30      15.3  3.82e-20   30.6       39.9 
+2 abort_rate08    0.826     0.130      6.37 6.91e- 8    0.565      1.09</code></pre>
+<p>This is useful if you would like to visualise the results. If we also want goodness of fit measures for the model, such as <span class="math inline">\(R^2\)</span>, we can use the function <code>glance()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glance</span>(reg_obama)</code></pre></div>
+<pre><code># A tibble: 1 x 11
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+*     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.458         0.446  7.65      40.5 6.91e-8     2  -172.  349.  355.
+# ... with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<p>Often we also want to save predictions and residuals based on our model. To do this, we can use the function <code>augment()</code>. This function adds information about observations to our dataset. Below we save the output in the object <code>reg_obama_aug</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_aug &lt;-<span class="st"> </span><span class="kw">augment</span>(reg_obama)</code></pre></div>
 <p>To see the data in the new object, use <code>head()</code>. Here you see that there is a variable called <code>.fitted</code>. This variable is the predicted value for each observation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(reg_obama_aug)</code></pre></div>
-<pre><code>  obama2012 abort_rate08  .fitted  .se.fit    .resid       .hat   .sigma
-1     40.81         12.0 45.16673 1.179911 -4.356729 0.02376297 7.708398
-2     38.36         12.0 45.16673 1.179911 -6.806729 0.02376297 7.669635
-3     36.88          8.7 42.44207 1.406179 -5.562068 0.03375074 7.691025
-4     44.45         15.2 47.80882 1.083835 -3.358825 0.02005065 7.719335
-5     60.19         27.6 58.04695 1.893732  2.143053 0.06121236 7.728453
-6     51.45         15.7 48.22165 1.082515  3.228348 0.02000184 7.720544
-      .cooksd .std.resid
-1 0.004039088 -0.5760815
-2 0.009859143 -0.9000401
-3 0.009544419 -0.7392523
-4 0.002010333 -0.4432886
-5 0.002722341  0.2889684
-6 0.001852473  0.4260579</code></pre>
+<pre><code># A tibble: 6 x 9
+  obama2012 abort_rate08 .fitted .se.fit .resid   .hat .sigma .cooksd
+      &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1      40.8         12      45.2    1.18  -4.36 0.0238   7.71 0.00404
+2      38.4         12      45.2    1.18  -6.81 0.0238   7.67 0.00986
+3      36.9          8.7    42.4    1.41  -5.56 0.0338   7.69 0.00954
+4      44.4         15.2    47.8    1.08  -3.36 0.0201   7.72 0.00201
+5      60.2         27.6    58.0    1.89   2.14 0.0612   7.73 0.00272
+6      51.4         15.7    48.2    1.08   3.23 0.0200   7.72 0.00185
+# ... with 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
 <p>We can use this data frame to visualise the residuals (with the colour red below).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_obama_aug, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>abort_rate08, <span class="dt">y=</span>obama2012, <span class="dt">yend=</span>.fitted), 
         <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>.fitted)) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-195-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-197-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multiple-linear-regression" class="section level2">
 <h2><span class="header-section-number">7.2</span> Multiple linear regression</h2>
@@ -328,7 +332,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-200-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-202-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In some cases the intercept is not relevant. In the code below, we use the <code>filter()</code> function to visualise all effects except for the intercept.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_full_tidy <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span>
@@ -337,7 +341,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-201-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-203-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="diagnostic-tests" class="section level2">
 <h2><span class="header-section-number">7.3</span> Diagnostic tests</h2>
@@ -360,7 +364,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Residuals vs. Fitted&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Fitted values&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-203-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-205-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To see whether our residuals are normally distributed, we create a normal Q-Q plot with the standardized residuals.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify) <span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_qq</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> .stdresid)) <span class="op">+</span>
@@ -368,14 +372,14 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal Q-Q&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Standardized residuals&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Theoretical Quantiles&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-204-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-206-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To estimate the influence of individual observations, we plot the Cook’s distance for each state.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(.cooksd), <span class="dt">y =</span> .cooksd)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()  <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Obs. number&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-205-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-207-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="setting-up-regression-tables" class="section level2">
 <h2><span class="header-section-number">7.4</span> Setting up regression tables</h2>

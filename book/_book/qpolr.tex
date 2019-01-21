@@ -51,7 +51,7 @@
 
 \title{\Huge{ Quantitative Politics with R } \vspace{2em}}
 \author{Erik Gahner Larsen and Zoltán Fazekas}
-\date{November 29, 2018}
+\date{January 21, 2019}
 
 \renewcommand{\contentsname}{Table of Contents}
 
@@ -1424,9 +1424,6 @@
   \end{Highlighting}
   \end{Shaded}
   \begin{verbatim}
-  Warning: package 'bindrcpp' was built under R version 3.4.4
-  \end{verbatim}
-  \begin{verbatim}
                         party        leader votes seats seats_change
   1              Labour Party Jeremy Corbyn  40.0   262           30
   2         Liberal Democrats    Tim Farron   7.4    12            4
@@ -2378,7 +2375,7 @@
   \NormalTok{words <-}\StringTok{ }\NormalTok{data_speech_df }\OperatorTok{%>%}\StringTok{ }\KeywordTok{unnest_tokens}\NormalTok{(word, text)}
   \end{Highlighting}
   \end{Shaded}
-  This gives os an object, \texttt{words}, with 7,116 observations.
+  This gives us an object, \texttt{words}, with 7,116 observations.
   However, a lot of these words are irrelevant stop words (most common
   words that we are not interested in such as \emph{the}, \emph{is},
   \emph{at}, \emph{which}) that we would like to remove. We use the
@@ -2389,7 +2386,7 @@
   \end{Highlighting}
   \end{Shaded}
   Last, we can count the words in the speech and calculate the number of
-  occurences.
+  occurrences.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{words }\OperatorTok{%>%}\StringTok{ }\KeywordTok{count}\NormalTok{(word, }\DataTypeTok{sort =} \OtherTok{TRUE}\NormalTok{)}
@@ -2555,7 +2552,7 @@
   \chapter*{(PART) Presenting data}\label{part-presenting-data}
   \addcontentsline{toc}{chapter}{(PART) Presenting data}
   
-  \chapter{Data visualisation}\label{dataviz}
+  \chapter{Visualisation}\label{dataviz}
   
   Visualising data is important (Healy \& Moody, 2014). As with everything
   in \texttt{R}, there are a lot of different ways to visualise data. One
@@ -3144,6 +3141,38 @@
   \end{Shaded}
   \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-182-1} \end{center}
   
+  However, now we have redundant information as we have a legend with no
+  vital information not already visible in the figure. Below, we change
+  the title of the figure, remove the legend and update the group names.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \CommentTok{# Recode variable to have more informative labels}
+  \NormalTok{states}\OperatorTok{$}\NormalTok{abortlaw3_names <-}\StringTok{ }\KeywordTok{recode}\NormalTok{(states}\OperatorTok{$}\NormalTok{abortlaw3, }
+                                   \StringTok{"0-5 restr"}\NormalTok{ =}\StringTok{ "Less than 6 restrictions"}\NormalTok{,}
+                                   \StringTok{"6-8 restr"}\NormalTok{ =}\StringTok{ "Between 6 and 8 restrictions"}\NormalTok{,}
+                                   \StringTok{"9-10 restr"}\NormalTok{ =}\StringTok{ "More than 8 restrictions"}
+  \NormalTok{                                 )}
+  
+  \KeywordTok{ggplot}\NormalTok{(states, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{obama2012)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{abortlaw3), }\DataTypeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+  \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{labs}\NormalTok{(}
+      \DataTypeTok{title =} \StringTok{"Abortion restrictions, abortions and the Obama vote"}\NormalTok{,}
+      \DataTypeTok{subtitle =} \StringTok{"The relation between number of abortions and vote share for Obama"}\NormalTok{,}
+      \DataTypeTok{caption =} \StringTok{"Data from the poliscidata R package"}\NormalTok{,}
+      \DataTypeTok{colour =} \StringTok{"Abortion restrictions"}\NormalTok{,}
+      \DataTypeTok{y =} \StringTok{"Obama vote share in 2012"}\NormalTok{,}
+      \DataTypeTok{x =} \StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}
+  \NormalTok{  ) }\OperatorTok{+}
+  \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{abortlaw3_names) }\OperatorTok{+}
+  \StringTok{  }\CommentTok{# Remove the legend}
+  \StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position=}\StringTok{"none"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-183-1} \end{center}
+  
   \section{Saving plots}\label{saving-plots}
   
   When you have a plot you would like to save, you can use
@@ -3263,8 +3292,9 @@
   \end{Highlighting}
   \end{Shaded}
   As a first example, we can save the estimates and test statistics in a
-  data frame by using the function \texttt{tidy()}. We save the output in
-  a new object \texttt{reg\_obama\_tidy} and show this output as well.
+  data frame by using the function \texttt{tidy()}. The function is made
+  to summarise information about fit components. We save the output in a
+  new object \texttt{reg\_obama\_tidy} and show this output as well.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{reg_obama_tidy <-}\StringTok{ }\KeywordTok{tidy}\NormalTok{(reg_obama)}
@@ -3273,9 +3303,11 @@
   \end{Highlighting}
   \end{Shaded}
   \begin{verbatim}
-            term  estimate std.error statistic      p.value
-  1  (Intercept) 35.258869 2.2970329 15.349745 3.818291e-20
-  2 abort_rate08  0.825655 0.1297048  6.365649 6.911913e-08
+  # A tibble: 2 x 5
+    term         estimate std.error statistic  p.value
+    <chr>           <dbl>     <dbl>     <dbl>    <dbl>
+  1 (Intercept)    35.3       2.30      15.3  3.82e-20
+  2 abort_rate08    0.826     0.130      6.37 6.91e- 8
   \end{verbatim}
   If we would also like to have the confidence intervals, we can add the
   \texttt{conf.int\ =\ TRUE}.
@@ -3287,17 +3319,31 @@
   \end{Highlighting}
   \end{Shaded}
   \begin{verbatim}
-            term  estimate std.error statistic      p.value   conf.low
-  1  (Intercept) 35.258869 2.2970329 15.349745 3.818291e-20 30.6403753
-  2 abort_rate08  0.825655 0.1297048  6.365649 6.911913e-08  0.5648661
-    conf.high
-  1 39.877364
-  2  1.086444
+  # A tibble: 2 x 7
+    term         estimate std.error statistic  p.value conf.low conf.high
+    <chr>           <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
+  1 (Intercept)    35.3       2.30      15.3  3.82e-20   30.6       39.9 
+  2 abort_rate08    0.826     0.130      6.37 6.91e- 8    0.565      1.09
   \end{verbatim}
-  This is useful if you would like to visualise the results. However,
-  often we also want to save predictions and residuals based on our model.
-  To do this, we can use the function \texttt{augment()}. Below we save
-  the output in the object \texttt{reg\_obama\_aug}.
+  This is useful if you would like to visualise the results. If we also
+  want goodness of fit measures for the model, such as \(R^2\), we can use
+  the function \texttt{glance()}.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{glance}\NormalTok{(reg_obama)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+  # A tibble: 1 x 11
+    r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+  *     <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>  <dbl> <dbl> <dbl>
+  1     0.458         0.446  7.65      40.5 6.91e-8     2  -172.  349.  355.
+  # ... with 2 more variables: deviance <dbl>, df.residual <int>
+  \end{verbatim}
+  Often we also want to save predictions and residuals based on our model.
+  To do this, we can use the function \texttt{augment()}. This function
+  adds information about observations to our dataset. Below we save the
+  output in the object \texttt{reg\_obama\_aug}.
   \begin{Shaded}
   \begin{Highlighting}[]
   \NormalTok{reg_obama_aug <-}\StringTok{ }\KeywordTok{augment}\NormalTok{(reg_obama)}
@@ -3312,20 +3358,16 @@
   \end{Highlighting}
   \end{Shaded}
   \begin{verbatim}
-    obama2012 abort_rate08  .fitted  .se.fit    .resid       .hat   .sigma
-  1     40.81         12.0 45.16673 1.179911 -4.356729 0.02376297 7.708398
-  2     38.36         12.0 45.16673 1.179911 -6.806729 0.02376297 7.669635
-  3     36.88          8.7 42.44207 1.406179 -5.562068 0.03375074 7.691025
-  4     44.45         15.2 47.80882 1.083835 -3.358825 0.02005065 7.719335
-  5     60.19         27.6 58.04695 1.893732  2.143053 0.06121236 7.728453
-  6     51.45         15.7 48.22165 1.082515  3.228348 0.02000184 7.720544
-        .cooksd .std.resid
-  1 0.004039088 -0.5760815
-  2 0.009859143 -0.9000401
-  3 0.009544419 -0.7392523
-  4 0.002010333 -0.4432886
-  5 0.002722341  0.2889684
-  6 0.001852473  0.4260579
+  # A tibble: 6 x 9
+    obama2012 abort_rate08 .fitted .se.fit .resid   .hat .sigma .cooksd
+        <dbl>        <dbl>   <dbl>   <dbl>  <dbl>  <dbl>  <dbl>   <dbl>
+  1      40.8         12      45.2    1.18  -4.36 0.0238   7.71 0.00404
+  2      38.4         12      45.2    1.18  -6.81 0.0238   7.67 0.00986
+  3      36.9          8.7    42.4    1.41  -5.56 0.0338   7.69 0.00954
+  4      44.4         15.2    47.8    1.08  -3.36 0.0201   7.72 0.00201
+  5      60.2         27.6    58.0    1.89   2.14 0.0612   7.73 0.00272
+  6      51.4         15.7    48.2    1.08   3.23 0.0200   7.72 0.00185
+  # ... with 1 more variable: .std.resid <dbl>
   \end{verbatim}
   We can use this data frame to visualise the residuals (with the colour
   red below).
@@ -3338,7 +3380,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{.fitted)) }
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-195-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-197-1.pdf}
   
   \section{Multiple linear regression}\label{multiple-linear-regression}
   
@@ -3410,7 +3452,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-200-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-202-1.pdf}
   
   In some cases the intercept is not relevant. In the code below, we use
   the \texttt{filter()} function to visualise all effects except for the
@@ -3426,7 +3468,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-201-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-203-1.pdf}
   
   \section{Diagnostic tests}\label{diagnostic-tests}
   
@@ -3469,7 +3511,7 @@
          \DataTypeTok{x =} \StringTok{"Fitted values"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-203-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-205-1.pdf}
   
   To see whether our residuals are normally distributed, we create a
   normal Q-Q plot with the standardized residuals.
@@ -3483,7 +3525,7 @@
          \DataTypeTok{x =} \StringTok{"Theoretical Quantiles"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-204-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-206-1.pdf}
   
   To estimate the influence of individual observations, we plot the Cook's
   distance for each state.
@@ -3496,7 +3538,7 @@
          \DataTypeTok{x =} \StringTok{"Obs. number"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-205-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-207-1.pdf}
   
   \section{Setting up regression
   tables}\label{setting-up-regression-tables}

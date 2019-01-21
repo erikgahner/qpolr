@@ -10,6 +10,7 @@ Free and publicly avaiable introductory material for people interested in using 
 The material has been used in the following modules and workshops:
 
 - SO746: How to Win Arguments with Numbers (University of Kent, 2018)
+- MA5953: Creating Your Own Data (University of Kent, 2018)
 
 #### Something missing?
 

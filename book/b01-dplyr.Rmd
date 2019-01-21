@@ -55,13 +55,13 @@ select(uk2017, contains("seat"))
 
 Other noteworthy functions similar to `contains()` that can be of help are functions such as `starts_with()`, `ends_with()`, `matches()`, `num_range()`, `one_of()` and `everything()`. The last function, `everything()` is helpful if we want to move a variable to the beginning of our data frame.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 select(uk2017, votes, everything())
 ```
 
 Last, we can use the negative sign if we want to remove a variable from the data frame.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 select(uk2017, -leader)
 ```
 
@@ -69,7 +69,7 @@ select(uk2017, -leader)
 
 To select only some of the observations in our data frame, but for all variables, we can use the function `filter()`. In the example below we select the observations in our data frame with a positive value on `seats_change` (i.e. greater than 0).
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 filter(uk2017, seats_change > 0)
 ```
 

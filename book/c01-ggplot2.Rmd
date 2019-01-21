@@ -4,7 +4,7 @@ output: html_document
 
 # (PART) Presenting data {-}
 
-# Data visualisation {#dataviz}
+# Visualisation {#dataviz}
 
 Visualising data is important [@healymoody2014]. As with everything in `R`, there are a lot of different ways to visualise data. One simple way to visualise data is to use _base_ functions in `R` (i.e. functions that come when you install the `R` language). Below you will see an example on this.
 
@@ -403,6 +403,34 @@ ggplot(states, aes(x=abort_rate08, y=obama2012)) +
     x = "Number of abortions per 1,000 women aged 15-44 in 2008"
   ) +
   facet_grid(~ abortlaw3)
+```
+
+However, now we have redundant information as we have a legend with no vital information not already visible in the figure. Below, we change the title of the figure, remove the legend and update the group names.
+
+```{r, fig.width=7, fig.height=5, fig.align="center", message=FALSE, warning=FALSE}
+# Recode variable to have more informative labels
+states$abortlaw3_names <- recode(states$abortlaw3, 
+                                 "0-5 restr" = "Less than 6 restrictions",
+                                 "6-8 restr" = "Between 6 and 8 restrictions",
+                                 "9-10 restr" = "More than 8 restrictions"
+                                 )
+
+ggplot(states, aes(x=abort_rate08, y=obama2012)) +
+  geom_point(aes(colour=abortlaw3), alpha=0.7) + 
+  geom_smooth(colour="black") +
+  theme_minimal() +
+  scale_colour_manual(values = c("red", "blue", "black")) +
+  labs(
+    title = "Abortion restrictions, abortions and the Obama vote",
+    subtitle = "The relation between number of abortions and vote share for Obama",
+    caption = "Data from the poliscidata R package",
+    colour = "Abortion restrictions",
+    y = "Obama vote share in 2012",
+    x = "Number of abortions per 1,000 women aged 15-44 in 2008"
+  ) +
+  facet_grid(~ abortlaw3_names) +
+  # Remove the legend
+  theme(legend.position="none")
 ```
 
 ## Saving plots

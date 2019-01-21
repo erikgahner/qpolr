@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2018-11-29">
+<meta name="date" content="2019-01-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -147,7 +147,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Presenting data</b></span></li>
-<li class="chapter" data-level="6" data-path="6-dataviz.html"><a href="6-dataviz.html"><i class="fa fa-check"></i><b>6</b> Data visualisation</a><ul>
+<li class="chapter" data-level="6" data-path="6-dataviz.html"><a href="6-dataviz.html"><i class="fa fa-check"></i><b>6</b> Visualisation</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-dataviz.html"><a href="6-dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>6.1</b> The basics of <code>ggplot2</code></a><ul>
 <li class="chapter" data-level="6.1.1" data-path="3-data.html"><a href="3-data.html#data"><i class="fa fa-check"></i><b>6.1.1</b> Data</a></li>
 <li class="chapter" data-level="6.1.2" data-path="6-dataviz.html"><a href="6-dataviz.html#aesthetics"><i class="fa fa-check"></i><b>6.1.2</b> Aesthetics</a></li>
@@ -314,9 +314,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_speech_df &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">text =</span> data_speech_text)</code></pre></div>
 <p>While in a data frame, it is still just a lot of sentences on different rows. To unnest all the sentences in our text column into a word column, we use the function <code>unnest_tokens()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span>data_speech_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unnest_tokens</span>(word, text)</code></pre></div>
-<p>This gives os an object, <code>words</code>, with 7,116 observations. However, a lot of these words are irrelevant stop words (most common words that we are not interested in such as <em>the</em>, <em>is</em>, <em>at</em>, <em>which</em>) that we would like to remove. We use the <code>anti_join()</code> function to remove all stop words.</p>
+<p>This gives us an object, <code>words</code>, with 7,116 observations. However, a lot of these words are irrelevant stop words (most common words that we are not interested in such as <em>the</em>, <em>is</em>, <em>at</em>, <em>which</em>) that we would like to remove. We use the <code>anti_join()</code> function to remove all stop words.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span>words <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(stop_words, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>)</code></pre></div>
-<p>Last, we can count the words in the speech and calculate the number of occurences.</p>
+<p>Last, we can count the words in the speech and calculate the number of occurrences.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>We see that <em>people</em> is mentioned 49 times, and <em>britain</em> is mentioned 36 times. <em>dream</em> and <em>british</em> are mentioned 33 and 29 times, respectively.</p>
 </div>
