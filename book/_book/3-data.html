@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2019-01-21">
+<meta name="date" content="2019-02-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,6 +135,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="4-datadownload.html"><a href="4-datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>4.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
 <li class="chapter" data-level="4.4" data-path="4-datadownload.html"><a href="4-datadownload.html#data-manifesto-project-dataset-manifestor"><i class="fa fa-check"></i><b>4.4</b> Data: Manifesto Project Dataset (<code>manifestoR</code>)</a></li>
 <li class="chapter" data-level="4.5" data-path="4-datadownload.html"><a href="4-datadownload.html#data-varieties-of-democracy-vdem"><i class="fa fa-check"></i><b>4.5</b> Data: Varieties of Democracy (<code>vdem</code>)</a></li>
+<li class="chapter" data-level="4.6" data-path="4-datadownload.html"><a href="4-datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>4.6</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-create.html"><a href="5-create.html"><i class="fa fa-check"></i><b>5</b> Create data</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-create.html"><a href="5-create.html#create-data-from-files"><i class="fa fa-check"></i><b>5.1</b> Create data from files</a></li>
@@ -210,8 +211,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>All these functions rely on data frames. In other words, you can not use these functions on other types of data in <code>R</code>. Furthermore, they all return a new data frame that you will need to save in a new object or overwrite the existing object with your data frame.</p>
 <p>As the <code>dplyr</code> package is part of the <code>tidyverse</code>, the first thing we do is to call the <code>tidyverse</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
-<p>We will use the dataset we created in the previous chapter. If you do not have it, you can download it here (make sure to have the data file saved in your working directory): <a href="http://qpolr.com/data/uk2017.csv" class="uri">http://qpolr.com/data/uk2017.csv</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;uk2017.csv&quot;</span>)</code></pre></div>
+<p>We will use the dataset we created in the previous chapter. If you do not have it, you can use the script below to create the data frame again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">party &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>, <span class="st">&quot;Scottish National Party&quot;</span>, 
+       <span class="st">&quot;Liberal Democrats&quot;</span>, <span class="st">&quot;Democratic Unionist Party&quot;</span>, <span class="st">&quot;Sinn Féin&quot;</span>) 
+leader &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Theresa May&quot;</span>, <span class="st">&quot;Jeremy Corbyn&quot;</span>, <span class="st">&quot;Nicola Sturgeon&quot;</span>, 
+            <span class="st">&quot;Tim Farron&quot;</span>, <span class="st">&quot;Arlene Foster&quot;</span>, <span class="st">&quot;Gerry Adams&quot;</span>)
+votes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">42.4</span>, <span class="fl">40.0</span>, <span class="fl">3.0</span>, <span class="fl">7.4</span>, <span class="fl">0.9</span>, <span class="fl">0.7</span>)
+seats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">317</span>, <span class="dv">262</span>, <span class="dv">35</span>, <span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">7</span>)
+seats_change &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">13</span>, <span class="dv">30</span>, <span class="op">-</span><span class="dv">21</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+
+uk2017 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(party, leader, votes, seats, seats_change)</code></pre></div>
 <p>To see the information in the dataset, use <code>head()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(uk2017)</code></pre></div>
 <pre><code>                      party          leader votes seats seats_change
@@ -292,6 +301,15 @@ uk2017_seatlosers</code></pre></div>
 6        Conservative Party     Theresa May  42.4   317          -13</code></pre>
 <p>If we prefer to have the parties with the greatest number of votes in the top, we can use the negative sign (<code>-</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(uk2017, <span class="op">-</span>votes)</code></pre></div>
+<pre><code>                      party          leader votes seats seats_change
+1        Conservative Party     Theresa May  42.4   317          -13
+2              Labour Party   Jeremy Corbyn  40.0   262           30
+3         Liberal Democrats      Tim Farron   7.4    12            4
+4   Scottish National Party Nicola Sturgeon   3.0    35          -21
+5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+6                 Sinn Féin     Gerry Adams   0.7     7            3</code></pre>
+<p>Alternatively, you can use the <code>desc()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(uk2017, <span class="kw">desc</span>(votes))</code></pre></div>
 <pre><code>                      party          leader votes seats seats_change
 1        Conservative Party     Theresa May  42.4   317          -13
 2              Labour Party   Jeremy Corbyn  40.0   262           30

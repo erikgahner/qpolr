@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2019-01-21">
+<meta name="date" content="2019-02-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,6 +135,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="4-datadownload.html"><a href="4-datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>4.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
 <li class="chapter" data-level="4.4" data-path="4-datadownload.html"><a href="4-datadownload.html#data-manifesto-project-dataset-manifestor"><i class="fa fa-check"></i><b>4.4</b> Data: Manifesto Project Dataset (<code>manifestoR</code>)</a></li>
 <li class="chapter" data-level="4.5" data-path="4-datadownload.html"><a href="4-datadownload.html#data-varieties-of-democracy-vdem"><i class="fa fa-check"></i><b>4.5</b> Data: Varieties of Democracy (<code>vdem</code>)</a></li>
+<li class="chapter" data-level="4.6" data-path="4-datadownload.html"><a href="4-datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>4.6</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-create.html"><a href="5-create.html"><i class="fa fa-check"></i><b>5</b> Create data</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-create.html"><a href="5-create.html#create-data-from-files"><i class="fa fa-check"></i><b>5.1</b> Create data from files</a></li>
@@ -348,7 +349,9 @@ party</code></pre></div>
 <p>In most cases, we will not be working with one variable (e.g. information on party names) but multiple variables. To do this in an easy way, we can create <em>data frames</em> which is similar to a dataset in SPSS and Stata. The good thing about <code>R</code>, however, is that we can have multiple data frames open at the same time. The cost of this is that we have to specify, when we do something in <code>R</code>, exactly what data frame we are using.</p>
 <p>Here we will create a data frame with more information about the parties from the United Kingdom general election, 2017.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
 <p>As a first step we can create new objects with more information: <code>leader</code> (information on the party leader), <code>votes</code> (the vote share in percent), <code>seats</code> (the number of seats) and <code>seats_change</code> (change in seats from the previous election). Do note that the order is important as we are going to link these objects together in a minute, where the first value in each object is for the Conservative Party, the second for the Labour Party and so on.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">leader &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Theresa May&quot;</span>, <span class="st">&quot;Jeremy Corbyn&quot;</span>, <span class="st">&quot;Nicola Sturgeon&quot;</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">party &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>, <span class="st">&quot;Scottish National Party&quot;</span>, 
+       <span class="st">&quot;Liberal Democrats&quot;</span>, <span class="st">&quot;Democratic Unionist Party&quot;</span>, <span class="st">&quot;Sinn Féin&quot;</span>) 
+leader &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Theresa May&quot;</span>, <span class="st">&quot;Jeremy Corbyn&quot;</span>, <span class="st">&quot;Nicola Sturgeon&quot;</span>, 
             <span class="st">&quot;Tim Farron&quot;</span>, <span class="st">&quot;Arlene Foster&quot;</span>, <span class="st">&quot;Gerry Adams&quot;</span>)
 votes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">42.4</span>, <span class="fl">40.0</span>, <span class="fl">3.0</span>, <span class="fl">7.4</span>, <span class="fl">0.9</span>, <span class="fl">0.7</span>)
 seats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">317</span>, <span class="dv">262</span>, <span class="dv">35</span>, <span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">7</span>)
@@ -490,6 +493,13 @@ F-statistic: 161.2 on 1 and 4 DF,  p-value: 0.0002216</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
 <p>If you would like to change this, you can use the function <code>setwd()</code>. This function allows you to change the working directory to whatever folder on your computer you would like to use. In the code below I change the working directory to the folder <code>book</code> in the folder <code>qpolr</code> in the Dropbox folder. Do also note that we are using forward slash (<code>/</code>) and not backslash (<code>\</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;/Dropbox/qpolr/book&quot;</span>)</code></pre></div>
+<p>If you cannot remember the destination, you can use the menu to find the folder you want to have as your working directory as shown in Figure <a href="2-basics.html#fig:setwd">2.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:setwd"></span>
+<img src="fig/setwd.png" alt="How to change the working directory" width="50%" />
+<p class="caption">
+Figure 2.2: How to change the working directory
+</p>
+</div>
 <p>An easy way to control the working directory is to open an <code>R</code>-script directly from the folder you want to have as your working directory. Specifically, instead of opening RStudio and finding the script, find the script in your folder and open RStudio that way. This will automatically set the working directory to the folder with the <code>R</code>-script.</p>
 <p>Once we know where we will save our data, we can use <code>write.csv()</code> to save the data. In the code below we first specify that we want to save the data frame <code>uk2017</code> and next the filename of the file (<code>uk2017.csv</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(uk2017, <span class="st">&quot;uk2017.csv&quot;</span>)</code></pre></div>

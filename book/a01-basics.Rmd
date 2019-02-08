@@ -246,6 +246,8 @@ Here we will create a data frame with more information about the parties from th
 As a first step we can create new objects with more information: `leader` (information on the party leader), `votes` (the vote share in percent), `seats` (the number of seats) and `seats_change` (change in seats from the previous election). Do note that the order is important as we are going to link these objects together in a minute, where the first value in each object is for the Conservative Party, the second for the Labour Party and so on.
 
 ```{r}
+party <- c("Conservative Party", "Labour Party", "Scottish National Party", 
+       "Liberal Democrats", "Democratic Unionist Party", "Sinn Féin") 
 leader <- c("Theresa May", "Jeremy Corbyn", "Nicola Sturgeon", 
             "Tim Farron", "Arlene Foster", "Gerry Adams")
 votes <- c(42.4, 40.0, 3.0, 7.4, 0.9, 0.7)
@@ -312,7 +314,7 @@ If you want to see your data frame in a new window, you can use the function `Vi
 View(uk2017)
 ```
 
-```{r View, echo=FALSE, cache=TRUE, fig.cap="Data frame with View(), RStudio", out.extra="scale=0.65"}
+```{r View, echo=FALSE, cache=TRUE, fig.cap="Data frame with View(), RStudio", out.width="80%"}
 include_graphics(path = "fig/View.png")
 ```
 
@@ -397,6 +399,12 @@ If you would like to change this, you can use the function `setwd()`. This funct
 
 ```{r, eval=FALSE}
 setwd("/Dropbox/qpolr/book")
+```
+
+If you cannot remember the destination, you can use the menu to find the folder you want to have as your working directory as shown in Figure \@ref(fig:setwd).
+
+```{r setwd, echo=FALSE, fig.cap="How to change the working directory", out.width="50%"}
+include_graphics(path = "fig/setwd.png")
 ```
 
 An easy way to control the working directory is to open an `R`-script directly from the folder you want to have as your working directory. Specifically, instead of opening RStudio and finding the script, find the script in your folder and open RStudio that way. This will automatically set the working directory to the folder with the `R`-script.

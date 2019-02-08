@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2019-01-21">
+<meta name="date" content="2019-02-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,6 +135,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="4-datadownload.html"><a href="4-datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>4.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
 <li class="chapter" data-level="4.4" data-path="4-datadownload.html"><a href="4-datadownload.html#data-manifesto-project-dataset-manifestor"><i class="fa fa-check"></i><b>4.4</b> Data: Manifesto Project Dataset (<code>manifestoR</code>)</a></li>
 <li class="chapter" data-level="4.5" data-path="4-datadownload.html"><a href="4-datadownload.html#data-varieties-of-democracy-vdem"><i class="fa fa-check"></i><b>4.5</b> Data: Varieties of Democracy (<code>vdem</code>)</a></li>
+<li class="chapter" data-level="4.6" data-path="4-datadownload.html"><a href="4-datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>4.6</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-create.html"><a href="5-create.html"><i class="fa fa-check"></i><b>5</b> Create data</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-create.html"><a href="5-create.html#create-data-from-files"><i class="fa fa-check"></i><b>5.1</b> Create data from files</a></li>
@@ -283,7 +284,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="data-european-social-survey-essurvey" class="section level2">
 <h2><span class="header-section-number">4.3</span> Data: European Social Survey (<code>essurvey</code>)</h2>
-<p>To get data from European Social Survey (ESS), we will be using the <code>essurvey</code> package. If you do not have a free user, the first step is to go online and create a user: <a href="http://www.europeansocialsurvey.org/user/new" class="uri">http://www.europeansocialsurvey.org/user/new</a></p>
+<p>To get data from European Social Survey (ESS), we will be using the <code>essurvey</code> package <span class="citation">(Cimentada, 2018)</span>. If you do not have a free user, the first step is to go online and create a user: <a href="http://www.europeansocialsurvey.org/user/new" class="uri">http://www.europeansocialsurvey.org/user/new</a></p>
 <p>The next thing you need to do is to install the package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;essurvey&quot;</span>)</code></pre></div>
 <p>And then load the package.</p>
@@ -309,7 +310,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="data-manifesto-project-dataset-manifestor" class="section level2">
 <h2><span class="header-section-number">4.4</span> Data: Manifesto Project Dataset (<code>manifestoR</code>)</h2>
 <p>To use data from the Manifesto Project Dataset, you need to create an account as well. This can be done at: <a href="https://manifesto-project.wzb.eu/signup" class="uri">https://manifesto-project.wzb.eu/signup</a></p>
-<p>Next, install and load the package.</p>
+<p>Next, install and load the package <code>manifestoR</code> <span class="citation">(Lewandowski &amp; Merz, 2018)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install the package</span>
 <span class="kw">install.packages</span>(<span class="st">&quot;manifestoR&quot;</span>)
 
@@ -325,7 +326,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="data-varieties-of-democracy-vdem" class="section level2">
 <h2><span class="header-section-number">4.5</span> Data: Varieties of Democracy (<code>vdem</code>)</h2>
-<p>To get data from Varieties of Democracy into <code>R</code>, we are going to use the <code>vdem</code> package. This package is not on <code>CRAN</code>, and accordingly, we cannot use <code>install.packages()</code> to install it. Instead, we will have to use the function <code>install_github()</code> as it is on GitHub. In order to do this, you need to have the package <code>devtools</code>. To install this package, you can uncomment the first line below. The second line says that we are using the <code>install_github()</code> function from the <code>devtools</code> package (with <code>::</code>).</p>
+<p>To get data from Varieties of Democracy into <code>R</code>, we are going to use the <code>vdem</code> package <span class="citation">(Coppedge et al., 2017)</span>. This package is not on <code>CRAN</code>, and accordingly, we cannot use <code>install.packages()</code> to install it. Instead, we will have to use the function <code>install_github()</code> as it is on GitHub. In order to do this, you need to have the package <code>devtools</code>. To install this package, you can uncomment the first line below. The second line says that we are using the <code>install_github()</code> function from the <code>devtools</code> package (with <code>::</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;devtools&quot;)</span>
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;xmarquez/vdem&quot;</span>)</code></pre></div>
 <p>When the package is installed, use <code>library()</code> to load it.</p>
@@ -334,6 +335,19 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vdem_data &lt;-<span class="st"> </span><span class="kw">extract_vdem</span>(<span class="dt">section_number =</span> <span class="dv">1</span>)</code></pre></div>
 <p>This gives us a dataset with 17,604 observations of 55 variables. To see the first observations, use <code>head()</code> (output not shown).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(vdem_data)</code></pre></div>
+</div>
+<div id="data-world-development-indicators-wdi" class="section level2">
+<h2><span class="header-section-number">4.6</span> Data: World Development Indicators (<code>WDI</code>)</h2>
+<p>To use data from the World Bank’s World Development Indicators, we can use the <code>WDI</code> package <span class="citation">(Arel-Bundock, 2018)</span>. For more information on the World Development Indicators, see <a href="https://datacatalog.worldbank.org/dataset/world-development-indicators" class="uri">https://datacatalog.worldbank.org/dataset/world-development-indicators</a>. First, install and load the package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install the package</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;WDI&quot;</span>)
+
+<span class="co"># load the package</span>
+<span class="kw">library</span>(<span class="st">&quot;WDI&quot;</span>)</code></pre></div>
+<p>To search for data in the WDI, you can use the <code>WDIsearch()</code> function. In the example below, we search for data on GDP.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">WDIsearch</span>(<span class="st">&quot;gdp&quot;</span>)</code></pre></div>
+<p>This returns the indicator and name of the data in WDI. We can see that the indicator for GDP per capita, PPP (constant 2005 international $) is <code>NY.GDP.PCAP.PP.KD</code>. To save the data, use the function <code>WDI()</code>, where you specify the indicator as well as the countries and years you want the data from.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wdi &lt;-<span class="st"> </span><span class="kw">WDI</span>(<span class="dt">indicator=</span><span class="st">&quot;NY.GDP.PCAP.PP.KD&quot;</span>, <span class="dt">country=</span><span class="kw">c</span>(<span class="st">&quot;US&quot;</span>, <span class="st">&quot;GB&quot;</span>), <span class="dt">start =</span> <span class="dv">1960</span>, <span class="dt">end =</span> <span class="dv">2012</span>)</code></pre></div>
 
 </div>
 </div>

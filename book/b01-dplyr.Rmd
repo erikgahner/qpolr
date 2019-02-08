@@ -21,10 +21,18 @@ As the `dplyr` package is part of the `tidyverse`, the first thing we do is to c
 library("tidyverse")
 ```
 
-We will use the dataset we created in the previous chapter. If you do not have it, you can download it here (make sure to have the data file saved in your working directory): [http://qpolr.com/data/uk2017.csv](http://qpolr.com/data/uk2017.csv)
+We will use the dataset we created in the previous chapter. If you do not have it, you can use the script below to create the data frame again.
 
 ```{r, eval=FALSE}
-uk2017 <- read.csv("uk2017.csv")
+party <- c("Conservative Party", "Labour Party", "Scottish National Party", 
+       "Liberal Democrats", "Democratic Unionist Party", "Sinn Féin") 
+leader <- c("Theresa May", "Jeremy Corbyn", "Nicola Sturgeon", 
+            "Tim Farron", "Arlene Foster", "Gerry Adams")
+votes <- c(42.4, 40.0, 3.0, 7.4, 0.9, 0.7)
+seats <- c(317, 262, 35, 12, 10, 7)
+seats_change <- c(-13, 30, -21, 4, 2, 3)
+
+uk2017 <- data.frame(party, leader, votes, seats, seats_change)
 ```
 
 To see the information in the dataset, use `head()`.
@@ -94,6 +102,12 @@ If we prefer to have the parties with the greatest number of votes in the top, w
 
 ```{r}
 arrange(uk2017, -votes)
+```
+
+Alternatively, you can use the `desc()` function.
+
+```{r}
+arrange(uk2017, desc(votes))
 ```
 
 ## Rename variables: `rename()`

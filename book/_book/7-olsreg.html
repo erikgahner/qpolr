@@ -25,7 +25,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas">
 
 
-<meta name="date" content="2019-01-21">
+<meta name="date" content="2019-02-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,6 +135,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="4-datadownload.html"><a href="4-datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>4.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
 <li class="chapter" data-level="4.4" data-path="4-datadownload.html"><a href="4-datadownload.html#data-manifesto-project-dataset-manifestor"><i class="fa fa-check"></i><b>4.4</b> Data: Manifesto Project Dataset (<code>manifestoR</code>)</a></li>
 <li class="chapter" data-level="4.5" data-path="4-datadownload.html"><a href="4-datadownload.html#data-varieties-of-democracy-vdem"><i class="fa fa-check"></i><b>4.5</b> Data: Varieties of Democracy (<code>vdem</code>)</a></li>
+<li class="chapter" data-level="4.6" data-path="4-datadownload.html"><a href="4-datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>4.6</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-create.html"><a href="5-create.html"><i class="fa fa-check"></i><b>5</b> Create data</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-create.html"><a href="5-create.html#create-data-from-files"><i class="fa fa-check"></i><b>5.1</b> Create data from files</a></li>
@@ -291,7 +292,7 @@ reg_obama_tidy</code></pre></div>
         <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>.fitted)) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-197-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-201-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multiple-linear-regression" class="section level2">
 <h2><span class="header-section-number">7.2</span> Multiple linear regression</h2>
@@ -332,7 +333,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-202-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-206-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In some cases the intercept is not relevant. In the code below, we use the <code>filter()</code> function to visualise all effects except for the intercept.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_full_tidy <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span>
@@ -341,7 +342,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-203-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-207-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="diagnostic-tests" class="section level2">
 <h2><span class="header-section-number">7.3</span> Diagnostic tests</h2>
@@ -364,7 +365,7 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Residuals vs. Fitted&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Fitted values&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-205-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-209-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To see whether our residuals are normally distributed, we create a normal Q-Q plot with the standardized residuals.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify) <span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_qq</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> .stdresid)) <span class="op">+</span>
@@ -372,14 +373,14 @@ F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal Q-Q&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Standardized residuals&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Theoretical Quantiles&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-206-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-210-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To estimate the influence of individual observations, we plot the Cook’s distance for each state.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(.cooksd), <span class="dt">y =</span> .cooksd)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()  <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Obs. number&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-207-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-211-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="setting-up-regression-tables" class="section level2">
 <h2><span class="header-section-number">7.4</span> Setting up regression tables</h2>

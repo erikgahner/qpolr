@@ -51,7 +51,7 @@
 
 \title{\Huge{ Quantitative Politics with R } \vspace{2em}}
 \author{Erik Gahner Larsen and Zoltán Fazekas}
-\date{January 21, 2019}
+\date{February 08, 2019}
 
 \renewcommand{\contentsname}{Table of Contents}
 
@@ -252,6 +252,11 @@
   other parts you have loaded into \texttt{R}. The \emph{output} is where
   you can see the figures you create as well as documents. The
   \emph{console} is where you can see your output and run commands.
+  
+  As you can see, the background is dark in the RStudio environment in
+  Figure \ref{fig:interfaceexplain}. If you want to change the colours of
+  your RStudio environment, go to Tools \(\rightarrow\)
+  \texttt{Global\ Options...} \(\rightarrow\) \texttt{Appearance}.
   
   Importantly, everything you do in \texttt{R} can be written as commands.
   This ensures that you will always be able to document your work (in the
@@ -819,6 +824,8 @@
   Conservative Party, the second for the Labour Party and so on.
   \begin{Shaded}
   \begin{Highlighting}[]
+  \NormalTok{party <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Conservative Party"}\NormalTok{, }\StringTok{"Labour Party"}\NormalTok{, }\StringTok{"Scottish National Party"}\NormalTok{, }
+         \StringTok{"Liberal Democrats"}\NormalTok{, }\StringTok{"Democratic Unionist Party"}\NormalTok{, }\StringTok{"Sinn Féin"}\NormalTok{) }
   \NormalTok{leader <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Theresa May"}\NormalTok{, }\StringTok{"Jeremy Corbyn"}\NormalTok{, }\StringTok{"Nicola Sturgeon"}\NormalTok{, }
               \StringTok{"Tim Farron"}\NormalTok{, }\StringTok{"Arlene Foster"}\NormalTok{, }\StringTok{"Gerry Adams"}\NormalTok{)}
   \NormalTok{votes <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{42.4}\NormalTok{, }\FloatTok{40.0}\NormalTok{, }\FloatTok{3.0}\NormalTok{, }\FloatTok{7.4}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }\FloatTok{0.7}\NormalTok{)}
@@ -964,7 +971,7 @@
   \end{Highlighting}
   \end{Shaded}
   \begin{figure}
-  \includegraphics[width=14.69in,scale=0.65]{fig/View} \caption{Data frame with View(), RStudio}\label{fig:View}
+  \includegraphics[width=0.8\linewidth]{fig/View} \caption{Data frame with View(), RStudio}\label{fig:View}
   \end{figure}
   When you are working with variables in a data frame, you can use
   \texttt{\$} as a \emph{component selector} to select a variable in a
@@ -1182,6 +1189,12 @@
   \KeywordTok{setwd}\NormalTok{(}\StringTok{"/Dropbox/qpolr/book"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
+  If you cannot remember the destination, you can use the menu to find the
+  folder you want to have as your working directory as shown in Figure
+  \ref{fig:setwd}.
+  \begin{figure}
+  \includegraphics[width=0.5\linewidth]{fig/setwd} \caption{How to change the working directory}\label{fig:setwd}
+  \end{figure}
   An easy way to control the working directory is to open an
   \texttt{R}-script directly from the folder you want to have as your
   working directory. Specifically, instead of opening RStudio and finding
@@ -1304,11 +1317,19 @@
   \end{Highlighting}
   \end{Shaded}
   We will use the dataset we created in the previous chapter. If you do
-  not have it, you can download it here (make sure to have the data file
-  saved in your working directory): \url{http://qpolr.com/data/uk2017.csv}
+  not have it, you can use the script below to create the data frame
+  again.
   \begin{Shaded}
   \begin{Highlighting}[]
-  \NormalTok{uk2017 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"uk2017.csv"}\NormalTok{)}
+  \NormalTok{party <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Conservative Party"}\NormalTok{, }\StringTok{"Labour Party"}\NormalTok{, }\StringTok{"Scottish National Party"}\NormalTok{, }
+         \StringTok{"Liberal Democrats"}\NormalTok{, }\StringTok{"Democratic Unionist Party"}\NormalTok{, }\StringTok{"Sinn Féin"}\NormalTok{) }
+  \NormalTok{leader <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Theresa May"}\NormalTok{, }\StringTok{"Jeremy Corbyn"}\NormalTok{, }\StringTok{"Nicola Sturgeon"}\NormalTok{, }
+              \StringTok{"Tim Farron"}\NormalTok{, }\StringTok{"Arlene Foster"}\NormalTok{, }\StringTok{"Gerry Adams"}\NormalTok{)}
+  \NormalTok{votes <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{42.4}\NormalTok{, }\FloatTok{40.0}\NormalTok{, }\FloatTok{3.0}\NormalTok{, }\FloatTok{7.4}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }\FloatTok{0.7}\NormalTok{)}
+  \NormalTok{seats <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{317}\NormalTok{, }\DecValTok{262}\NormalTok{, }\DecValTok{35}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{7}\NormalTok{)}
+  \NormalTok{seats_change <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{13}\NormalTok{, }\DecValTok{30}\NormalTok{, }\OperatorTok{-}\DecValTok{21}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+  
+  \NormalTok{uk2017 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(party, leader, votes, seats, seats_change)}
   \end{Highlighting}
   \end{Shaded}
   To see the information in the dataset, use \texttt{head()}.
@@ -1475,6 +1496,21 @@
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{arrange}\NormalTok{(uk2017, }\OperatorTok{-}\NormalTok{votes)}
+  \end{Highlighting}
+  \end{Shaded}
+  \begin{verbatim}
+                        party          leader votes seats seats_change
+  1        Conservative Party     Theresa May  42.4   317          -13
+  2              Labour Party   Jeremy Corbyn  40.0   262           30
+  3         Liberal Democrats      Tim Farron   7.4    12            4
+  4   Scottish National Party Nicola Sturgeon   3.0    35          -21
+  5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+  6                 Sinn Féin     Gerry Adams   0.7     7            3
+  \end{verbatim}
+  Alternatively, you can use the \texttt{desc()} function.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{arrange}\NormalTok{(uk2017, }\KeywordTok{desc}\NormalTok{(votes))}
   \end{Highlighting}
   \end{Shaded}
   \begin{verbatim}
@@ -1910,8 +1946,8 @@
   (\texttt{essurvey})}{Data: European Social Survey (essurvey)}}\label{data-european-social-survey-essurvey}
   
   To get data from European Social Survey (ESS), we will be using the
-  \texttt{essurvey} package. If you do not have a free user, the first
-  step is to go online and create a user:
+  \texttt{essurvey} package (Cimentada, 2018). If you do not have a free
+  user, the first step is to go online and create a user:
   \url{http://www.europeansocialsurvey.org/user/new}
   
   The next thing you need to do is to install the package.
@@ -1974,7 +2010,8 @@
   account as well. This can be done at:
   \url{https://manifesto-project.wzb.eu/signup}
   
-  Next, install and load the package.
+  Next, install and load the package \texttt{manifestoR} (Lewandowski \&
+  Merz, 2018).
   \begin{Shaded}
   \begin{Highlighting}[]
   \CommentTok{# install the package}
@@ -2017,14 +2054,14 @@
   (\texttt{vdem})}{Data: Varieties of Democracy (vdem)}}\label{data-varieties-of-democracy-vdem}
   
   To get data from Varieties of Democracy into \texttt{R}, we are going to
-  use the \texttt{vdem} package. This package is not on \texttt{CRAN}, and
-  accordingly, we cannot use \texttt{install.packages()} to install it.
-  Instead, we will have to use the function \texttt{install\_github()} as
-  it is on GitHub. In order to do this, you need to have the package
-  \texttt{devtools}. To install this package, you can uncomment the first
-  line below. The second line says that we are using the
-  \texttt{install\_github()} function from the \texttt{devtools} package
-  (with \texttt{::}).
+  use the \texttt{vdem} package (Coppedge et al., 2017). This package is
+  not on \texttt{CRAN}, and accordingly, we cannot use
+  \texttt{install.packages()} to install it. Instead, we will have to use
+  the function \texttt{install\_github()} as it is on GitHub. In order to
+  do this, you need to have the package \texttt{devtools}. To install this
+  package, you can uncomment the first line below. The second line says
+  that we are using the \texttt{install\_github()} function from the
+  \texttt{devtools} package (with \texttt{::}).
   \begin{Shaded}
   \begin{Highlighting}[]
   \CommentTok{#install.packages("devtools")}
@@ -2049,6 +2086,40 @@
   \begin{Shaded}
   \begin{Highlighting}[]
   \KeywordTok{head}\NormalTok{(vdem_data)}
+  \end{Highlighting}
+  \end{Shaded}
+  \section{\texorpdfstring{Data: World Development Indicators
+  (\texttt{WDI})}{Data: World Development Indicators (WDI)}}\label{data-world-development-indicators-wdi}
+  
+  To use data from the World Bank's World Development Indicators, we can
+  use the \texttt{WDI} package (Arel-Bundock, 2018). For more information
+  on the World Development Indicators, see
+  \url{https://datacatalog.worldbank.org/dataset/world-development-indicators}.
+  First, install and load the package.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \CommentTok{# install the package}
+  \KeywordTok{install.packages}\NormalTok{(}\StringTok{"WDI"}\NormalTok{)}
+  
+  \CommentTok{# load the package}
+  \KeywordTok{library}\NormalTok{(}\StringTok{"WDI"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  To search for data in the WDI, you can use the \texttt{WDIsearch()}
+  function. In the example below, we search for data on GDP.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{WDIsearch}\NormalTok{(}\StringTok{"gdp"}\NormalTok{)}
+  \end{Highlighting}
+  \end{Shaded}
+  This returns the indicator and name of the data in WDI. We can see that
+  the indicator for GDP per capita, PPP (constant 2005 international \$)
+  is \texttt{NY.GDP.PCAP.PP.KD}. To save the data, use the function
+  \texttt{WDI()}, where you specify the indicator as well as the countries
+  and years you want the data from.
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{wdi <-}\StringTok{ }\KeywordTok{WDI}\NormalTok{(}\DataTypeTok{indicator=}\StringTok{"NY.GDP.PCAP.PP.KD"}\NormalTok{, }\DataTypeTok{country=}\KeywordTok{c}\NormalTok{(}\StringTok{"US"}\NormalTok{, }\StringTok{"GB"}\NormalTok{), }\DataTypeTok{start =} \DecValTok{1960}\NormalTok{, }\DataTypeTok{end =} \DecValTok{2012}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
   \chapter{Create data}\label{create}
@@ -2564,7 +2635,7 @@
   \KeywordTok{plot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{votes, }\DataTypeTok{y=}\NormalTok{uk2017}\OperatorTok{$}\NormalTok{seats)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-154-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-158-1.pdf}
   
   There is nothing inherently wrong with using a function like this, but
   the moment we want to tweak the figure, it gets complicated.
@@ -2668,7 +2739,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-159-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-163-1} \end{center}
   
   This is a standard \texttt{ggplot2} plot with all its defaults. If we
   instead a scatter plot wanted a line plot, we can change
@@ -2679,7 +2750,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-160-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-164-1} \end{center}
   
   The above figure is somewhat misleading so it is just to show the logic
   of the how geometric objects work. Interestingly, we can add multiple
@@ -2692,7 +2763,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-161-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-165-1} \end{center}
   
   \subsection{Theme adjustments}\label{theme-adjustments}
   
@@ -2707,7 +2778,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-162-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-166-1} \end{center}
   
   We can also easily change the labels by using \texttt{xlab()} and
   \texttt{ylab()}.
@@ -2720,7 +2791,7 @@
   \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Number of abortions per 1,000 women aged 15-44 in 2008"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-163-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-167-1} \end{center}
   
   This is the basic logic of \texttt{ggplot2}.
   
@@ -2764,7 +2835,7 @@
   \StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-164-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-168-1} \end{center}
   
   \subsection{Histograms}\label{histograms}
   
@@ -2780,7 +2851,7 @@
   \begin{verbatim}
   `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
   \end{verbatim}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-165-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-169-1} \end{center}
   
   As you can see, we get a message about the use of a default binwidth.
   This is to emphasize the importance of specifying the binwidth yourself.
@@ -2792,7 +2863,7 @@
   \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-166-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-170-1} \end{center}
   
   Play around with different binwidths to see how it affects the
   distribution in the figure.
@@ -2808,7 +2879,7 @@
   \StringTok{  }\KeywordTok{geom_density}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-167-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-171-1} \end{center}
   
   Do compare the density plot to the histograms above.
   
@@ -2848,7 +2919,7 @@
   \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-168-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-172-1} \end{center}
   
   Here we can see that Obama got a greater vote share in states with less
   restrictions on abortion.
@@ -2865,7 +2936,7 @@
   \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-169-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-173-1} \end{center}
   
   If we are working with a lot of observations, there will be an overlap
   in the points. To show all of the observations, we can add some small,
@@ -2878,7 +2949,7 @@
   \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-170-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-174-1} \end{center}
   
   We can also use \texttt{geom\_point(position\ =\ "jitter")} instead of
   Instead of \texttt{geom\_jitter()}. However, in this particular case, as
@@ -2895,7 +2966,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-171-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-175-1} \end{center}
   
   Here we can see that as the abortion rate increases, so does the vote
   share for Obama. As we can also see, this is a smoothing function. To
@@ -2907,7 +2978,7 @@
   \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-172-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-176-1} \end{center}
   
   \section{Manipulating plots}\label{manipulating-plots}
   
@@ -2968,7 +3039,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-173-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-177-1} \end{center}
   
   \subsection{Colours}\label{colours}
   
@@ -2984,7 +3055,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-174-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-178-1} \end{center}
   
   If we want to give points a value based on the value of a specific
   variable, we need to specificy this within \texttt{aes()}. When we add
@@ -2998,7 +3069,7 @@
   \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-175-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-179-1} \end{center}
   
   If we want to change these colours, we can use
   \texttt{scale\_colour\_manual()}.
@@ -3011,7 +3082,7 @@
   \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-176-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-180-1} \end{center}
   
   The colours are very bright. If we want to make them less so we can add
   \texttt{alpha} to \texttt{geom\_point()} to add transparency to the
@@ -3026,7 +3097,7 @@
   \StringTok{  }\KeywordTok{scale_colour_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"black"}\NormalTok{)) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-177-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-181-1} \end{center}
   
   \subsection{Labels}\label{labels}
   
@@ -3048,7 +3119,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-178-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-182-1} \end{center}
   
   Last, we can see that the legend title is \texttt{abortlaw3}. We can
   change this by adding \texttt{colour} to \texttt{labs()} as well.
@@ -3067,7 +3138,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-179-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-183-1} \end{center}
   
   \subsection{Axes}\label{axes}
   
@@ -3091,7 +3162,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-180-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-184-1} \end{center}
   
   \subsection{Confidence intervals}\label{confidence-intervals}
   
@@ -3114,7 +3185,7 @@
   \NormalTok{  ) }
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-181-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-185-1} \end{center}
   
   \subsection{Making multiple plots in
   one}\label{making-multiple-plots-in-one}
@@ -3139,7 +3210,7 @@
   \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{abortlaw3)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-182-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-186-1} \end{center}
   
   However, now we have redundant information as we have a legend with no
   vital information not already visible in the figure. Below, we change
@@ -3171,7 +3242,7 @@
   \StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position=}\StringTok{"none"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-183-1} \end{center}
+  \begin{center}\includegraphics{qpolr_files/figure-latex/unnamed-chunk-187-1} \end{center}
   
   \section{Saving plots}\label{saving-plots}
   
@@ -3380,7 +3451,7 @@
   \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{abort_rate08, }\DataTypeTok{y=}\NormalTok{.fitted)) }
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-197-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-201-1.pdf}
   
   \section{Multiple linear regression}\label{multiple-linear-regression}
   
@@ -3452,7 +3523,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-202-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-206-1.pdf}
   
   In some cases the intercept is not relevant. In the code below, we use
   the \texttt{filter()} function to visualise all effects except for the
@@ -3468,7 +3539,7 @@
   \StringTok{     }\KeywordTok{geom_errorbarh}\NormalTok{()}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-203-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-207-1.pdf}
   
   \section{Diagnostic tests}\label{diagnostic-tests}
   
@@ -3511,7 +3582,7 @@
          \DataTypeTok{x =} \StringTok{"Fitted values"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-205-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-209-1.pdf}
   
   To see whether our residuals are normally distributed, we create a
   normal Q-Q plot with the standardized residuals.
@@ -3525,7 +3596,7 @@
          \DataTypeTok{x =} \StringTok{"Theoretical Quantiles"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-206-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-210-1.pdf}
   
   To estimate the influence of individual observations, we plot the Cook's
   distance for each state.
@@ -3538,7 +3609,7 @@
          \DataTypeTok{x =} \StringTok{"Obs. number"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
-  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-207-1.pdf}
+  \includegraphics{qpolr_files/figure-latex/unnamed-chunk-211-1.pdf}
   
   \section{Setting up regression
   tables}\label{setting-up-regression-tables}
@@ -3645,9 +3716,24 @@
   \setlength{\parskip}{8pt}
   
   \hypertarget{refs}{}
+  \hypertarget{ref-wdi}{}
+  Arel-Bundock, V. (2018). \emph{WDI: World development indicators (world
+  bank)}. Retrieved from \url{https://CRAN.R-project.org/package=WDI}
+  
   \hypertarget{ref-chanetal2016}{}
   Chan, C., Chan, G. C. H., \& Leeper, T. J. (2016). \emph{Rio: A
   swiss-army knife for data file i/o}.
+  
+  \hypertarget{ref-essurvey}{}
+  Cimentada, J. (2018). \emph{Essurvey: Download data from the european
+  social survey on the fly}. Retrieved from
+  \url{https://CRAN.R-project.org/package=essurvey}
+  
+  \hypertarget{ref-vdem}{}
+  Coppedge, M., Gerring, J., Lindberg, S. I., Skaaning, S.-E., Teorell,
+  J., Altman, D., \ldots{} Staton, J. (2017). V-Dem Codebook v7.1.
+  Varieties of Democracy (V-Dem) Project. Retrieved from
+  \url{https://www.v-dem.net/en/data/data-version-7-1/}
   
   \hypertarget{ref-foxweisberg2011}{}
   Fox, J., \& Weisberg, S. (2011). \emph{An R companion to applied
@@ -3666,6 +3752,11 @@
   Larsen, E. G. (2018). Welfare retrenchments and government support:
   Evidence from a natural experiment. \emph{European Sociological Review},
   \emph{34}(1), 40--51.
+  
+  \hypertarget{ref-manifestoR}{}
+  Lewandowski, J., \& Merz, N. (2018). \emph{ManifestoR: Access and
+  process data and documents of the manifesto project}. Retrieved from
+  \url{https://CRAN.R-project.org/package=manifestoR}
   
   \hypertarget{ref-rcoreteam2015foreign}{}
   R Core Team. (2015). \emph{Foreign: Read data stored by minitab, s, sas,

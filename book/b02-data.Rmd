@@ -69,7 +69,7 @@ In the next sections, we will introduce different packages, that can make it eas
 
 ## Data: European Social Survey (`essurvey`)
 
-To get data from European Social Survey (ESS), we will be using the `essurvey` package. If you do not have a free user, the first step is to go online and create a user: [http://www.europeansocialsurvey.org/user/new](http://www.europeansocialsurvey.org/user/new)
+To get data from European Social Survey (ESS), we will be using the `essurvey` package [@essurvey]. If you do not have a free user, the first step is to go online and create a user: [http://www.europeansocialsurvey.org/user/new](http://www.europeansocialsurvey.org/user/new)
 
 The next thing you need to do is to install the package.
 
@@ -121,7 +121,7 @@ lm(stfgov ~ reform, data=ess)
 
 To use data from the Manifesto Project Dataset, you need to create an account as well. This can be done at: [https://manifesto-project.wzb.eu/signup](https://manifesto-project.wzb.eu/signup)
 
-Next, install and load the package.
+Next, install and load the package `manifestoR` [@manifestoR].
 
 ```{r eval=FALSE}
 # install the package
@@ -153,7 +153,7 @@ If you want to find a more detailed description of how to look at the data, plea
 
 ## Data: Varieties of Democracy (`vdem`)
 
-To get data from Varieties of Democracy into `R`, we are going to use the `vdem` package. This package is not on `CRAN`, and accordingly, we cannot use `install.packages()` to install it. Instead, we will have to use the function `install_github()` as it is on GitHub. In order to do this, you need to have the package `devtools`. To install this package, you can uncomment the first line below. The second line says that we are using the `install_github()` function from the `devtools` package (with `::`).
+To get data from Varieties of Democracy into `R`, we are going to use the `vdem` package [@vdem]. This package is not on `CRAN`, and accordingly, we cannot use `install.packages()` to install it. Instead, we will have to use the function `install_github()` as it is on GitHub. In order to do this, you need to have the package `devtools`. To install this package, you can uncomment the first line below. The second line says that we are using the `install_github()` function from the `devtools` package (with `::`).
 
 ```{r eval=FALSE}
 #install.packages("devtools")
@@ -178,3 +178,27 @@ This gives us a dataset with 17,604 observations of 55 variables. To see the fir
 head(vdem_data)
 ```
 
+## Data: World Development Indicators (`WDI`)
+
+To use data from the World Bank's World Development Indicators, we can use the `WDI` package [@wdi]. For more information on the World Development Indicators, see [https://datacatalog.worldbank.org/dataset/world-development-indicators](https://datacatalog.worldbank.org/dataset/world-development-indicators). First, install and load the package.
+
+
+```{r eval=FALSE}
+# install the package
+install.packages("WDI")
+
+# load the package
+library("WDI")
+```
+
+To search for data in the WDI, you can use the `WDIsearch()` function. In the example below, we search for data on GDP.
+
+```{r eval=FALSE}
+WDIsearch("gdp")
+```
+
+This returns the indicator and name of the data in WDI. We can see that the indicator for GDP per capita, PPP (constant 2005 international $) is `NY.GDP.PCAP.PP.KD`. To save the data, use the function `WDI()`, where you specify the indicator as well as the countries and years you want the data from.
+
+```{r eval=FALSE}
+wdi <- WDI(indicator="NY.GDP.PCAP.PP.KD", country=c("US", "GB"), start = 1960, end = 2012)
+```

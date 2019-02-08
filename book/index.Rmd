@@ -6,7 +6,7 @@ knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
   thesisdown::thesis_pdf: default
-#  thesisdown::thesis_gitbook: default
+  #thesisdown::thesis_gitbook: default
 bibliography: references.bib
 csl: apa.csl
 lot: false
@@ -82,6 +82,8 @@ include_graphics(path = "fig/rstudio_env.png")
 ```
 
 In the figure, we have emphasized the four windows: script, environment, output, and console. The _script_ is where you will have your `R` code and can add code and make changes to your script. The _environment_ is where you can see what datasets, variables and other parts you have loaded into `R`. The _output_ is where you can see the figures you create as well as documents. The _console_ is where you can see your output and run commands. 
+
+As you can see, the background is dark in the RStudio environment in Figure \@ref(fig:interfaceexplain). If you want to change the colours of your RStudio environment, go to Tools $\rightarrow$ `Global Options...` $\rightarrow$ `Appearance`.
 
 Importantly, everything you do in `R` can be written as commands. This ensures that you will always be able to document your work (in the `script` window). In the console, you can see a prompt (`>`). Here, you can write what what you want `R` to do. Try to write `2+2` and hit `Enter`. This should look like the following:
 
