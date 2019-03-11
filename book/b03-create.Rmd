@@ -102,10 +102,24 @@ Here, we see that we have an xml_document and xml_node in our object. We want to
 data_table <- html_nodes(wikipage, "table")
 ```
 
-If you type `data_table`, you can see an overview of all the tables we have saved. Here, we would like to use the data on the number of votes the different parties got in the 2014 European Parliament election in the United Kingdom. We can see that this table is number 14 in our object. We save this table in the object `data_results`.
+If you type `data_table`, you can see an overview of all the tables we have saved. Here, we would like to use the data on the number of votes the different parties got in the 2014 European Parliament election in the United Kingdom. The table is depicted in Figure  \@ref(fig:wikieptable). 
+
+```{r wikieptable, echo=FALSE, fig.cap="The Wikipedia table with hte 2014 EP election in the UK ", out.width="70%"}
+include_graphics(path = "fig/wikieptable.png")
+```
+
+In the figure, the title of the table is highlighted. If you copy the title and look up the source code of the page[^ftsource], you can search for the table in the source code. This will show you what the code looks like for the table. To see the code for all our tables, we can simply call `data_table`.
+
+[^ftsource]: To look up the source in Google Chrome, simply right click anywhere on the webpage and select `View Page Source`. If in doubt on how to find the source code, you can google the name of your browser and "view souce code".
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
-data_results <- data_table[[14]] 
+data_table
+```
+
+We can see that this table is number 16 in our object. We save this table in the object `data_results`.
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+data_results <- data_table[[16]]
 ```
 
 We can now use the function `html_table()` to save the table as a data frame. We use the option `fill=TRUE` as there are empty cells in the table. We save the table in the object `ep14_raw`.

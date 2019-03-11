@@ -2,9 +2,9 @@
 output: html_document
 ---
 
-# (PART) Presenting data {-}
+# (PART) Data visualisation {-}
 
-# Visualisation {#dataviz}
+# Introduction to `ggplot2` {#dataviz}
 
 Visualising data is important [@healymoody2014]. As with everything in `R`, there are a lot of different ways to visualise data. One simple way to visualise data is to use _base_ functions in `R` (i.e. functions that come when you install the `R` language). Below you will see an example on this.
 
@@ -33,7 +33,7 @@ These building blocks are:
 3. Geometric objects (the type of visualisation)
 4. Theme adjustments (size, text, colours etc.)
 
-### Data
+## Data
 
 The function we will be using is `ggplot()`. Here, we will be using the `states` data from the `poliscidata` package introduced in Chapter \@ref(datadownload).
 
@@ -50,7 +50,7 @@ ggplot(states)
 
 Do note that if you run the code above - and have the `states` in your working memory, we will not get anything but an empty plot. The only thing we have done so far is telling `R` that we would like to create a coordinate system and data from `uk2017` should play some role, but this is of course not enough.
 
-### Aesthetics
+## Aesthetics
 
 The next thing we have to specify is what variables in the data frame we will be using and what role they play. To do this we will use the function `aes()` _within_ the `ggplot()` function after the data frame (remember the comma after the data frame).
 
@@ -60,7 +60,7 @@ ggplot(states, aes(x = abort_rate08, y = obama2012))
 
 In the example above we specify that we are working with _two_ variables, x (Number of abortions per 1,000 women aged 15-44 in 2008) and y (Obama vote share in 2012). If you only will be working with one variable (e.g. a histogram), you should of course only specificy one variable, x. However, now we have only told `R` what variables we would like to work with, but it is still not enough to actually create a figure.
 
-### Geometric objects
+## Geometric objects
 
 Now we will need to add the geometric object, we would like to visualise. We need to go to a new line and tell `R` to follow along. To do this, we add a plus (`+`) at the end of the line. On the new line we add the type of geometric object (`geom_`), we want add. To replicate the plot above we use `geom_point()`.
 
@@ -84,7 +84,7 @@ ggplot(states, aes(x = abort_rate08, y = obama2012)) +
   geom_point()
 ```
 
-### Theme adjustments
+## Theme adjustments
 
 What you will see in a typical plot is that it is not done. The axes simply have the variable names, the colours are not great etc. Accordingly, we often need to add and change elements of our plot. Here we add the theme of the plot (described in detail below).
 
@@ -106,7 +106,7 @@ ggplot(states, aes(x = abort_rate08, y = obama2012)) +
 
 This is the basic logic of `ggplot2`. 
 
-## Plotting one variable: distributions
+# Presenting distributions
 
 Table \@ref(tab:distributions) shows the geometric objects we will be working with below. In addition to the name of the object, you will also find a link where you can find more illustrations and examples on how they work.
 
@@ -117,7 +117,7 @@ Table \@ref(tab:distributions) shows the geometric objects we will be working wi
 | Density plot | `geom_density()`   | [Plotting distributions](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/) |
 Table: (\#tab:distributions) Selected geometric objects with `ggplot2`
 
-### Bar plot
+## Bar plot
 
 The first plot we will do is a bar plot. To do this we use a variable on the number of restrictions on abortion (`abortlaw10`) and `geom_bar()`.
 
@@ -127,7 +127,7 @@ ggplot(states, aes(x=abortlaw10)) +
 ```
 
 
-### Histograms
+## Histograms
 
 The next figure we will work with is the histogram. Here we will plot the distribution of Obama's vote share in 2012 (the `obama2012` variable) and use `geom_histogram()`.
 
@@ -145,7 +145,7 @@ ggplot(states, aes(x=obama2012)) +
 
 Play around with different binwidths to see how it affects the distribution in the figure.
 
-### Density plots
+## Density plots
 
 The histogram is not the only way to show the distribution of a variable. To make a density plot, you can use `geom_density()`. We use the `obama2012` variable again. 
 
@@ -156,7 +156,7 @@ ggplot(states, aes(x=obama2012)) +
 
 Do compare the density plot to the histograms above.
 
-## Plotting two variables: relationships
+# Presenting relationships
 
 To show how different variables are related, Table \@ref(tab:distributions) shows the geometric objects we will be working with below as well as link where you can find more information.
 
@@ -167,7 +167,7 @@ To show how different variables are related, Table \@ref(tab:distributions) show
 | Scatter plot  | `geom_point()`     | [Scatterplots](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/)                     |
 Table: (\#tab:relationships) Selected geometric objects for relations in `ggplot2`
 
-### Box plot
+## Box plot
 
 For the box plot, we will be using `geom_boxplot()` to show how the vote share for Obama is related to abortion laws (here with the `abortlaw3` variable, i.e. abortion restrictions with three tiers of number of restrictions).
 
@@ -178,7 +178,7 @@ ggplot(states, aes(x=abortlaw3, group=abortlaw3, y=obama2012)) +
 
 Here we can see that Obama got a greater vote share in states with less restrictions on abortion.
 
-### Scatter plots
+## Scatter plots
 
 To illustrate the relation between number of abortions and Obama's vote share, measured with the variables `abort_rate08` and `obama2012`, we will create a scatter plot with `geom_point()`.
 
@@ -196,7 +196,7 @@ ggplot(states, aes(x=abort_rate08, y=obama2012)) +
 
 We can also use `geom_point(position = "jitter")` instead of Instead of `geom_jitter()`. However, in this particular case, as we only have 50 observations, it is not a major concern.
 
-### Line plots
+## Line plots
 
 To create a regression line we can use the `geom_smooth()` function. Here we will again look at the relation between `abort_rate08` and `obama2012`.
 
@@ -212,9 +212,9 @@ ggplot(states, aes(x=abort_rate08, y=obama2012)) +
   geom_smooth(method="lm")
 ```
 
-## Manipulating plots 
+# Manipulating plots 
 
-### Themes
+## Themes
 
 As you could see in the plots above, we have used a default theme in `ggplot2`. Table \@ref(tab:ggthemes) shows a series of themes to be found in `ggplot2`and the package [`ggthemes`](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html). These are just a selection of some of the themes.
 
@@ -270,7 +270,7 @@ ggplot(states, aes(x=abort_rate08, y=obama2012)) +
   theme_minimal()
 ```
 
-### Colours
+## Colours
 
 If we want to change the colours of the points in our plot, we can add the `colour=""` option to our geometric objects. In the example below we change the colour of our points from black to red and the colour of the line to black.
 
@@ -310,7 +310,7 @@ ggplot(states, aes(x=abort_rate08, y=obama2012)) +
   scale_colour_manual(values = c("red", "blue", "black")) 
 ```
 
-### Labels
+## Labels
 
 Make sure that your figure have labels that helps the reader understand what is going on. To do this, you can add `labs()` to your figure. Here we will add a title, subtitle and caption.
   
@@ -344,7 +344,7 @@ ggplot(states, aes(x=abort_rate08, y=obama2012)) +
   ) 
 ```
 
-### Axes
+## Axes
 
 Related to labels are the axes. Always label the axes so they have meaningful names. The variable name is not a meaningful name. We add `x` and `y` to the `labs()` addition in our plot.
 
@@ -364,7 +364,7 @@ ggplot(states, aes(x=abort_rate08, y=obama2012)) +
   ) 
 ```
 
-### Confidence intervals
+## Confidence intervals
 
 We can have confidence intervals in our figure by not having `se` (standard errors) set to `FALSE`.
 
@@ -384,7 +384,7 @@ ggplot(states, aes(x=abort_rate08, y=obama2012)) +
   ) 
 ```
 
-### Making multiple plots in one
+## Making multiple plots in one
 
 If we would prefer to have the plots for different observations, we can specify that with `facet_grid()`.
 

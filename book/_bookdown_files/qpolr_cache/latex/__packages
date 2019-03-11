@@ -1,5 +1,12 @@
 base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
 devtools
+usethis
 dplyr
 ggplot2
 bookdown

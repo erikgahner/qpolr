@@ -5,8 +5,8 @@ title: 'Quantitative Politics with R'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
-  thesisdown::thesis_pdf: default
-  #thesisdown::thesis_gitbook: default
+  #thesisdown::thesis_pdf: default
+  thesisdown::thesis_gitbook: default
 bibliography: references.bib
 csl: apa.csl
 lot: false
@@ -19,29 +19,31 @@ library("thesisdown")
 
 # Introduction
 
-If you want to conduct quantitative analyses of political phenomena, `R` is by far the best software you can use. Importantly, data analysis is no longer restricted to analyzing survey data but also social media data, texts, images, geographic data (_GIS_), and so forth. For that and other reasons listed below, `R` is a good thing to learn.
+`R` is by far the best software you can use if you want to conduct quantitative analyses of political data. Importantly, data analysis is no longer restricted to analyzing survey data but also social media data, texts, event data, images, geographic data, and so forth. For that and other reasons listed below, `R` is a great tool to learn.
 
-In this book, we aim to provide an easily accessible introduction to `R` for the study of different types of political data. Specifically, the book will teach you how to get different types of political data into `R` and manipulate, analyze and visualize the output.
+In this book, we aim to provide an easily accessible introduction to `R` for the study of different types of political data. Specifically, the book will teach you how to get different types of political data into `R` and manipulate, analyze and visualize the output. In doing this, we will not only teach you how to get existing data into `R`, but also how to collect your own data.
 
-Compared to other statistical packages, such as Excel, SPSS, Stata and SAS, you will experience that `R` is somewhat different. First in a bad way: things are not as easy as they used to be. Then in a good way: once you learn how to do different tasks in `R`, you will be ashamed when you look back at the old you doing analyses in SPSS or something just as embarrasing.
+Compared to other statistical packages, such as Excel, SPSS, Stata and SAS, you will experience that `R` is somewhat different. First in a bad way: if you are used to, say, SPSS, things are not as easy as they used to be. Then in a good way: once you learn how to do different tasks in `R`, you will be ashamed when you look back at the old you doing analyses in SPSS or something just as embarrasing.
 
-In this chapter you will find an introduction to `R`. The introduction takes place in three steps. First, we ask the obvious and important question, why R? Second, we help you install what you need. Third, we introduce the basic logic of `R` so you are ready for the chapters to come.
+In this chapter you will find an introduction to the basics `R`. The introduction takes place in three steps. First, we ask the obvious and important question, _why_ `R`? Second, we help you install what you need. Third, we introduce the logic of doing thuings in `R` so you are ready for the chapters to come. Have fun! 
 
 ## Why `R`?
 
 First, `R` is an _open source_ statistical programming language. `R` is free, and while you might not pay for Stata or SPSS because you are a student, you will not have free access forever. This is not the case with `R`. On the contrary, you will _never_ have to pay for `R`.
 
-Second, `R` provides a series of opportunities you do not have in SPSS and Stata. `R` has an impressive package ecosystem on CRAN (the **c**omprehensive **R** **a**rchive **n**etwork) with more than 12,000 packages created by other users of `R`.
+Second, `R` provides a series of opportunities you do not have in SPSS and Stata. `R` has an impressive package ecosystem on CRAN (the **c**omprehensive **R** **a**rchive **n**etwork) with more than 12,000 packages created by other users of `R`. You can compare `R` to an iPhone. If you didn't have the possibility to install apps on the iPhone, its functionality would be limited. In `R`, just as with iPhones, you have several apps (in `R` called packages), you can install and use in order to make life easier.
 
-Third, some of the most beautiful figures you will find today are created in `R`. Big media outlets such as The New York Times and FiveThirtyEight use `R` to create figures. Specifically, they use the package `ggplot2`, a very popular package used to create figures. We will work with this package later.
+Third, some of the most beautiful figures you will find today when you open the newspaper are created in `R`. Big media outlets such as The New York Times, BBC and FiveThirtyEight use `R` to create figures. Specifically, they use the package `ggplot2`, a very popular package used to create figures. We will work with this package later.
 
-Fourth, there is a great community of `R` users that are able to help you when you encounter a problem (which you undoubtly will). `R` is a very popular software and in great demand meaning that you will not be the first (nor the last) to experience specific issues in `R`. Accordingly, you will find a lot of help on Google and other places to a much greater extent than for other types of software. 
+Fourth, there is a great community of `R` users that are able to help you when you encounter a problem (which you undoubtly will). `R` is a popular software and in great demand meaning that you will not be the first (nor the last) to experience specific issues in `R`. Accordingly, you will find a lot of help on Google and other places to a much greater extent than for other types of software. 
 
-Fifth, while you can't do as much point-and-click as in SPSS and Stata, this approach facilitates that you can reproduce your work. In other words, it is easy to document what you are doing in `R` with commands (in a script). So, while you do not see a pedagogical graphical user interface in `R` with a limited set of buttons to click, this is more of an advantage than a limitation.
+Fifth, while you can't do as much point-and-click as in SPSS and Stata, this approach facilitates that you can reproduce your work. In other words, it is easy to document what you are doing in `R` with commands in a script (more about this later). So, while you do not see a pedagogical graphical user interface in `R` with a limited set of buttons to click, this is more of an advantage than a limitation. Again, at first sight, this might seem confusing and frustrating, but we promise that, once you get used to it, you are a better scientist. 
 
 ## Installing `R`
 
-To install `R`, you will have to install 1) the `R` language and 2) the graphical user interface RStudio. To install the `R` language, follow this procedure:
+We will actually install two programmes. First `R` and then RStudio. You can compare `R` to the engine in a car. We call this the `R` language. You can compare RStudio to the beautiful car in which you have the engine. We call this the graphical user interface.
+
+To install `R`,  follow this procedure:
 
 1. Go to [https://cloud.r-project.org](https://cloud.r-project.org).
 2. Click _Download R for Windows_ if you use Windows or _Download R for (Mac) OS X_ if you use Mac.
@@ -59,23 +61,23 @@ If you use Mac:
 
 If you encounter problems with the installation guide, make sure that you did download the correct file _and_ that your computer meets the requirements. If you did this and still encounter problems, you should get an error message you can type into Google and find relevant information on what to do next.
 
-You should now have the `R` language installed on your computer.
+You should now have the `R` language installed on your computer. However, you do not need to open `R` or anything yet. The only thing we will open is RStudio, which we will install next.
 
 ## Installing RStudio
 
-RStudio is an integrated development environment (IDE) and makes it much easier to work in `R` compared to the standard ("base") R. This is also available for free. To install RStudio, follow these steps:
+RStudio is an integrated development environment (IDE) and makes it much easier to work in `R` compared to the standard ("base") R. This is also available for free. Here, we want to install RStudio Desktop with an Open Source License. To install RStudio, follow these steps:
 
 1. Go to: [https://www.rstudio.com/products/rstudio/download/#download](https://www.rstudio.com/products/rstudio/download/#download).
 2. Click on the installer file for your platform, e.g. Windows or Mac OS X.
 3. Follow the installation guide.
 
-You should now have RStudio installed on your computer. When you open `R` you will see a graphical interface as in Figure \@ref(fig:interface).
+You should now have RStudio installed on your computer. When you open RStudio, you will see a graphical interface as in Figure \@ref(fig:interface).
 
 ```{r interface, echo=FALSE, fig.cap="Graphical interface in RStudio", out.width="100%"}
 include_graphics(path = "fig/rstudio.png")
 ```
 
-There are three different windows. However, one is missing, and that is the window where you will write most of your scripts. You can get this window by going to the top menu and select `File` $\rightarrow$ `New File` $\rightarrow$ `R Script`. This should give you four windows as shown in Figure \@ref(fig:interfaceexplain).
+There are three different windows. However, one is missing, and that is the window where you will write most of your scripts. You can get this window by going to the top menu and select `File` $\rightarrow$ `New File` $\rightarrow$ `R Script`. This should give you four windows as you can see in Figure \@ref(fig:interfaceexplain).
 
 ```{r interfaceexplain, echo=FALSE, fig.cap="Graphical interface in RStudio, explained", out.width="100%"}
 include_graphics(path = "fig/rstudio_env.png")
@@ -83,7 +85,7 @@ include_graphics(path = "fig/rstudio_env.png")
 
 In the figure, we have emphasized the four windows: script, environment, output, and console. The _script_ is where you will have your `R` code and can add code and make changes to your script. The _environment_ is where you can see what datasets, variables and other parts you have loaded into `R`. The _output_ is where you can see the figures you create as well as documents. The _console_ is where you can see your output and run commands. 
 
-As you can see, the background is dark in the RStudio environment in Figure \@ref(fig:interfaceexplain). If you want to change the colours of your RStudio environment, go to Tools $\rightarrow$ `Global Options...` $\rightarrow$ `Appearance`.
+As you can see, the background is dark in the RStudio environment in Figure \@ref(fig:interfaceexplain). The first time you open RStudio, the background will be white. If you want to change the colours of your RStudio environment, go to `Tools` $\rightarrow$ `Global Options...` $\rightarrow$ `Appearance`.
 
 Importantly, everything you do in `R` can be written as commands. This ensures that you will always be able to document your work (in the `script` window). In the console, you can see a prompt (`>`). Here, you can write what what you want `R` to do. Try to write `2+2` and hit `Enter`. This should look like the following:
 
@@ -91,47 +93,50 @@ Importantly, everything you do in `R` can be written as commands. This ensures t
 2+2
 ```
 
-The code you have entered in the console cannot be traced later. Accordingly, you will have to save the commands you want to keep in the script. Even better, you should write your commands in the script and "run" them from there. If you write `2+2` in the script, you can mark it and press `CTRL+R` (Windows) or `CMD+ENTER` (Mac). Then it will run the part of the script you have marked. Insert the code below in your script, mark it, run it and see how the output shows up in the console:
+The code you have entered in the console cannot be traced later. Accordingly, you will have to save the commands you want to keep in the script. Even better, you should write your commands in the script and "run" them from there. If you write `2+2` in the script, you can mark the code and press `CTRL+R` (Windows) or `CMD+ENTER` (Mac). Then it will run the part of the script you have marked. Insert the code below in your script, mark it, run it and see how the output shows up in the console:
 
 ```{r, eval=FALSE}
 50*149
+
 3**2        # 3^2
+
 2**3        # 2^3
+
 sqrt(81)    # 81^0.5
 ```
 
-As you can see, we have used `#` as well. The `#` sign tells `R` that everything after that sign on that line shouldn't be read as code but as a comment. In other words, you can write comments in your script that will help you remember what you are doing - and help others understand the meaning of your script. For now, remember to document everything you do in your script.
+As you can see, we have used `#` as well. The `#` sign tells `R` that everything after that sign on that line shouldn't be read as code but as a comment. In other words, you can write comments in your script that will help you remember what you are doing - and help others understand the meaning of your script. For now, remember to document everything you do in your script. Do also remember to add space between your lines of code. This will make it easier for you to read as your script gets longer.
 
 Notice also that we use a function in the bottom, namely `sqrt()`. A lot of what we will be doing in `R` works via functions. For example, to calculate a mean later we will use the `mean()` function. In the next section we will use functions to install and load packages.
 
 ## Installing `R` packages
 
-We highlighted that one of the key advantages of using `R` is the package system. In `R`, a package is a collection of data and functions that makes it easier for you to do what you want. The sky is the limit and the only thing you need to learn now is how to install and load packages. 
+We mentioned that one of the key advantages of using `R` is the package system. In `R`, a package is a collection of data and functions that makes it easier for you to do what you want. Againm, while `R` is similar to an iPhone, all the packages are comparable to apps. The sky is the limit and the only thing you need to learn now is how to install and load packages. 
 
-To install packages, you will have to use a function called `install.packages()`. We will install a package that installs a lot of the functions we will be using to manipulate and visualise data. More specifically, we will work within the tidyverse [@wickham2017]. You can read more at [tidyverse.org](http://tidyverse.org/). To intall this package type:
+To install packages, you will have to use a function called `install.packages()`. We will install a package that installs a lot of the functions we will be using to manipulate and visualise data throughout this book. More specifically, we will work within the tidyverse [@wickham2017]. You can read more about tidyverse at [tidyverse.org](http://tidyverse.org/). To intall this package type:
 
 ```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
 
-You only need to install the package once. In other words, when you have used `install.packages()` to install a packagae, you will not need to install that specific package again. Note that we put `tidyverse` in quotation marks. This is important when you install a package. If you forget this, you will get an error.
+You only need to install the package once. In other words, when you have used `install.packages()` to install a packagae, you will not need to install that specific package again. Note that we put `tidyverse` in quotation marks. This is important when you install a package. If you forget this, you will get an error. Make sure that you type it exactly as noted above. If you forget a letter (e.g. install.package instead of install.packages), it will not work.
 
-While you only need to install a package once, you need to load the package every time you open `R`. This is a good thing as you don't want to have all your installed `R` packages working at the same time if you don't need them. For this reason, most scripts begin with loading the packages that you need. To load a package, we use the function `library()`:
+While you only need to install a package once, you need to load the package every time you open `R`. This is a good thing as you don't want to have all your installed `R` packages working at the same time if you don't need them. For this reason, most scripts (i.e. your window where you have all your code) begin with loading the packages that you need. To load a package, we use the function `library()`:
 
 ```{r, eval=FALSE}
 library("tidyverse")
 ```
 
-To recap, it is always a good idea to begin your script with the package(s) you will be working with. If we want to have a script where we load the `tidyverse` package and have some of the commands we ran above, the script could look like the script presented in Figure \@ref(fig:interfacescript).
+To recap, it is always a good idea to begin your script with the package(s) you will be working with. If we want to have a script where we load the `tidyverse` package and have some of the commands we ran above, the script could look like the script presented in Figure \@ref(fig:interfacescript). In other words, do not include the `library("")` line in the middle of your script, but have them all at the same time in the beginning of your script.
 
 ```{r interfacescript, echo=FALSE, fig.cap="A script in RStudio", out.width="100%"}
 include_graphics(path = "fig/rstudio_script.png")
 ```
 
-If you want to save your script you can select `File` $\rightarrow$ `Save`, where you can pick a destination for your script. 
+If you want to save your script, you can select `File` $\rightarrow$ `Save`, where you can pick a destination for your script. It is always good to save your script so you can get back to it a later stage.
 
 ## Errors and help
 
-As noted above, you will encounter problems and issues when you do stuff in `R`. Sadly, there are many potential reasons to why your script might not be working. Your version of `R` or/and RStudio might be too old or too new, you might be using a function that has a mistake, you might not have the data in the right format etc.
+As noted above, you will encounter problems and issues when you work in `R`. Sadly, there are many potential reasons to why your script might not be working. Your version of `R` or/and RStudio might be too old or too new, you might be using a function that has a mistake, you might be having a small typo, you might not have the data in the right format etc.
 
-Consequently, we cannot provide a comprehensive list of errors you might get. The best thing to do is to learn how to find help online. Here, the best advice is to use Google and, when you search for help, always remember to mention R in your search string, and, if you are having problems with a specific package, also the name of the package. 
+Consequently, we cannot provide a comprehensive list of errors you might get. The best thing to do is to learn how to find help online. Here, the best advice is to use Google and, when you search for help, always remember to mention R in your search string, and, if you are having problems with a specific package, also the name of the package. For example, if you have a problem with creating a bar chart with the `ggplot2` package, a search string in Google could be `ggplot2 bar chart` and not just `R bar chart`. 

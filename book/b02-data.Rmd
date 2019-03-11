@@ -200,5 +200,34 @@ WDIsearch("gdp")
 This returns the indicator and name of the data in WDI. We can see that the indicator for GDP per capita, PPP (constant 2005 international $) is `NY.GDP.PCAP.PP.KD`. To save the data, use the function `WDI()`, where you specify the indicator as well as the countries and years you want the data from.
 
 ```{r eval=FALSE}
-wdi <- WDI(indicator="NY.GDP.PCAP.PP.KD", country=c("US", "GB"), start = 1960, end = 2012)
+wdi <- WDI(indicator="NY.GDP.PCAP.PP.KD", 
+           country=c("US", "GB"), 
+           start = 1960, 
+           end = 2012)
+```
+
+## Data: GitHub repositories
+
+A lot of data today is available in GitHub repositories. To get data from GitHub, one good package to use is the package `RCurl`. The first thing to do is to load the package (and if you have not already installed the package, you need to do this prior to loading it).
+
+```{r eval=FALSE}
+library("RCurl")
+```
+
+Next, find the dataset on GitHub that you would like to use. When you find the dataset, you should click on 'Raw' to get to the raw dataset, as shown in Figure \@ref(fig:githubdata). 
+
+```{r githubdata, echo=FALSE, fig.cap="How to get to the raw dataset file on GitHub", out.width="90%"}
+include_graphics(path = "fig/githubdata.png")
+```
+
+Copy the url of the raw dataset and use the `getURL()` function in `R` to load the content of the dataset into `R`. In the example below, we load data on Danish opinion polls and save it in the object `gh_url`.
+
+```{r eval=FALSE}
+gh_url <- getURL("https://raw.githubusercontent.com/erikgahner/polls/master/polls.csv")
+```
+
+Last, to get a data frame with the data, and as the dataset is in a `.csv` format, we use `read.csv()` to save the dataset in the object `gh_data`.
+
+```{r eval=FALSE}
+gh_data <- read.csv(text = gh_url)
 ```

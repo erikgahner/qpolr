@@ -26,10 +26,14 @@ We will use the dataset we created in the previous chapter. If you do not have i
 ```{r, eval=FALSE}
 party <- c("Conservative Party", "Labour Party", "Scottish National Party", 
        "Liberal Democrats", "Democratic Unionist Party", "Sinn Féin") 
+
 leader <- c("Theresa May", "Jeremy Corbyn", "Nicola Sturgeon", 
             "Tim Farron", "Arlene Foster", "Gerry Adams")
+
 votes <- c(42.4, 40.0, 3.0, 7.4, 0.9, 0.7)
+
 seats <- c(317, 262, 35, 12, 10, 7)
+
 seats_change <- c(-13, 30, -21, 4, 2, 3)
 
 uk2017 <- data.frame(party, leader, votes, seats, seats_change)
@@ -85,6 +89,7 @@ Importantly, we are _not_ making any changes to the data frame `uk2017`. Again, 
 
 ```{r}
 uk2017_seatlosers <- filter(uk2017, seats_change < 0)
+
 uk2017_seatlosers
 ```
 
