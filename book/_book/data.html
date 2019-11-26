@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Data management | Quantitative Politics with R</title>
+  <meta name="description" content="Chapter 3 Data management | Quantitative Politics with R" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Data management | Quantitative Politics with R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://qpolr.com" />
+  
+  
+  <meta name="github-repo" content="erikgahner/qpolr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Data management | Quantitative Politics with R" />
+  
+  
+  
+
+<meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas" />
+
+
+<meta name="date" content="2019-11-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basics.html"/>
+<link rel="next" href="text.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <code>R</code>?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing <code>R</code></a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages"><i class="fa fa-check"></i><b>1.4</b> Installing <code>R</code> packages</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#problems-and-help"><i class="fa fa-check"></i><b>1.5</b> Problems and help</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a><ul>
+<li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#numbers-as-data"><i class="fa fa-check"></i><b>2.1</b> Numbers as data</a></li>
+<li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#missing-values-na"><i class="fa fa-check"></i><b>2.2</b> Missing values (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#logical-operators"><i class="fa fa-check"></i><b>2.3</b> Logical operators</a></li>
+<li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#text-as-data"><i class="fa fa-check"></i><b>2.4</b> Text as data</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.5</b> Data frames</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
+</ul></li>
+<li class="part"><span><b>I Working with data</b></span></li>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="data.html"><a href="data.html#rename-variables-rename"><i class="fa fa-check"></i><b>3.4</b> Rename variables: <code>rename()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="data.html"><a href="data.html#create-variables-mutate"><i class="fa fa-check"></i><b>3.5</b> Create variables: <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="data.html"><a href="data.html#the-pipe-operator"><i class="fa fa-check"></i><b>3.6</b> The pipe operator: <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.7" data-path="data.html"><a href="data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
+<li class="chapter" data-level="3.8" data-path="data.html"><a href="data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="data.html"><a href="data.html#recoding-variables-case_when"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>case_when()</code></a></li>
+<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.10</b> Getting a variable from a data frame: <code>pull()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a><ul>
+<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a></li>
+<li class="chapter" data-level="4.2" data-path="text.html"><a href="text.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a><ul>
+<li class="chapter" data-level="5.1" data-path="datadownload.html"><a href="datadownload.html#using-data-from-data-packages"><i class="fa fa-check"></i><b>5.1</b> Using data from data packages</a></li>
+<li class="chapter" data-level="5.2" data-path="datadownload.html"><a href="datadownload.html#download-data-from-webpages"><i class="fa fa-check"></i><b>5.2</b> Download data from webpages</a></li>
+<li class="chapter" data-level="5.3" data-path="datadownload.html"><a href="datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>5.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
+<li class="chapter" data-level="5.4" data-path="datadownload.html"><a href="datadownload.html#data-manifesto-project-dataset-manifestor"><i class="fa fa-check"></i><b>5.4</b> Data: Manifesto Project Dataset (<code>manifestoR</code>)</a></li>
+<li class="chapter" data-level="5.5" data-path="datadownload.html"><a href="datadownload.html#data-varieties-of-democracy-vdem"><i class="fa fa-check"></i><b>5.5</b> Data: Varieties of Democracy (<code>vdem</code>)</a></li>
+<li class="chapter" data-level="5.6" data-path="datadownload.html"><a href="datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>5.6</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
+<li class="chapter" data-level="5.7" data-path="datadownload.html"><a href="datadownload.html#data-github-repositories"><i class="fa fa-check"></i><b>5.7</b> Data: GitHub repositories</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a><ul>
+<li class="chapter" data-level="6.1" data-path="create.html"><a href="create.html#create-data-from-files"><i class="fa fa-check"></i><b>6.1</b> Create data from files</a></li>
+<li class="chapter" data-level="6.2" data-path="create.html"><a href="create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>6.2</b> Scrape data from tables</a></li>
+<li class="chapter" data-level="6.3" data-path="create.html"><a href="create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>6.3</b> Scrape political speeches</a></li>
+<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="create.html"><a href="create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>6.4.1</b> Data on Twitter user</a></li>
+<li class="chapter" data-level="6.4.2" data-path="create.html"><a href="create.html#data-on-trends"><i class="fa fa-check"></i><b>6.4.2</b> Data on trends</a></li>
+<li class="chapter" data-level="6.4.3" data-path="create.html"><a href="create.html#data-on-tweets"><i class="fa fa-check"></i><b>6.4.3</b> Data on tweets</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data visualisation</b></span></li>
+<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="7.1" data-path="dataviz.html"><a href="dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>7.1</b> The basics of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.2" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.3" data-path="dataviz.html"><a href="dataviz.html#aesthetics"><i class="fa fa-check"></i><b>7.3</b> Aesthetics</a></li>
+<li class="chapter" data-level="7.4" data-path="dataviz.html"><a href="dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>7.4</b> Geometric objects</a></li>
+<li class="chapter" data-level="7.5" data-path="dataviz.html"><a href="dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>7.5</b> Theme adjustments</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a><ul>
+<li class="chapter" data-level="8.1" data-path="presenting-distributions.html"><a href="presenting-distributions.html#bar-plot"><i class="fa fa-check"></i><b>8.1</b> Bar plot</a></li>
+<li class="chapter" data-level="8.2" data-path="presenting-distributions.html"><a href="presenting-distributions.html#histograms"><i class="fa fa-check"></i><b>8.2</b> Histograms</a></li>
+<li class="chapter" data-level="8.3" data-path="presenting-distributions.html"><a href="presenting-distributions.html#density-plots"><i class="fa fa-check"></i><b>8.3</b> Density plots</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a><ul>
+<li class="chapter" data-level="9.1" data-path="presenting-relationships.html"><a href="presenting-relationships.html#box-plot"><i class="fa fa-check"></i><b>9.1</b> Box plot</a></li>
+<li class="chapter" data-level="9.2" data-path="presenting-relationships.html"><a href="presenting-relationships.html#scatter-plots"><i class="fa fa-check"></i><b>9.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="9.3" data-path="presenting-relationships.html"><a href="presenting-relationships.html#line-plots"><i class="fa fa-check"></i><b>9.3</b> Line plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="10.1" data-path="manipulating-plots.html"><a href="manipulating-plots.html#themes"><i class="fa fa-check"></i><b>10.1</b> Themes</a></li>
+<li class="chapter" data-level="10.2" data-path="manipulating-plots.html"><a href="manipulating-plots.html#colours"><i class="fa fa-check"></i><b>10.2</b> Colours</a></li>
+<li class="chapter" data-level="10.3" data-path="manipulating-plots.html"><a href="manipulating-plots.html#labels"><i class="fa fa-check"></i><b>10.3</b> Labels</a></li>
+<li class="chapter" data-level="10.4" data-path="manipulating-plots.html"><a href="manipulating-plots.html#axes"><i class="fa fa-check"></i><b>10.4</b> Axes</a></li>
+<li class="chapter" data-level="10.5" data-path="manipulating-plots.html"><a href="manipulating-plots.html#confidence-intervals"><i class="fa fa-check"></i><b>10.5</b> Confidence intervals</a></li>
+<li class="chapter" data-level="10.6" data-path="manipulating-plots.html"><a href="manipulating-plots.html#making-multiple-plots-in-one"><i class="fa fa-check"></i><b>10.6</b> Making multiple plots in one</a></li>
+<li class="chapter" data-level="10.7" data-path="manipulating-plots.html"><a href="manipulating-plots.html#saving-plots"><i class="fa fa-check"></i><b>10.7</b> Saving plots</a></li>
+</ul></li>
+<li class="part"><span><b>III Regression</b></span></li>
+<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a><ul>
+<li class="chapter" data-level="11.1" data-path="olsreg.html"><a href="olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>11.1</b> Bivariate linear regression</a></li>
+<li class="chapter" data-level="11.2" data-path="olsreg.html"><a href="olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.2</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="11.3" data-path="olsreg.html"><a href="olsreg.html#saving-predictions"><i class="fa fa-check"></i><b>11.3</b> Saving predictions</a></li>
+<li class="chapter" data-level="11.4" data-path="olsreg.html"><a href="olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>11.4</b> Diagnostic tests</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a><ul>
+<li class="chapter" data-level="12.1" data-path="glm.html"><a href="glm.html#binary-outcomes"><i class="fa fa-check"></i><b>12.1</b> Binary outcomes</a></li>
+<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="glm.html"><a href="glm.html#event-count"><i class="fa fa-check"></i><b>12.2.1</b> Event count</a></li>
+<li class="chapter" data-level="12.2.2" data-path="glm.html"><a href="glm.html#negative-binomial-regression"><i class="fa fa-check"></i><b>12.2.2</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="12.2.3" data-path="glm.html"><a href="glm.html#ordinal-outcomes"><i class="fa fa-check"></i><b>12.2.3</b> Ordinal outcomes</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation</b></span></li>
+<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a><ul>
+<li class="chapter" data-level="13.1" data-path="writing.html"><a href="writing.html#equations"><i class="fa fa-check"></i><b>13.1</b> Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a><ul>
+<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="tables.html"><a href="tables.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>14.1.1</b> Exporting the regression table</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>15</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Politics with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Data management</h1>
+<p>There are multiple ways to manage data in <code>R</code> and in particular different ways to create and change variables in a data frame. In this chapter, we show different ways of working with data frames with a focus on how to change and create new variables. Noteworthy, there are multiple packages we can use to manipulate data frames, but the best is without a doubt <code>dplyr</code> <span class="citation">(Hadley Wickham &amp; Francois, 2016)</span>. This is part of the <code>tidyverse</code> package so you do not need to install any new packages if you have already installed <code>tidyverse</code>. The syntax is inspired by SQL and if you want to learn SQL at some point, you will have an advantage from having used the <code>dplyr</code> package.</p>
+<p>The package provides some basic functions making it easy to work with data frames. These functions include <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, <code>rename()</code>, <code>mutate()</code> and <code>summarize()</code>.<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a> <code>select()</code> allows you to pick variables by their names. <code>filter()</code> allows you to pick observations by their values. <code>arrange()</code> allows you to reorder the rows. <code>rename()</code> allows you to rename columns. <code>mutate()</code> allows you to create new variables based on the values of old variables. <code>summarize()</code> allows you to collapse many values to a single summary.</p>
+<p>All these functions rely on data frames. In other words, you can not use these functions on other types of data in <code>R</code>. Furthermore, they all return a new data frame that you will need to save in a new object or overwrite the existing object with your data frame.</p>
+<p>As the <code>dplyr</code> package is part of the <code>tidyverse</code>, the first thing we do is to call the <code>tidyverse</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>We will use the dataset we created in the previous chapter. If you do not have it, you can use the script below to create the data frame again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">party &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>, <span class="st">&quot;Scottish National Party&quot;</span>, 
+       <span class="st">&quot;Liberal Democrats&quot;</span>, <span class="st">&quot;Democratic Unionist Party&quot;</span>, <span class="st">&quot;Sinn Féin&quot;</span>) 
+
+leader &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Theresa May&quot;</span>, <span class="st">&quot;Jeremy Corbyn&quot;</span>, <span class="st">&quot;Nicola Sturgeon&quot;</span>, 
+            <span class="st">&quot;Tim Farron&quot;</span>, <span class="st">&quot;Arlene Foster&quot;</span>, <span class="st">&quot;Gerry Adams&quot;</span>)
+
+votes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">42.4</span>, <span class="fl">40.0</span>, <span class="fl">3.0</span>, <span class="fl">7.4</span>, <span class="fl">0.9</span>, <span class="fl">0.7</span>)
+
+seats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">317</span>, <span class="dv">262</span>, <span class="dv">35</span>, <span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">7</span>)
+
+seats_change &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">13</span>, <span class="dv">30</span>, <span class="op">-</span><span class="dv">21</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+
+uk2017 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(party, leader, votes, seats, seats_change)</code></pre></div>
+<p>To see the information in the dataset, use <code>head()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(uk2017)</code></pre></div>
+<pre><code>##                       party          leader votes seats seats_change
+## 1        Conservative Party     Theresa May  42.4   317          -13
+## 2              Labour Party   Jeremy Corbyn  40.0   262           30
+## 3   Scottish National Party Nicola Sturgeon   3.0    35          -21
+## 4         Liberal Democrats      Tim Farron   7.4    12            4
+## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+## 6                 Sinn Féin     Gerry Adams   0.7     7            3</code></pre>
+<div id="selecting-variables-select" class="section level2">
+<h2><span class="header-section-number">3.1</span> Selecting variables: <code>select()</code></h2>
+<p>When we work with large datasets, we often want to select the few variables that are of key interest to our project. For this task the <code>select()</code> function is perfect. If we only want to have information on the party name and the votes in the <code>uk2017</code> data frame, we can write:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(uk2017, party, votes)</code></pre></div>
+<pre><code>##                       party votes
+## 1        Conservative Party  42.4
+## 2              Labour Party  40.0
+## 3   Scottish National Party   3.0
+## 4         Liberal Democrats   7.4
+## 5 Democratic Unionist Party   0.9
+## 6                 Sinn Féin   0.7</code></pre>
+<p>Again, this is not saved in a new data frame. If we want to save this in a new data frame, say <code>uk2017_pv</code>, we need to assign the output from <code>select()</code> to our object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017_pv &lt;-<span class="st"> </span><span class="kw">select</span>(uk2017, party, votes)</code></pre></div>
+<p>There are multiple different functions that can help us find specific variables in the data frame. We can use <code>contains()</code>, if we want to include variables that contain a specific word in the variable name. In the example below we look for variables that contain the text <code>seat</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(uk2017, <span class="kw">contains</span>(<span class="st">&quot;seat&quot;</span>))</code></pre></div>
+<pre><code>##   seats seats_change
+## 1   317          -13
+## 2   262           30
+## 3    35          -21
+## 4    12            4
+## 5    10            2
+## 6     7            3</code></pre>
+<p>Other noteworthy functions similar to <code>contains()</code> that can be of help are functions such as <code>starts_with()</code>, <code>ends_with()</code>, <code>matches()</code>, <code>num_range()</code>, <code>one_of()</code> and <code>everything()</code>. The last function, <code>everything()</code> is helpful if we want to move a variable to the beginning of our data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(uk2017, votes, <span class="kw">everything</span>())</code></pre></div>
+<pre><code>##   votes                     party          leader seats seats_change
+## 1  42.4        Conservative Party     Theresa May   317          -13
+## 2  40.0              Labour Party   Jeremy Corbyn   262           30
+## 3   3.0   Scottish National Party Nicola Sturgeon    35          -21
+## 4   7.4         Liberal Democrats      Tim Farron    12            4
+## 5   0.9 Democratic Unionist Party   Arlene Foster    10            2
+## 6   0.7                 Sinn Féin     Gerry Adams     7            3</code></pre>
+<p>Last, we can use the negative sign if we want to remove a variable from the data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(uk2017, <span class="op">-</span>leader)</code></pre></div>
+<pre><code>##                       party votes seats seats_change
+## 1        Conservative Party  42.4   317          -13
+## 2              Labour Party  40.0   262           30
+## 3   Scottish National Party   3.0    35          -21
+## 4         Liberal Democrats   7.4    12            4
+## 5 Democratic Unionist Party   0.9    10            2
+## 6                 Sinn Féin   0.7     7            3</code></pre>
+</div>
+<div id="selecting-observations-filter" class="section level2">
+<h2><span class="header-section-number">3.2</span> Selecting observations: <code>filter()</code></h2>
+<p>To select only some of the observations in our data frame, but for all variables, we can use the function <code>filter()</code>. In the example below we select the observations in our data frame with a positive value on <code>seats_change</code> (i.e. greater than 0).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(uk2017, seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</code></pre></div>
+<pre><code>##                       party        leader votes seats seats_change
+## 1              Labour Party Jeremy Corbyn  40.0   262           30
+## 2         Liberal Democrats    Tim Farron   7.4    12            4
+## 3 Democratic Unionist Party Arlene Foster   0.9    10            2
+## 4                 Sinn Féin   Gerry Adams   0.7     7            3</code></pre>
+<p>Importantly, we are <em>not</em> making any changes to the data frame <code>uk2017</code>. Again, this will only hapen if we replace our existing data frame or create a new data frame. In the example below we create a new data frame, <code>uk2017_seatlosers</code>, with the observations losing seats from 2015 to 2017.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017_seatlosers &lt;-<span class="st"> </span><span class="kw">filter</span>(uk2017, seats_change <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)
+
+uk2017_seatlosers</code></pre></div>
+<pre><code>##                     party          leader votes seats seats_change
+## 1      Conservative Party     Theresa May  42.4   317          -13
+## 2 Scottish National Party Nicola Sturgeon   3.0    35          -21</code></pre>
+<p>If we want to select two parties, say the Conservative Party and the Labour Party, we can use <code>%in%</code> to specify this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(uk2017, party <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>))</code></pre></div>
+<pre><code>##                party        leader votes seats seats_change
+## 1 Conservative Party   Theresa May  42.4   317          -13
+## 2       Labour Party Jeremy Corbyn  40.0   262           30</code></pre>
+<p>Similarly, by adding an <code>!</code> in front of <code>party</code> we can get the parties that are not the Conservative Party and the Labour Party.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(uk2017, <span class="op">!</span>party <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>))</code></pre></div>
+<pre><code>##                       party          leader votes seats seats_change
+## 1   Scottish National Party Nicola Sturgeon   3.0    35          -21
+## 2         Liberal Democrats      Tim Farron   7.4    12            4
+## 3 Democratic Unionist Party   Arlene Foster   0.9    10            2
+## 4                 Sinn Féin     Gerry Adams   0.7     7            3</code></pre>
+<p>Last, if we want to drop observations that contain missing values on specific variables, we can use the function <code>drop_na()</code>.</p>
+</div>
+<div id="sorting-observations-arrange" class="section level2">
+<h2><span class="header-section-number">3.3</span> Sorting observations: <code>arrange()</code></h2>
+<p>We can use the function <code>arrange()</code> if we want to change the order of observations. In the example below we sort our data frame according to how many votes the party got, with the party getting the least votes in the top of our data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(uk2017, votes)</code></pre></div>
+<pre><code>##                       party          leader votes seats seats_change
+## 1                 Sinn Féin     Gerry Adams   0.7     7            3
+## 2 Democratic Unionist Party   Arlene Foster   0.9    10            2
+## 3   Scottish National Party Nicola Sturgeon   3.0    35          -21
+## 4         Liberal Democrats      Tim Farron   7.4    12            4
+## 5              Labour Party   Jeremy Corbyn  40.0   262           30
+## 6        Conservative Party     Theresa May  42.4   317          -13</code></pre>
+<p>If we prefer to have the parties with the greatest number of votes in the top, we can use the negative sign (<code>-</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(uk2017, <span class="op">-</span>votes)</code></pre></div>
+<pre><code>##                       party          leader votes seats seats_change
+## 1        Conservative Party     Theresa May  42.4   317          -13
+## 2              Labour Party   Jeremy Corbyn  40.0   262           30
+## 3         Liberal Democrats      Tim Farron   7.4    12            4
+## 4   Scottish National Party Nicola Sturgeon   3.0    35          -21
+## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+## 6                 Sinn Féin     Gerry Adams   0.7     7            3</code></pre>
+<p>Alternatively, you can use the <code>desc()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(uk2017, <span class="kw">desc</span>(votes))</code></pre></div>
+<pre><code>##                       party          leader votes seats seats_change
+## 1        Conservative Party     Theresa May  42.4   317          -13
+## 2              Labour Party   Jeremy Corbyn  40.0   262           30
+## 3         Liberal Democrats      Tim Farron   7.4    12            4
+## 4   Scottish National Party Nicola Sturgeon   3.0    35          -21
+## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+## 6                 Sinn Féin     Gerry Adams   0.7     7            3</code></pre>
+</div>
+<div id="rename-variables-rename" class="section level2">
+<h2><span class="header-section-number">3.4</span> Rename variables: <code>rename()</code></h2>
+<p>In the case that we have a variable we would prefer having another name, we can use the function <code>rename()</code>. In the example below we change the name of <code>party</code> to <code>party_name</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(uk2017, <span class="dt">party_name =</span> party)</code></pre></div>
+<pre><code>##                  party_name          leader votes seats seats_change
+## 1        Conservative Party     Theresa May  42.4   317          -13
+## 2              Labour Party   Jeremy Corbyn  40.0   262           30
+## 3   Scottish National Party Nicola Sturgeon   3.0    35          -21
+## 4         Liberal Democrats      Tim Farron   7.4    12            4
+## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2
+## 6                 Sinn Féin     Gerry Adams   0.7     7            3</code></pre>
+</div>
+<div id="create-variables-mutate" class="section level2">
+<h2><span class="header-section-number">3.5</span> Create variables: <code>mutate()</code></h2>
+<p>The best way to create a new variable from existing variables in our data frame is to use the function <code>mutate()</code>. In the example below we create a new variable, <code>votes_m</code> with information on how many percentage points a party is from the average number of votes a party got in the election.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(uk2017, <span class="dt">votes_m =</span> votes <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(votes))</code></pre></div>
+<pre><code>##                       party          leader votes seats seats_change    votes_m
+## 1        Conservative Party     Theresa May  42.4   317          -13  26.666667
+## 2              Labour Party   Jeremy Corbyn  40.0   262           30  24.266667
+## 3   Scottish National Party Nicola Sturgeon   3.0    35          -21 -12.733333
+## 4         Liberal Democrats      Tim Farron   7.4    12            4  -8.333333
+## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2 -14.833333
+## 6                 Sinn Féin     Gerry Adams   0.7     7            3 -15.033333</code></pre>
+<p>We can also use the <code>sum()</code> function to find the proportion of seats a party got in a variable, <code>seats_prop</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(uk2017, <span class="dt">seats_prop =</span> seats <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(seats))</code></pre></div>
+<pre><code>##                       party          leader votes seats seats_change seats_prop
+## 1        Conservative Party     Theresa May  42.4   317          -13 0.49300156
+## 2              Labour Party   Jeremy Corbyn  40.0   262           30 0.40746501
+## 3   Scottish National Party Nicola Sturgeon   3.0    35          -21 0.05443235
+## 4         Liberal Democrats      Tim Farron   7.4    12            4 0.01866252
+## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2 0.01555210
+## 6                 Sinn Féin     Gerry Adams   0.7     7            3 0.01088647</code></pre>
+</div>
+<div id="the-pipe-operator" class="section level2">
+<h2><span class="header-section-number">3.6</span> The pipe operator: <code>%&gt;%</code></h2>
+<p>So far we have looked at a series of different functions. In most cases we want to combine these functions, e.g. when we both have to select specific variables and observations. Luckikly, there is nothing against using one function nested within another, as the example below shows.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(<span class="kw">select</span>(uk2017, party, votes), seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</code></pre></div>
+<pre><code>##                       party votes
+## 1              Labour Party  40.0
+## 2         Liberal Democrats   7.4
+## 3 Democratic Unionist Party   0.9
+## 4                 Sinn Féin   0.7</code></pre>
+<p>The problem is that it can be complicated to read, especially as the number of functions we use increases. Furthermore, the likelihood of making a stupid mistake, e.g. by including an extra <code>(</code> or <code>)</code> increases substantially. We can use the pipe operator, <code>%&gt;%</code>, to make our code more readable.</p>
+<p>The operator relies on a step-wise logic so we first specify the data frame and then a line for each function we want to run on the data frame.</p>
+<p>In the example below we do the same as above but in a way that is easier to follow.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(party, votes) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</code></pre></div>
+<pre><code>##                       party votes
+## 1              Labour Party  40.0
+## 2         Liberal Democrats   7.4
+## 3 Democratic Unionist Party   0.9
+## 4                 Sinn Féin   0.7</code></pre>
+<p>On the first line, we show that we are using the data frame <code>uk2017</code>. We end this line with <code>%&gt;%</code>, telling <code>R</code> that we are not done yet but will have to put this into the function on the line below. The next line uses the input from the previous line and selects <code>party</code> and <code>votes</code> from the data frame. This line also ends with the pipe, <code>%&gt;%</code>. The third line shows the observations in our data frame where <code>seats_change</code> is greater than 0. Note that we did not select <code>seats_change</code> as a variable with <code>select()</code>, so this is not crucial in order to use it (as long as it is in the <code>uk2017</code> data frame). Last, we do <em>not</em> end with a pipe as we are done and do not want to do more to our data frame.</p>
+<p>If we want to change the names of our variables, we can use <code>setNames()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(party, votes) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">setNames</span>(<span class="kw">c</span>(<span class="st">&quot;party_name&quot;</span>, <span class="st">&quot;vote_share&quot;</span>))</code></pre></div>
+<pre><code>##                  party_name vote_share
+## 1              Labour Party       40.0
+## 2         Liberal Democrats        7.4
+## 3 Democratic Unionist Party        0.9
+## 4                 Sinn Féin        0.7</code></pre>
+<p>Hopefully, you will soon be using the pipe operator a lot. Instead of having to type <code>&gt;</code>, <code>%</code> and <code>&gt;</code> again and again, there are good shortcuts available in RStudio to create the pipe, specifically Ctrl+Shift+M (Windows) and Cmd+Shift+M (Mac).</p>
+<p>Last, if you want to get information on what happens at the individual steps, you can install the <code>tidylog</code> package. This package adds information on what each <code>dplyr</code> function does. In the example below we use <code>select()</code> and <code>filter()</code> with <code>tidylog</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>tidylog<span class="op">::</span><span class="kw">select</span>(party, votes) <span class="op">%&gt;%</span>
+<span class="st">  </span>tidylog<span class="op">::</span><span class="kw">filter</span>(seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</code></pre></div>
+<pre><code>## select: dropped 3 variables (leader, seats, seats_change)</code></pre>
+<pre><code>## filter: removed 2 rows (33%), 4 rows remaining</code></pre>
+<pre><code>##                       party votes
+## 1              Labour Party  40.0
+## 2         Liberal Democrats   7.4
+## 3 Democratic Unionist Party   0.9
+## 4                 Sinn Féin   0.7</code></pre>
+<p>We can see that we dropped 3 variables with <code>select()</code> and removed 2 out of 6 rows with <code>filter()</code>. If you prefer to get all this information for all your code, you can include <code>library(&quot;tidylog&quot;)</code> in your script (<em>after</em> you have loaded the <code>tidyverse</code> package).</p>
+</div>
+<div id="running-functions-on-variables-apply" class="section level2">
+<h2><span class="header-section-number">3.7</span> Running functions on variables: <code>apply()</code></h2>
+<p>If we would like to run a function on some of our rows or columns, we can use the function <code>apply()</code>. For example, we can get the average number of votes and seats for parties with a positive value on <code>seats_change</code> (i.e. parties with an increase in seats from 2015 to 2017).</p>
+<p>The addition here is the function <code>apply()</code> on the data frame used above. The first thing we specify here is <code>MARGIN</code>, i.e. whether we want to run a function on our rows (1) or columns (2). The next thing we specify is the function together with any relevant options.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(votes, seats) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">apply</span>(<span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## votes seats 
+## 12.25 72.75</code></pre>
+<p>In the case you want to apply a function to both rows and columns, you will have to specify <code>c(1, 2)</code>. It is not important to mention <code>MARGIN</code> or <code>FUN</code> if you have the order right. In other words, we can simplify our example to the code below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(votes, seats) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">apply</span>(<span class="dv">2</span>, mean)</code></pre></div>
+<pre><code>## votes seats 
+## 12.25 72.75</code></pre>
+</div>
+<div id="aggregating-variables-summarize-and-group_by" class="section level2">
+<h2><span class="header-section-number">3.8</span> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></h2>
+<p>If we want to create new variables with aggregated information, similar to the information we got in the previous section, we can use the function <code>summarize()</code>. In the example below we get a data frame with information on the number of observatins, given by <code>n()</code>, the minimum number of votes a party got (<code>votes_min</code>), the maximum number of votes a party got (<code>votes_max</code>) and the average number of votes a party got (<code>votes_mean</code>) (all in percentages).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">party =</span> <span class="kw">n</span>(), 
+            <span class="dt">votes_min =</span> <span class="kw">min</span>(votes), 
+            <span class="dt">votes_max =</span> <span class="kw">max</span>(votes), 
+            <span class="dt">votes_mean =</span> <span class="kw">mean</span>(votes))</code></pre></div>
+<pre><code>##   party votes_min votes_max votes_mean
+## 1     6       0.7      42.4   15.73333</code></pre>
+<p>If we want this information for different groups, we can supply with <code>group_by()</code>. In the example below we get the same information for parties with an increase in seats from 2015 to 2017 and not.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">party =</span> <span class="kw">n</span>(), 
+            <span class="dt">votes_min =</span> <span class="kw">min</span>(votes), 
+            <span class="dt">votes_max =</span> <span class="kw">max</span>(votes), 
+            <span class="dt">votes_mean =</span> <span class="kw">mean</span>(votes))</code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   `seats_change &gt; 0` party votes_min votes_max votes_mean
+##   &lt;lgl&gt;              &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 FALSE                  2       3        42.4       22.7
+## 2 TRUE                   4       0.7      40         12.2</code></pre>
+<p>In the example, you can see the aggregated information. The information next to <code>TRUE</code> is the aggregated information for the observations where <code>seats_change</code> is greater than 0. Last, often you want to conduct additional work on your data frame where it should no longer be grouped anymore. In that case, you can use <code>ungroup()</code>.</p>
+</div>
+<div id="recoding-variables-case_when" class="section level2">
+<h2><span class="header-section-number">3.9</span> Recoding variables: <code>case_when()</code></h2>
+<p>In a lot of cases we want to recode the information in a single variable. To do this, we can use <code>case_when()</code>. Let us use the <code>leader</code> variable in <code>uk2017</code> as an example.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017<span class="op">$</span>leader </code></pre></div>
+<pre><code>## [1] Theresa May     Jeremy Corbyn   Nicola Sturgeon Tim Farron      Arlene Foster   Gerry Adams    
+## Levels: Arlene Foster Gerry Adams Jeremy Corbyn Nicola Sturgeon Theresa May Tim Farron</code></pre>
+<p>In the case that we want to create a new leader variable (in this example called <code>leader_new</code>) where Theresa May is replaced with Boris Johnson, we can do that with the code below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">leader_new =</span> <span class="kw">case_when</span>(leader <span class="op">==</span><span class="st"> &quot;Theresa May&quot;</span> <span class="op">~</span><span class="st"> &quot;Boris Johnson&quot;</span>, 
+                                <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(leader))
+         )</code></pre></div>
+<pre><code>##                       party          leader votes seats seats_change      leader_new
+## 1        Conservative Party     Theresa May  42.4   317          -13   Boris Johnson
+## 2              Labour Party   Jeremy Corbyn  40.0   262           30   Jeremy Corbyn
+## 3   Scottish National Party Nicola Sturgeon   3.0    35          -21 Nicola Sturgeon
+## 4         Liberal Democrats      Tim Farron   7.4    12            4      Tim Farron
+## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2   Arlene Foster
+## 6                 Sinn Féin     Gerry Adams   0.7     7            3     Gerry Adams</code></pre>
+<p>Using <code>case_when()</code> is a great way to make recodings easily. As you can see, you first specify what condition a variable should satisfy, before you use <code>~</code> to tell what the new variable in mutate should be for this variable. At the end, we use <code>TRUE</code> to specify what all other values on the variable should be (in this example the other leaders in our variable).</p>
+<p>Noteworthy, we do not save the <code>leader_new</code> variable in our data frame. If we want to save the changes, we can save the new variable to our data frame with the code below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 &lt;-<span class="st"> </span>uk2017 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">leader_new =</span> <span class="kw">case_when</span>(leader <span class="op">==</span><span class="st"> &quot;Theresa May&quot;</span> <span class="op">~</span><span class="st"> &quot;Boris Johnson&quot;</span>, 
+                                <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(leader))
+         )</code></pre></div>
+<p><code>dplyr</code> in the <code>tidyverse</code> also has a <code>recode()</code> function, and the <code>car</code> package <span class="citation">(Fox &amp; Weisberg, 2011)</span> has a similar function worth exploring. However, it is recommended that you stick with <code>mutate()</code> and <code>case_when()</code>.</p>
+</div>
+<div id="getting-a-variable-from-a-data-frame-pull" class="section level2">
+<h2><span class="header-section-number">3.10</span> Getting a variable from a data frame: <code>pull()</code></h2>
+<p>Often you do something to a data frame but might be interested in just working with one variable within that data frame. To do this, <code>pull()</code> is a great function. Let’s say we want to get the average votes for parties with a positive value on <code>seats_changes</code>. Here, we first use <code>filter()</code> to get the observations we want to look at and then use <code>pull()</code> with the <code>votes</code> variable to use <code>mean()</code> on this variable</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(seats_change <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(votes) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mean</span>()</code></pre></div>
+<pre><code>## [1] 12.25</code></pre>
+<p>Here, we can see that the average support for parties with a positive value on <code>seats_change</code> is 12.25.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="7">
+<li id="fn7"><p>For another good introduction to <code>dplyr</code>, see: <a href="https://bookdown.org/rdpeng/rprogdatascience/managing-data-frames-with-the-dplyr-package.html">Managing Data Frames with the dplyr package</a>.<a href="data.html#fnref7">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="text.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["qpolr.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

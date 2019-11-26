@@ -378,7 +378,6 @@ Interestingly, the functions we have talked about so far can all be applied to d
 summary(uk2017)
 ```
 
-
 We can also use the functions on our variables as we did above, e.g. to get the maximum number of votes a party got with the function `max()`.
 
 ```{r}
@@ -413,6 +412,12 @@ summary(uk2017_lm)
 
 The coefficient for `votes` is positive and statistically significant ($p<0.05$). In other words, as the vote share increases, so does the number of seats.
 
+Last, when working with some of the functions in later chapters, you will encounter that we do not talk about data frames but so-called _tibbles_. In brief, they are also data frames but with some improvements. For most of the procedures used in this book, however, it is not too important whether your object is a data frame or a tibble. We can convert our `uk2017` data frame to a tibble with the `as_tible()` function (available in the `tidyverse` package).
+
+```{r}
+as_tibble(uk2017)
+```
+
 ## Import and export data frames
 
 Most of the data frames we will be working with in `R` are not data frames we will build from scratch but on the contrary data frames we will import from other files such as files made for Stata, SPSS or Excel. The most useful filetype to use when you work with data in files is `.csv`, which stands for _comma-separated values_. This is an open file format and can be opened in any software. To export and import data frames to `.csv` files, we can use `write.csv()` and `read.csv()`.
@@ -429,7 +434,7 @@ If you would like to change this, you can use the function `setwd()`. This funct
 setwd("/Dropbox/qpolr/book")
 ```
 
-If you cannot remember the destination, you can use the menu to find the folder you want to have as your working directory as shown in Figure \@ref(fig:setwd).
+If you cannot remember the destination, you can use the menu to find the folder you want to have as your working directory as shown in Figure \@ref(fig:setwd). On a Mac, you can also use Option + CMD + C to copy the pathway to a file.
 
 ```{r setwd, echo=FALSE, fig.cap="How to change the working directory", out.width="50%"}
 include_graphics(path = "fig/setwd.png")

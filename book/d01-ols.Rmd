@@ -146,6 +146,20 @@ reg_obama_full_tidy %>%
      geom_errorbarh()
 ```
 
+## Saving predictions
+
+To save predictions, i.e. the predicted value on the outcome for each observation, we can use the `add_predictions()` function in the `modelr` package. Below we add predictions to the `states` data frame.
+
+
+```{r, message=FALSE, warning=FALSE}
+library("modelr")
+
+states <- add_predictions(states, reg_obama_full)
+
+```
+
+The predictions are now saved in the `states` data frame with the variable name `pred`. The `add_residuals()` function can be used to do the same for the residuals.
+
 ## Diagnostic tests 
 
 To get diagnostic plots, we will use the `fortify()` function from `ggplot2`. This allows us to get the following variables realted to model fit statistics:
@@ -197,34 +211,24 @@ ggplot(reg_fortify, aes(x = seq_along(.cooksd), y = .cooksd)) +
        x = "Obs. number")
 ```
 
+Last, an alternative way to get a series of diagnostics tests is to use the package `lindia`. This package gives the following functions you can use on an `lm` object:
 
-## Setting up regression tables
+- `gg_reshist()`: Histogram of residuals
+- `gg_resfitted()`: Residual plot of residuals by fitted value
+- `gg_resX()`: All residual plots of all predictors by fitted value, layed out in a grid
+- `gg_qqplot()`: Normaility quantile-quantile plot (QQPlot) with qqline overlayed on top
+- `gg_boxcox()`: Boxcox graph with optimal transformation labeled on graph
+- `gg_scalelocation()`: Scale-location plot (also called spread-location plot)
+- `gg_resleverage()`: Residual by leverage plot
+- `gg_cooksd()`: Cook's distance plot with potential outliars labeled on top
 
-To export regression tables from `R`, we are going to use the package `stargazer` (remember to install the package if you haven't already done so).
+To generate all of the above diagnostic plots, you can use `gg_diagnose()`. More information on the `lindia` package can be found at [https://github.com/yeukyul/lindia](https://github.com/yeukyul/lindia).
 
-```{r, message=FALSE, warning=FALSE} 
-library("stargazer")
-```
-
-First, we use the `stargazer()` function to show the output from the object `reg_obama`. Notice that we also add the option `type = "text"`. If we do not do that, we will get the output as LaTeX code. 
-
-```{r, message=FALSE, warning=FALSE} 
-stargazer(reg_obama, type = "text")
-```
-
-This shows the output from one regression model. To add more regression models to the table, simply add a comma and the name of the object with the model. Below we use the same code as above and add the model with control variables included, `reg_obama_full`.
+Last, you can also use the package `gvlma`, Global Validation of Linear Models Assumptions. This package provide an overview of different assumptions and whether they are met on a specific model. 
 
 ```{r, message=FALSE, warning=FALSE} 
-stargazer(reg_obama, reg_obama_full, type = "text")
+library("gvlma")
+summary(gvlma(reg_obama_full))
 ```
 
-### Exporting the regression table
-
-To export the regression table, we use the option `out` to specify, where we want to save our regresion table. Below we save the table in the file `tab-regression.htm`.
-
-```{r, eval=FALSE, message=FALSE, warning=FALSE}
-stargazer(reg_obama, reg_obama_full, type = "text",
-          out="tab-regression.htm")
-```
-
-An `.htm` file is a HTML file you can open in your browser (e.g. Google Chrome). To get it into Word, simply open the file via Word. You might have to do some extra changes before it is ready for a broader audience. Always try to make your tables look like tables in published articles and books.
+You can find more information on the `gvlma` package in the description of the package and in [this post](https://joshualoong.com/2019/09/20/Appreciating-R-The-Ease-of-Testing-Linear-Model-Assumptions/).

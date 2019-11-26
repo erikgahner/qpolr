@@ -1,0 +1,83 @@
+---
+output: html_document
+---
+
+# Manipulating text {#text}
+
+We introduced text in the previous chapter. In this chapter, we will show how to manipulate text as strings and factors. We will use the `states` dataset from the `poliscidata` package. For more on this data, see Chapter \@ref(datadownload).
+
+```{r}
+library("poliscidata")
+
+states <- states
+```
+
+You can use `View(states)` to get a sense of the 50 observations and the 135 variables.
+
+## Strings
+
+We will use the package `string`. It is part of the `tidyverse` but can also be called individually. As you already should have installed the `tidyverse` by now, it is not necessary to install the package again.
+
+```{r}
+library("stringr")
+```
+
+Some of the functions have relatively simple purposes, such as `str_to_upper()` (which convert all characters in a string to upper case) and `str_to_lower()` (which convert all characters in a string to lower case).
+
+```{r}
+str_to_upper("Quantitative Politics with R")
+```
+
+```{r}
+str_to_lower("Quantitative Politics with R")
+```
+
+Here, we are going to look at cigarette taxes, and namely on whether the cigarette taxes are in the low, middle or high category. To look at this we will use the `cig_tax12_3` variable in the `states` data frame.
+
+```{r eval=FALSE}
+table(states$cig_tax12_3)
+```
+
+We can see that the names for these categories are LoTax, MidTax and HiTax. With the code below we use `str_replace_all()` to replace the characters with new characters, e.g. HiTax becomes High taxes.
+
+```{r}
+states$cig_taxes <- str_replace_all(states$cig_tax12_3, 
+                                    c("HiTax" = "High taxes", 
+                                      "MidTax" = "Middle taxes",
+                                      "LoTax" = "Low taxes"))
+
+table(states$cig_taxes)
+```
+
+For examples on more of the functions available in the `stringr` package, see [this introduction](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html).
+
+## Factors
+
+For the cigarette taxes we have worked with above, these are categorical data that we can order. To work with ordered and unordered categories, factors is a class in `R` class that makes these categories good to work with. For factors, we are going to use the package `forcats`. This package is also part of the `tidyverse`.
+
+```{r}
+library("forcats")
+```
+
+We create a new variable, `cig_taxes_cat` as a factor variable and then we see what levels we have (and the order of these).
+
+```{r}
+states$cig_taxes_cat <- factor(states$cig_taxes)
+
+levels(states$cig_taxes_cat)
+```
+
+As we can see, these levels are now in the wrong order (sorted alphabetically). We can use the `fct_relevel()` to specify the order of the categories (from low to high).
+
+```{r}
+states$cig_taxes_cat <- fct_relevel(states$cig_taxes_cat, 
+                                    "Low taxes", 
+                                    "Middle taxes", 
+                                    "High taxes")
+
+levels(states$cig_taxes_cat)
+```
+
+This will become useful later on when we want to make sure that the categories in a data visualisation has the correct order.
+
+For additional guidance on the functions available in the `forcats` package, see [https://forcats.tidyverse.org/](https://forcats.tidyverse.org/).

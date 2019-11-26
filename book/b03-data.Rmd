@@ -1,0 +1,222 @@
+---
+output: html_document
+---
+
+# Get existing data {#datadownload}
+
+There are multiple ways you can get data into `R`. In this chapter we introduce different strategies for getting data into `R` from a variety of political data sources. First, we look at data included in packages. Second, we show how you can find datasets online and introduce a resource with a lot of links to political datasets. Third, we introduce a series of different packages that makes it easy to get data into `R`. 
+
+Throughout the chapter we will use the `tidyverse` package so make sure to load this.
+
+```{r eval=FALSE}
+library("tidyverse")
+```
+
+## Using data from data packages
+
+A lot of the packages we are working with, including packages in the `tidyverse`, include datasets. To illustrate this, we will be using the package `poliscidata`.[^data1] The first thing we will need to do is to install the package.
+
+[^data1]: For more information on the package and the included datasets, see: [https://cran.r-project.org/web/packages/poliscidata/poliscidata.pdf](https://cran.r-project.org/web/packages/poliscidata/poliscidata.pdf)
+
+
+```{r eval=FALSE}
+install.packages("poliscidata")
+```
+
+Next, we will need to load the package with `library()`.
+
+```{r, message=FALSE, warning=FALSE}
+library("poliscidata")
+```
+
+There are multiple datasets in the `poliscidata` package. We will focus on the dataset `states`, a dataset with variables about the 50 states in the United States.  We use the function `names()` to get a list of all variables in the data frame states (it takes up a lot of space but gives an indication of the variety of variables in the data frame).
+
+```{r}
+names(states)
+```
+
+While the data is available, it is not possible to see in the _Environment_ window. To see the data frame, we can save `states` in an object of the same name.
+
+```{r}
+states <- states
+```
+
+Now we can see in the `Environment` window that we have 50 observations of 135 variables. We will be using this data later, but for now we will see that we have actual data. Using the `table()` function we can show the distribution of observations in the `gay_policy` variable, showing data on the Billman’s policy scale (4 ordinal categories).
+
+```{r}
+table(states$gay_policy)
+```
+
+Here we see that 6 states have a most liberal score, 14 have a liberal score, 10 have a conservative score, and 6 have a most conservative score.
+
+## Download data from webpages 
+
+A lot of the political datasets you will find are available online and can be downloaded for free. A free resource with an overview of political datasets can be found here: [https://github.com/erikgahner/PolData](https://github.com/erikgahner/PolData)
+
+In this dataset with political datasets, you can find datasets from different topics (international relations, political institutions, democracy etc.). For each dataset you will also be able to see whether it is possible to download the data for free, and if so, what the link to the dataset is.
+
+To illustrate this, we can find the link to download the Global Media Freedom dataset. The dataset is available as a `.csv` file and get into `R` with the `read.csv()` function.
+
+```{r eval=FALSE}
+gmd <- read.csv(
+  "http://faculty.uml.edu/Jenifer_whittenwoodring/GMFD_V2.csv"
+  )
+```
+
+The dataset consists of the following four variables: `id`, `year`, `country`, `mediascore`.
+
+In the next sections, we will introduce different packages, that can make it easier to work with different datasets. 
+
+## Data: European Social Survey (`essurvey`)
+
+To get data from European Social Survey (ESS), we will be using the `essurvey` package [@essurvey]. If you do not have a free user, the first step is to go online and create a user: [http://www.europeansocialsurvey.org/user/new](http://www.europeansocialsurvey.org/user/new)
+
+The next thing you need to do is to install the package.
+
+```{r eval=FALSE}
+install.packages("essurvey")
+```
+
+And then load the package.
+
+```{r eval=FALSE}
+library("essurvey")
+```
+
+Now you need to set the email you used to register an account. If you don't do this, ESS will not be able to confirm that you have an account, and you will not be able to get access to the data.
+
+```{r eval=FALSE}
+set_email("your@mail.com")
+```
+
+There are multiple functions to use in order to get data, and for an overview of some of them, check out [https://ropensci.github.io/essurvey/](https://ropensci.github.io/essurvey/).
+
+Here, we will provide an example on how to reproduce the main result in @larsen2018. Here we use the `import_country()` function to import data from Denmark in Round 6 of the ESS.
+
+```{r eval=FALSE}
+ess <- import_country("Denmark", 6)
+```
+
+All the recodings are made with the `mutate()` function.
+
+```{r eval=FALSE}
+ess <- ess %>%
+  mutate(
+    stfgov = ifelse(stfgov > 10, NA, stfgov),
+    reform = case_when(inwmme < 2 ~ 0,
+                       inwmme == 2 & inwdde < 19 ~ 0,
+                       inwmme == 2 & inwdde > 19 ~ 1,
+                       inwmme > 2 ~ 1,
+                       TRUE ~ NA_real_)
+  )
+```
+
+And the regression model can be achieved with the `lm()` function.
+
+```{r eval=FALSE}
+lm(stfgov ~ reform, data=ess)
+```
+
+## Data: Manifesto Project Dataset (`manifestoR`)
+
+To use data from the Manifesto Project Dataset, you need to create an account as well. This can be done at: [https://manifesto-project.wzb.eu/signup](https://manifesto-project.wzb.eu/signup)
+
+Next, install and load the package `manifestoR` [@manifestoR].
+
+```{r eval=FALSE}
+# install the package
+install.packages("manifestoR")
+
+# load the package
+library("manifestoR")
+```
+
+You now need to go to your profile page at [https://manifesto-project.wzb.eu/](https://manifesto-project.wzb.eu/). You will need to click on the button to get an API key. You can now click 'download API Key file (txt)' and place this file in your working directory - or copy your key and use the code below.
+
+```{r eval=FALSE}
+mp_setapikey(key = "yourKeyHere")
+```
+
+You are now able to download text data from the Manifesto Project into `R`. We use the `mp_corpus()` function to download election programmes texts and codings, in this case from Denmark.
+
+```{r eval=FALSE}
+manifesto_dk <- mp_corpus(countryname == "Denmark")
+```
+
+To see some of the content from the manifesto data, you can try the code below.
+
+```{r eval=FALSE}
+head(content(manifesto_dk[[1]]))
+```
+
+If you want to find a more detailed description of how to look at the data, please see [https://cran.r-project.org/web/packages/manifestoR/vignettes/manifestoRworkflow.pdf](https://cran.r-project.org/web/packages/manifestoR/vignettes/manifestoRworkflow.pdf).
+
+## Data: Varieties of Democracy (`vdem`)
+
+To get data from Varieties of Democracy into `R`, we are going to use the `vdem` package [@vdem]. This package is not on `CRAN`, and accordingly, we cannot use `install.packages()` to install it. Instead, we will have to use the function `install_github()` as it is on GitHub. In order to do this, you need to have the package `devtools`. To install this package, you can uncomment the first line below. The second line says that we are using the `install_github()` function from the `devtools` package (with `::`).
+
+```{r eval=FALSE}
+#install.packages("devtools")
+devtools::install_github("xmarquez/vdem")
+```
+
+When the package is installed, use `library()` to load it.
+
+```{r eval=FALSE}
+library("vdem")
+```
+
+To get the main democracy indices from the data, we can use the `extract_vdem()` function.
+
+```{r eval=FALSE}
+vdem_data <- extract_vdem(section_number = 1)
+```
+
+This gives us a dataset with 17,604 observations of 55 variables. To see the first observations, use `head()` (output not shown).
+
+```{r eval=FALSE}
+head(vdem_data)
+```
+
+## Data: World Development Indicators (`WDI`)
+
+To use data from the World Bank's World Development Indicators, we can use the `WDI` package [@wdi]. For more information on the World Development Indicators, see [https://datacatalog.worldbank.org/dataset/world-development-indicators](https://datacatalog.worldbank.org/dataset/world-development-indicators). First, install and load the package.
+
+
+```{r eval=FALSE}
+# install the package
+install.packages("WDI")
+
+# load the package
+library("WDI")
+```
+
+To search for data in the WDI, you can use the `WDIsearch()` function. In the example below, we search for data on GDP.
+
+```{r eval=FALSE}
+WDIsearch("gdp")
+```
+
+This returns the indicator and name of the data in WDI. We can see that the indicator for GDP per capita, PPP (constant 2005 international $) is `NY.GDP.PCAP.PP.KD`. To save the data, use the function `WDI()`, where you specify the indicator as well as the countries and years you want the data from.
+
+```{r eval=FALSE}
+wdi <- WDI(indicator="NY.GDP.PCAP.PP.KD", 
+           country=c("US", "GB"), 
+           start = 1960, 
+           end = 2012)
+```
+
+## Data: GitHub repositories
+
+A lot of data today is available in GitHub repositories. To get data from GitHub, we can simply use the `read_csv()` function. First, find the dataset on GitHub that you would like to use. When you find the dataset, you should click on 'Raw' to get to the raw dataset, as shown in Figure \@ref(fig:githubdata). 
+
+```{r githubdata, echo=FALSE, fig.cap="How to get to the raw dataset file on GitHub", out.width="90%"}
+include_graphics(path = "fig/githubdata.png")
+```
+
+Copy the url of the raw dataset and use the `read_csv()` function in `R` to load the content of the dataset into `R`. In the example below, we save a data frame on Danish opinion polls in an object called `polls_raw`.
+
+```{r eval=FALSE}
+polls_raw <- read_csv("https://raw.githubusercontent.com/erikgahner/polls/master/polls.csv")
+```
+

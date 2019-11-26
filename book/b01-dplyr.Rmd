@@ -6,7 +6,7 @@ output: html_document
 
 # Data management {#data}
 
-There are multiple ways to manage data in `R` and in particular different ways to create and change variables in a data frame. In this chapter, we show different ways of working with data frames with a focus on how to change and create new variables. Noteworthy, there are multiple packages we can use to manipulate data frames, but the best is without a doubt `dplyr` [@wickhamfrancois2016]. This is part of the `tidyverse` package so you do not need to install any new packages if you have already installed `tidyverse`.
+There are multiple ways to manage data in `R` and in particular different ways to create and change variables in a data frame. In this chapter, we show different ways of working with data frames with a focus on how to change and create new variables. Noteworthy, there are multiple packages we can use to manipulate data frames, but the best is without a doubt `dplyr` [@wickhamfrancois2016]. This is part of the `tidyverse` package so you do not need to install any new packages if you have already installed `tidyverse`. The syntax is inspired by SQL and if you want to learn SQL at some point, you will have an advantage from having used the `dplyr` package.
 
 The package provides some basic functions making it easy to work with data frames. These functions include 
  `select()`, `filter()`, `arrange()`, `rename()`, `mutate()` and `summarize()`.[^11] `select()` allows you to pick variables by their names. `filter()` allows you to pick observations by their values. `arrange()` allows you to reorder the rows. `rename()` allows you to rename columns. `mutate()` allows you to create new variables based on the values of old variables. `summarize()` allows you to collapse many values to a single summary.
@@ -93,6 +93,18 @@ uk2017_seatlosers <- filter(uk2017, seats_change < 0)
 uk2017_seatlosers
 ```
 
+If we want to select two parties, say the Conservative Party and the Labour Party, we can use `%in%` to specify this.
+
+```{r}
+filter(uk2017, party %in% c("Conservative Party", "Labour Party"))
+```
+
+Similarly, by adding an `!` in front of `party` we can get the parties that are not the Conservative Party and the Labour Party.
+
+```{r}
+filter(uk2017, !party %in% c("Conservative Party", "Labour Party"))
+```
+
 Last, if we want to drop observations that contain missing values on specific variables, we can use the function `drop_na()`.
 
 ## Sorting observations: `arrange()`
@@ -159,6 +171,28 @@ uk2017 %>%
 
 On the first line, we show that we are using the data frame `uk2017`. We end this line with `%>%`, telling `R` that we are not done yet but will have to put this into the function on the line below. The next line uses the input from the previous line and selects `party` and `votes` from the data frame. This line also ends with the pipe, `%>%`. The third line shows the observations in our data frame where `seats_change` is greater than 0. Note that we did not select `seats_change` as a variable with `select()`, so this is not crucial in order to use it (as long as it is in the `uk2017` data frame). Last, we do _not_ end with a pipe as we are done and do not want to do more to our data frame.
 
+If we want to change the names of our variables, we can use `setNames()`.
+
+
+```{r}
+uk2017 %>% 
+  filter(seats_change > 0) %>%
+  select(party, votes) %>%
+  setNames(c("party_name", "vote_share"))
+```
+
+Hopefully, you will soon be using the pipe operator a lot. Instead of having to type `>`, `%` and `>` again and again, there are good shortcuts available in RStudio to create the pipe, specifically Ctrl+Shift+M (Windows) and Cmd+Shift+M (Mac).
+
+Last, if you want to get information on what happens at the individual steps, you can install the `tidylog` package. This package adds information on what each `dplyr` function does. In the example below we use `select()` and `filter()` with `tidylog`. 
+
+```{r}
+uk2017 %>% 
+  tidylog::select(party, votes) %>%
+  tidylog::filter(seats_change > 0)
+```
+
+We can see that we dropped 3 variables with `select()` and removed 2 out of 6 rows with `filter()`. If you prefer to get all this information for all your code, you can include `library("tidylog")` in your script (_after_ you have loaded the `tidyverse` package).
+
 ## Running functions on variables: `apply()`
 
 If we would like to run a function on some of our rows or columns, we can use the function `apply()`. For example, we can get the average number of votes and seats for parties with a positive value on `seats_change` (i.e. parties with an increase in seats from 2015 to 2017). 
@@ -204,28 +238,48 @@ uk2017 %>%
             votes_mean = mean(votes))
 ```
 
-In the example, you can see the aggregated information. `T` is short for `TRUE` and is the aggregated information for the observations where `seats_change` is greater than 0.
+In the example, you can see the aggregated information. The information next to `TRUE` is the aggregated information for the observations where `seats_change` is greater than 0. Last, often you want to conduct additional work on your data frame where it should no longer be grouped anymore. In that case, you can use `ungroup()`.
 
-## Recoding variables: `recode()`
+## Recoding variables: `case_when()`
 
-In a lot of cases we want to recode the information in a single variable. To do this, we can use `recode()`. Importantly, this function works for individual variables and not for a data frame. Let us use the `leader` variable in `uk2017` as an example.
+In a lot of cases we want to recode the information in a single variable. To do this, we can use `case_when()`. Let us use the `leader` variable in `uk2017` as an example.
 
 ```{r}
 uk2017$leader 
 ```
 
-In the case that we want to replace Tim Farron in the variable with a new guy, we can do that with the code below.
+In the case that we want to create a new leader variable (in this example called `leader_new`) where Theresa May is replaced with Boris Johnson, we can do that with the code below.
 
 ```{r}
-recode(uk2017$leader, "Tim Farron" = "New guy")
+uk2017 %>% 
+  mutate(leader_new = case_when(leader == "Theresa May" ~ "Boris Johnson", 
+                                TRUE ~ as.character(leader))
+         )
+
 ```
 
-Noteworthy, we do not create any changes to the `leader` variable. If we want to save the changes, we can save the new variable to our data frame.
+Using `case_when()` is a great way to make recodings easily. As you can see, you first specify what condition a variable should satisfy, before you use `~` to tell what the new variable in mutate should be for this variable. At the end, we use `TRUE` to specify what all other values on the variable should be (in this example the other leaders in our variable). 
+
+Noteworthy, we do not save the `leader_new` variable in our data frame. If we want to save the changes, we can save the new variable to our data frame with the code below.
 
 ```{r}
-uk2017$leader_new <- recode(uk2017$leader, "Tim Farron" = "New guy")
-
-uk2017$leader_new
+uk2017 <- uk2017 %>% 
+  mutate(leader_new = case_when(leader == "Theresa May" ~ "Boris Johnson", 
+                                TRUE ~ as.character(leader))
+         )
 ```
 
-Last, `dplyr` in the `tidyverse` is not the only package with a `recode()` function. The package `car` [@foxweisberg2011] has a similar function worth exploring.
+`dplyr` in the `tidyverse` also has a `recode()` function, and the `car` package [@foxweisberg2011] has a similar function worth exploring. However, it is recommended that you stick with `mutate()` and `case_when()`.
+
+## Getting a variable from a data frame: `pull()`
+
+Often you do something to a data frame but might be interested in just working with one variable within that data frame. To do this, `pull()` is a great function. Let's say we want to get the average votes for parties with a positive value on `seats_changes`. Here, we first use `filter()` to get the observations we want to look at and then use `pull()` with the `votes` variable to use `mean()` on this variable
+
+```{r}
+uk2017 %>% 
+  filter(seats_change > 0) %>% 
+  pull(votes) %>% 
+  mean()
+```
+
+Here, we can see that the average support for parties with a positive value on `seats_change` is 12.25.

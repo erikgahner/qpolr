@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Manipulating plots | Quantitative Politics with R</title>
+  <meta name="description" content="Chapter 10 Manipulating plots | Quantitative Politics with R" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Manipulating plots | Quantitative Politics with R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://qpolr.com" />
+  
+  
+  <meta name="github-repo" content="erikgahner/qpolr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Manipulating plots | Quantitative Politics with R" />
+  
+  
+  
+
+<meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas" />
+
+
+<meta name="date" content="2019-11-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="presenting-relationships.html"/>
+<link rel="next" href="olsreg.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <code>R</code>?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing <code>R</code></a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages"><i class="fa fa-check"></i><b>1.4</b> Installing <code>R</code> packages</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#problems-and-help"><i class="fa fa-check"></i><b>1.5</b> Problems and help</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a><ul>
+<li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#numbers-as-data"><i class="fa fa-check"></i><b>2.1</b> Numbers as data</a></li>
+<li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#missing-values-na"><i class="fa fa-check"></i><b>2.2</b> Missing values (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#logical-operators"><i class="fa fa-check"></i><b>2.3</b> Logical operators</a></li>
+<li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#text-as-data"><i class="fa fa-check"></i><b>2.4</b> Text as data</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.5</b> Data frames</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
+</ul></li>
+<li class="part"><span><b>I Working with data</b></span></li>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="data.html"><a href="data.html#rename-variables-rename"><i class="fa fa-check"></i><b>3.4</b> Rename variables: <code>rename()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="data.html"><a href="data.html#create-variables-mutate"><i class="fa fa-check"></i><b>3.5</b> Create variables: <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="data.html"><a href="data.html#the-pipe-operator"><i class="fa fa-check"></i><b>3.6</b> The pipe operator: <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.7" data-path="data.html"><a href="data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
+<li class="chapter" data-level="3.8" data-path="data.html"><a href="data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="data.html"><a href="data.html#recoding-variables-case_when"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>case_when()</code></a></li>
+<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.10</b> Getting a variable from a data frame: <code>pull()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a><ul>
+<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a></li>
+<li class="chapter" data-level="4.2" data-path="text.html"><a href="text.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a><ul>
+<li class="chapter" data-level="5.1" data-path="datadownload.html"><a href="datadownload.html#using-data-from-data-packages"><i class="fa fa-check"></i><b>5.1</b> Using data from data packages</a></li>
+<li class="chapter" data-level="5.2" data-path="datadownload.html"><a href="datadownload.html#download-data-from-webpages"><i class="fa fa-check"></i><b>5.2</b> Download data from webpages</a></li>
+<li class="chapter" data-level="5.3" data-path="datadownload.html"><a href="datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>5.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
+<li class="chapter" data-level="5.4" data-path="datadownload.html"><a href="datadownload.html#data-manifesto-project-dataset-manifestor"><i class="fa fa-check"></i><b>5.4</b> Data: Manifesto Project Dataset (<code>manifestoR</code>)</a></li>
+<li class="chapter" data-level="5.5" data-path="datadownload.html"><a href="datadownload.html#data-varieties-of-democracy-vdem"><i class="fa fa-check"></i><b>5.5</b> Data: Varieties of Democracy (<code>vdem</code>)</a></li>
+<li class="chapter" data-level="5.6" data-path="datadownload.html"><a href="datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>5.6</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
+<li class="chapter" data-level="5.7" data-path="datadownload.html"><a href="datadownload.html#data-github-repositories"><i class="fa fa-check"></i><b>5.7</b> Data: GitHub repositories</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a><ul>
+<li class="chapter" data-level="6.1" data-path="create.html"><a href="create.html#create-data-from-files"><i class="fa fa-check"></i><b>6.1</b> Create data from files</a></li>
+<li class="chapter" data-level="6.2" data-path="create.html"><a href="create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>6.2</b> Scrape data from tables</a></li>
+<li class="chapter" data-level="6.3" data-path="create.html"><a href="create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>6.3</b> Scrape political speeches</a></li>
+<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="create.html"><a href="create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>6.4.1</b> Data on Twitter user</a></li>
+<li class="chapter" data-level="6.4.2" data-path="create.html"><a href="create.html#data-on-trends"><i class="fa fa-check"></i><b>6.4.2</b> Data on trends</a></li>
+<li class="chapter" data-level="6.4.3" data-path="create.html"><a href="create.html#data-on-tweets"><i class="fa fa-check"></i><b>6.4.3</b> Data on tweets</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data visualisation</b></span></li>
+<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="7.1" data-path="dataviz.html"><a href="dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>7.1</b> The basics of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.2" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.3" data-path="dataviz.html"><a href="dataviz.html#aesthetics"><i class="fa fa-check"></i><b>7.3</b> Aesthetics</a></li>
+<li class="chapter" data-level="7.4" data-path="dataviz.html"><a href="dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>7.4</b> Geometric objects</a></li>
+<li class="chapter" data-level="7.5" data-path="dataviz.html"><a href="dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>7.5</b> Theme adjustments</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a><ul>
+<li class="chapter" data-level="8.1" data-path="presenting-distributions.html"><a href="presenting-distributions.html#bar-plot"><i class="fa fa-check"></i><b>8.1</b> Bar plot</a></li>
+<li class="chapter" data-level="8.2" data-path="presenting-distributions.html"><a href="presenting-distributions.html#histograms"><i class="fa fa-check"></i><b>8.2</b> Histograms</a></li>
+<li class="chapter" data-level="8.3" data-path="presenting-distributions.html"><a href="presenting-distributions.html#density-plots"><i class="fa fa-check"></i><b>8.3</b> Density plots</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a><ul>
+<li class="chapter" data-level="9.1" data-path="presenting-relationships.html"><a href="presenting-relationships.html#box-plot"><i class="fa fa-check"></i><b>9.1</b> Box plot</a></li>
+<li class="chapter" data-level="9.2" data-path="presenting-relationships.html"><a href="presenting-relationships.html#scatter-plots"><i class="fa fa-check"></i><b>9.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="9.3" data-path="presenting-relationships.html"><a href="presenting-relationships.html#line-plots"><i class="fa fa-check"></i><b>9.3</b> Line plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="10.1" data-path="manipulating-plots.html"><a href="manipulating-plots.html#themes"><i class="fa fa-check"></i><b>10.1</b> Themes</a></li>
+<li class="chapter" data-level="10.2" data-path="manipulating-plots.html"><a href="manipulating-plots.html#colours"><i class="fa fa-check"></i><b>10.2</b> Colours</a></li>
+<li class="chapter" data-level="10.3" data-path="manipulating-plots.html"><a href="manipulating-plots.html#labels"><i class="fa fa-check"></i><b>10.3</b> Labels</a></li>
+<li class="chapter" data-level="10.4" data-path="manipulating-plots.html"><a href="manipulating-plots.html#axes"><i class="fa fa-check"></i><b>10.4</b> Axes</a></li>
+<li class="chapter" data-level="10.5" data-path="manipulating-plots.html"><a href="manipulating-plots.html#confidence-intervals"><i class="fa fa-check"></i><b>10.5</b> Confidence intervals</a></li>
+<li class="chapter" data-level="10.6" data-path="manipulating-plots.html"><a href="manipulating-plots.html#making-multiple-plots-in-one"><i class="fa fa-check"></i><b>10.6</b> Making multiple plots in one</a></li>
+<li class="chapter" data-level="10.7" data-path="manipulating-plots.html"><a href="manipulating-plots.html#saving-plots"><i class="fa fa-check"></i><b>10.7</b> Saving plots</a></li>
+</ul></li>
+<li class="part"><span><b>III Regression</b></span></li>
+<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a><ul>
+<li class="chapter" data-level="11.1" data-path="olsreg.html"><a href="olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>11.1</b> Bivariate linear regression</a></li>
+<li class="chapter" data-level="11.2" data-path="olsreg.html"><a href="olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.2</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="11.3" data-path="olsreg.html"><a href="olsreg.html#saving-predictions"><i class="fa fa-check"></i><b>11.3</b> Saving predictions</a></li>
+<li class="chapter" data-level="11.4" data-path="olsreg.html"><a href="olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>11.4</b> Diagnostic tests</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a><ul>
+<li class="chapter" data-level="12.1" data-path="glm.html"><a href="glm.html#binary-outcomes"><i class="fa fa-check"></i><b>12.1</b> Binary outcomes</a></li>
+<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="glm.html"><a href="glm.html#event-count"><i class="fa fa-check"></i><b>12.2.1</b> Event count</a></li>
+<li class="chapter" data-level="12.2.2" data-path="glm.html"><a href="glm.html#negative-binomial-regression"><i class="fa fa-check"></i><b>12.2.2</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="12.2.3" data-path="glm.html"><a href="glm.html#ordinal-outcomes"><i class="fa fa-check"></i><b>12.2.3</b> Ordinal outcomes</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Presentation</b></span></li>
+<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a><ul>
+<li class="chapter" data-level="13.1" data-path="writing.html"><a href="writing.html#equations"><i class="fa fa-check"></i><b>13.1</b> Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a><ul>
+<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="tables.html"><a href="tables.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>14.1.1</b> Exporting the regression table</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>15</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Politics with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulating-plots" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Manipulating plots</h1>
+<div id="themes" class="section level2">
+<h2><span class="header-section-number">10.1</span> Themes</h2>
+<p>As you could see in the plots above, we have used a default theme in <code>ggplot2</code>. Table <a href="manipulating-plots.html#tab:ggthemes">10.1</a> shows a series of themes to be found in <code>ggplot2</code>and the package <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html"><code>ggthemes</code></a>. These are just a selection of some of the themes.</p>
+<table>
+<caption><span id="tab:ggthemes">Table 10.1: </span> Selected themes for <code>ggplot2</code></caption>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Package</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>theme_bw()</td>
+<td><code>ggplot2</code></td>
+<td>Black elements on white background</td>
+</tr>
+<tr class="even">
+<td>theme_minimal()</td>
+<td><code>ggplot2</code></td>
+<td>Minimalistic</td>
+</tr>
+<tr class="odd">
+<td>theme_classic()</td>
+<td><code>ggplot2</code></td>
+<td>Theme without grid lines</td>
+</tr>
+<tr class="even">
+<td>theme_base()</td>
+<td><code>ggthemes</code></td>
+<td>Copy of the base theme in <code>R</code></td>
+</tr>
+<tr class="odd">
+<td>theme_economist()</td>
+<td><code>ggthemes</code></td>
+<td>The Economist theme</td>
+</tr>
+<tr class="even">
+<td>theme_fivethirtyeight()</td>
+<td><code>ggthemes</code></td>
+<td>FiveThirtyEight theme</td>
+</tr>
+<tr class="odd">
+<td>theme_tufte()</td>
+<td><code>ggthemes</code></td>
+<td><span class="citation">Tufte (1983)</span> theme</td>
+</tr>
+</tbody>
+</table>
+<p>Figure <a href="manipulating-plots.html#fig:ggthemes">10.1</a> shows the look of the different themes. The order is: Standard, <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>, <code>theme_base()</code>, <code>theme_economist()</code>, <code>theme_fivethirtyeight()</code>, <code>theme_tufte()</code>.</p>
+<div class="figure"><span id="fig:ggthemes"></span>
+<img src="qpolr_files/figure-html/ggthemes-1.png" alt="Eight themes" width="480" />
+<p class="caption">
+Figure 10.1: Eight themes
+</p>
+</div>
+<p>You can find a lot more resources online related to <code>ggplot2</code>. In addition to the links above, do consult <a href="https://github.com/cttobin/ggthemr">ggthemr</a> and <a href="https://www.ggplot2-exts.org/">ggplot2 extensions</a>.</p>
+<p>Below, we will be using <code>theme_minimal()</code> as the theme when we work with out plots.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-194-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="colours" class="section level2">
+<h2><span class="header-section-number">10.2</span> Colours</h2>
+<p>If we want to change the colours of the points in our plot, we can add the <code>colour=&quot;&quot;</code> option to our geometric objects. In the example below we change the colour of our points from black to red and the colour of the line to black.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-195-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>If we want to give points a value based on the value of a specific variable, we need to specificy this within <code>aes()</code>. When we add <code>colour=abortlaw3</code> to our <code>aes()</code>, we will see different colours for states with different restrictions on abortion.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-196-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>If we want to change these colours, we can use <code>scale_colour_manual()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-197-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>The colours are very bright. If we want to make them less so we can add <code>alpha</code> to <code>geom_point()</code> to add transparency to the points. Below we use an alpha of 0.7 (if we want more transparency we can use a lower alpha level).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-198-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="labels" class="section level2">
+<h2><span class="header-section-number">10.3</span> Labels</h2>
+<p>Make sure that your figure have labels that helps the reader understand what is going on. To do this, you can add <code>labs()</code> to your figure. Here we will add a title, subtitle and caption.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Abortion and the Obama vote&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between number of abortions and vote share for Obama&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the poliscidata R package&quot;</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;Abortion restrictions&quot;</span>
+  ) </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-199-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Last, we can see that the legend title is <code>abortlaw3</code>. We can change this by adding <code>colour</code> to <code>labs()</code> as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Abortion and the Obama vote&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between number of abortions and vote share for Obama&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the poliscidata R package&quot;</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;Abortion restrictions&quot;</span>
+  ) </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-200-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="axes" class="section level2">
+<h2><span class="header-section-number">10.4</span> Axes</h2>
+<p>Related to labels are the axes. Always label the axes so they have meaningful names. The variable name is not a meaningful name. We add <code>x</code> and <code>y</code> to the <code>labs()</code> addition in our plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Abortion and the Obama vote&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between number of abortions and vote share for Obama&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the poliscidata R package&quot;</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;Abortion restrictions&quot;</span>,
+    <span class="dt">y =</span> <span class="st">&quot;Obama vote share in 2012&quot;</span>,
+    <span class="dt">x =</span> <span class="st">&quot;Number of abortions per 1,000 women aged 15-44 in 2008&quot;</span>
+  ) </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-201-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="confidence-intervals" class="section level2">
+<h2><span class="header-section-number">10.5</span> Confidence intervals</h2>
+<p>We can have confidence intervals in our figure by not having <code>se</code> (standard errors) set to <code>FALSE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Abortion and the Obama vote&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between number of abortions and vote share for Obama&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the poliscidata R package&quot;</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;Abortion restrictions&quot;</span>,
+    <span class="dt">y =</span> <span class="st">&quot;Obama vote share in 2012&quot;</span>,
+    <span class="dt">x =</span> <span class="st">&quot;Number of abortions per 1,000 women aged 15-44 in 2008&quot;</span>
+  ) </code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-202-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="making-multiple-plots-in-one" class="section level2">
+<h2><span class="header-section-number">10.6</span> Making multiple plots in one</h2>
+<p>If we would prefer to have the plots for different observations, we can specify that with <code>facet_grid()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Abortion and the Obama vote&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between number of abortions and vote share for Obama&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the poliscidata R package&quot;</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;Abortion restrictions&quot;</span>,
+    <span class="dt">y =</span> <span class="st">&quot;Obama vote share in 2012&quot;</span>,
+    <span class="dt">x =</span> <span class="st">&quot;Number of abortions per 1,000 women aged 15-44 in 2008&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>abortlaw3)</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-203-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>However, now we have redundant information as we have a legend with no vital information not already visible in the figure. Below, we change the title of the figure, remove the legend and update the group names.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Recode variable to have more informative labels</span>
+states<span class="op">$</span>abortlaw3_names &lt;-<span class="st"> </span><span class="kw">recode</span>(states<span class="op">$</span>abortlaw3, 
+                                 <span class="st">&quot;0-5 restr&quot;</span> =<span class="st"> &quot;Less than 6 restrictions&quot;</span>,
+                                 <span class="st">&quot;6-8 restr&quot;</span> =<span class="st"> &quot;Between 6 and 8 restrictions&quot;</span>,
+                                 <span class="st">&quot;9-10 restr&quot;</span> =<span class="st"> &quot;More than 8 restrictions&quot;</span>
+                                 )
+
+<span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>abortlaw3), <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Abortion restrictions, abortions and the Obama vote&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;The relation between number of abortions and vote share for Obama&quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Data from the poliscidata R package&quot;</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;Abortion restrictions&quot;</span>,
+    <span class="dt">y =</span> <span class="st">&quot;Obama vote share in 2012&quot;</span>,
+    <span class="dt">x =</span> <span class="st">&quot;Number of abortions per 1,000 women aged 15-44 in 2008&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>abortlaw3_names) <span class="op">+</span>
+<span class="st">  </span><span class="co"># Remove the legend</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>)</code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-204-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="saving-plots" class="section level2">
+<h2><span class="header-section-number">10.7</span> Saving plots</h2>
+<p>When you have a plot you would like to save, you can use <code>ggsave()</code>. Do keep in mind that it will only save the last plot you have created.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="st">&quot;fig1-abortion.png&quot;</span>)</code></pre></div>
+<p>The figure will be saved in your working directory. The file type <code>.png</code> can be replaced to whatever format you would prefer your figure to be in. If you have saved your figure in an object, you can save it by specifying this before the file name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(fig1, <span class="st">&quot;fig1-abortion.png&quot;</span>)</code></pre></div>
+<p>Often you will see that you are not totally satisfied with the size of your figure. To change this, you can use <code>width</code> and <code>height</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(fig1, <span class="st">&quot;fig1-abortion.png&quot;</span>, <span class="dt">width =</span> <span class="dv">4</span>, <span class="dt">height =</span> <span class="dv">4</span>)</code></pre></div>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="presenting-relationships.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="olsreg.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["qpolr.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
