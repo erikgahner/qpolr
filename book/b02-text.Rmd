@@ -22,6 +22,7 @@ We will use the package `string`. It is part of the `tidyverse` but can also be 
 library("stringr")
 ```
 
+
 Some of the functions have relatively simple purposes, such as `str_to_upper()` (which convert all characters in a string to upper case) and `str_to_lower()` (which convert all characters in a string to lower case).
 
 ```{r}
@@ -30,6 +31,18 @@ str_to_upper("Quantitative Politics with R")
 
 ```{r}
 str_to_lower("Quantitative Politics with R")
+```
+
+We can use `str_sub()` to get a part of the text we are looking at. Say we want to get the first four characters of a string, we can specify `start = 1` and `end = 4`.
+
+```{r}
+str_sub("Quantitative Politics with R", start = 1, end = 4)
+```
+
+If we would like to get the last four characters, we can simply specify `start = -4` as the option.
+
+```{r}
+str_sub("Quantitative Politics with R", start = -4)
 ```
 
 Here, we are going to look at cigarette taxes, and namely on whether the cigarette taxes are in the low, middle or high category. To look at this we will use the `cig_tax12_3` variable in the `states` data frame.
@@ -81,3 +94,71 @@ levels(states$cig_taxes_cat)
 This will become useful later on when we want to make sure that the categories in a data visualisation has the correct order.
 
 For additional guidance on the functions available in the `forcats` package, see [https://forcats.tidyverse.org/](https://forcats.tidyverse.org/).
+
+## Dates and time
+
+To work with dates and time in `R`, there are two useful packages. The first is `hms` that is good with **h**ours, **m**inutes and **s**econds. The second is `lubridate` that is good with dates. Let us take a closer look at how to work with seconds, minutes and hours by loading the package `hms`.
+
+```{r}
+library("hms")
+```
+
+This package is useful if you want to easily convert minutes into hours, for example 500 minutes into hours. As `lubridate` also have an `hms()`, we will use `::` to tell that we are using the function `hms()` in the `hms` package.
+
+```{r}
+hms::hms(min = 500)
+```
+
+As we can see, this gives 8 hours and 20 minutes. We can also specify hours, minutes and seconds to get the time as POSIXct.
+
+```{r}
+hms::hms(hour = 15, min = 90, seconds = 12)
+```
+
+For dates, we will first load the package `lubridate`.
+
+```{r}
+library("lubridate")
+```
+
+This package has several functions that are useful in terms of working with dates. For example, we can use `ymd()` if we have text that has the year, month and day.
+
+```{r}
+ymd("2019/09/30")
+```
+
+The package can also work with months as text, such as:
+
+```{r}
+mdy("September 30, 2019")
+```
+
+The good thing about this is that we can work with the date information. Let us first save the date in an object called `date` and use `year()` to get the year out of the variable.
+
+```{r}
+# Save September 30, 2019 in object
+date <- ymd("2019-09-30")
+
+# Get year
+year(date)
+```
+
+Similarly, we can get the week number out of the date.
+
+```{r}
+week(date)
+```
+
+We can see that this date was in week 39. We can use `wday()` to get the number of the day in the week this was.
+
+```{r}
+wday(date)
+```
+
+If we would rather prefer the name of the day, we can use `label` and `abbr` as options (the latter option in order to get the full day name).
+
+```{r}
+wday(date, label = TRUE, abbr = FALSE)
+```
+
+Some of the relevant functions in the `lubridate` package are: `year()` (year), `month()` (month), `week()` (week number), `day()` (day of month), `wday()` (day week), `qday()` (day of quarter), and `yday()` (day of year).

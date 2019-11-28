@@ -135,6 +135,18 @@ To recap, it is always a good idea to begin your script with the package(s) you 
 include_graphics(path = "fig/rstudio_script.png")
 ```
 
+A last important point is that the order of which you load packages in matter. For example, if two packages both have a function called `select()`, the package loaded last will react to `select()`. We therefore recommend that you consider the order in which you load packages in your script. In addition, you can also be specific about what package you want to use a function from by using `::`. For example:
+
+```{r, eval=FALSE}
+# Use select() from the dplyr package
+dplyr::select()
+
+# Use select() from the psych package
+psych::select()
+
+# Use select() from the MASS package
+MASS::select()
+
 If you want to save your script, you can select `File` $\rightarrow$ `Save`, where you can pick a destination for your script. It is good to save your script so you can get back to it a later stage.
 
 ## Problems and help
