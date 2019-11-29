@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930) (preloaded format=pdflatex 2019.1.28)  26 NOV 2019 11:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930) (preloaded format=pdflatex 2019.1.28)  29 NOV 2019 10:54
 entering extended mode
 **./qpolr.tex
 (qpolr.tex
@@ -752,10 +752,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [3]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 47.
-
-Underfull \vbox (badness 6510) has occurred while \output is active []
-
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 52.
 [4])
 \tf@toc=\write5
 \openout5 = `qpolr.toc'.
@@ -767,12 +764,12 @@ Chapter 1.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 170.
 [7] [8]
-<fig/rstudio.png, id=454, 959.585pt x 586.19pt>
+<fig/rstudio.png, id=479, 959.585pt x 586.19pt>
 File: fig/rstudio.png Graphic file (type png)
 <use fig/rstudio.png>
 Package pdftex.def Info: fig/rstudio.png  used on input line 306.
 (pdftex.def)             Requested size: 344.99643pt x 210.75096pt.
-<fig/rstudio_env.png, id=457, 1652.1725pt x 1162.3425pt>
+<fig/rstudio_env.png, id=482, 1652.1725pt x 1162.3425pt>
 File: fig/rstudio_env.png Graphic file (type png)
 <use fig/rstudio_env.png>
 Package pdftex.def Info: fig/rstudio_env.png  used on input line 317.
@@ -781,526 +778,415 @@ Package pdftex.def Info: fig/rstudio_env.png  used on input line 317.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [11]
-<fig/rstudio_script.png, id=486, 739.76375pt x 542.025pt>
+<fig/rstudio_script.png, id=511, 739.76375pt x 542.025pt>
 File: fig/rstudio_script.png Graphic file (type png)
 <use fig/rstudio_script.png>
 Package pdftex.def Info: fig/rstudio_script.png  used on input line 453.
 (pdftex.def)             Requested size: 345.00249pt x 252.78337pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [12] [13 <./fig/rstudio_script.png>] [14]
 Chapter 2.
 [15
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 558.
+(Font)              <8> on input line 579.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 558.
+(Font)              <6> on input line 579.
 [16] [17] [18] [19]
-Overfull \hbox (116.99866pt too wide) in paragraph at lines 884--884
+Overfull \hbox (232.49832pt too wide) in paragraph at lines 905--905
 []\T1/lmtt/m/n/10 ## [1] "Conservative Party"        "Labour Party"            
-  "Scottish National Party"[] 
- []
-
-
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 884--884
-[]\T1/lmtt/m/n/10 ## [4] "Liberal Democrats"         "Democratic Unionist Party
-" "Sinn Féin"[] 
+  "Scottish National Party"   "Liberal Democrats"[] 
  []
 
 [20]
-Overfull \hbox (116.99866pt too wide) in paragraph at lines 964--964
+Overfull \hbox (232.49832pt too wide) in paragraph at lines 985--985
 []\T1/lmtt/m/n/10 ## [1] "CONSERVATIVE PARTY"        "LABOUR PARTY"            
-  "SCOTTISH NATIONAL PARTY"[] 
+  "SCOTTISH NATIONAL PARTY"   "LIBERAL DEMOCRATS"[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 964--964
-[]\T1/lmtt/m/n/10 ## [4] "LIBERAL DEMOCRATS"         "DEMOCRATIC UNIONIST PARTY
-" "SINN FÉIN"[] 
- []
-
-
-Overfull \hbox (116.99866pt too wide) in paragraph at lines 975--975
+Overfull \hbox (232.49832pt too wide) in paragraph at lines 996--996
 []\T1/lmtt/m/n/10 ## [1] "conservative party"        "labour party"            
-  "scottish national party"[] 
+  "scottish national party"   "liberal democrats"[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 975--975
-[]\T1/lmtt/m/n/10 ## [4] "liberal democrats"         "democratic unionist party
-" "sinn féin"[] 
- []
-
-
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1000--1000
+Overfull \hbox (274.4982pt too wide) in paragraph at lines 1021--1021
 []\T1/lmtt/m/n/10 ## [1] "Conservative Party"        "Labour Party"            
-  "Liberal Democrats"[] 
+  "Liberal Democrats"         "Democratic Unionist Party"[] 
  []
 
 
-Overfull \hbox (116.99866pt too wide) in paragraph at lines 1022--1022
+Overfull \hbox (232.49832pt too wide) in paragraph at lines 1043--1043
 []\T1/lmtt/m/n/10 ## [1] "Conservative Party"        "Labour Party"            
-  "Scottish National Party"[] 
+  "Scottish National Party"   "Liberal Democrats"[] 
  []
 
-[21]
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 1022--1022
-[]\T1/lmtt/m/n/10 ## [4] "Liberal Democrats"         "Democratic Unionist Party
-" "Sinn Féin"[] 
- []
-
-[22]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1091--1091
+[21] [22]
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1112--1112
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1091--1091
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1112--1112
 []\T1/lmtt/m/n/10 ## 1        Conservative Party     Theresa May  42.4   317   
        -13[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1091--1091
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1112--1112
 []\T1/lmtt/m/n/10 ## 2              Labour Party   Jeremy Corbyn  40.0   262   
         30[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1091--1091
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1112--1112
 []\T1/lmtt/m/n/10 ## 3   Scottish National Party Nicola Sturgeon   3.0    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1091--1091
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1112--1112
 []\T1/lmtt/m/n/10 ## 4         Liberal Democrats      Tim Farron   7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1091--1091
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1112--1112
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1091--1091
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1112--1112
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3[] 
  []
 
 
-Overfull \hbox (6.74898pt too wide) in paragraph at lines 1120--1120
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 1141--1141
 []\T1/lmtt/m/n/10 ##        party       leader        votes        seats seats_
 change[] 
  []
 
 
-Overfull \hbox (6.74898pt too wide) in paragraph at lines 1120--1120
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 1141--1141
 []\T1/lmtt/m/n/10 ##     "factor"     "factor"    "numeric"    "numeric"    "nu
 meric"[] 
  []
 
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 114
-0.
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 116
+1.
 ("/Library/Application Support/MiKTeX/texmfs/install/tex/latex/lm/ts1lmtt.fd"
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (48.74886pt too wide) in paragraph at lines 1140--1140
+Overfull \hbox (48.74886pt too wide) in paragraph at lines 1161--1161
 []\T1/lmtt/m/n/10 ##  $ party       : Factor w/ 6 levels "Conservative Party",.
 .: 1 3 5 4 2 6[] 
  []
 
 
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 1140--1140
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1161--1161
 []\T1/lmtt/m/n/10 ##  $ leader      : Factor w/ 6 levels "Arlene Foster",..: 5 
 3 4 6 1 2[] 
  []
 
 
-Overfull \hbox (80.24876pt too wide) in paragraph at lines 1155--1155
+Overfull \hbox (80.24876pt too wide) in paragraph at lines 1176--1176
 []\T1/lmtt/m/n/10 ## [1] "party"        "leader"       "votes"        "seats"  
       "seats_change"[] 
  []
 
 [23]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1198--1198
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1219--1219
 []\T1/lmtt/m/n/10 ##                     party          leader votes seats seat
 s_change[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1198--1198
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1219--1219
 []\T1/lmtt/m/n/10 ## 1      Conservative Party     Theresa May  42.4   317     
      -13[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1198--1198
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1219--1219
 []\T1/lmtt/m/n/10 ## 2            Labour Party   Jeremy Corbyn  40.0   262     
       30[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1198--1198
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1219--1219
 []\T1/lmtt/m/n/10 ## 3 Scottish National Party Nicola Sturgeon   3.0    35     
      -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1216--1216
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1237--1237
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1216--1216
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1237--1237
 []\T1/lmtt/m/n/10 ## 3   Scottish National Party Nicola Sturgeon   3.0    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1216--1216
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1237--1237
 []\T1/lmtt/m/n/10 ## 4         Liberal Democrats      Tim Farron   7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1216--1216
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1237--1237
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1216--1216
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1237--1237
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3[] 
  []
 
-<fig/View.png, id=566, 530.98375pt x 232.87pt>
+<fig/View.png, id=591, 530.98375pt x 232.87pt>
 File: fig/View.png Graphic file (type png)
 <use fig/View.png>
-Package pdftex.def Info: fig/View.png  used on input line 1229.
+Package pdftex.def Info: fig/View.png  used on input line 1250.
 (pdftex.def)             Requested size: 276.0078pt x 121.04689pt.
 [24]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 1287--1287
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 1308--1308
 []\T1/lmtt/m/n/10 ## 6 Levels: Conservative Party Democratic Unionist Party Lab
-our Party ... Sinn Féin[] 
+our Party Liberal Democrats ... Sinn Féin[] 
  []
 
 
-Overfull \hbox (190.49844pt too wide) in paragraph at lines 1303--1303
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 1324--1324
 []\T1/lmtt/m/n/10 ## [1] Conservative Party        Labour Party              Sc
 ottish National Party   Liberal Democrats[] 
  []
 
 
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 1303--1303
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 1324--1324
 []\T1/lmtt/m/n/10 ## 6 Levels: Conservative Party Democratic Unionist Party Lab
-our Party ... Sinn Féin[] 
+our Party Liberal Democrats ... Sinn Féin[] 
  []
 
 [25 <./fig/View.png>]
-Overfull \hbox (179.99847pt too wide) in paragraph at lines 1325--1325
+Overfull \hbox (179.99847pt too wide) in paragraph at lines 1346--1346
 []\T1/lmtt/m/n/10 ##                        party               leader      vot
 es            seats        seats_change[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 1325--1325
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 1346--1346
 []\T1/lmtt/m/n/10 ##  Conservative Party       :1   Arlene Foster  :1   Min.   
 : 0.700   Min.   :  7.0   Min.   :-21.0000[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 1325--1325
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 1346--1346
 []\T1/lmtt/m/n/10 ##  Democratic Unionist Party:1   Gerry Adams    :1   1st Qu.
 : 1.425   1st Qu.: 10.5   1st Qu.: -9.2500[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 1325--1325
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 1346--1346
 []\T1/lmtt/m/n/10 ##  Labour Party             :1   Jeremy Corbyn  :1   Median 
 : 5.200   Median : 23.5   Median :  2.5000[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 1325--1325
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 1346--1346
 []\T1/lmtt/m/n/10 ##  Liberal Democrats        :1   Nicola Sturgeon:1   Mean   
 :15.733   Mean   :107.2   Mean   :  0.8333[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 1325--1325
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 1346--1346
 []\T1/lmtt/m/n/10 ##  Scottish National Party  :1   Theresa May    :1   3rd Qu.
 :31.850   3rd Qu.:205.2   3rd Qu.:  3.7500[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 1325--1325
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 1346--1346
 []\T1/lmtt/m/n/10 ##  Sinn Féin                :1   Tim Farron     :1   Max.   
 :42.400   Max.   :317.0   Max.   : 30.0000[] 
  []
 
 
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 1354--1354
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 1375--1375
 []\T1/lmtt/m/n/10 ## 6 Levels: Conservative Party Democratic Unionist Party Lab
-our Party ... Sinn Féin[] 
+our Party Liberal Democrats ... Sinn Féin[] 
  []
 
 
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 1374--1374
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 1395--1395
 []\T1/lmtt/m/n/10 ## 6 Levels: Conservative Party Democratic Unionist Party Lab
-our Party ... Sinn Féin[] 
+our Party Liberal Democrats ... Sinn Féin[] 
  []
 
 
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 1391--1391
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 1412--1412
 []\T1/lmtt/m/n/10 ## 6 Levels: Conservative Party Democratic Unionist Party Lab
-our Party ... Sinn Féin[] 
+our Party Liberal Democrats ... Sinn Féin[] 
  []
 
 [26]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1480--1480
 []\T1/lmtt/m/n/10 ##   party                     leader          votes seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1480--1480
 []\T1/lmtt/m/n/10 ##   <fct>                     <fct>           <dbl> <dbl>   
      <dbl>[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1480--1480
 []\T1/lmtt/m/n/10 ## 1 Conservative Party        Theresa May      42.4   317   
        -13[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1480--1480
 []\T1/lmtt/m/n/10 ## 2 Labour Party              Jeremy Corbyn    40     262   
         30[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1480--1480
 []\T1/lmtt/m/n/10 ## 3 Scottish National Party   Nicola Sturgeon   3      35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1480--1480
 []\T1/lmtt/m/n/10 ## 4 Liberal Democrats         Tim Farron        7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1480--1480
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party Arlene Foster     0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1480--1480
 []\T1/lmtt/m/n/10 ## 6 Sinn Féin                 Gerry Adams       0.7     7   
          3[] 
  []
 
 [27]
-<fig/setwd.png, id=589, 468.24937pt x 319.69438pt>
+<fig/setwd.png, id=614, 468.24937pt x 319.69438pt>
 File: fig/setwd.png Graphic file (type png)
 <use fig/setwd.png>
-Package pdftex.def Info: fig/setwd.png  used on input line 1507.
+Package pdftex.def Info: fig/setwd.png  used on input line 1528.
 (pdftex.def)             Requested size: 172.49933pt x 117.77286pt.
 [28 <./fig/setwd.png>]
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 1579--1579
-[]\T1/lmtt/m/n/10 ##  [1] "dat"                  "leader"               "mod1" 
-                "mod2"[] 
+Overfull \hbox (227.24834pt too wide) in paragraph at lines 1593--1593
+[]\T1/lmtt/m/n/10 ##  [1] "leader"       "p"            "party"        "seats" 
+       "seats_change" "uk2017"       "uk2017_lm"[] 
  []
 
 
-Overfull \hbox (116.99866pt too wide) in paragraph at lines 1579--1579
-[]\T1/lmtt/m/n/10 ##  [5] "model_retrenchment"   "p"                    "party"
-                "plot.base"[] 
+Overfull \hbox (221.99835pt too wide) in paragraph at lines 1611--1611
+[]\T1/lmtt/m/n/10 ## [1] "leader"       "p"            "party"        "seats"  
+      "seats_change" "uk2017"       "uk2017_lm"[] 
  []
 
-
-Overfull \hbox (174.74849pt too wide) in paragraph at lines 1579--1579
-[]\T1/lmtt/m/n/10 ##  [9] "plot.bw"              "plot.classic"         "plot.e
-conomist"       "plot.fivethirtyeight"[] 
- []
-
-
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1579--1579
-[]\T1/lmtt/m/n/10 ## [13] "plot.minimal"         "plot.standard"        "plot.t
-ufte"           "prw"[] 
- []
-
-
-Overfull \hbox (116.99866pt too wide) in paragraph at lines 1579--1579
-[]\T1/lmtt/m/n/10 ## [17] "prw_glm"              "prw_lm"               "reg_fo
-rtify"          "reg_obama"[] 
- []
-
-
-Overfull \hbox (143.24858pt too wide) in paragraph at lines 1579--1579
-[]\T1/lmtt/m/n/10 ## [21] "reg_obama_aug"        "reg_obama_full"       "reg_ob
-ama_full_tidy"  "reg_obama_tidy"[] 
- []
-
-
-Overfull \hbox (101.2487pt too wide) in paragraph at lines 1579--1579
-[]\T1/lmtt/m/n/10 ## [25] "seats"                "seats_change"         "states
-"               "uk2017"[] 
- []
-
-
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 1579--1579
-[]\T1/lmtt/m/n/10 ## [29] "uk2017_lm"            "uk2017_pv"            "uk2017
-_seatlosers"    "votes"[] 
- []
-
-[29]
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 1604--1604
-[]\T1/lmtt/m/n/10 ##  [1] "dat"                  "leader"               "mod1" 
-                "mod2"[] 
- []
-
-
-Overfull \hbox (116.99866pt too wide) in paragraph at lines 1604--1604
-[]\T1/lmtt/m/n/10 ##  [5] "model_retrenchment"   "p"                    "party"
-                "plot.base"[] 
- []
-
-
-Overfull \hbox (174.74849pt too wide) in paragraph at lines 1604--1604
-[]\T1/lmtt/m/n/10 ##  [9] "plot.bw"              "plot.classic"         "plot.e
-conomist"       "plot.fivethirtyeight"[] 
- []
-
-
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1604--1604
-[]\T1/lmtt/m/n/10 ## [13] "plot.minimal"         "plot.standard"        "plot.t
-ufte"           "prw"[] 
- []
-
-
-Overfull \hbox (116.99866pt too wide) in paragraph at lines 1604--1604
-[]\T1/lmtt/m/n/10 ## [17] "prw_glm"              "prw_lm"               "reg_fo
-rtify"          "reg_obama"[] 
- []
-
-
-Overfull \hbox (143.24858pt too wide) in paragraph at lines 1604--1604
-[]\T1/lmtt/m/n/10 ## [21] "reg_obama_aug"        "reg_obama_full"       "reg_ob
-ama_full_tidy"  "reg_obama_tidy"[] 
- []
-
-
-Overfull \hbox (101.2487pt too wide) in paragraph at lines 1604--1604
-[]\T1/lmtt/m/n/10 ## [25] "seats"                "seats_change"         "states
-"               "uk2017"[] 
- []
-
-
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 1604--1604
-[]\T1/lmtt/m/n/10 ## [29] "uk2017_lm"            "uk2017_pv"            "uk2017
-_seatlosers"    "votes"[] 
- []
-
-[30] [31
+[29] [30] [31
 
 ] [32]
 Chapter 3.
 [33
 
 ]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1698--1698
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1705--1705
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1698--1698
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1705--1705
 []\T1/lmtt/m/n/10 ## 1        Conservative Party     Theresa May  42.4   317   
        -13[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1698--1698
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1705--1705
 []\T1/lmtt/m/n/10 ## 2              Labour Party   Jeremy Corbyn  40.0   262   
         30[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1698--1698
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1705--1705
 []\T1/lmtt/m/n/10 ## 3   Scottish National Party Nicola Sturgeon   3.0    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1698--1698
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1705--1705
 []\T1/lmtt/m/n/10 ## 4         Liberal Democrats      Tim Farron   7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1698--1698
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1705--1705
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1698--1698
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1705--1705
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3[] 
  []
 
 [34]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1778--1778
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1785--1785
 []\T1/lmtt/m/n/10 ##   votes                     party          leader seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1778--1778
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1785--1785
 []\T1/lmtt/m/n/10 ## 1  42.4        Conservative Party     Theresa May   317   
        -13[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1778--1778
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1785--1785
 []\T1/lmtt/m/n/10 ## 2  40.0              Labour Party   Jeremy Corbyn   262   
         30[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1778--1778
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1785--1785
 []\T1/lmtt/m/n/10 ## 3   3.0   Scottish National Party Nicola Sturgeon    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1778--1778
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1785--1785
 []\T1/lmtt/m/n/10 ## 4   7.4         Liberal Democrats      Tim Farron    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1778--1778
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1785--1785
 []\T1/lmtt/m/n/10 ## 5   0.9 Democratic Unionist Party   Arlene Foster    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1778--1778
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1785--1785
 []\T1/lmtt/m/n/10 ## 6   0.7                 Sinn Féin     Gerry Adams     7   
          3[] 
  []
@@ -1309,391 +1195,391 @@ Overfull \hbox (27.74892pt too wide) in paragraph at lines 1778--1778
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [35]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1819--1819
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1826--1826
 []\T1/lmtt/m/n/10 ##                       party        leader votes seats seat
 s_change[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1819--1819
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1826--1826
 []\T1/lmtt/m/n/10 ## 1              Labour Party Jeremy Corbyn  40.0   262     
       30[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1819--1819
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1826--1826
 []\T1/lmtt/m/n/10 ## 2         Liberal Democrats    Tim Farron   7.4    12     
        4[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1819--1819
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1826--1826
 []\T1/lmtt/m/n/10 ## 3 Democratic Unionist Party Arlene Foster   0.9    10     
        2[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1819--1819
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1826--1826
 []\T1/lmtt/m/n/10 ## 4                 Sinn Féin   Gerry Adams   0.7     7     
        3[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1839--1839
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1846--1846
 []\T1/lmtt/m/n/10 ##                     party          leader votes seats seat
 s_change[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1839--1839
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1846--1846
 []\T1/lmtt/m/n/10 ## 1      Conservative Party     Theresa May  42.4   317     
      -13[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1839--1839
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1846--1846
 []\T1/lmtt/m/n/10 ## 2 Scottish National Party Nicola Sturgeon   3.0    35     
      -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1871--1871
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1878--1878
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1871--1871
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1878--1878
 []\T1/lmtt/m/n/10 ## 1   Scottish National Party Nicola Sturgeon   3.0    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1871--1871
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1878--1878
 []\T1/lmtt/m/n/10 ## 2         Liberal Democrats      Tim Farron   7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1871--1871
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1878--1878
 []\T1/lmtt/m/n/10 ## 3 Democratic Unionist Party   Arlene Foster   0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1871--1871
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1878--1878
 []\T1/lmtt/m/n/10 ## 4                 Sinn Féin     Gerry Adams   0.7     7   
          3[] 
  []
 
 [36]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1898--1898
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1905--1905
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1898--1898
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1905--1905
 []\T1/lmtt/m/n/10 ## 1                 Sinn Féin     Gerry Adams   0.7     7   
          3[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1898--1898
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1905--1905
 []\T1/lmtt/m/n/10 ## 2 Democratic Unionist Party   Arlene Foster   0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1898--1898
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1905--1905
 []\T1/lmtt/m/n/10 ## 3   Scottish National Party Nicola Sturgeon   3.0    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1898--1898
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1905--1905
 []\T1/lmtt/m/n/10 ## 4         Liberal Democrats      Tim Farron   7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1898--1898
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1905--1905
 []\T1/lmtt/m/n/10 ## 5              Labour Party   Jeremy Corbyn  40.0   262   
         30[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1898--1898
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1905--1905
 []\T1/lmtt/m/n/10 ## 6        Conservative Party     Theresa May  42.4   317   
        -13[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1917--1917
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1924--1924
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1917--1917
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1924--1924
 []\T1/lmtt/m/n/10 ## 1        Conservative Party     Theresa May  42.4   317   
        -13[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1917--1917
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1924--1924
 []\T1/lmtt/m/n/10 ## 2              Labour Party   Jeremy Corbyn  40.0   262   
         30[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1917--1917
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1924--1924
 []\T1/lmtt/m/n/10 ## 3         Liberal Democrats      Tim Farron   7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1917--1917
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1924--1924
 []\T1/lmtt/m/n/10 ## 4   Scottish National Party Nicola Sturgeon   3.0    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1917--1917
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1924--1924
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1917--1917
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1924--1924
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1935--1935
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1942--1942
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1935--1935
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1942--1942
 []\T1/lmtt/m/n/10 ## 1        Conservative Party     Theresa May  42.4   317   
        -13[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1935--1935
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1942--1942
 []\T1/lmtt/m/n/10 ## 2              Labour Party   Jeremy Corbyn  40.0   262   
         30[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1935--1935
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1942--1942
 []\T1/lmtt/m/n/10 ## 3         Liberal Democrats      Tim Farron   7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1935--1935
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1942--1942
 []\T1/lmtt/m/n/10 ## 4   Scottish National Party Nicola Sturgeon   3.0    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1935--1935
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1942--1942
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1935--1935
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1942--1942
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1958--1958
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1965--1965
 []\T1/lmtt/m/n/10 ##                  party_name          leader votes seats se
 ats_change[] 
  []
 
 [37]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1958--1958
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1965--1965
 []\T1/lmtt/m/n/10 ## 1        Conservative Party     Theresa May  42.4   317   
        -13[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1958--1958
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1965--1965
 []\T1/lmtt/m/n/10 ## 2              Labour Party   Jeremy Corbyn  40.0   262   
         30[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1958--1958
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1965--1965
 []\T1/lmtt/m/n/10 ## 3   Scottish National Party Nicola Sturgeon   3.0    35   
        -21[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1958--1958
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1965--1965
 []\T1/lmtt/m/n/10 ## 4         Liberal Democrats      Tim Farron   7.4    12   
          4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1958--1958
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1965--1965
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 1958--1958
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 1965--1965
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1983--1983
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 1990--1990
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change    votes_m[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1983--1983
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 1990--1990
 []\T1/lmtt/m/n/10 ## 1        Conservative Party     Theresa May  42.4   317   
        -13  26.666667[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1983--1983
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 1990--1990
 []\T1/lmtt/m/n/10 ## 2              Labour Party   Jeremy Corbyn  40.0   262   
         30  24.266667[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1983--1983
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 1990--1990
 []\T1/lmtt/m/n/10 ## 3   Scottish National Party Nicola Sturgeon   3.0    35   
        -21 -12.733333[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1983--1983
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 1990--1990
 []\T1/lmtt/m/n/10 ## 4         Liberal Democrats      Tim Farron   7.4    12   
          4  -8.333333[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1983--1983
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 1990--1990
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2 -14.833333[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 1983--1983
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 1990--1990
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3 -15.033333[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 2002--2002
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 2009--2009
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change seats_prop[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 2002--2002
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 2009--2009
 []\T1/lmtt/m/n/10 ## 1        Conservative Party     Theresa May  42.4   317   
        -13 0.49300156[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 2002--2002
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 2009--2009
 []\T1/lmtt/m/n/10 ## 2              Labour Party   Jeremy Corbyn  40.0   262   
         30 0.40746501[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 2002--2002
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 2009--2009
 []\T1/lmtt/m/n/10 ## 3   Scottish National Party Nicola Sturgeon   3.0    35   
        -21 0.05443235[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 2002--2002
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 2009--2009
 []\T1/lmtt/m/n/10 ## 4         Liberal Democrats      Tim Farron   7.4    12   
          4 0.01866252[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 2002--2002
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 2009--2009
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2 0.01555210[] 
  []
 
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 2002--2002
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 2009--2009
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3 0.01088647[] 
  []
 
 [38] [39] [40]
-Underfull \hbox (badness 1824) in paragraph at lines 2179--2179
+Underfull \hbox (badness 1824) in paragraph at lines 2186--2186
 []\T1/lmr/bx/n/14.4 Aggregating variables: \T1/lmtt/b/n/14.4 summarize() \T1/lm
 r/bx/n/14.4 and
  []
 
 [41]
-Overfull \hbox (169.4985pt too wide) in paragraph at lines 2250--2250
+Overfull \hbox (169.4985pt too wide) in paragraph at lines 2257--2257
 []\T1/lmtt/m/n/10 ## [1] Theresa May     Jeremy Corbyn   Nicola Sturgeon Tim Fa
 rron      Arlene Foster   Gerry Adams[] 
  []
 
 
-Overfull \hbox (122.24864pt too wide) in paragraph at lines 2250--2250
+Overfull \hbox (122.24864pt too wide) in paragraph at lines 2257--2257
 []\T1/lmtt/m/n/10 ## Levels: Arlene Foster Gerry Adams Jeremy Corbyn Nicola Stu
 rgeon Theresa May Tim Farron[] 
  []
 
 
-Overfull \hbox (111.74867pt too wide) in paragraph at lines 2273--2273
+Overfull \hbox (111.74867pt too wide) in paragraph at lines 2280--2280
 []\T1/lmtt/m/n/10 ##                       party          leader votes seats se
 ats_change      leader_new[] 
  []
 
 
-Overfull \hbox (111.74867pt too wide) in paragraph at lines 2273--2273
+Overfull \hbox (111.74867pt too wide) in paragraph at lines 2280--2280
 []\T1/lmtt/m/n/10 ## 1        Conservative Party     Theresa May  42.4   317   
        -13   Boris Johnson[] 
  []
 
 
-Overfull \hbox (111.74867pt too wide) in paragraph at lines 2273--2273
+Overfull \hbox (111.74867pt too wide) in paragraph at lines 2280--2280
 []\T1/lmtt/m/n/10 ## 2              Labour Party   Jeremy Corbyn  40.0   262   
         30   Jeremy Corbyn[] 
  []
 
 
-Overfull \hbox (111.74867pt too wide) in paragraph at lines 2273--2273
+Overfull \hbox (111.74867pt too wide) in paragraph at lines 2280--2280
 []\T1/lmtt/m/n/10 ## 3   Scottish National Party Nicola Sturgeon   3.0    35   
        -21 Nicola Sturgeon[] 
  []
 
 
-Overfull \hbox (111.74867pt too wide) in paragraph at lines 2273--2273
+Overfull \hbox (111.74867pt too wide) in paragraph at lines 2280--2280
 []\T1/lmtt/m/n/10 ## 4         Liberal Democrats      Tim Farron   7.4    12   
          4      Tim Farron[] 
  []
 
 
-Overfull \hbox (111.74867pt too wide) in paragraph at lines 2273--2273
+Overfull \hbox (111.74867pt too wide) in paragraph at lines 2280--2280
 []\T1/lmtt/m/n/10 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10   
          2   Arlene Foster[] 
  []
 
 
-Overfull \hbox (111.74867pt too wide) in paragraph at lines 2273--2273
+Overfull \hbox (111.74867pt too wide) in paragraph at lines 2280--2280
 []\T1/lmtt/m/n/10 ## 6                 Sinn Féin     Gerry Adams   0.7     7   
          3     Gerry Adams[] 
  []
@@ -1702,821 +1588,884 @@ Overfull \hbox (111.74867pt too wide) in paragraph at lines 2273--2273
 
 ]
 Chapter 4.
-[45] [46] [47] [48
+[45] [46] [47]
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 2641--2641
+[]\T1/lmtt/m/n/10 ## Levels: Sunday < Monday < Tuesday < Wednesday < Thursday <
+ Friday < Saturday[] 
+ []
+
+[48] [49] [50
 
 ]
 Chapter 5.
-[49]
-Overfull \hbox (179.99847pt too wide) in paragraph at lines 2560--2560
+[51]
+Overfull \hbox (179.99847pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##   [1] "abort_rank3"       "abortion_rank12"   "adv_or_more
 "       "ba_or_more"        "cig_tax12"[] 
  []
 
 
-Overfull \hbox (190.49844pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##   [6] "cig_tax12_3"       "conserv_advantage" "conserv_pub
 lic"    "dem_advantage"     "govt_worker"[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [11] "gun_rank3"         "gun_rank11"        "gun_scale11
 "       "hr_cons_rank11"    "hr_conserv11"[] 
  []
 
 
-Overfull \hbox (190.49844pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [16] "hr_lib_rank11"     "hr_liberal11"      "hs_or_more"
         "obama2012"         "obama_win12"[] 
  []
 
 
-Overfull \hbox (185.24846pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (185.24846pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [21] "pop2000"           "pop2010"           "pop2010_hun
 _thou"  "popchng0010"       "popchngpct"[] 
  []
 
 
-Overfull \hbox (185.24846pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (185.24846pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [26] "pot_policy"        "prochoice"         "prolife"   
         "relig_cath"        "relig_prot"[] 
  []
 
 
-Overfull \hbox (179.99847pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (179.99847pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [31] "relig_high"        "relig_low"         "religiosity
 3"      "romney2012"        "smokers12"[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [36] "stateid"           "to_0812"           "uninsured_p
 ct"     "abort_rate05"      "abort_rate08"[] 
  []
 
 
-Overfull \hbox (174.74849pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (174.74849pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [41] "abortlaw3"         "abortlaw10"        "alcohol"   
         "attend_pct"        "battle04"[] 
  []
 
 
-Overfull \hbox (164.24852pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (164.24852pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [46] "blkleg"            "blkpct04"          "blkpct08"  
         "blkpct10"          "bush00"[] 
  []
 
 
-Overfull \hbox (179.99847pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (179.99847pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [51] "bush04"            "carfatal"          "carfatal07"
         "cig_tax"           "cig_tax_3"[] 
  []
 
 
-Overfull \hbox (179.99847pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (179.99847pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [56] "cigarettes"        "college"           "conpct_m"  
         "cons_hr06"         "cons_hr09"[] 
  []
 
 
-Overfull \hbox (174.74849pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (174.74849pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [61] "cook_index"        "cook_index3"       "defexpen"  
         "demhr11"           "dem_hr09"[] 
  []
 
 
-Overfull \hbox (185.24846pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (185.24846pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [66] "demnat06"          "dempct_m"          "demstate06"
         "demstate09"        "demstate13"[] 
  []
 
 
-Overfull \hbox (148.49857pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (148.49857pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [71] "density"           "division"          "earmarks_pc
 ap"     "evm"               "evo"[] 
  []
 
 
-Overfull \hbox (206.2484pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (206.2484pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [76] "evo2012"           "evr2012"           "gay_policy"
         "gay_policy2"       "gay_policy_con"[] 
  []
 
 
-Overfull \hbox (164.24852pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (164.24852pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [81] "gay_support"       "gay_support3"      "gb_win00"  
         "gb_win04"          "gore00"[] 
  []
 
 
-Overfull \hbox (190.49844pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [86] "gun_check"         "gun_dealer"        "gun_murder1
 0"      "gun_rank_rev"      "gunlaw_rank"[] 
  []
 
 
-Overfull \hbox (185.24846pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (185.24846pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [91] "gunlaw_rank3_rev"  "gunlaw_scale"      "hispanic04"
         "hispanic08"        "hispanic10"[] 
  []
 
 
-Overfull \hbox (174.74849pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (174.74849pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ##  [96] "indpct_m"          "kerry04"           "libpct_m"  
         "mccain08"          "modpct_m"[] 
  []
 
 
-Overfull \hbox (164.24852pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (164.24852pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ## [101] "nader00"           "obama08"           "obama_win08
 "       "over64"            "permit"[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ## [106] "pop_18_24"         "pop_18_24_10"      "prcapinc"  
         "region"            "relig_import"[] 
  []
 
 
-Overfull \hbox (190.49844pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ## [111] "religiosity"       "reppct_m"          "rtw"       
         "secularism"        "secularism3"[] 
  []
 
 
-Overfull \hbox (169.4985pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (169.4985pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ## [116] "seniority_sen2"    "south"             "state"     
         "to_0004"           "to_0408"[] 
  []
 
 
-Overfull \hbox (169.4985pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (169.4985pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ## [121] "trnout00"          "trnout04"          "unemploy"  
         "union04"           "union07"[] 
  []
 
 
-Overfull \hbox (200.99841pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (200.99841pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ## [126] "union10"           "urban"             "vep00_turno
 ut"     "vep04_turnout"     "vep08_turnout"[] 
  []
 
 
-Overfull \hbox (190.49844pt too wide) in paragraph at lines 2560--2560
+Overfull \hbox (190.49844pt too wide) in paragraph at lines 2746--2746
 []\T1/lmtt/m/n/10 ## [131] "vep12_turnout"     "womleg_2007"       "womleg_2010
 "       "womleg_2011"       "womleg_2015"[] 
  []
 
 
-Overfull \hbox (48.74886pt too wide) in paragraph at lines 2560--2560
-[]\T1/lmtt/m/n/10 ## [136] "cig_taxes"         "cig_taxes_cat"     "abortlaw3_n
-ames"   "pred"[] 
- []
-
-
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 2589--2589
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 2775--2775
 []\T1/lmtt/m/n/10 ##      Most liberal           Liberal      Conservative Most
  conservative[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 2589--2589
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 2775--2775
 []\T1/lmtt/m/n/10 ##                 6                14                10     
            20[] 
  []
 
-[50] [51]
-Overfull \hbox (12.66362pt too wide) in paragraph at lines 2700--2700
+[52] [53]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[54]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 2973
+.
+("/Library/Application Support/MiKTeX/texmfs/install/tex/latex/lm/ts1lmr.fd"
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [55]
+Overfull \hbox (12.66362pt too wide) in paragraph at lines 2995--2995
 []\T1/lmr/bx/n/14.4 Data: Manifesto Project Dataset (\T1/lmtt/b/n/14.4 manifest
 oR\T1/lmr/bx/n/14.4 ) 
  []
 
-[52]
-Underfull \hbox (badness 6575) in paragraph at lines 2750--2753
+
+Underfull \hbox (badness 6575) in paragraph at lines 3045--3048
 \T1/lmr/m/n/10 (+20) please see []$https : / / cran . r-[]project . org / web /
  packages / manifestoR / vignettes /
  []
 
-[53]
-<fig/githubdata.png, id=721, 791.95876pt x 178.6675pt>
+[56] [57]
+<fig/githubdata.png, id=768, 791.95876pt x 178.6675pt>
 File: fig/githubdata.png Graphic file (type png)
 <use fig/githubdata.png>
-Package pdftex.def Info: fig/githubdata.png  used on input line 2852.
+Package pdftex.def Info: fig/githubdata.png  used on input line 3153.
 (pdftex.def)             Requested size: 310.49405pt x 70.04808pt.
-[54 <./fig/githubdata.png>]
+[58 <./fig/githubdata.png>]
 Chapter 6.
-[55
+[59
 
-] [56]
-<fig/wikieptable.png, id=741, 616.3025pt x 553.06625pt>
+] [60]
+<fig/wikieptable.png, id=787, 616.3025pt x 553.06625pt>
 File: fig/wikieptable.png Graphic file (type png)
 <use fig/wikieptable.png>
-Package pdftex.def Info: fig/wikieptable.png  used on input line 3039.
+Package pdftex.def Info: fig/wikieptable.png  used on input line 3340.
 (pdftex.def)             Requested size: 241.49489pt x 216.7161pt.
-[57] [58 <./fig/wikieptable.png>] [59] [60] [61]
-Underfull \hbox (badness 1028) in paragraph at lines 3376--3378
+[61] [62 <./fig/wikieptable.png>] [63] [64] [65]
+Underfull \hbox (badness 1028) in paragraph at lines 3677--3679
 []\T1/lmr/m/n/10 (+20) To get the most recent tweets from, Donald Trump, we can
  use the
  []
 
-[62] [63] [64
+[66] [67]
+<qpolr_files/figure-latex/unnamed-chunk-197-1.pdf, id=830, 469.755pt x 325.215p
+t>
+File: qpolr_files/figure-latex/unnamed-chunk-197-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-197-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-197-1.pdf  used
+ on input line 3846.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[68 <./qpolr_files/figure-latex/unnamed-chunk-197-1.pdf>]
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 3895--3895
+[]\T1/lmtt/m/n/10 ##     project language article     access agent granularity 
+      date views[] 
+ []
 
-] [65] [66]
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 3895--3895
+[]\T1/lmtt/m/n/10 ## 1 wikipedia       en  Brexit all-access  user       daily 
+2016-06-01   896[] 
+ []
+
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 3895--3895
+[]\T1/lmtt/m/n/10 ## 2 wikipedia       en  Brexit all-access  user       daily 
+2016-06-02   975[] 
+ []
+
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 3895--3895
+[]\T1/lmtt/m/n/10 ## 3 wikipedia       en  Brexit all-access  user       daily 
+2016-06-03   865[] 
+ []
+
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 3895--3895
+[]\T1/lmtt/m/n/10 ## 4 wikipedia       en  Brexit all-access  user       daily 
+2016-06-04   607[] 
+ []
+
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 3895--3895
+[]\T1/lmtt/m/n/10 ## 5 wikipedia       en  Brexit all-access  user       daily 
+2016-06-05   833[] 
+ []
+
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 3895--3895
+[]\T1/lmtt/m/n/10 ## 6 wikipedia       en  Brexit all-access  user       daily 
+2016-06-06  1297[] 
+ []
+
+<qpolr_files/figure-latex/unnamed-chunk-201-1.pdf, id=840, 469.755pt x 325.215p
+t>
+File: qpolr_files/figure-latex/unnamed-chunk-201-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-201-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-201-1.pdf  used
+ on input line 3914.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[69] [70 <./qpolr_files/figure-latex/unnamed-chunk-201-1.pdf>] [71
+
+] [72]
 Chapter 7.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3487.
-<qpolr_files/figure-latex/unnamed-chunk-175-1.pdf, id=794, 469.755pt x 325.215p
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3924.
+<qpolr_files/figure-latex/unnamed-chunk-202-1.pdf, id=863, 469.755pt x 325.215p
 t>
-File: qpolr_files/figure-latex/unnamed-chunk-175-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-175-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-175-1.pdf  used
- on input line 3501.
+File: qpolr_files/figure-latex/unnamed-chunk-202-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-202-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-202-1.pdf  used
+ on input line 3938.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
-[67
-
- <./qpolr_files/figure-latex/unnamed-chunk-175-1.pdf>] [68]
-<qpolr_files/figure-latex/unnamed-chunk-180-1.pdf, id=814, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-180-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-180-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-180-1.pdf  used
- on input line 3617.
-(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-[69 <./qpolr_files/figure-latex/unnamed-chunk-180-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-181-1.pdf, id=824, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-181-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-181-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-181-1.pdf  used
- on input line 3630.
-(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-<qpolr_files/figure-latex/unnamed-chunk-182-1.pdf, id=825, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-182-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-182-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-182-1.pdf  used
- on input line 3645.
-(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[70 <./qpolr_files/figure-latex/unnamed-chunk-181-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-183-1.pdf, id=835, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-183-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-183-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-183-1.pdf  used
- on input line 3662.
-(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[71 <./qpolr_files/figure-latex/unnamed-chunk-182-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-184-1.pdf, id=845, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-184-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-184-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-184-1.pdf  used
- on input line 3677.
-(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-[72 <./qpolr_files/figure-latex/unnamed-chunk-183-1.pdf> <./qpolr_files/figure-
-latex/unnamed-chunk-184-1.pdf>]
-Chapter 8.
-<qpolr_files/figure-latex/unnamed-chunk-185-1.pdf, id=864, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-185-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-185-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-185-1.pdf  used
- on input line 3724.
-(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [73
 
+ <./qpolr_files/figure-latex/unnamed-chunk-202-1.pdf>] [74]
+<qpolr_files/figure-latex/unnamed-chunk-207-1.pdf, id=883, 361.35pt x 216.81pt>
+
+File: qpolr_files/figure-latex/unnamed-chunk-207-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-207-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-207-1.pdf  used
+ on input line 4054.
+(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
+[75 <./qpolr_files/figure-latex/unnamed-chunk-207-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-208-1.pdf, id=893, 361.35pt x 216.81pt>
+
+File: qpolr_files/figure-latex/unnamed-chunk-208-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-208-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-208-1.pdf  used
+ on input line 4067.
+(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
+<qpolr_files/figure-latex/unnamed-chunk-209-1.pdf, id=894, 361.35pt x 216.81pt>
+
+File: qpolr_files/figure-latex/unnamed-chunk-209-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-209-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-209-1.pdf  used
+ on input line 4082.
+(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[76 <./qpolr_files/figure-latex/unnamed-chunk-208-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-210-1.pdf, id=904, 361.35pt x 216.81pt>
+
+File: qpolr_files/figure-latex/unnamed-chunk-210-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-210-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-210-1.pdf  used
+ on input line 4099.
+(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[77 <./qpolr_files/figure-latex/unnamed-chunk-209-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-211-1.pdf, id=914, 361.35pt x 216.81pt>
+
+File: qpolr_files/figure-latex/unnamed-chunk-211-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-211-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-211-1.pdf  used
+ on input line 4114.
+(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
+[78 <./qpolr_files/figure-latex/unnamed-chunk-210-1.pdf> <./qpolr_files/figure-
+latex/unnamed-chunk-211-1.pdf>]
+Chapter 8.
+<qpolr_files/figure-latex/unnamed-chunk-212-1.pdf, id=933, 361.35pt x 216.81pt>
+
+File: qpolr_files/figure-latex/unnamed-chunk-212-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-212-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-212-1.pdf  used
+ on input line 4161.
+(pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[79
+
 ]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 3741--3741
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 4178--4178
 []\T1/lmtt/m/n/10 ## \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 stat_bin()\TS1/lmtt/m/n/
 10 ` \T1/lmtt/m/n/10 using \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 bins = 30\TS1/lmtt
 /m/n/10 `\T1/lmtt/m/n/10 . Pick better value with \TS1/lmtt/m/n/10 `\T1/lmtt/m/
 n/10 binwidth\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 .[] 
  []
 
-<qpolr_files/figure-latex/unnamed-chunk-186-1.pdf, id=871, 361.35pt x 216.81pt>
+<qpolr_files/figure-latex/unnamed-chunk-213-1.pdf, id=940, 361.35pt x 216.81pt>
 
-File: qpolr_files/figure-latex/unnamed-chunk-186-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-186-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-186-1.pdf  used
- on input line 3743.
+File: qpolr_files/figure-latex/unnamed-chunk-213-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-213-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-213-1.pdf  used
+ on input line 4180.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[74 <./qpolr_files/figure-latex/unnamed-chunk-185-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-187-1.pdf, id=881, 361.35pt x 216.81pt>
+[80 <./qpolr_files/figure-latex/unnamed-chunk-212-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-214-1.pdf, id=950, 361.35pt x 216.81pt>
 
-File: qpolr_files/figure-latex/unnamed-chunk-187-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-187-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-187-1.pdf  used
- on input line 3757.
+File: qpolr_files/figure-latex/unnamed-chunk-214-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-214-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-214-1.pdf  used
+ on input line 4194.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-[75 <./qpolr_files/figure-latex/unnamed-chunk-186-1.pdf> <./qpolr_files/figure-
-latex/unnamed-chunk-187-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-188-1.pdf, id=896, 361.35pt x 216.81pt>
+[81 <./qpolr_files/figure-latex/unnamed-chunk-213-1.pdf> <./qpolr_files/figure-
+latex/unnamed-chunk-214-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-215-1.pdf, id=965, 361.35pt x 216.81pt>
 
-File: qpolr_files/figure-latex/unnamed-chunk-188-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-188-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-188-1.pdf  used
- on input line 3775.
+File: qpolr_files/figure-latex/unnamed-chunk-215-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-215-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-215-1.pdf  used
+ on input line 4212.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-[76 <./qpolr_files/figure-latex/unnamed-chunk-188-1.pdf>]
+[82 <./qpolr_files/figure-latex/unnamed-chunk-215-1.pdf>]
 Chapter 9.
-<qpolr_files/figure-latex/unnamed-chunk-189-1.pdf, id=909, 361.35pt x 216.81pt>
+<qpolr_files/figure-latex/unnamed-chunk-216-1.pdf, id=978, 361.35pt x 216.81pt>
 
-File: qpolr_files/figure-latex/unnamed-chunk-189-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-189-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-189-1.pdf  used
- on input line 3818.
+File: qpolr_files/figure-latex/unnamed-chunk-216-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-216-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-216-1.pdf  used
+ on input line 4255.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[77
+[83
 
 ]
-<qpolr_files/figure-latex/unnamed-chunk-190-1.pdf, id=915, 361.35pt x 216.81pt>
+<qpolr_files/figure-latex/unnamed-chunk-217-1.pdf, id=984, 361.35pt x 216.81pt>
 
-File: qpolr_files/figure-latex/unnamed-chunk-190-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-190-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-190-1.pdf  used
- on input line 3837.
+File: qpolr_files/figure-latex/unnamed-chunk-217-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-217-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-217-1.pdf  used
+ on input line 4274.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[78 <./qpolr_files/figure-latex/unnamed-chunk-189-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-191-1.pdf, id=925, 361.35pt x 216.81pt>
+[84 <./qpolr_files/figure-latex/unnamed-chunk-216-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-218-1.pdf, id=994, 361.35pt x 216.81pt>
 
-File: qpolr_files/figure-latex/unnamed-chunk-191-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-191-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-191-1.pdf  used
- on input line 3852.
+File: qpolr_files/figure-latex/unnamed-chunk-218-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-218-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-218-1.pdf  used
+ on input line 4289.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-[79 <./qpolr_files/figure-latex/unnamed-chunk-190-1.pdf> <./qpolr_files/figure-
-latex/unnamed-chunk-191-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-192-1.pdf, id=941, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-192-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-192-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-192-1.pdf  used
- on input line 3871.
+[85 <./qpolr_files/figure-latex/unnamed-chunk-217-1.pdf> <./qpolr_files/figure-
+latex/unnamed-chunk-218-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-219-1.pdf, id=1010, 361.35pt x 216.81pt
+>
+File: qpolr_files/figure-latex/unnamed-chunk-219-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-219-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-219-1.pdf  used
+ on input line 4308.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-<qpolr_files/figure-latex/unnamed-chunk-193-1.pdf, id=942, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-193-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-193-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-193-1.pdf  used
- on input line 3885.
+<qpolr_files/figure-latex/unnamed-chunk-220-1.pdf, id=1011, 361.35pt x 216.81pt
+>
+File: qpolr_files/figure-latex/unnamed-chunk-220-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-220-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-220-1.pdf  used
+ on input line 4322.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[80 <./qpolr_files/figure-latex/unnamed-chunk-192-1.pdf>] [81 <./qpolr_files/fi
-gure-latex/unnamed-chunk-193-1.pdf>] [82
+[86 <./qpolr_files/figure-latex/unnamed-chunk-219-1.pdf>] [87 <./qpolr_files/fi
+gure-latex/unnamed-chunk-220-1.pdf>] [88
 
 ]
 Chapter 10.
 
-Underfull \hbox (badness 2020) in paragraph at lines 3923--3928
+Underfull \hbox (badness 2020) in paragraph at lines 4360--4365
 []\T1/lmr/m/n/10 (+20) Figure []10.1[] shows the look of the different themes. 
 The order is:
  []
 
-<qpolr_files/figure-latex/ggthemes-1.pdf, id=974, 361.35pt x 433.62pt>
+<qpolr_files/figure-latex/ggthemes-1.pdf, id=1043, 361.35pt x 433.62pt>
 File: qpolr_files/figure-latex/ggthemes-1.pdf Graphic file (type pdf)
 <use qpolr_files/figure-latex/ggthemes-1.pdf>
 Package pdftex.def Info: qpolr_files/figure-latex/ggthemes-1.pdf  used on input
- line 3931.
+ line 4368.
 (pdftex.def)             Requested size: 345.00084pt x 414.001pt.
-[83] [84 <./qpolr_files/figure-latex/ggthemes-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-194-1.pdf, id=994, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-194-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-194-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-194-1.pdf  used
- on input line 3952.
+[89] [90 <./qpolr_files/figure-latex/ggthemes-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-221-1.pdf, id=1063, 361.35pt x 216.81pt
+>
+File: qpolr_files/figure-latex/unnamed-chunk-221-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-221-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-221-1.pdf  used
+ on input line 4389.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-<qpolr_files/figure-latex/unnamed-chunk-195-1.pdf, id=995, 361.35pt x 216.81pt>
-
-File: qpolr_files/figure-latex/unnamed-chunk-195-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-195-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-195-1.pdf  used
- on input line 3970.
+<qpolr_files/figure-latex/unnamed-chunk-222-1.pdf, id=1064, 361.35pt x 216.81pt
+>
+File: qpolr_files/figure-latex/unnamed-chunk-222-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-222-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-222-1.pdf  used
+ on input line 4407.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[85 <./qpolr_files/figure-latex/unnamed-chunk-194-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-196-1.pdf, id=1006, 361.35pt x 216.81pt
+[91 <./qpolr_files/figure-latex/unnamed-chunk-221-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-223-1.pdf, id=1075, 361.35pt x 216.81pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-196-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-196-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-196-1.pdf  used
- on input line 3986.
+File: qpolr_files/figure-latex/unnamed-chunk-223-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-223-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-223-1.pdf  used
+ on input line 4423.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-[86 <./qpolr_files/figure-latex/unnamed-chunk-195-1.pdf> <./qpolr_files/figure-
-latex/unnamed-chunk-196-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-197-1.pdf, id=1021, 361.35pt x 216.81pt
+[92 <./qpolr_files/figure-latex/unnamed-chunk-222-1.pdf> <./qpolr_files/figure-
+latex/unnamed-chunk-223-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-224-1.pdf, id=1090, 361.35pt x 216.81pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-197-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-197-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-197-1.pdf  used
- on input line 4001.
+File: qpolr_files/figure-latex/unnamed-chunk-224-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-224-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-224-1.pdf  used
+ on input line 4438.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
-<qpolr_files/figure-latex/unnamed-chunk-198-1.pdf, id=1022, 361.35pt x 216.81pt
+<qpolr_files/figure-latex/unnamed-chunk-225-1.pdf, id=1091, 361.35pt x 216.81pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-198-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-198-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-198-1.pdf  used
- on input line 4018.
+File: qpolr_files/figure-latex/unnamed-chunk-225-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-225-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-225-1.pdf  used
+ on input line 4455.
 (pdftex.def)             Requested size: 345.00084pt x 207.00049pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[87 <./qpolr_files/figure-latex/unnamed-chunk-197-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-199-1.pdf, id=1032, 361.35pt x 361.35pt
+[93 <./qpolr_files/figure-latex/unnamed-chunk-224-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-226-1.pdf, id=1101, 361.35pt x 361.35pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-199-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-199-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-199-1.pdf  used
- on input line 4042.
+File: qpolr_files/figure-latex/unnamed-chunk-226-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-226-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-226-1.pdf  used
+ on input line 4479.
 (pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[88 <./qpolr_files/figure-latex/unnamed-chunk-198-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-200-1.pdf, id=1046, 361.35pt x 361.35pt
+[94 <./qpolr_files/figure-latex/unnamed-chunk-225-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-227-1.pdf, id=1115, 361.35pt x 361.35pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-200-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-200-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-200-1.pdf  used
- on input line 4063.
+File: qpolr_files/figure-latex/unnamed-chunk-227-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-227-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-227-1.pdf  used
+ on input line 4500.
 (pdftex.def)             Requested size: 345.00084pt x 345.00084pt.
 
 Underfull \vbox (badness 7963) has occurred while \output is active []
 
-[89 <./qpolr_files/figure-latex/unnamed-chunk-199-1.pdf>] [90 <./qpolr_files/fi
-gure-latex/unnamed-chunk-200-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-201-1.pdf, id=1073, 505.89pt x 361.35pt
+[95 <./qpolr_files/figure-latex/unnamed-chunk-226-1.pdf>] [96 <./qpolr_files/fi
+gure-latex/unnamed-chunk-227-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-228-1.pdf, id=1142, 505.89pt x 361.35pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-201-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-201-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-201-1.pdf  used
- on input line 4089.
+File: qpolr_files/figure-latex/unnamed-chunk-228-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-228-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-228-1.pdf  used
+ on input line 4526.
 (pdftex.def)             Requested size: 345.00414pt x 246.43153pt.
-<qpolr_files/figure-latex/unnamed-chunk-202-1.pdf, id=1074, 505.89pt x 361.35pt
+<qpolr_files/figure-latex/unnamed-chunk-229-1.pdf, id=1143, 505.89pt x 361.35pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-202-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-202-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-202-1.pdf  used
- on input line 4114.
+File: qpolr_files/figure-latex/unnamed-chunk-229-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-229-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-229-1.pdf  used
+ on input line 4551.
 (pdftex.def)             Requested size: 345.00414pt x 246.43153pt.
-[91 <./qpolr_files/figure-latex/unnamed-chunk-201-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-203-1.pdf, id=1089, 505.89pt x 361.35pt
+[97 <./qpolr_files/figure-latex/unnamed-chunk-228-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-230-1.pdf, id=1158, 505.89pt x 361.35pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-203-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-203-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-203-1.pdf  used
- on input line 4141.
+File: qpolr_files/figure-latex/unnamed-chunk-230-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-230-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-230-1.pdf  used
+ on input line 4578.
 (pdftex.def)             Requested size: 345.00414pt x 246.43153pt.
 
 Underfull \vbox (badness 7685) has occurred while \output is active []
 
-[92 <./qpolr_files/figure-latex/unnamed-chunk-202-1.pdf>] [93 <./qpolr_files/fi
-gure-latex/unnamed-chunk-203-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-204-1.pdf, id=1118, 505.89pt x 361.35pt
+[98 <./qpolr_files/figure-latex/unnamed-chunk-229-1.pdf>] [99 <./qpolr_files/fi
+gure-latex/unnamed-chunk-230-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-231-1.pdf, id=1187, 505.89pt x 361.35pt
 >
-File: qpolr_files/figure-latex/unnamed-chunk-204-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-204-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-204-1.pdf  used
- on input line 4175.
+File: qpolr_files/figure-latex/unnamed-chunk-231-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-231-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-231-1.pdf  used
+ on input line 4612.
 (pdftex.def)             Requested size: 345.00414pt x 246.43153pt.
-[94 <./qpolr_files/figure-latex/unnamed-chunk-204-1.pdf>] [95
+[100 <./qpolr_files/figure-latex/unnamed-chunk-231-1.pdf>] [101
 
-] [96]
+] [102]
 Chapter 11.
-[97
+[103
 
-] [98]
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 4350--4350
+] [104]
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 4787--4787
 []\T1/lmtt/m/n/10 ##   term         estimate std.error statistic  p.value conf.
 low conf.high[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 4350--4350
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 4787--4787
 []\T1/lmtt/m/n/10 ##   <chr>           <dbl>     <dbl>     <dbl>    <dbl>    <d
 bl>     <dbl>[] 
  []
 
 
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 4350--4350
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 4787--4787
 []\T1/lmtt/m/n/10 ## 1 (Intercept)    35.3       2.30      15.3  3.82e-20   30.
 6       39.9[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 4350--4350
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 4787--4787
 []\T1/lmtt/m/n/10 ## 2 abort_rate08    0.826     0.130      6.37 6.91e- 8    0.
 565      1.09[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 4367--4367
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 4804--4804
 []\T1/lmtt/m/n/10 ##   r.squared adj.r.squared sigma statistic      p.value    
 df logLik   AIC   BIC deviance df.residual[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 4367--4367
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 4804--4804
 []\T1/lmtt/m/n/10 ##       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <in
 t>  <dbl> <dbl> <dbl>    <dbl>       <int>[] 
  []
 
 
-Overfull \hbox (195.74843pt too wide) in paragraph at lines 4367--4367
+Overfull \hbox (195.74843pt too wide) in paragraph at lines 4804--4804
 []\T1/lmtt/m/n/10 ## 1     0.458         0.446  7.65      40.5 0.0000000691    
  2  -172.  349.  355.    2812.          48[] 
  []
 
 
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 4400--4400
+Overfull \hbox (90.74873pt too wide) in paragraph at lines 4837--4837
 []\T1/lmtt/m/n/10 ##   obama2012 abort_rate08 .fitted .se.fit .resid   .hat .si
 gma .cooksd .std.resid[] 
  []
 
 
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 4400--4400
+Overfull \hbox (90.74873pt too wide) in paragraph at lines 4837--4837
 []\T1/lmtt/m/n/10 ##       <dbl>        <dbl>   <dbl>   <dbl>  <dbl>  <dbl>  <d
 bl>   <dbl>      <dbl>[] 
  []
 
 
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 4400--4400
+Overfull \hbox (90.74873pt too wide) in paragraph at lines 4837--4837
 []\T1/lmtt/m/n/10 ## 1      40.8         12      45.2    1.18  -4.36 0.0238   7
 .71 0.00404     -0.576[] 
  []
 
 
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 4400--4400
+Overfull \hbox (90.74873pt too wide) in paragraph at lines 4837--4837
 []\T1/lmtt/m/n/10 ## 2      38.4         12      45.2    1.18  -6.81 0.0238   7
 .67 0.00986     -0.900[] 
  []
 
 
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 4400--4400
+Overfull \hbox (90.74873pt too wide) in paragraph at lines 4837--4837
 []\T1/lmtt/m/n/10 ## 3      36.9          8.7    42.4    1.41  -5.56 0.0338   7
 .69 0.00954     -0.739[] 
  []
 
 
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 4400--4400
+Overfull \hbox (90.74873pt too wide) in paragraph at lines 4837--4837
 []\T1/lmtt/m/n/10 ## 4      44.4         15.2    47.8    1.08  -3.36 0.0201   7
 .72 0.00201     -0.443[] 
  []
 
 
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 4400--4400
+Overfull \hbox (90.74873pt too wide) in paragraph at lines 4837--4837
 []\T1/lmtt/m/n/10 ## 5      60.2         27.6    58.0    1.89   2.14 0.0612   7
 .73 0.00272      0.289[] 
  []
 
 
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 4400--4400
+Overfull \hbox (90.74873pt too wide) in paragraph at lines 4837--4837
 []\T1/lmtt/m/n/10 ## 6      51.4         15.7    48.2    1.08   3.23 0.0200   7
 .72 0.00185      0.426[] 
  []
 
-[99]
-<qpolr_files/figure-latex/unnamed-chunk-218-1.pdf, id=1155, 469.755pt x 325.215
+[105]
+<qpolr_files/figure-latex/unnamed-chunk-245-1.pdf, id=1224, 469.755pt x 325.215
 pt>
-File: qpolr_files/figure-latex/unnamed-chunk-218-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-218-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-218-1.pdf  used
- on input line 4415.
+File: qpolr_files/figure-latex/unnamed-chunk-245-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-245-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-245-1.pdf  used
+ on input line 4852.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4461--4461
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4898--4898
 []\T1/lmtt/m/n/10 ## lm(formula = obama2012 ~ abort_rate08 + density, data = st
 ates)[] 
  []
 
-[100 <./qpolr_files/figure-latex/unnamed-chunk-218-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-223-1.pdf, id=1165, 469.755pt x 325.215
+[106 <./qpolr_files/figure-latex/unnamed-chunk-245-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-250-1.pdf, id=1234, 469.755pt x 325.215
 pt>
-File: qpolr_files/figure-latex/unnamed-chunk-223-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-223-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-223-1.pdf  used
- on input line 4498.
+File: qpolr_files/figure-latex/unnamed-chunk-250-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-250-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-250-1.pdf  used
+ on input line 4935.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[101]
-<qpolr_files/figure-latex/unnamed-chunk-224-1.pdf, id=1170, 469.755pt x 325.215
+[107]
+<qpolr_files/figure-latex/unnamed-chunk-251-1.pdf, id=1239, 469.755pt x 325.215
 pt>
-File: qpolr_files/figure-latex/unnamed-chunk-224-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-224-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-224-1.pdf  used
- on input line 4516.
+File: qpolr_files/figure-latex/unnamed-chunk-251-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-251-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-251-1.pdf  used
+ on input line 4953.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[102 <./qpolr_files/figure-latex/unnamed-chunk-223-1.pdf>] [103 <./qpolr_files/
-figure-latex/unnamed-chunk-224-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-227-1.pdf, id=1195, 469.755pt x 325.215
+[108 <./qpolr_files/figure-latex/unnamed-chunk-250-1.pdf>] [109 <./qpolr_files/
+figure-latex/unnamed-chunk-251-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-254-1.pdf, id=1264, 469.755pt x 325.215
 pt>
-File: qpolr_files/figure-latex/unnamed-chunk-227-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-227-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-227-1.pdf  used
- on input line 4584.
+File: qpolr_files/figure-latex/unnamed-chunk-254-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-254-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-254-1.pdf  used
+ on input line 5021.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
-<qpolr_files/figure-latex/unnamed-chunk-228-1.pdf, id=1196, 469.755pt x 325.215
+<qpolr_files/figure-latex/unnamed-chunk-255-1.pdf, id=1265, 469.755pt x 325.215
 pt>
-File: qpolr_files/figure-latex/unnamed-chunk-228-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-228-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-228-1.pdf  used
- on input line 4600.
+File: qpolr_files/figure-latex/unnamed-chunk-255-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-255-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-255-1.pdf  used
+ on input line 5037.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 2334) has occurred while \output is active []
 
-[104 <./qpolr_files/figure-latex/unnamed-chunk-227-1.pdf>]
-<qpolr_files/figure-latex/unnamed-chunk-229-1.pdf, id=1207, 469.755pt x 325.215
+[110 <./qpolr_files/figure-latex/unnamed-chunk-254-1.pdf>]
+<qpolr_files/figure-latex/unnamed-chunk-256-1.pdf, id=1276, 469.755pt x 325.215
 pt>
-File: qpolr_files/figure-latex/unnamed-chunk-229-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-229-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-229-1.pdf  used
- on input line 4615.
+File: qpolr_files/figure-latex/unnamed-chunk-256-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-256-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-256-1.pdf  used
+ on input line 5052.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[105 <./qpolr_files/figure-latex/unnamed-chunk-228-1.pdf>]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 4624
-.
-("/Library/Application Support/MiKTeX/texmfs/install/tex/latex/lm/ts1lmr.fd"
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4696--4696
+[111 <./qpolr_files/figure-latex/unnamed-chunk-255-1.pdf>]
+Overfull \hbox (1.499pt too wide) in paragraph at lines 5133--5133
 []\T1/lmtt/m/n/10 ## lm(formula = obama2012 ~ abort_rate08 + density, data = st
 ates)[] 
  []
 
-[106 <./qpolr_files/figure-latex/unnamed-chunk-229-1.pdf>] [107] [108
+[112 <./qpolr_files/figure-latex/unnamed-chunk-256-1.pdf>] [113] [114
 
 ]
 Chapter 12.
-[109]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 4833--4833
+[115]
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 5270--5270
 []\T1/lmtt/m/n/10 ## glm(formula = retrenchment ~ rwgov, family = "binomial", d
 ata = prw)[] 
  []
 
-[110] [111]
-<qpolr_files/figure-latex/unnamed-chunk-240-1.pdf, id=1251, 469.755pt x 325.215
+[116] [117]
+<qpolr_files/figure-latex/unnamed-chunk-267-1.pdf, id=1319, 469.755pt x 325.215
 pt>
-File: qpolr_files/figure-latex/unnamed-chunk-240-1.pdf Graphic file (type pdf)
-<use qpolr_files/figure-latex/unnamed-chunk-240-1.pdf>
-Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-240-1.pdf  used
- on input line 4921.
+File: qpolr_files/figure-latex/unnamed-chunk-267-1.pdf Graphic file (type pdf)
+<use qpolr_files/figure-latex/unnamed-chunk-267-1.pdf>
+Package pdftex.def Info: qpolr_files/figure-latex/unnamed-chunk-267-1.pdf  used
+ on input line 5358.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[112 <./qpolr_files/figure-latex/unnamed-chunk-240-1.pdf>] [113] [114
+[118 <./qpolr_files/figure-latex/unnamed-chunk-267-1.pdf>] [119] [120
 
-] [115] [116]
+] [121] [122]
 Chapter 13.
 
-Overfull \hbox (85.49875pt too wide) in paragraph at lines 4997--4997
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 5434--5434
 []\T1/lmtt/m/n/10 ## \text{mpg} = \alpha + \beta_{1}(\text{cyl}) + \beta_{2}(\t
 ext{disp}) + \epsilon[] 
  []
 
-[117
+[123
 
 ]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 5020--5020
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 5457--5457
 []\T1/lmtt/m/n/10 ## \text{mpg} = 34.66 - 1.59(\text{cyl}) - 0.02(\text{disp}) 
 + \epsilon[] 
  []
 
 
-Overfull \hbox (311.2481pt too wide) in paragraph at lines 5046--5046
+Overfull \hbox (311.2481pt too wide) in paragraph at lines 5483--5483
 []\T1/lmtt/m/n/10 ## \text{mpg} = \alpha + \beta_{1}(\text{cyl}) + \beta_{2}(\t
 ext{disp}) + \beta_{3}(\text{cyl} \times \text{disp}) + \epsilon[] 
  []
 
-[118]
+[124]
 Chapter 14.
-[119
+[125
 
 ]
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 5139--5139
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5576--5576
 []\T1/lmtt/m/n/10 ## ==========================================================
 =======[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 5139--5139
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5576--5576
 []\T1/lmtt/m/n/10 ##                     --------------------------------------
 -------[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 5139--5139
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5576--5576
 []\T1/lmtt/m/n/10 ## ----------------------------------------------------------
 -------[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 5139--5139
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5576--5576
 []\T1/lmtt/m/n/10 ## ----------------------------------------------------------
 -------[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 5139--5139
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5576--5576
 []\T1/lmtt/m/n/10 ## F Statistic         40.521*** (df = 1; 48) 21.827*** (df =
  2; 47)[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 5139--5139
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5576--5576
 []\T1/lmtt/m/n/10 ## ==========================================================
 =======[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 5139--5139
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 5576--5576
 []\T1/lmtt/m/n/10 ## Note:                                 *p<0.1; **p<0.05; **
 *p<0.01[] 
  []
 
-[120] [121] [122
+[126] [127] [128
 
 ]
-Underfull \hbox (badness 1466) in paragraph at lines 5197--5201
+Underfull \hbox (badness 1466) in paragraph at lines 5639--5643
  []\T1/lmr/m/n/10 (+20) Coppedge, M., Gerring, J., Lindberg, S. I., Skaaning, S
 .-E., Teorell,
  []
 
 
-Underfull \hbox (badness 1430) in paragraph at lines 5197--5201
+Underfull \hbox (badness 1430) in paragraph at lines 5639--5643
  \T1/lmr/m/n/10 (+20) J., Altman, D., ... Staton, J. (2017). V-Dem Codebook v7.
 1.
  []
 
 
-Underfull \hbox (badness 3058) in paragraph at lines 5197--5201
+Underfull \hbox (badness 3058) in paragraph at lines 5639--5643
  \T1/lmr/m/n/10 (+20) Varieties of Democracy (V-Dem) Project. Retrieved from []
 $https :
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[123
+[129
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5284.
-[124]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5284.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[130]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5747.
+[131]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5747.
 (qpolr.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5284.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5284.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5747.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5747.
 
 Package rerunfilecheck Info: File `qpolr.out' has not changed.
-(rerunfilecheck)             Checksum: 0732C951D3BEA0121299A3670ACF6D1F;12346.
+(rerunfilecheck)             Checksum: 1F8BFD4490C99D1299219E7B60917E9C;13407.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5284.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5747.
  ) 
 Here is how much of TeX's memory you used:
- 13387 strings out of 494865
- 204157 string characters out of 3177280
- 298103 words of memory out of 3000000
- 16412 multiletter control sequences out of 15000+200000
- 93219 words of font info for 147 fonts, out of 3000000 for 9000
+ 13425 strings out of 494865
+ 205095 string characters out of 3177280
+ 297487 words of memory out of 3000000
+ 16430 multiletter control sequences out of 15000+200000
+ 93349 words of font info for 148 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
  32i,8n,38p,970b,455s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/lm/lm-ts1
-.enc}{/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/lm/lm-
-rm.enc}{/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/lm/l
+{/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/lm/lm-rm.
+enc}{/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/lm/lm-t
+s1.enc}{/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/lm/l
 m-mathit.enc}{/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvip
 s/lm/lm-ec.enc}{/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dv
 ips/lm/lm-mathsy.enc}</Library/Application Support/MiKTeX/texmfs/install/fonts/
@@ -2539,9 +2488,9 @@ ic/lm/lmtk10.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type
 s/type1/public/lm/lmtt8.pfb></Library/Application Support/MiKTeX/texmfs/install
 /fonts/type1/public/lm/lmtti10.pfb></Library/Application Support/MiKTeX/texmfs/
 install/fonts/type1/public/lm/lmtto10.pfb>
-Output written on qpolr.pdf (124 pages, 2004770 bytes).
+Output written on qpolr.pdf (131 pages, 2041572 bytes).
 PDF statistics:
- 1494 PDF objects out of 1728 (max. 8388607)
- 278 named destinations out of 1000 (max. 500000)
- 19278 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 1579 PDF objects out of 1728 (max. 8388607)
+ 296 named destinations out of 1000 (max. 500000)
+ 19328 words of extra memory for PDF output out of 20736 (max. 10000000)
 
