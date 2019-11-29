@@ -117,6 +117,58 @@ And the regression model can be achieved with the `lm()` function.
 lm(stfgov ~ reform, data=ess)
 ```
 
+## Data: General Social Survey (`gssr`)
+
+To get data from the General Social Survey, we will use the `gssr` package [@healy2019]. This package is not on CRAN yet, so we are going to use the `devtools` package to install it and then use `library()` to load it (as always, remember, you only need to install the package once).
+
+```{r eval=FALSE}
+devtools::install_github("kjhealy/gssr")
+
+library("gssr")
+```
+
+The easiest way to get the GSS data is to simple ask to get all of the data in an object called `gss_all` with `data()`. At the time of writing, this data frame includes 64814 observations and 6108 variables.
+
+```{r eval=FALSE}
+data(gss_all)
+```
+
+However, there are several other functions that might be help conditional upon what you would like to study. Accordingly, we recommend that you consult [https://kjhealy.github.io/gssr/](https://kjhealy.github.io/gssr/) for various examples on how to access the data and the documentation of different variables.
+
+## Data: American National Election Study (`anesr`)
+
+To access data from the American National Election Study, we are going to use the package `anesr` [@martherus2019]. As with the `gssr` package, this package is currently not available on CRAN so we are going to use the `install_github()` function from the `devtools` package. Once that is done, we load the package.
+
+```{r eval=FALSE}
+devtools::install_github("jamesmartherus/anesr")
+
+library("anesr")
+```
+
+To open a window with all the datasets available via the package, simply run this line:
+
+```{r eval=FALSE}
+data(package="anesr")
+```
+
+In the window (not shown here), we can see that there is a dataset called `timeseries_2016`. To access this data, use the `data()` function.
+
+```{r eval=FALSE}
+data(timeseries_2016)
+```
+
+This returns an object called `timeseries_2016` with 4270 observations and 1842 variables.
+
+Before using any publicly available data, it's good to keep two things in mind. First, when you are downloading data, you are using resources. For example, when you are downloading 4270 observations and 1842 variables, you are using a server. For that reason, we recommend that you don't do this often but save the data you are working with in a local file. There is no reason to download the data again and again (especially not if you are running all of your code multiple times a day).
+
+In addition, dataset often comes with specific terms of condition. For the ANES, these include:
+
+- Use these datasets solely for research or statistical purposes and not for investigation of specific survey respondents.
+- Make no use of the identity of any survey respondent(s) discovered intentionally or inadvertently, and to advise ANES of any such discovery (anes@electionstudies.org)
+- Cite ANES data and documentation in your work that makes use of the data and documentation. Authors of publications based on ANES data should send citations of their published works to ANES for inclusion in our bibliography of related publications.
+- You acknowledge that the original collector of the data, ANES, and the relevant funding agency/agencies bear no responsibility for use of the data or for interpretations or inferences based upon such uses.
+- ANES is not responsible for any errors in these datasets - any mistakes are mine.
+
 ## Data: Manifesto Project Dataset (`manifestoR`)
 
 To use data from the Manifesto Project Dataset, you need to create an account as well. This can be done at: [https://manifesto-project.wzb.eu/signup](https://manifesto-project.wzb.eu/signup)
@@ -205,6 +257,8 @@ wdi <- WDI(indicator="NY.GDP.PCAP.PP.KD",
            start = 1960, 
            end = 2012)
 ```
+
+The `WDI` package is only one example of packages among others that can be used to access international statistics. For a tutorial on accessing additional international statistics into R, see this guide: [A Guide to Getting International Statistics into R](https://erikgahner.dk/2019/a-guide-to-getting-international-statistics-into-r/)
 
 ## Data: GitHub repositories
 

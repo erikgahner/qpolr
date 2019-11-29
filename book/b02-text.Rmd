@@ -161,4 +161,10 @@ If we would rather prefer the name of the day, we can use `label` and `abbr` as 
 wday(date, label = TRUE, abbr = FALSE)
 ```
 
+If you would like to get the difference between two dates, you can simply subtract one date from the other as in the example below.
+
+```{r}
+ymd("2019-09-30") - ymd("2019-09-01")
+```
+
 Some of the relevant functions in the `lubridate` package are: `year()` (year), `month()` (month), `week()` (week number), `day()` (day of month), `wday()` (day week), `qday()` (day of quarter), and `yday()` (day of year).
