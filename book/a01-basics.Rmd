@@ -258,6 +258,34 @@ party <- p
 party
 ```
 
+## Repetition and sequence
+
+When we need to repeat information or work with information with a pattern, there is most likely an easier way to get this information. 
+
+For example, if we need to get the number 2 five times, instead of using `c(2, 2, 2, 2, 2)`, we can use the function `rep()` for repetition. First, we specify the element we would like to repeat and then the times we would like to repeat this element.
+
+```{r}
+rep(2, 5)
+```
+
+Importantly, this also works with text.
+
+```{r}
+rep("Quantitative Politics with R", 5)
+```
+
+If we have a pattern, e.g. a sequence from 0 to 100 with breaks of 25, instead of using `c(0, 25, 50, 75, 100)`, we can use the `seq()` function where we first say the first number, the final number and then the increment of the sequence.
+
+```{r}
+seq(0, 100, 25)
+```
+
+The functions `rep()` and `seq()` can also be combined, e.g. if we would like to have the sequence repeated five times.
+
+```{r}
+rep(seq(0, 100, 25), 5)
+```
+
 ## Data frames
 
 In most cases, we will not be working with one variable (e.g. information on party names) but multiple variables. To do this in an easy way, we can create _data frames_ which is similar to a dataset in SPSS and Stata. The good thing about `R`, however, is that we can have multiple data frames open at the same time. The cost of this is that we have to specify, when we do something in `R`, exactly what data frame we are using. 
