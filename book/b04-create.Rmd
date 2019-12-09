@@ -247,10 +247,10 @@ Now we have all the text we need to use. However, to create a dataset with the w
 library("tidytext")
 ```
 
-The first function we are going to use is not part of the package but will be used to convert our speech into a data frame using the `data_frame()` function.
+The first function we are going to use is not part of the package but will be used to convert our speech into a data frame using the `tibble()` function.
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
-data_speech_df <- data_frame(text = data_speech_text)
+data_speech_df <- tibble(text = data_speech_text)
 ```
 
 While in a data frame, it is still just a lot of sentences on different rows. To unnest all the sentences in our text column into a word column, we use the function `unnest_tokens()`.
