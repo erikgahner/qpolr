@@ -446,6 +446,8 @@ Last, when working with some of the functions in later chapters, you will encoun
 as_tibble(uk2017)
 ```
 
+There are a few noteworthy differenfces between data frames and tibbles. First, if you print a tibble in R, it will not print more than 10 rows for some variables (in other words, it will not print hundreds of lines of data). Second, tibble is more restrictive in terms of what it does. Accordingly, it will not change the input you give (convert strings to factors), change names of variables or create row names.
+
 ## Import and export data frames
 
 Most of the data frames we will be working with in `R` are not data frames we will build from scratch but on the contrary data frames we will import from other files such as files made for Stata, SPSS or Excel. The most useful filetype to use when you work with data in files is `.csv`, which stands for _comma-separated values_. This is an open file format and can be opened in any software. To export and import data frames to `.csv` files, we can use `write.csv()` and `read.csv()`.

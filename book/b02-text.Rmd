@@ -64,9 +64,13 @@ table(states$cig_taxes)
 
 For examples on more of the functions available in the `stringr` package, see [this introduction](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html).
 
+Note that when working with strings, and in particular when manipulating strings, it is useful to know regular expressions. A good tutorial is available at [https://github.com/ziishaned/learn-regex](https://github.com/ziishaned/learn-regex).
+
 ## Factors
 
-For the cigarette taxes we have worked with above, these are categorical data that we can order. To work with ordered and unordered categories, factors is a class in `R` class that makes these categories good to work with. For factors, we are going to use the package `forcats`. This package is also part of the `tidyverse`.
+For the cigarette taxes we have worked with above, these are categorical data that we can order. To work with ordered and unordered categories, factors is a class in `R` class that makes these categories good to work with. In brief, categorical data is a variable with a fixed set of possible values. This is also useful when you want to use a non-alphabetical ordering of the values in a variable.
+
+For factors, we are going to use the package `forcats`. This package is also part of the `tidyverse`.
 
 ```{r}
 library("forcats")

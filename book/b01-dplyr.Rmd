@@ -271,6 +271,23 @@ uk2017 <- uk2017 %>%
 
 `dplyr` in the `tidyverse` also has a `recode()` function, and the `car` package [@foxweisberg2011] has a similar function worth exploring. However, it is recommended that you stick with `mutate()` and `case_when()`.
 
+
+## Choosing rows by position: `slice()`
+
+If you only want to use specific rows with a specific position in your data, you can use `slice()` and specify the number of observations, you would like to get. In the example below, we specify that we would like the first three observations and the sixth observation.
+
+```{r}
+uk2017 %>% 
+  slice(1:3, 6)
+```
+
+This function is also useful if you would like to get the last part of a dataset, say from the third to the last observation. In order to do this, we use `n()`.
+
+```{r}
+uk2017 %>% 
+  slice(3:n())
+```
+
 ## Getting a variable from a data frame: `pull()`
 
 Often you do something to a data frame but might be interested in just working with one variable within that data frame. To do this, `pull()` is a great function. Let's say we want to get the average votes for parties with a positive value on `seats_changes`. Here, we first use `filter()` to get the observations we want to look at and then use `pull()` with the `votes` variable to use `mean()` on this variable
