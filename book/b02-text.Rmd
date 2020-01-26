@@ -16,12 +16,23 @@ You can use `View(states)` to get a sense of the 50 observations and the 135 var
 
 ## Strings
 
-We will use the package `string`. It is part of the `tidyverse` but can also be called individually. As you already should have installed the `tidyverse` by now, it is not necessary to install the package again.
+There are a few functions that are great to use, when you use strings. First, `paste()` makes it easy to connect two strings.
+
+```{r}
+paste("Hello", "World")
+```
+
+As you can see, there is a space between the two strings we are connecting. If you would like not to have a space between the two strings, we can use `paste0()`.
+
+```{r}
+paste0("face", "book")
+```
+
+Most of the relevant functions we can use will be in the package `string`. It is part of the `tidyverse` but can also be called individually. As you already should have installed the `tidyverse` by now, it is not necessary to install the package again.
 
 ```{r}
 library("stringr")
 ```
-
 
 Some of the functions have relatively simple purposes, such as `str_to_upper()` (which convert all characters in a string to upper case) and `str_to_lower()` (which convert all characters in a string to lower case).
 
@@ -63,6 +74,8 @@ table(states$cig_taxes)
 ```
 
 For examples on more of the functions available in the `stringr` package, see [this introduction](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html).
+
+Three other functions that can come in useful are from the `tidyr` package: `separate()`, `unite()` and `extract()`. `tidyr` is also part of the `tidyverse` and if you load the `tidyverse` package, you do not need to load `tidyr`. These functions come with multiple options and we suggest that you consult the documentations for these in order to see examples and the different options, e.g. `help("separate")`.
 
 Note that when working with strings, and in particular when manipulating strings, it is useful to know regular expressions. A good tutorial is available at [https://github.com/ziishaned/learn-regex](https://github.com/ziishaned/learn-regex).
 
