@@ -116,16 +116,12 @@ In the figure, the title of the table is highlighted. If you copy the title and 
 data_table
 ```
 
-We can see that this table is number 15 in our object. We save this table in the object `data_results`.
+We can see that this table is number 15 in our object. We can use `html_table()` function to get the tables and then use the function `pluck()` (from the `purrr` package) to pick the table we would like, i.e. table number 15. We use the option `fill=TRUE` in `html_table()` as there are empty cells in the table. We save the table in the object `ep14_raw`.
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
-data_results <- data_table[[15]]
-```
-
-We can now use the function `html_table()` to save the table as a data frame. We use the option `fill=TRUE` as there are empty cells in the table. We save the table in the object `ep14_raw`.
-
-```{r, eval=FALSE, message=FALSE, warning=FALSE}
-ep14_raw <- html_table(data_results, fill=TRUE)
+ep14_raw <- data_table %>% 
+  html_table(fill=TRUE) %>% 
+  purrr::pluck(15)
 ```
 
 To ensure that it is a data frame we are working with, we can use the function `class()` again.
@@ -159,7 +155,6 @@ names(ep14_raw) <- c("V1", "party", "votes", "share", "V5",
                      "seats", "V7", "V8", "V9", "V10")
 ```
 
-
 Next, we can see that the first row is not an observation but variable names as well. Accordingly, we need to remove this observation as well.
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
@@ -178,7 +173,7 @@ The last thing to do is to tell `R` that three variables, `votes`, `share` and `
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14 <- ep14_raw %>%
   mutate(
-    votes = as.numeric(gsub(",","", votes)),
+    votes = as.numeric(gsub(",", "", votes)),
     share = as.numeric(share),
     seats = as.numeric(seats)
   )
@@ -189,7 +184,6 @@ Inspect the final data frame. In this case, we do not have a lot of observations
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14
 ```
-
 
 Last, we create a figure showing the vote share and seats for the parties (notice that you will also need the package `ggrepel` to create the figure). (Output not shown)
 
