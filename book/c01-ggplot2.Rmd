@@ -259,7 +259,7 @@ plot.tufte <- plot.standard + theme_tufte() + xlab("theme_tufte()")
 grid.arrange(plot.standard, plot.bw, plot.minimal, plot.classic, plot.base, plot.economist, plot.fivethirtyeight, plot.tufte, ncol=2)
 ```
 
-You can find a lot more resources online related to `ggplot2`. In addition to the links above, do consult [ggthemr](https://github.com/cttobin/ggthemr) and [ggplot2 extensions](https://www.ggplot2-exts.org/).
+You can find a lot more resources online related to `ggplot2`. For a curated list with links to several useful packages and tutorials, see [https://github.com/erikgahner/awesome-ggplot2](https://github.com/erikgahner/awesome-ggplot2).
 
 Below, we will be using `theme_minimal()` as the theme when we work with out plots.
 
