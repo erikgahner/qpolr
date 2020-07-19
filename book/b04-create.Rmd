@@ -168,12 +168,13 @@ ep14_raw <- ep14_raw %>%
   select(party, votes, share, seats)
 ```
 
-The last thing to do is to tell `R` that three variables, `votes`, `share` and `seats` are numeric. Notice how we use the function `gsub()` to get rid of commas. We save this data frame in the object `ep14`.
+The last thing to do is to tell `R` that three variables, `votes`, `share` and `seats` are numeric. Notice how we use the function `parse_number()` to get rid of commas in the `votes` variable. We save this data frame in the object `ep14`.
+
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 ep14 <- ep14_raw %>%
   mutate(
-    votes = as.numeric(gsub(",", "", votes)),
+    votes = parse_number(votes),
     share = as.numeric(share),
     seats = as.numeric(seats)
   )
