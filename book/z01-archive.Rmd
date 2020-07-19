@@ -1,0 +1,65 @@
+## Get data from Google Trends
+
+Google Trends is a great service that allows users to explore trends in the search interest for different terms. However, before you use this service make sure that you actually understand what the data is showing, e.g. by reading this article: [Stop Using Google Trends](https://medium.com/@dannypage/stop-using-google-trends-a5014dd32588).
+
+To collect data from Google Trends, we are going to use the packages `gtrends` [@massicotteeddelbuettel2019] and `trendyy` [@parry2019]. The latter is a tidy wrapper that provides an easier way to work with Google Trends data.
+
+```{r, message=FALSE, warning=FALSE}
+library("gtrendsR")
+library("trendyy")
+```
+
+To get trend data, we will use the function `trendy()`. To get trends, simply specify the term of interest and the period you would like to explore. Here, we are going to replicate Figure 1 in @areshernandez2017. This study looks at a corruption scandal in Spain (the Bárcenas scandal). The period of interest here is from January 1 to June 1 in 2013. The term of interest is `caso barcenas`. We save this data in the object `cb` by using the function `get_interest()`.
+
+```{r, message=FALSE, warning=FALSE}
+cb <- trendy("caso barcenas", 
+             from = "2013-01-01",
+             to = "2013-06-01") %>% 
+  get_interest()
+```
+
+In this data, we now have a `date` variable (with the date of interest) and a `hits` variable that shows the interest on the specific day. We can use the `ggplot2` package to replicate the figure in @areshernandez2017 (the next chapter will introduce this package so if you are unfamiliar with `ggplot2` at this stage, do return to this example later if you would like to understand the code in detail).
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(cb, aes(x = as.Date(date), y = hits)) +
+  geom_line(colour = "blue") +
+  geom_vline(xintercept = as.Date("2013-01-31"), 
+             colour = "red", 
+             linetype = "dashed") +
+  theme_minimal() +
+  labs(x = "",
+       y = "Relative Google searches",
+       caption = "Note: Red dashed line indicates January 31st")
+```
+
+
+# References
+
+```{r}
+# @Manual{massicotteeddelbuettel2019,
+#     title = {gtrendsR: Perform and Display Google Trends Queries},
+#     author = {Philippe Massicotte and Dirk Eddelbuettel},
+#     year = {2019},
+#     note = {R package version 1.4.4},
+#     url = {https://CRAN.R-project.org/package=gtrendsR},
+# }
+# 
+# @Manual{parry2019,
+#     title = {trendyy: A Tidy Wrapper Around 'gtrendsR'},
+#     author = {Josiah Parry},
+#     year = {2019},
+#     note = {R package version 0.1.1},
+#     url = {https://CRAN.R-project.org/package=trendyy},
+#   }
+# 
+# @article{areshernandez2017,
+#     title = {The corrosive effect of corruption on trust in politicians: Evidence from a natural experiment },
+#     author = {M. Ares and E. Hernández},
+#     journal = {Research \& Politics},
+#     year = {2017},
+#     volume = {4},
+#     number = {2},
+#     pages = {}
+# }
+
+```
