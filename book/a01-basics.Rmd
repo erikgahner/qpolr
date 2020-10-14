@@ -164,7 +164,7 @@ We do not get a mean now but just `NA`. The reason for this is that `R` is unabl
 mean(x, na.rm=TRUE)
 ```
 
-Now we get the same mean as before we added `NA` to the object. 
+Now we get the same mean as before we added `NA` to the object. As we will see later, there are different types of `NA`'s, specifically `NA_real_` (a double vector), `NA_integer_` and `NA_character_`. However, as NA will always be coerced to the "correct" type when used inside `c()`, it is sufficient to know about `NA` for now.
 
 ## Logical operators
 
@@ -371,8 +371,10 @@ View(uk2017)
 ```
 
 ```{r View, echo=FALSE, cache=TRUE, fig.cap="Data frame with View(), RStudio", out.width="80%"}
-include_graphics(path = "fig/View.png")
+knitr::include_graphics(path = "fig/View.png")
 ```
+
+In RStudio, there is a good addin to easily call `View()`. See this link for more info: [https://github.com/fkeck/quickview](https://github.com/fkeck/quickview).
 
 When you are working with variables in a data frame, you can use `$` as a _component selector_ to select a variable in a data frame. This is the base R way, i.e. brackets and dollar signs. In the next chapter we will work with other functions that makes it easier to work with data frames. 
 
@@ -448,6 +450,8 @@ as_tibble(uk2017)
 
 There are a few noteworthy differenfces between data frames and tibbles. First, if you print a tibble in R, it will not print more than 10 rows for some variables (in other words, it will not print hundreds of lines of data). Second, tibble is more restrictive in terms of what it does. Accordingly, it will not change the input you give (convert strings to factors), change names of variables or create row names.
 
+Below the variable names you can also see the type of variable, e.g. `<fctr>`. There are several different types. You will see integers (`int`), doubles/real numbers (`dbl`), character vectors/strings (`chr`), date-times (`dttm`). logical vectors (`lgl`), factors (`fctr`) and dates (`date`).
+
 ## Import and export data frames
 
 Most of the data frames we will be working with in `R` are not data frames we will build from scratch but on the contrary data frames we will import from other files such as files made for Stata, SPSS or Excel. The most useful filetype to use when you work with data in files is `.csv`, which stands for _comma-separated values_. This is an open file format and can be opened in any software. To export and import data frames to `.csv` files, we can use `write.csv()` and `read.csv()`.
@@ -467,7 +471,7 @@ setwd("/Dropbox/qpolr/book")
 If you cannot remember the destination, you can use the menu to find the folder you want to have as your working directory as shown in Figure \@ref(fig:setwd). On a Mac, you can also use Option + CMD + C to copy the pathway to a file.
 
 ```{r setwd, echo=FALSE, fig.cap="How to change the working directory", out.width="50%"}
-include_graphics(path = "fig/setwd.png")
+knitr::include_graphics(path = "fig/setwd.png")
 ```
 
 An easy way to control the working directory is to open an `R`-script directly from the folder you want to have as your working directory. Specifically, instead of opening RStudio and finding the script, find the script in your folder and open RStudio that way. This will automatically set the working directory to the folder with the `R`-script.
