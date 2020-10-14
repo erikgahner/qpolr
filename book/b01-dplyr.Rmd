@@ -71,10 +71,16 @@ Other noteworthy functions similar to `contains()` that can be of help are funct
 select(uk2017, votes, everything())
 ```
 
-Last, we can use the negative sign if we want to remove a variable from the data frame.
+We can use the negative sign if we want to remove a variable from the data frame.
 
 ```{r, message=FALSE, warning=FALSE}
 select(uk2017, -leader)
+```
+
+Last, we can add the function `where()` if we only want variables of a specific type, e.g. only the variables that have characters.
+
+```{r}
+select(uk2017, where(is.character))
 ```
 
 ## Selecting observations: `filter()`
@@ -91,6 +97,12 @@ Importantly, we are _not_ making any changes to the data frame `uk2017`. Again, 
 uk2017_seatlosers <- filter(uk2017, seats_change < 0)
 
 uk2017_seatlosers
+```
+
+Next, we can add the function `between()` to get observations between two values. For example, we can get the parties with more than 5 seats but less than 40 seats.
+
+```{r}
+filter(uk2017, between(seats, 5, 40))
 ```
 
 If we want to select two parties, say the Conservative Party and the Labour Party, we can use `%in%` to specify this.
