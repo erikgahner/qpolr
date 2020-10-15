@@ -371,7 +371,7 @@ View(uk2017)
 ```
 
 ```{r View, echo=FALSE, cache=TRUE, fig.cap="Data frame with View(), RStudio", out.width="80%"}
-knitr::include_graphics(path = "fig/View.png")
+include_graphics(path = "fig/View.png")
 ```
 
 In RStudio, there is a good addin to easily call `View()`. See this link for more info: [https://github.com/fkeck/quickview](https://github.com/fkeck/quickview).
@@ -471,7 +471,7 @@ setwd("/Dropbox/qpolr/book")
 If you cannot remember the destination, you can use the menu to find the folder you want to have as your working directory as shown in Figure \@ref(fig:setwd). On a Mac, you can also use Option + CMD + C to copy the pathway to a file.
 
 ```{r setwd, echo=FALSE, fig.cap="How to change the working directory", out.width="50%"}
-knitr::include_graphics(path = "fig/setwd.png")
+include_graphics(path = "fig/setwd.png")
 ```
 
 An easy way to control the working directory is to open an `R`-script directly from the folder you want to have as your working directory. Specifically, instead of opening RStudio and finding the script, find the script in your folder and open RStudio that way. This will automatically set the working directory to the folder with the `R`-script.
