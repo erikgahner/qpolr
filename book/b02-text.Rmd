@@ -22,19 +22,79 @@ There are a few functions that are great to use, when you use strings. First, `p
 paste("Hello", "World")
 ```
 
-As you can see, there is a space between the two strings we are connecting. If you would like not to have a space between the two strings, we can use `paste0()`.
+As you can see, there is a space between the two strings we that we connect. If you would like not to have a space between the two strings, we can use `paste0()`.
 
 ```{r}
 paste0("face", "book")
 ```
 
-Most of the relevant functions we can use will be in the package `string`. It is part of the `tidyverse` but can also be called individually. As you already should have installed the `tidyverse` by now, it is not necessary to install the package again.
+Most of the relevant functions we can use will be in the package `stringr`. It is part of the `tidyverse` but can also be called individually. As you have already installed the `tidyverse` by now, it is not necessary to install the package again.
 
 ```{r}
 library("stringr")
 ```
 
-Some of the functions have relatively simple purposes, such as `str_to_upper()` (which convert all characters in a string to upper case) and `str_to_lower()` (which convert all characters in a string to lower case).
+
+### Regular expression (regex)
+
+When working with strings, and in particular when manipulating strings, it is useful to rely on regular expression. Regular expression is a formal language for specifying text strings. Before you can fully leverage the functions available in the `stringr` package, we suggest that you familiarize yourself with the basics of regular expression (regex for short).
+
+What we will do here is to briefly introduce the basics. If you would like additional material, we recommend that you check out [https://github.com/ziishaned/learn-regex](https://github.com/ziishaned/learn-regex) and [https://github.com/aloisdg/awesome-regex](https://github.com/aloisdg/awesome-regex). 
+
+To illustrate the usefulness of regex, we will use the functions `grep()` and `grepl()`. The former gives us information about the place of a string in a vector. The latter returns a logical vector with information on whether the text we are looking for is present or not. Let us save four pieces of text in an object called `trump_text`.
+
+```{r}
+trump_text <- c("Trump", "trump", "trump is a 0", "Trump is a loser")
+```
+
+To see where "trump" is mentioned in this object, we can first use `grep()`. Notice that we first specify the text we will like to find and then the object.
+
+```{r}
+grep("trump", trump_text)
+```
+
+The output shows that "trump" is present in the second and third place in the object. We can use `grepl()` to get a similar result.
+
+```{r}
+grepl("trump", trump_text)
+```
+
+The only difference here is that we get a `TRUE` or `FALSE` for each element in the object. 
+
+Let us say, however, that we want to get information on whether "trump" or "Trump" is mentioned, i.e. that we do not care about whether it is with a lower t or not. To do this, we can use [] as a disjunction. Within this, we can say that we are looking for both "trump" and "Trump".
+
+```{r}
+grepl("[Tt]rump", trump_text)
+```
+
+The output not shows that either Trump or trump is present in all four elements. Next, we can use the same logic to explore whether a number is present in any of the elements.
+
+```{r}
+grepl("[0123456789]", trump_text)
+```
+
+We can see that a number is present in the third element. However, we do not need to include all numbers and we will get the same result by specifying a range of numbers from 0 to 9 (the same logic can be applied to letters, e.g. [a-o] will include all letters from a to o in the alphabet.
+
+```{r}
+grepl("[0-9]", trump_text)
+```
+
+If you want to check whether at least one of two different words is mentioned, e.g. Trump or trump, you can use the "|"-sign.
+
+```{r}
+grepl("Trump|trump", trump_text)
+```
+
+A few other characters that are good to know about:
+
+* "." means any character. Tr.mp will match both Trump and Tramp.
+* "\\." is a period (i.e., the "\" sign escapes the regex)
+* "?" is for a character that might be there or not (for example, colou?r matches both color and colour)
+* "\*" will be any number of similar characters (for example, wo*w will match wow, woow, wooow etc.)
+
+### Changing the case of strings
+
+Some of the functions have relatively simple purposes, such as `str_to_upper()` (which convert all characters in a string to upper case), `str_to_lower()` (which convert all characters in a string to lower case), `str_to_title()` (which convert the first letter in each word in a string to upper case) and `str_to_sentence()` (which convert the first letter in a sentence to upper case and everything else to lower case).
 
 ```{r}
 str_to_upper("Quantitative Politics with R")
@@ -43,6 +103,16 @@ str_to_upper("Quantitative Politics with R")
 ```{r}
 str_to_lower("Quantitative Politics with R")
 ```
+
+```{r}
+str_to_title("Quantitative Politics with R")
+```
+
+```{r}
+str_to_sentence("Quantitative Politics with R")
+```
+
+### Subset and mutate strings
 
 We can use `str_sub()` to get a part of the text we are looking at. Say we want to get the first four characters of a string, we can specify `start = 1` and `end = 4`.
 
@@ -76,8 +146,6 @@ table(states$cig_taxes)
 For examples on more of the functions available in the `stringr` package, see [this introduction](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html).
 
 Three other functions that can come in useful are from the `tidyr` package: `separate()`, `unite()` and `extract()`. `tidyr` is also part of the `tidyverse` and if you load the `tidyverse` package, you do not need to load `tidyr`. These functions come with multiple options and we suggest that you consult the documentations for these in order to see examples and the different options, e.g. `help("separate")`.
-
-Note that when working with strings, and in particular when manipulating strings, it is useful to know regular expressions. A good tutorial is available at [https://github.com/ziishaned/learn-regex](https://github.com/ziishaned/learn-regex).
 
 ## Factors
 
@@ -185,3 +253,20 @@ ymd("2019-09-30") - ymd("2019-09-01")
 ```
 
 Some of the relevant functions in the `lubridate` package are: `year()` (year), `month()` (month), `week()` (week number), `day()` (day of month), `wday()` (day week), `qday()` (day of quarter), and `yday()` (day of year).
+
+Last, if you have information on a date in a different format (i.e. not as used above), you can specify this format. For example, if the data is 30/09/2020, you can specify the format with %d/%m/%Y to turn it into a date.
+
+```{r}
+as.Date("30/09/2020", format = "%d/%m/%Y")
+```
+
+Here is a list of some of the most useful formats:
+
+  - %d = day as number (0-31)
+  - %a = abbreviated weekday
+  - %A = unabbreviated weekday
+  - %m = month (00-12)
+  - %b = abbreviated month
+  - %B = unabbrevidated month
+  - %y = 2 digit year
+  - %Y = four digit year
