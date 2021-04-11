@@ -264,9 +264,10 @@ In the case that we want to create a new leader variable (in this example called
 
 ```{r}
 uk2017 %>% 
-  mutate(leader_new = case_when(leader == "Theresa May" ~ "Boris Johnson", 
-                                TRUE ~ as.character(leader))
-         )
+  mutate(leader_new = case_when(
+    leader == "Theresa May" ~ "Boris Johnson", 
+    TRUE ~ as.character(leader))
+    )
 
 ```
 
@@ -276,13 +277,13 @@ Noteworthy, we do not save the `leader_new` variable in our data frame. If we wa
 
 ```{r}
 uk2017 <- uk2017 %>% 
-  mutate(leader_new = case_when(leader == "Theresa May" ~ "Boris Johnson", 
-                                TRUE ~ as.character(leader))
-         )
+  mutate(leader_new = case_when(
+    leader == "Theresa May" ~ "Boris Johnson", 
+    TRUE ~ as.character(leader))
+    )
 ```
 
 `dplyr` in the `tidyverse` also has a `recode()` function, and the `car` package [@foxweisberg2011] has a similar function worth exploring. However, it is recommended that you stick with `mutate()` and `case_when()`.
-
 
 ## Choosing rows by position: `slice()`
 
