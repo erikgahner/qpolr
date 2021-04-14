@@ -19,22 +19,25 @@ csl: apa.csl
 # Introduction
 
 ```{r, echo=FALSE}
+library("knitr")
+library("tibble")
+
 rm(list = ls())
 ```
 
-`R` is by far the best software you can use if you want to conduct quantitative analyses. Importantly, data analysis is no longer restricted to analyzing survey data. Now you can relatively easy also collect and analyse social media data, texts, event data, images, geographic data, and so forth. For that and other reasons listed below, `R` is a great tool to learn.
+`R` is by far the best software you can use if you want to work with political data. Importantly, data analysis is no longer restricted to analyzing survey data or a study of a few countries. Now you can relatively easy also collect and analyse social media data, texts, event data, images, geographic data, and so forth. For that and other reasons listed below, `R` is a great tool to learn.
 
 In this book, we aim to provide an easily accessible introduction to `R` for the collection, study and presentation of different types of political data. Specifically, the book will teach you how to get different types of political data into `R` and manipulate, analyze and visualize the output. In doing this, we will not only teach you how to get existing data into `R`, but also how to collect your own data.
 
-Compared to other statistical packages, such as Excel, SPSS, Stata and SAS, you will experience that `R` is somewhat different. First in a bad way: if you are used to, say, SPSS, things are not as easy as they used to be. Then in a good way: once you learn how to do stuff in `R`, you will be ashamed when you look back at the old you doing point-and-click analyses in SPSS.
+Compared to other statistical packages, such as Excel, SPSS, Stata and SAS, you will experience that `R` is somewhat different. First in a bad way: if you are used to, say, SPSS, things are not as easy as they used to be. Then in a good way: once you learn how to do stuff in `R`, you will be ashamed when you look back at the old you doing point-and-click in SPSS.
 
-In this chapter you will find an introduction to the basics of `R`. The introduction takes place in three steps. First, we ask the obvious and important question, _why_ `R`? Second, we help you install what you need. Third, we introduce the logic of doing things in `R` so you are ready for the chapters to come. Have fun! 
+In this chapter, you will find an introduction to the basics of `R`. The introduction takes place in three steps. First, we ask the obvious and important question, _why_ `R`? Second, we help you install what you need. Third, we introduce the logic of doing things in `R` so you are ready for the chapters to come. Have fun! 
 
 ## Why `R`?
 
 First, `R` is an _open source_ statistical programming language. `R` is free, and while you might not pay for Stata or SPSS because you are a student, you will not have free access forever. This is not the case with `R`. On the contrary, you will _never_ have to pay for `R`.
 
-Second, `R` provides a series of opportunities you do not have in SPSS and Stata. `R` has an impressive package ecosystem on CRAN (the **c**omprehensive **R** **a**rchive **n**etwork) with more than 15,000 packages created by other users of `R`. You can compare `R` to an iPhone. If you didn't have the possibility to install apps on the iPhone, its functionality would be limited. In `R`, just as with an iPhone, you have several apps (in `R` called packages), you can install and use in order to make life easier.
+Second, `R` provides a series of opportunities you do not have in SPSS and Stata. `R` has an impressive package ecosystem on CRAN (the **c**omprehensive **R** **a**rchive **n**etwork) with more than 17,000 packages created by other users of `R`. You can compare `R` to an iPhone. If you didn't have the possibility to install apps on the iPhone, its functionality would be limited. In `R`, just as with an iPhone, you have several apps (in `R` called packages), you can install and use in order to make life easier.
 
 Third, some of the most beautiful figures you will find today when you open the newspaper are created in `R`. Big media outlets such as The New York Times, [BBC](https://bbc.github.io/rcookbook/) and FiveThirtyEight use `R` to create figures. Specifically, they use the package `ggplot2`, a very popular package used to create figures. We will work with this package in multiple chapters in this book.
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Manipulating text | Quantitative Politics with R</title>
   <meta name="description" content="Chapter 4 Manipulating text | Quantitative Politics with R" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Manipulating text | Quantitative Politics with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas" />
 
 
-<meta name="date" content="2019-11-29" />
+<meta name="date" content="2021-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="data.html"/>
 <link rel="next" href="datadownload.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,41 +54,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -102,24 +129,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <code>R</code>?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing <code>R</code></a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages"><i class="fa fa-check"></i><b>1.4</b> Installing <code>R</code> packages</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#problems-and-help"><i class="fa fa-check"></i><b>1.5</b> Problems and help</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a><ul>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#numbers-as-data"><i class="fa fa-check"></i><b>2.1</b> Numbers as data</a></li>
 <li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#missing-values-na"><i class="fa fa-check"></i><b>2.2</b> Missing values (<code>NA</code>)</a></li>
 <li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#logical-operators"><i class="fa fa-check"></i><b>2.3</b> Logical operators</a></li>
 <li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#text-as-data"><i class="fa fa-check"></i><b>2.4</b> Text as data</a></li>
-<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.5</b> Data frames</a></li>
-<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
-<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#repetition-and-sequence"><i class="fa fa-check"></i><b>2.5</b> Repetition and sequence</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data frames</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.7</b> Import and export data frames</a></li>
+<li class="chapter" data-level="2.8" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.8</b> Environment</a></li>
 </ul></li>
 <li class="part"><span><b>I Working with data</b></span></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
 <li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
@@ -129,14 +160,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.7" data-path="data.html"><a href="data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
 <li class="chapter" data-level="3.8" data-path="data.html"><a href="data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
 <li class="chapter" data-level="3.9" data-path="data.html"><a href="data.html#recoding-variables-case_when"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>case_when()</code></a></li>
-<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.10</b> Getting a variable from a data frame: <code>pull()</code></a></li>
+<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#choosing-rows-by-position-slice"><i class="fa fa-check"></i><b>3.10</b> Choosing rows by position: <code>slice()</code></a></li>
+<li class="chapter" data-level="3.11" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.11</b> Getting a variable from a data frame: <code>pull()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a><ul>
-<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a></li>
+<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="text.html"><a href="text.html#regular-expression-regex"><i class="fa fa-check"></i><b>4.1.1</b> Regular expression (regex)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="text.html"><a href="text.html#changing-the-case-of-strings"><i class="fa fa-check"></i><b>4.1.2</b> Changing the case of strings</a></li>
+<li class="chapter" data-level="4.1.3" data-path="text.html"><a href="text.html#subset-and-mutate-strings"><i class="fa fa-check"></i><b>4.1.3</b> Subset and mutate strings</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="text.html"><a href="text.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
 <li class="chapter" data-level="4.3" data-path="text.html"><a href="text.html#dates-and-time"><i class="fa fa-check"></i><b>4.3</b> Dates and time</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a><ul>
+<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="datadownload.html"><a href="datadownload.html#using-data-from-data-packages"><i class="fa fa-check"></i><b>5.1</b> Using data from data packages</a></li>
 <li class="chapter" data-level="5.2" data-path="datadownload.html"><a href="datadownload.html#download-data-from-webpages"><i class="fa fa-check"></i><b>5.2</b> Download data from webpages</a></li>
 <li class="chapter" data-level="5.3" data-path="datadownload.html"><a href="datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>5.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
@@ -147,37 +186,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.8" data-path="datadownload.html"><a href="datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>5.8</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 <li class="chapter" data-level="5.9" data-path="datadownload.html"><a href="datadownload.html#data-github-repositories"><i class="fa fa-check"></i><b>5.9</b> Data: GitHub repositories</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a><ul>
+<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="create.html"><a href="create.html#create-data-from-files"><i class="fa fa-check"></i><b>6.1</b> Create data from files</a></li>
 <li class="chapter" data-level="6.2" data-path="create.html"><a href="create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>6.2</b> Scrape data from tables</a></li>
 <li class="chapter" data-level="6.3" data-path="create.html"><a href="create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>6.3</b> Scrape political speeches</a></li>
-<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a><ul>
+<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="create.html"><a href="create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>6.4.1</b> Data on Twitter user</a></li>
 <li class="chapter" data-level="6.4.2" data-path="create.html"><a href="create.html#data-on-trends"><i class="fa fa-check"></i><b>6.4.2</b> Data on trends</a></li>
 <li class="chapter" data-level="6.4.3" data-path="create.html"><a href="create.html#data-on-tweets"><i class="fa fa-check"></i><b>6.4.3</b> Data on tweets</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-google-trends"><i class="fa fa-check"></i><b>6.5</b> Get data from Google Trends</a></li>
-<li class="chapter" data-level="6.6" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.6</b> Get data from Wikipedia</a></li>
+<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.5</b> Get data from Wikipedia</a></li>
 </ul></li>
 <li class="part"><span><b>II Data visualisation</b></span></li>
-<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="dataviz.html"><a href="dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>7.1</b> The basics of <code>ggplot2</code></a></li>
-<li class="chapter" data-level="7.2" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.2" data-path="dataviz.html"><a href="dataviz.html#data-1"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
 <li class="chapter" data-level="7.3" data-path="dataviz.html"><a href="dataviz.html#aesthetics"><i class="fa fa-check"></i><b>7.3</b> Aesthetics</a></li>
 <li class="chapter" data-level="7.4" data-path="dataviz.html"><a href="dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>7.4</b> Geometric objects</a></li>
 <li class="chapter" data-level="7.5" data-path="dataviz.html"><a href="dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>7.5</b> Theme adjustments</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a><ul>
+<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="presenting-distributions.html"><a href="presenting-distributions.html#bar-plot"><i class="fa fa-check"></i><b>8.1</b> Bar plot</a></li>
 <li class="chapter" data-level="8.2" data-path="presenting-distributions.html"><a href="presenting-distributions.html#histograms"><i class="fa fa-check"></i><b>8.2</b> Histograms</a></li>
 <li class="chapter" data-level="8.3" data-path="presenting-distributions.html"><a href="presenting-distributions.html#density-plots"><i class="fa fa-check"></i><b>8.3</b> Density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a><ul>
+<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="presenting-relationships.html"><a href="presenting-relationships.html#box-plot"><i class="fa fa-check"></i><b>9.1</b> Box plot</a></li>
 <li class="chapter" data-level="9.2" data-path="presenting-relationships.html"><a href="presenting-relationships.html#scatter-plots"><i class="fa fa-check"></i><b>9.2</b> Scatter plots</a></li>
 <li class="chapter" data-level="9.3" data-path="presenting-relationships.html"><a href="presenting-relationships.html#line-plots"><i class="fa fa-check"></i><b>9.3</b> Line plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="manipulating-plots.html"><a href="manipulating-plots.html#themes"><i class="fa fa-check"></i><b>10.1</b> Themes</a></li>
 <li class="chapter" data-level="10.2" data-path="manipulating-plots.html"><a href="manipulating-plots.html#colours"><i class="fa fa-check"></i><b>10.2</b> Colours</a></li>
 <li class="chapter" data-level="10.3" data-path="manipulating-plots.html"><a href="manipulating-plots.html#labels"><i class="fa fa-check"></i><b>10.3</b> Labels</a></li>
@@ -187,26 +231,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.7" data-path="manipulating-plots.html"><a href="manipulating-plots.html#saving-plots"><i class="fa fa-check"></i><b>10.7</b> Saving plots</a></li>
 </ul></li>
 <li class="part"><span><b>III Regression</b></span></li>
-<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a><ul>
+<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="olsreg.html"><a href="olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>11.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="11.2" data-path="olsreg.html"><a href="olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.2</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="11.3" data-path="olsreg.html"><a href="olsreg.html#saving-predictions"><i class="fa fa-check"></i><b>11.3</b> Saving predictions</a></li>
 <li class="chapter" data-level="11.4" data-path="olsreg.html"><a href="olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>11.4</b> Diagnostic tests</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a><ul>
+<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="glm.html"><a href="glm.html#binary-outcomes"><i class="fa fa-check"></i><b>12.1</b> Binary outcomes</a></li>
-<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a><ul>
+<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="glm.html"><a href="glm.html#event-count"><i class="fa fa-check"></i><b>12.2.1</b> Event count</a></li>
 <li class="chapter" data-level="12.2.2" data-path="glm.html"><a href="glm.html#negative-binomial-regression"><i class="fa fa-check"></i><b>12.2.2</b> Negative binomial regression</a></li>
 <li class="chapter" data-level="12.2.3" data-path="glm.html"><a href="glm.html#ordinal-outcomes"><i class="fa fa-check"></i><b>12.2.3</b> Ordinal outcomes</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Presentation</b></span></li>
-<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a><ul>
+<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="writing.html"><a href="writing.html#equations"><i class="fa fa-check"></i><b>13.1</b> Equations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a><ul>
-<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a><ul>
+<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a>
+<ul>
 <li class="chapter" data-level="14.1.1" data-path="tables.html"><a href="tables.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>14.1.1</b> Exporting the regression table</a></li>
 </ul></li>
 </ul></li>
@@ -228,109 +278,176 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="text" class="section level1">
+<div id="text" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Manipulating text</h1>
 <p>We introduced text in the previous chapter. In this chapter, we will show how to manipulate text as strings and factors. We will use the <code>states</code> dataset from the <code>poliscidata</code> package. For more on this data, see Chapter <a href="datadownload.html#datadownload">5</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poliscidata&quot;</span>)
-
-states &lt;-<span class="st"> </span>states</code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="text.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;poliscidata&quot;</span>)</span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;gdata&#39;:
+##   method         from  
+##   reorder.factor gplots</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="text.html#cb187-1" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> states</span></code></pre></div>
 <p>You can use <code>View(states)</code> to get a sense of the 50 observations and the 135 variables.</p>
-<div id="strings" class="section level2">
+<div id="strings" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Strings</h2>
-<p>We will use the package <code>string</code>. It is part of the <code>tidyverse</code> but can also be called individually. As you already should have installed the <code>tidyverse</code> by now, it is not necessary to install the package again.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;stringr&quot;</span>)</code></pre></div>
-<p>Some of the functions have relatively simple purposes, such as <code>str_to_upper()</code> (which convert all characters in a string to upper case) and <code>str_to_lower()</code> (which convert all characters in a string to lower case).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_to_upper</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>)</code></pre></div>
+<p>There are a few functions that are great to use, when you use strings. First, <code>paste()</code> makes it easy to connect two strings.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="text.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello World&quot;</code></pre>
+<p>As you can see, there is a space between the two strings we that we connect. If you would like not to have a space between the two strings, we can use <code>paste0()</code>.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="text.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;face&quot;</span>, <span class="st">&quot;book&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;facebook&quot;</code></pre>
+<p>Most of the relevant functions we can use will be in the package <code>stringr</code>. It is part of the <code>tidyverse</code> but can also be called individually. As you have already installed the <code>tidyverse</code> by now, it is not necessary to install the package again.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="text.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;stringr&quot;</span>)</span></code></pre></div>
+<div id="regular-expression-regex" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Regular expression (regex)</h3>
+<p>When working with strings, and in particular when manipulating strings, it is useful to rely on regular expression. Regular expression is a formal language for specifying text strings. Before you can fully leverage the functions available in the <code>stringr</code> package, we suggest that you familiarize yourself with the basics of regular expression (regex for short).</p>
+<p>What we will do here is to briefly introduce the basics. If you would like additional material, we recommend that you check out <a href="https://github.com/ziishaned/learn-regex">https://github.com/ziishaned/learn-regex</a> and <a href="https://github.com/aloisdg/awesome-regex">https://github.com/aloisdg/awesome-regex</a>.</p>
+<p>To illustrate the usefulness of regex, we will use the functions <code>grep()</code> and <code>grepl()</code>. The former gives us information about the place of a string in a vector. The latter returns a logical vector with information on whether the text we are looking for is present or not. Let us save four pieces of text in an object called <code>trump_text</code>.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="text.html#cb193-1" aria-hidden="true" tabindex="-1"></a>trump_text <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;trump&quot;</span>, <span class="st">&quot;trump is a 0&quot;</span>, <span class="st">&quot;Trump is a loser&quot;</span>)</span></code></pre></div>
+<p>To see where “trump” is mentioned in this object, we can first use <code>grep()</code>. Notice that we first specify the text we will like to find and then the object.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="text.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">&quot;trump&quot;</span>, trump_text)</span></code></pre></div>
+<pre><code>## [1] 2 3</code></pre>
+<p>The output shows that “trump” is present in the second and third place in the object. We can use <code>grepl()</code> to get a similar result.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="text.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(<span class="st">&quot;trump&quot;</span>, trump_text)</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE FALSE</code></pre>
+<p>The only difference here is that we get a <code>TRUE</code> or <code>FALSE</code> for each element in the object.</p>
+<p>Let us say, however, that we want to get information on whether “trump” or “Trump” is mentioned, i.e. that we do not care about whether it is with a lower t or not. To do this, we can use [] as a disjunction. Within this, we can say that we are looking for both “trump” and “Trump.”</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="text.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(<span class="st">&quot;[Tt]rump&quot;</span>, trump_text)</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
+<p>The output not shows that either Trump or trump is present in all four elements. Next, we can use the same logic to explore whether a number is present in any of the elements.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="text.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(<span class="st">&quot;[0123456789]&quot;</span>, trump_text)</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
+<p>We can see that a number is present in the third element. However, we do not need to include all numbers and we will get the same result by specifying a range of numbers from 0 to 9 (the same logic can be applied to letters, e.g. [a-o] will include all letters from a to o in the alphabet.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="text.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(<span class="st">&quot;[0-9]&quot;</span>, trump_text)</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
+<p>If you want to check whether at least one of two different words is mentioned, e.g. Trump or trump, you can use the “|”-sign.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="text.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(<span class="st">&quot;Trump|trump&quot;</span>, trump_text)</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
+<p>A few other characters that are good to know about:</p>
+<ul>
+<li>“.” means any character. Tr.mp will match both Trump and Tramp.</li>
+<li>“\.” is a period (i.e., the "" sign escapes the regex)</li>
+<li>“?” is for a character that might be there or not (for example, colou?r matches both color and colour)</li>
+<li>“*” will be any number of similar characters (for example, wo*w will match wow, woow, wooow etc.)</li>
+</ul>
+</div>
+<div id="changing-the-case-of-strings" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Changing the case of strings</h3>
+<p>Some of the functions have relatively simple purposes, such as <code>str_to_upper()</code> (which convert all characters in a string to upper case), <code>str_to_lower()</code> (which convert all characters in a string to lower case), <code>str_to_title()</code> (which convert the first letter in each word in a string to upper case) and <code>str_to_sentence()</code> (which convert the first letter in a sentence to upper case and everything else to lower case).</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="text.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_upper</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;QUANTITATIVE POLITICS WITH R&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_to_lower</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="text.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;quantitative politics with r&quot;</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="text.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_title</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Quantitative Politics With R&quot;</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="text.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_sentence</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Quantitative politics with r&quot;</code></pre>
+</div>
+<div id="subset-and-mutate-strings" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Subset and mutate strings</h3>
 <p>We can use <code>str_sub()</code> to get a part of the text we are looking at. Say we want to get the first four characters of a string, we can specify <code>start = 1</code> and <code>end = 4</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_sub</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>, <span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="text.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Quan&quot;</code></pre>
 <p>If we would like to get the last four characters, we can simply specify <code>start = -4</code> as the option.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_sub</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>, <span class="dt">start =</span> <span class="op">-</span><span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="text.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>, <span class="at">start =</span> <span class="sc">-</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;th R&quot;</code></pre>
 <p>Here, we are going to look at cigarette taxes, and namely on whether the cigarette taxes are in the low, middle or high category. To look at this we will use the <code>cig_tax12_3</code> variable in the <code>states</code> data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(states<span class="op">$</span>cig_tax12_<span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="text.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(states<span class="sc">$</span>cig_tax12_3)</span></code></pre></div>
 <p>We can see that the names for these categories are LoTax, MidTax and HiTax. With the code below we use <code>str_replace_all()</code> to replace the characters with new characters, e.g. HiTax becomes High taxes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states<span class="op">$</span>cig_taxes &lt;-<span class="st"> </span><span class="kw">str_replace_all</span>(states<span class="op">$</span>cig_tax12_<span class="dv">3</span>, 
-                                    <span class="kw">c</span>(<span class="st">&quot;HiTax&quot;</span> =<span class="st"> &quot;High taxes&quot;</span>, 
-                                      <span class="st">&quot;MidTax&quot;</span> =<span class="st"> &quot;Middle taxes&quot;</span>,
-                                      <span class="st">&quot;LoTax&quot;</span> =<span class="st"> &quot;Low taxes&quot;</span>))
-
-<span class="kw">table</span>(states<span class="op">$</span>cig_taxes)</code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="text.html#cb219-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>cig_taxes <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(states<span class="sc">$</span>cig_tax12_3, </span>
+<span id="cb219-2"><a href="text.html#cb219-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">c</span>(<span class="st">&quot;HiTax&quot;</span> <span class="ot">=</span> <span class="st">&quot;High taxes&quot;</span>, </span>
+<span id="cb219-3"><a href="text.html#cb219-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;MidTax&quot;</span> <span class="ot">=</span> <span class="st">&quot;Middle taxes&quot;</span>,</span>
+<span id="cb219-4"><a href="text.html#cb219-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;LoTax&quot;</span> <span class="ot">=</span> <span class="st">&quot;Low taxes&quot;</span>))</span>
+<span id="cb219-5"><a href="text.html#cb219-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-6"><a href="text.html#cb219-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(states<span class="sc">$</span>cig_taxes)</span></code></pre></div>
 <pre><code>## 
 ##   High taxes    Low taxes Middle taxes 
 ##           15           17           18</code></pre>
 <p>For examples on more of the functions available in the <code>stringr</code> package, see <a href="https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html">this introduction</a>.</p>
+<p>Three other functions that can come in useful are from the <code>tidyr</code> package: <code>separate()</code>, <code>unite()</code> and <code>extract()</code>. <code>tidyr</code> is also part of the <code>tidyverse</code> and if you load the <code>tidyverse</code> package, you do not need to load <code>tidyr</code>. These functions come with multiple options and we suggest that you consult the documentations for these in order to see examples and the different options, e.g. <code>help("separate")</code>.</p>
 </div>
-<div id="factors" class="section level2">
+</div>
+<div id="factors" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Factors</h2>
-<p>For the cigarette taxes we have worked with above, these are categorical data that we can order. To work with ordered and unordered categories, factors is a class in <code>R</code> class that makes these categories good to work with. For factors, we are going to use the package <code>forcats</code>. This package is also part of the <code>tidyverse</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;forcats&quot;</span>)</code></pre></div>
+<p>For the cigarette taxes we have worked with above, these are categorical data that we can order. To work with ordered and unordered categories, factors is a class in <code>R</code> class that makes these categories good to work with. In brief, categorical data is a variable with a fixed set of possible values. This is also useful when you want to use a non-alphabetical ordering of the values in a variable.</p>
+<p>For factors, we are going to use the package <code>forcats</code>. This package is also part of the <code>tidyverse</code>.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="text.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;forcats&quot;</span>)</span></code></pre></div>
 <p>We create a new variable, <code>cig_taxes_cat</code> as a factor variable and then we see what levels we have (and the order of these).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states<span class="op">$</span>cig_taxes_cat &lt;-<span class="st"> </span><span class="kw">factor</span>(states<span class="op">$</span>cig_taxes)
-
-<span class="kw">levels</span>(states<span class="op">$</span>cig_taxes_cat)</code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="text.html#cb222-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>cig_taxes_cat <span class="ot">&lt;-</span> <span class="fu">factor</span>(states<span class="sc">$</span>cig_taxes)</span>
+<span id="cb222-2"><a href="text.html#cb222-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-3"><a href="text.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(states<span class="sc">$</span>cig_taxes_cat)</span></code></pre></div>
 <pre><code>## [1] &quot;High taxes&quot;   &quot;Low taxes&quot;    &quot;Middle taxes&quot;</code></pre>
 <p>As we can see, these levels are now in the wrong order (sorted alphabetically). We can use the <code>fct_relevel()</code> to specify the order of the categories (from low to high).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states<span class="op">$</span>cig_taxes_cat &lt;-<span class="st"> </span><span class="kw">fct_relevel</span>(states<span class="op">$</span>cig_taxes_cat, 
-                                    <span class="st">&quot;Low taxes&quot;</span>, 
-                                    <span class="st">&quot;Middle taxes&quot;</span>, 
-                                    <span class="st">&quot;High taxes&quot;</span>)
-
-<span class="kw">levels</span>(states<span class="op">$</span>cig_taxes_cat)</code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="text.html#cb224-1" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>cig_taxes_cat <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(states<span class="sc">$</span>cig_taxes_cat, </span>
+<span id="cb224-2"><a href="text.html#cb224-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;Low taxes&quot;</span>, </span>
+<span id="cb224-3"><a href="text.html#cb224-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;Middle taxes&quot;</span>, </span>
+<span id="cb224-4"><a href="text.html#cb224-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;High taxes&quot;</span>)</span>
+<span id="cb224-5"><a href="text.html#cb224-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb224-6"><a href="text.html#cb224-6" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(states<span class="sc">$</span>cig_taxes_cat)</span></code></pre></div>
 <pre><code>## [1] &quot;Low taxes&quot;    &quot;Middle taxes&quot; &quot;High taxes&quot;</code></pre>
 <p>This will become useful later on when we want to make sure that the categories in a data visualisation has the correct order.</p>
-<p>For additional guidance on the functions available in the <code>forcats</code> package, see <a href="https://forcats.tidyverse.org/" class="uri">https://forcats.tidyverse.org/</a>.</p>
+<p>For additional guidance on the functions available in the <code>forcats</code> package, see <a href="https://forcats.tidyverse.org/">https://forcats.tidyverse.org/</a>.</p>
 </div>
-<div id="dates-and-time" class="section level2">
+<div id="dates-and-time" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Dates and time</h2>
 <p>To work with dates and time in <code>R</code>, there are two useful packages. The first is <code>hms</code> that is good with <strong>h</strong>ours, <strong>m</strong>inutes and <strong>s</strong>econds. The second is <code>lubridate</code> that is good with dates. Let us take a closer look at how to work with seconds, minutes and hours by loading the package <code>hms</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;hms&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="text.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;hms&quot;</span>)</span></code></pre></div>
 <p>This package is useful if you want to easily convert minutes into hours, for example 500 minutes into hours. As <code>lubridate</code> also have an <code>hms()</code>, we will use <code>::</code> to tell that we are using the function <code>hms()</code> in the <code>hms</code> package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hms<span class="op">::</span><span class="kw">hms</span>(<span class="dt">min =</span> <span class="dv">500</span>)</code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="text.html#cb227-1" aria-hidden="true" tabindex="-1"></a>hms<span class="sc">::</span><span class="fu">hms</span>(<span class="at">min =</span> <span class="dv">500</span>)</span></code></pre></div>
 <pre><code>## 08:20:00</code></pre>
 <p>As we can see, this gives 8 hours and 20 minutes. We can also specify hours, minutes and seconds to get the time as POSIXct.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hms<span class="op">::</span><span class="kw">hms</span>(<span class="dt">hour =</span> <span class="dv">15</span>, <span class="dt">min =</span> <span class="dv">90</span>, <span class="dt">seconds =</span> <span class="dv">12</span>)</code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="text.html#cb229-1" aria-hidden="true" tabindex="-1"></a>hms<span class="sc">::</span><span class="fu">hms</span>(<span class="at">hour =</span> <span class="dv">15</span>, <span class="at">min =</span> <span class="dv">90</span>, <span class="at">seconds =</span> <span class="dv">12</span>)</span></code></pre></div>
 <pre><code>## 16:30:12</code></pre>
 <p>For dates, we will first load the package <code>lubridate</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;lubridate&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="text.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lubridate&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;lubridate&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:hms&#39;:
 ## 
 ##     hms</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
-##     date</code></pre>
+##     date, intersect, setdiff, union</code></pre>
 <p>This package has several functions that are useful in terms of working with dates. For example, we can use <code>ymd()</code> if we have text that has the year, month and day.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ymd</span>(<span class="st">&quot;2019/09/30&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="text.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">&quot;2019/09/30&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-09-30&quot;</code></pre>
 <p>The package can also work with months as text, such as:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mdy</span>(<span class="st">&quot;September 30, 2019&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="text.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;September 30, 2019&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-09-30&quot;</code></pre>
 <p>The good thing about this is that we can work with the date information. Let us first save the date in an object called <code>date</code> and use <code>year()</code> to get the year out of the variable.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Save September 30, 2019 in object</span>
-date &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2019-09-30&quot;</span>)
-
-<span class="co"># Get year</span>
-<span class="kw">year</span>(date)</code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="text.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save September 30, 2019 in object</span></span>
+<span id="cb239-2"><a href="text.html#cb239-2" aria-hidden="true" tabindex="-1"></a>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2019-09-30&quot;</span>)</span>
+<span id="cb239-3"><a href="text.html#cb239-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb239-4"><a href="text.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get year</span></span>
+<span id="cb239-5"><a href="text.html#cb239-5" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(date)</span></code></pre></div>
 <pre><code>## [1] 2019</code></pre>
 <p>Similarly, we can get the week number out of the date.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">week</span>(date)</code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="text.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">week</span>(date)</span></code></pre></div>
 <pre><code>## [1] 39</code></pre>
 <p>We can see that this date was in week 39. We can use <code>wday()</code> to get the number of the day in the week this was.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wday</span>(date)</code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="text.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(date)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>If we would rather prefer the name of the day, we can use <code>label</code> and <code>abbr</code> as options (the latter option in order to get the full day name).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wday</span>(date, <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">abbr =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="text.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] Monday
-## Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; Friday &lt; Saturday</code></pre>
+## 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
 <p>If you would like to get the difference between two dates, you can simply subtract one date from the other as in the example below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ymd</span>(<span class="st">&quot;2019-09-30&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2019-09-01&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="text.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">&quot;2019-09-30&quot;</span>) <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">&quot;2019-09-01&quot;</span>)</span></code></pre></div>
 <pre><code>## Time difference of 29 days</code></pre>
 <p>Some of the relevant functions in the <code>lubridate</code> package are: <code>year()</code> (year), <code>month()</code> (month), <code>week()</code> (week number), <code>day()</code> (day of month), <code>wday()</code> (day week), <code>qday()</code> (day of quarter), and <code>yday()</code> (day of year).</p>
+<p>Last, if you have information on a date in a different format (i.e. not as used above), you can specify this format. For example, if the data is 30/09/2020, you can specify the format with %d/%m/%Y to turn it into a date.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="text.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;30/09/2020&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-09-30&quot;</code></pre>
+<p>Here is a list of some of the most useful formats:</p>
+<ul>
+<li>%d = day as number (0-31)</li>
+<li>%a = abbreviated weekday</li>
+<li>%A = unabbreviated weekday</li>
+<li>%m = month (00-12)</li>
+<li>%b = abbreviated month</li>
+<li>%B = unabbrevidated month</li>
+<li>%y = 2 digit year</li>
+<li>%Y = four digit year</li>
+</ul>
 
 </div>
 </div>
@@ -395,7 +512,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

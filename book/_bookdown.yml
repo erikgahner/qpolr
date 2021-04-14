@@ -1,3 +1,4 @@
+delete_merged_file: true
 book_filename: "qpolr"
 chapter_name: "Chapter "
 rmd_files: ["index.Rmd", "a01-basics.Rmd", "b01-dplyr.Rmd", "b02-text.Rmd", "b03-data.Rmd", "b04-create.Rmd", "c01-ggplot2.Rmd", "d01-ols.Rmd", "d02-glm.Rmd", "e01-presentation.Rmd", "references.Rmd"]

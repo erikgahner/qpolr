@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Quantitative Politics with R</title>
   <meta name="description" content="Quantitative Politics with R" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Quantitative Politics with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas" />
 
 
-<meta name="date" content="2019-11-29" />
+<meta name="date" content="2021-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 
 <link rel="next" href="basics.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,41 +54,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -102,24 +129,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <code>R</code>?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing <code>R</code></a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages"><i class="fa fa-check"></i><b>1.4</b> Installing <code>R</code> packages</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#problems-and-help"><i class="fa fa-check"></i><b>1.5</b> Problems and help</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a><ul>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#numbers-as-data"><i class="fa fa-check"></i><b>2.1</b> Numbers as data</a></li>
 <li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#missing-values-na"><i class="fa fa-check"></i><b>2.2</b> Missing values (<code>NA</code>)</a></li>
 <li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#logical-operators"><i class="fa fa-check"></i><b>2.3</b> Logical operators</a></li>
 <li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#text-as-data"><i class="fa fa-check"></i><b>2.4</b> Text as data</a></li>
-<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.5</b> Data frames</a></li>
-<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
-<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#repetition-and-sequence"><i class="fa fa-check"></i><b>2.5</b> Repetition and sequence</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data frames</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.7</b> Import and export data frames</a></li>
+<li class="chapter" data-level="2.8" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.8</b> Environment</a></li>
 </ul></li>
 <li class="part"><span><b>I Working with data</b></span></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
 <li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
@@ -129,14 +160,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.7" data-path="data.html"><a href="data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
 <li class="chapter" data-level="3.8" data-path="data.html"><a href="data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
 <li class="chapter" data-level="3.9" data-path="data.html"><a href="data.html#recoding-variables-case_when"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>case_when()</code></a></li>
-<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.10</b> Getting a variable from a data frame: <code>pull()</code></a></li>
+<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#choosing-rows-by-position-slice"><i class="fa fa-check"></i><b>3.10</b> Choosing rows by position: <code>slice()</code></a></li>
+<li class="chapter" data-level="3.11" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.11</b> Getting a variable from a data frame: <code>pull()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a><ul>
-<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a></li>
+<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="text.html"><a href="text.html#regular-expression-regex"><i class="fa fa-check"></i><b>4.1.1</b> Regular expression (regex)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="text.html"><a href="text.html#changing-the-case-of-strings"><i class="fa fa-check"></i><b>4.1.2</b> Changing the case of strings</a></li>
+<li class="chapter" data-level="4.1.3" data-path="text.html"><a href="text.html#subset-and-mutate-strings"><i class="fa fa-check"></i><b>4.1.3</b> Subset and mutate strings</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="text.html"><a href="text.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
 <li class="chapter" data-level="4.3" data-path="text.html"><a href="text.html#dates-and-time"><i class="fa fa-check"></i><b>4.3</b> Dates and time</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a><ul>
+<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="datadownload.html"><a href="datadownload.html#using-data-from-data-packages"><i class="fa fa-check"></i><b>5.1</b> Using data from data packages</a></li>
 <li class="chapter" data-level="5.2" data-path="datadownload.html"><a href="datadownload.html#download-data-from-webpages"><i class="fa fa-check"></i><b>5.2</b> Download data from webpages</a></li>
 <li class="chapter" data-level="5.3" data-path="datadownload.html"><a href="datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>5.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
@@ -147,37 +186,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.8" data-path="datadownload.html"><a href="datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>5.8</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 <li class="chapter" data-level="5.9" data-path="datadownload.html"><a href="datadownload.html#data-github-repositories"><i class="fa fa-check"></i><b>5.9</b> Data: GitHub repositories</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a><ul>
+<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="create.html"><a href="create.html#create-data-from-files"><i class="fa fa-check"></i><b>6.1</b> Create data from files</a></li>
 <li class="chapter" data-level="6.2" data-path="create.html"><a href="create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>6.2</b> Scrape data from tables</a></li>
 <li class="chapter" data-level="6.3" data-path="create.html"><a href="create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>6.3</b> Scrape political speeches</a></li>
-<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a><ul>
+<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="create.html"><a href="create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>6.4.1</b> Data on Twitter user</a></li>
 <li class="chapter" data-level="6.4.2" data-path="create.html"><a href="create.html#data-on-trends"><i class="fa fa-check"></i><b>6.4.2</b> Data on trends</a></li>
 <li class="chapter" data-level="6.4.3" data-path="create.html"><a href="create.html#data-on-tweets"><i class="fa fa-check"></i><b>6.4.3</b> Data on tweets</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-google-trends"><i class="fa fa-check"></i><b>6.5</b> Get data from Google Trends</a></li>
-<li class="chapter" data-level="6.6" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.6</b> Get data from Wikipedia</a></li>
+<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.5</b> Get data from Wikipedia</a></li>
 </ul></li>
 <li class="part"><span><b>II Data visualisation</b></span></li>
-<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="dataviz.html"><a href="dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>7.1</b> The basics of <code>ggplot2</code></a></li>
-<li class="chapter" data-level="7.2" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.2" data-path="dataviz.html"><a href="dataviz.html#data-1"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
 <li class="chapter" data-level="7.3" data-path="dataviz.html"><a href="dataviz.html#aesthetics"><i class="fa fa-check"></i><b>7.3</b> Aesthetics</a></li>
 <li class="chapter" data-level="7.4" data-path="dataviz.html"><a href="dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>7.4</b> Geometric objects</a></li>
 <li class="chapter" data-level="7.5" data-path="dataviz.html"><a href="dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>7.5</b> Theme adjustments</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a><ul>
+<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="presenting-distributions.html"><a href="presenting-distributions.html#bar-plot"><i class="fa fa-check"></i><b>8.1</b> Bar plot</a></li>
 <li class="chapter" data-level="8.2" data-path="presenting-distributions.html"><a href="presenting-distributions.html#histograms"><i class="fa fa-check"></i><b>8.2</b> Histograms</a></li>
 <li class="chapter" data-level="8.3" data-path="presenting-distributions.html"><a href="presenting-distributions.html#density-plots"><i class="fa fa-check"></i><b>8.3</b> Density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a><ul>
+<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="presenting-relationships.html"><a href="presenting-relationships.html#box-plot"><i class="fa fa-check"></i><b>9.1</b> Box plot</a></li>
 <li class="chapter" data-level="9.2" data-path="presenting-relationships.html"><a href="presenting-relationships.html#scatter-plots"><i class="fa fa-check"></i><b>9.2</b> Scatter plots</a></li>
 <li class="chapter" data-level="9.3" data-path="presenting-relationships.html"><a href="presenting-relationships.html#line-plots"><i class="fa fa-check"></i><b>9.3</b> Line plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="manipulating-plots.html"><a href="manipulating-plots.html#themes"><i class="fa fa-check"></i><b>10.1</b> Themes</a></li>
 <li class="chapter" data-level="10.2" data-path="manipulating-plots.html"><a href="manipulating-plots.html#colours"><i class="fa fa-check"></i><b>10.2</b> Colours</a></li>
 <li class="chapter" data-level="10.3" data-path="manipulating-plots.html"><a href="manipulating-plots.html#labels"><i class="fa fa-check"></i><b>10.3</b> Labels</a></li>
@@ -187,26 +231,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.7" data-path="manipulating-plots.html"><a href="manipulating-plots.html#saving-plots"><i class="fa fa-check"></i><b>10.7</b> Saving plots</a></li>
 </ul></li>
 <li class="part"><span><b>III Regression</b></span></li>
-<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a><ul>
+<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="olsreg.html"><a href="olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>11.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="11.2" data-path="olsreg.html"><a href="olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.2</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="11.3" data-path="olsreg.html"><a href="olsreg.html#saving-predictions"><i class="fa fa-check"></i><b>11.3</b> Saving predictions</a></li>
 <li class="chapter" data-level="11.4" data-path="olsreg.html"><a href="olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>11.4</b> Diagnostic tests</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a><ul>
+<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="glm.html"><a href="glm.html#binary-outcomes"><i class="fa fa-check"></i><b>12.1</b> Binary outcomes</a></li>
-<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a><ul>
+<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="glm.html"><a href="glm.html#event-count"><i class="fa fa-check"></i><b>12.2.1</b> Event count</a></li>
 <li class="chapter" data-level="12.2.2" data-path="glm.html"><a href="glm.html#negative-binomial-regression"><i class="fa fa-check"></i><b>12.2.2</b> Negative binomial regression</a></li>
 <li class="chapter" data-level="12.2.3" data-path="glm.html"><a href="glm.html#ordinal-outcomes"><i class="fa fa-check"></i><b>12.2.3</b> Ordinal outcomes</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Presentation</b></span></li>
-<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a><ul>
+<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="writing.html"><a href="writing.html#equations"><i class="fa fa-check"></i><b>13.1</b> Equations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a><ul>
-<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a><ul>
+<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a>
+<ul>
 <li class="chapter" data-level="14.1.1" data-path="tables.html"><a href="tables.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>14.1.1</b> Exporting the regression table</a></li>
 </ul></li>
 </ul></li>
@@ -231,28 +281,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Quantitative Politics with R</h1>
 <p class="author"><em>Erik Gahner Larsen and Zoltán Fazekas</em></p>
-<p class="date"><em>November 29, 2019</em></p>
+<p class="date"><em>April 14, 2021</em></p>
 </div>
-<div id="introduction" class="section level1">
+<div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p><code>R</code> is by far the best software you can use if you want to conduct quantitative analyses. Importantly, data analysis is no longer restricted to analyzing survey data. Now you can relatively easy also collect and analyse social media data, texts, event data, images, geographic data, and so forth. For that and other reasons listed below, <code>R</code> is a great tool to learn.</p>
+<p><code>R</code> is by far the best software you can use if you want to work with political data. Importantly, data analysis is no longer restricted to analyzing survey data or a study of a few countries. Now you can relatively easy also collect and analyse social media data, texts, event data, images, geographic data, and so forth. For that and other reasons listed below, <code>R</code> is a great tool to learn.</p>
 <p>In this book, we aim to provide an easily accessible introduction to <code>R</code> for the collection, study and presentation of different types of political data. Specifically, the book will teach you how to get different types of political data into <code>R</code> and manipulate, analyze and visualize the output. In doing this, we will not only teach you how to get existing data into <code>R</code>, but also how to collect your own data.</p>
-<p>Compared to other statistical packages, such as Excel, SPSS, Stata and SAS, you will experience that <code>R</code> is somewhat different. First in a bad way: if you are used to, say, SPSS, things are not as easy as they used to be. Then in a good way: once you learn how to do stuff in <code>R</code>, you will be ashamed when you look back at the old you doing point-and-click analyses in SPSS.</p>
-<p>In this chapter you will find an introduction to the basics of <code>R</code>. The introduction takes place in three steps. First, we ask the obvious and important question, <em>why</em> <code>R</code>? Second, we help you install what you need. Third, we introduce the logic of doing things in <code>R</code> so you are ready for the chapters to come. Have fun!</p>
-<div id="why-r" class="section level2">
+<p>Compared to other statistical packages, such as Excel, SPSS, Stata and SAS, you will experience that <code>R</code> is somewhat different. First in a bad way: if you are used to, say, SPSS, things are not as easy as they used to be. Then in a good way: once you learn how to do stuff in <code>R</code>, you will be ashamed when you look back at the old you doing point-and-click in SPSS.</p>
+<p>In this chapter, you will find an introduction to the basics of <code>R</code>. The introduction takes place in three steps. First, we ask the obvious and important question, <em>why</em> <code>R</code>? Second, we help you install what you need. Third, we introduce the logic of doing things in <code>R</code> so you are ready for the chapters to come. Have fun!</p>
+<div id="why-r" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Why <code>R</code>?</h2>
 <p>First, <code>R</code> is an <em>open source</em> statistical programming language. <code>R</code> is free, and while you might not pay for Stata or SPSS because you are a student, you will not have free access forever. This is not the case with <code>R</code>. On the contrary, you will <em>never</em> have to pay for <code>R</code>.</p>
-<p>Second, <code>R</code> provides a series of opportunities you do not have in SPSS and Stata. <code>R</code> has an impressive package ecosystem on CRAN (the <strong>c</strong>omprehensive <strong>R</strong> <strong>a</strong>rchive <strong>n</strong>etwork) with more than 15,000 packages created by other users of <code>R</code>. You can compare <code>R</code> to an iPhone. If you didn’t have the possibility to install apps on the iPhone, its functionality would be limited. In <code>R</code>, just as with an iPhone, you have several apps (in <code>R</code> called packages), you can install and use in order to make life easier.</p>
+<p>Second, <code>R</code> provides a series of opportunities you do not have in SPSS and Stata. <code>R</code> has an impressive package ecosystem on CRAN (the <strong>c</strong>omprehensive <strong>R</strong> <strong>a</strong>rchive <strong>n</strong>etwork) with more than 17,000 packages created by other users of <code>R</code>. You can compare <code>R</code> to an iPhone. If you didn’t have the possibility to install apps on the iPhone, its functionality would be limited. In <code>R</code>, just as with an iPhone, you have several apps (in <code>R</code> called packages), you can install and use in order to make life easier.</p>
 <p>Third, some of the most beautiful figures you will find today when you open the newspaper are created in <code>R</code>. Big media outlets such as The New York Times, <a href="https://bbc.github.io/rcookbook/">BBC</a> and FiveThirtyEight use <code>R</code> to create figures. Specifically, they use the package <code>ggplot2</code>, a very popular package used to create figures. We will work with this package in multiple chapters in this book.</p>
-<p>Fourth, there is a great community of <code>R</code> users that are able to help you when you encounter a problem (which you undoubtly will). <code>R</code> is a popular software and in great demand meaning that you will not be the first (nor the last) to experience specific issues in <code>R</code>. Accordingly, you will find a lot of help on Google and other places to a much greater extent than for other types of software. In sum, the <em>open source</em> community surrounding <code>R</code> is amazing. In addition, you will find that a lot of textbooks introduce <code>R</code>, such as <span class="citation">A. Field, Miles, &amp; Field (2012)</span>, <span class="citation">Monogan III (2015)</span> and <span class="citation">H. Wickham (2014)</span>.</p>
+<p>Fourth, there is a great community of <code>R</code> users that are able to help you when you encounter a problem (which you undoubtly will). <code>R</code> is a popular software and in great demand meaning that you will not be the first (nor the last) to experience specific issues in <code>R</code>. Accordingly, you will find a lot of help on Google and other places to a much greater extent than for other types of software. In sum, the <em>open source</em> community surrounding <code>R</code> is amazing. In addition, you will find that a lot of textbooks introduce <code>R</code>, such as <span class="citation">Field, Miles, &amp; Field (2012)</span>, <span class="citation">Monogan III (2015)</span> and <span class="citation">H. Wickham (2014)</span>.</p>
 <p>Fifth, while you can’t do as much point-and-click as in SPSS and Stata (i.e. use menus to find what you want to do), the approach we follow in <code>R</code> facilitates that you can better reproduce your work. In other words, it is easy to document what you are doing in <code>R</code> with commands in a script (more about this later). So, while you do not see a pedagogical graphical user interface in <code>R</code> with a limited set of buttons to click, this is more of an long-term advantage than a limitation. Again, at first sight, this might seem confusing and frustrating, but we promise that, once you get used to it, you are a better scientist.</p>
 </div>
-<div id="installing-r" class="section level2">
+<div id="installing-r" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Installing <code>R</code></h2>
 <p>We will install two programmes. First <code>R</code> and then RStudio. You can compare <code>R</code> to the engine in a car. We call this the <code>R</code> language. You can compare RStudio to the beautiful car in which you have the engine. We call this the graphical user interface. You will have to install <code>R</code> but RStudio is optional. However, we heavily recommend (and assume) that you do install RStudio.</p>
 <p>To install <code>R</code>, follow this procedure:</p>
 <ol style="list-style-type: decimal">
-<li>Go to <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a>.</li>
+<li>Go to <a href="https://cloud.r-project.org">https://cloud.r-project.org</a>.</li>
 <li>Click <em>Download R for Windows</em> if you use Windows or <em>Download R for (Mac) OS X</em> if you use Mac.</li>
 </ol>
 <p>If you use Windows:</p>
@@ -269,11 +319,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>If you encounter problems with the installation guide, make sure that you did download the correct file <em>and</em> that your computer meets the requirements. If you did this and still encounter problems, you should get an error message you can type into Google and find relevant information on what to do next.</p>
 <p>You should now have the <code>R</code> language installed on your computer. However, you do not need to open <code>R</code> or anything yet (again, you do need to have it installed!). The only thing we will open is RStudio, which we will install next.</p>
 </div>
-<div id="installing-rstudio" class="section level2">
+<div id="installing-rstudio" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Installing RStudio</h2>
 <p>RStudio is an integrated development environment (IDE) and makes it much easier to work in <code>R</code> compared to the standard (“base”) R. This is also available for free. Without <code>R</code> installed, RStudio will not work. Here, we want to install RStudio Desktop with an Open Source License. To install RStudio, follow these steps:</p>
 <ol style="list-style-type: decimal">
-<li>Go to: <a href="https://www.rstudio.com/products/rstudio/download/#download" class="uri">https://www.rstudio.com/products/rstudio/download/#download</a>.</li>
+<li>Go to: <a href="https://www.rstudio.com/products/rstudio/download/#download">https://www.rstudio.com/products/rstudio/download/#download</a>.</li>
 <li>Click on the installer file for your platform, e.g. Windows or Mac OS X.</li>
 <li>Follow the installation guide.</li>
 </ol>
@@ -295,28 +345,28 @@ Figure 1.2: Graphical interface in RStudio, explained
 <p>As you can see, the background is dark in the RStudio environment in Figure <a href="index.html#fig:interfaceexplain">1.2</a>. The first time you open RStudio, the background will be white. If you want to change the colours of your RStudio environment, go to <code>Tools</code> <span class="math inline">\(\rightarrow\)</span> <code>Global Options...</code> <span class="math inline">\(\rightarrow\)</span> <code>Appearance</code>.</p>
 <p>In addition, RStudio gives you autocompletion of objects, functions and packages, a series of shortcuts, real-time code checking and error detection as well as a great set of tools for project management.</p>
 <p>Importantly, everything you do in <code>R</code> can be written as commands. This ensures that you will always be able to document your work (in the <code>script</code> window). In the console, you can see a prompt (<code>&gt;</code>). Here, you can write what what you want <code>R</code> to do. Try to write <code>2+2</code> and hit <code>Enter</code>. This should look like the following:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>The code you have entered in the console cannot be traced later. Accordingly, you will have to save the commands you want to keep in the script. Even better, you should write your commands in the script and “run” them from there. If you write <code>2+2</code> in the script, you can mark the code and press <code>CTRL+R</code> (Windows) or <code>CMD+ENTER</code> (Mac). Then it will run the part of the script you have marked. Insert the code below in your script, mark it, run it and see how the output shows up in the console:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">50</span><span class="op">*</span><span class="dv">149</span>
-
-<span class="dv">3</span><span class="op">**</span><span class="dv">2</span>        <span class="co"># 3^2</span>
-
-<span class="dv">2</span><span class="op">**</span><span class="dv">3</span>        <span class="co"># 2^3</span>
-
-<span class="kw">sqrt</span>(<span class="dv">81</span>)    <span class="co"># 81^0.5</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">50</span><span class="sc">*</span><span class="dv">149</span></span>
+<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="index.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">**</span><span class="dv">2</span>        <span class="co"># 3^2</span></span>
+<span id="cb3-4"><a href="index.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="index.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">**</span><span class="dv">3</span>        <span class="co"># 2^3</span></span>
+<span id="cb3-6"><a href="index.html#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="index.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">81</span>)    <span class="co"># 81^0.5</span></span></code></pre></div>
 <p>You can mark the part of the script you want to run. In other words, you can run parts of your script or all of it. As you can see, we have used <code>#</code> as well. The <code>#</code> sign tells <code>R</code> that everything after that sign on that line shouldn’t be read as code but as a comment. In other words, you can write comments in your script that will help you remember what you are doing - and help others understand the meaning of your script. For now, remember to document everything you do in your script. Do also remember to add space between your lines of code. This will make it easier for you to read as your script gets longer.</p>
 <p>Notice also that we use a function in the bottom, namely <code>sqrt()</code>. A lot of what we will be doing in <code>R</code> works via functions. For example, to calculate a mean later we will use the <code>mean()</code> function. In the next section we will use functions to install and load packages.</p>
 </div>
-<div id="installing-r-packages" class="section level2">
+<div id="installing-r-packages" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Installing <code>R</code> packages</h2>
 <p>We mentioned that one of the key advantages of using <code>R</code> is the package system. In <code>R</code>, a package is a collection of data and functions that makes it easier for you to do what you want. Again, while <code>R</code> is similar to an iPhone, all the packages are comparable to apps. The sky is the limit and the thing you need to learn now is how to install and load packages.</p>
-<p>To install packages, you will have to use a function called <code>install.packages()</code>. We will install a package that installs a lot of the functions we will be using to manipulate and visualise data throughout this book. More specifically, we will work within the tidyverse <span class="citation">(Hadley Wickham, 2017, <span class="citation">Hadley Wickham et al. (2019)</span>)</span>. You can read more about tidyverse at <a href="http://tidyverse.org/">tidyverse.org</a>. To intall this package type:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>To install packages, you will have to use a function called <code>install.packages()</code>. We will install a package that installs a lot of the functions we will be using to manipulate and visualise data throughout this book. More specifically, we will work within the tidyverse <span class="citation">Hadley Wickham et al. (2019)</span>. You can read more about tidyverse at <a href="http://tidyverse.org/">tidyverse.org</a>. To intall this package type:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>You only need to install the package once. In other words, when you have used <code>install.packages()</code> to install a packagae, you will not need to install that specific package again. Note that we put <code>tidyverse</code> in quotation marks. This is important when you install a package. If you forget this, you will get an error. Make sure that you type it exactly as noted above. If you forget a letter (e.g. install.package instead of install.packages), it will not work. Similarly, <code>R</code> is case sensitive so you cannot use <code>Install.Packages()</code>.</p>
 <p>While you only need to install a package once, you need to load the package every time you open <code>R</code>. This is a good thing as you don’t want to have all your installed <code>R</code> packages working at the same time if you don’t need them. To compare this to the iPhone again, you do not want to have all the apps on your phone open at the same time even if they are just running in the background. For this reason, most scripts (i.e. your window where you have all your code) begin with loading the packages that you need. To load a package, we use the function <code>library()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
-<p>To recap, it is always a good idea to begin your script with the package(s) you will be working with. If we want to have a script where we load the <code>tidyverse</code> package and have some of the commands we ran above, the script could look like the script presented in Figure <a href="index.html#fig:interfacescript">1.3</a>. In other words, do not include the <code>library(&quot;&quot;)</code> line in the middle of your script, but have them all at the same time in the beginning of your script.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<p>To recap, it is always a good idea to begin your script with the package(s) you will be working with. If we want to have a script where we load the <code>tidyverse</code> package and have some of the commands we ran above, the script could look like the script presented in Figure <a href="index.html#fig:interfacescript">1.3</a>. In other words, do not include the <code>library("")</code> line in the middle of your script, but have them all at the same time in the beginning of your script.</p>
 <div class="figure"><span id="fig:interfacescript"></span>
 <img src="fig/rstudio_script.png" alt="A script in RStudio" width="100%" />
 <p class="caption">
@@ -324,21 +374,21 @@ Figure 1.3: A script in RStudio
 </p>
 </div>
 <p>A last important point is that the order of which you load packages in matter. For example, if two packages both have a function called <code>select()</code>, the package loaded last will react to <code>select()</code>. We therefore recommend that you consider the order in which you load packages in your script. In addition, you can also be specific about what package you want to use a function from by using <code>::</code>. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use select() from the dplyr package</span>
-dplyr<span class="op">::</span><span class="kw">select</span>()
-
-<span class="co"># Use select() from the psych package</span>
-psych<span class="op">::</span><span class="kw">select</span>()
-
-<span class="co"># Use select() from the MASS package</span>
-MASS<span class="op">::</span><span class="kw">select</span>()</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use select() from the dplyr package</span></span>
+<span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>()</span>
+<span id="cb6-3"><a href="index.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="index.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use select() from the psych package</span></span>
+<span id="cb6-5"><a href="index.html#cb6-5" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">select</span>()</span>
+<span id="cb6-6"><a href="index.html#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="index.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use select() from the MASS package</span></span>
+<span id="cb6-8"><a href="index.html#cb6-8" aria-hidden="true" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">select</span>()</span></code></pre></div>
 <p>If you want to save your script, you can select <code>File</code> <span class="math inline">\(\rightarrow\)</span> <code>Save</code>, where you can pick a destination for your script. It is good to save your script so you can get back to it a later stage.</p>
 </div>
-<div id="problems-and-help" class="section level2">
+<div id="problems-and-help" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Problems and help</h2>
 <p>As noted above, you will encounter problems and issues when you work in <code>R</code>. Sadly, there are many potential reasons to why your script might not be working. Your version of <code>R</code> or/and RStudio might be too old or too new, you might be using a function that has a mistake, you might be having a small typo somewhere in your script, you might not have the data in the right format etc.</p>
 <p>Consequently, we cannot provide a comprehensive list of errors you might get. The best thing to do is to learn how to find help online. Here, the best advice is to use Google and, when you search for help, always remember to mention R in your search string, and, if you are having problems with a specific package, also the name of the package. For example, if you have a problem with creating a bar chart with the <code>ggplot2</code> package, a search string in Google could be <code>ggplot2 bar chart</code> and not just <code>R bar chart</code>.</p>
-<p>Last, you might have specific suggestions and ideas for how we can improve this book. In that case, you can send a mail to <a href="mailto:hi@qpolr.com">hi@qpolr.com</a>, tweet us at <a href="https://twitter.com/qpolr">qpolr</a> or make an issue at <a href="https://github.com/erikgahner/qpolr">GitHub</a>. You will also find that all the source material for this book is publicly available at the GitHub link.</p>
+<p>Last, you might have specific suggestions and ideas for how we can improve this book. In that case, you can send a mail to <a href="mailto:hi@qpolr.com" class="email">hi@qpolr.com</a>, tweet us at <a href="https://twitter.com/qpolr">qpolr</a> or make an issue at <a href="https://github.com/erikgahner/qpolr">GitHub</a>. You will also find that all the source material for this book is publicly available at the GitHub link.</p>
 
 </div>
 </div>
@@ -403,7 +453,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

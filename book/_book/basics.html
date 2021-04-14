@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Basics | Quantitative Politics with R</title>
   <meta name="description" content="Chapter 2 Basics | Quantitative Politics with R" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Basics | Quantitative Politics with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas" />
 
 
-<meta name="date" content="2019-11-29" />
+<meta name="date" content="2021-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="data.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,41 +54,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -102,24 +129,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <code>R</code>?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing <code>R</code></a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages"><i class="fa fa-check"></i><b>1.4</b> Installing <code>R</code> packages</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#problems-and-help"><i class="fa fa-check"></i><b>1.5</b> Problems and help</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a><ul>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#numbers-as-data"><i class="fa fa-check"></i><b>2.1</b> Numbers as data</a></li>
 <li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#missing-values-na"><i class="fa fa-check"></i><b>2.2</b> Missing values (<code>NA</code>)</a></li>
 <li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#logical-operators"><i class="fa fa-check"></i><b>2.3</b> Logical operators</a></li>
 <li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#text-as-data"><i class="fa fa-check"></i><b>2.4</b> Text as data</a></li>
-<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.5</b> Data frames</a></li>
-<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
-<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#repetition-and-sequence"><i class="fa fa-check"></i><b>2.5</b> Repetition and sequence</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data frames</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.7</b> Import and export data frames</a></li>
+<li class="chapter" data-level="2.8" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.8</b> Environment</a></li>
 </ul></li>
 <li class="part"><span><b>I Working with data</b></span></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
 <li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
@@ -129,14 +160,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.7" data-path="data.html"><a href="data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
 <li class="chapter" data-level="3.8" data-path="data.html"><a href="data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
 <li class="chapter" data-level="3.9" data-path="data.html"><a href="data.html#recoding-variables-case_when"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>case_when()</code></a></li>
-<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.10</b> Getting a variable from a data frame: <code>pull()</code></a></li>
+<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#choosing-rows-by-position-slice"><i class="fa fa-check"></i><b>3.10</b> Choosing rows by position: <code>slice()</code></a></li>
+<li class="chapter" data-level="3.11" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.11</b> Getting a variable from a data frame: <code>pull()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a><ul>
-<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a></li>
+<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="text.html"><a href="text.html#regular-expression-regex"><i class="fa fa-check"></i><b>4.1.1</b> Regular expression (regex)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="text.html"><a href="text.html#changing-the-case-of-strings"><i class="fa fa-check"></i><b>4.1.2</b> Changing the case of strings</a></li>
+<li class="chapter" data-level="4.1.3" data-path="text.html"><a href="text.html#subset-and-mutate-strings"><i class="fa fa-check"></i><b>4.1.3</b> Subset and mutate strings</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="text.html"><a href="text.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
 <li class="chapter" data-level="4.3" data-path="text.html"><a href="text.html#dates-and-time"><i class="fa fa-check"></i><b>4.3</b> Dates and time</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a><ul>
+<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="datadownload.html"><a href="datadownload.html#using-data-from-data-packages"><i class="fa fa-check"></i><b>5.1</b> Using data from data packages</a></li>
 <li class="chapter" data-level="5.2" data-path="datadownload.html"><a href="datadownload.html#download-data-from-webpages"><i class="fa fa-check"></i><b>5.2</b> Download data from webpages</a></li>
 <li class="chapter" data-level="5.3" data-path="datadownload.html"><a href="datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>5.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
@@ -147,37 +186,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.8" data-path="datadownload.html"><a href="datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>5.8</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 <li class="chapter" data-level="5.9" data-path="datadownload.html"><a href="datadownload.html#data-github-repositories"><i class="fa fa-check"></i><b>5.9</b> Data: GitHub repositories</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a><ul>
+<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="create.html"><a href="create.html#create-data-from-files"><i class="fa fa-check"></i><b>6.1</b> Create data from files</a></li>
 <li class="chapter" data-level="6.2" data-path="create.html"><a href="create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>6.2</b> Scrape data from tables</a></li>
 <li class="chapter" data-level="6.3" data-path="create.html"><a href="create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>6.3</b> Scrape political speeches</a></li>
-<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a><ul>
+<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="create.html"><a href="create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>6.4.1</b> Data on Twitter user</a></li>
 <li class="chapter" data-level="6.4.2" data-path="create.html"><a href="create.html#data-on-trends"><i class="fa fa-check"></i><b>6.4.2</b> Data on trends</a></li>
 <li class="chapter" data-level="6.4.3" data-path="create.html"><a href="create.html#data-on-tweets"><i class="fa fa-check"></i><b>6.4.3</b> Data on tweets</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-google-trends"><i class="fa fa-check"></i><b>6.5</b> Get data from Google Trends</a></li>
-<li class="chapter" data-level="6.6" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.6</b> Get data from Wikipedia</a></li>
+<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.5</b> Get data from Wikipedia</a></li>
 </ul></li>
 <li class="part"><span><b>II Data visualisation</b></span></li>
-<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="dataviz.html"><a href="dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>7.1</b> The basics of <code>ggplot2</code></a></li>
-<li class="chapter" data-level="7.2" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.2" data-path="dataviz.html"><a href="dataviz.html#data-1"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
 <li class="chapter" data-level="7.3" data-path="dataviz.html"><a href="dataviz.html#aesthetics"><i class="fa fa-check"></i><b>7.3</b> Aesthetics</a></li>
 <li class="chapter" data-level="7.4" data-path="dataviz.html"><a href="dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>7.4</b> Geometric objects</a></li>
 <li class="chapter" data-level="7.5" data-path="dataviz.html"><a href="dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>7.5</b> Theme adjustments</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a><ul>
+<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="presenting-distributions.html"><a href="presenting-distributions.html#bar-plot"><i class="fa fa-check"></i><b>8.1</b> Bar plot</a></li>
 <li class="chapter" data-level="8.2" data-path="presenting-distributions.html"><a href="presenting-distributions.html#histograms"><i class="fa fa-check"></i><b>8.2</b> Histograms</a></li>
 <li class="chapter" data-level="8.3" data-path="presenting-distributions.html"><a href="presenting-distributions.html#density-plots"><i class="fa fa-check"></i><b>8.3</b> Density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a><ul>
+<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="presenting-relationships.html"><a href="presenting-relationships.html#box-plot"><i class="fa fa-check"></i><b>9.1</b> Box plot</a></li>
 <li class="chapter" data-level="9.2" data-path="presenting-relationships.html"><a href="presenting-relationships.html#scatter-plots"><i class="fa fa-check"></i><b>9.2</b> Scatter plots</a></li>
 <li class="chapter" data-level="9.3" data-path="presenting-relationships.html"><a href="presenting-relationships.html#line-plots"><i class="fa fa-check"></i><b>9.3</b> Line plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="manipulating-plots.html"><a href="manipulating-plots.html#themes"><i class="fa fa-check"></i><b>10.1</b> Themes</a></li>
 <li class="chapter" data-level="10.2" data-path="manipulating-plots.html"><a href="manipulating-plots.html#colours"><i class="fa fa-check"></i><b>10.2</b> Colours</a></li>
 <li class="chapter" data-level="10.3" data-path="manipulating-plots.html"><a href="manipulating-plots.html#labels"><i class="fa fa-check"></i><b>10.3</b> Labels</a></li>
@@ -187,26 +231,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.7" data-path="manipulating-plots.html"><a href="manipulating-plots.html#saving-plots"><i class="fa fa-check"></i><b>10.7</b> Saving plots</a></li>
 </ul></li>
 <li class="part"><span><b>III Regression</b></span></li>
-<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a><ul>
+<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="olsreg.html"><a href="olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>11.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="11.2" data-path="olsreg.html"><a href="olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.2</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="11.3" data-path="olsreg.html"><a href="olsreg.html#saving-predictions"><i class="fa fa-check"></i><b>11.3</b> Saving predictions</a></li>
 <li class="chapter" data-level="11.4" data-path="olsreg.html"><a href="olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>11.4</b> Diagnostic tests</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a><ul>
+<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="glm.html"><a href="glm.html#binary-outcomes"><i class="fa fa-check"></i><b>12.1</b> Binary outcomes</a></li>
-<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a><ul>
+<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="glm.html"><a href="glm.html#event-count"><i class="fa fa-check"></i><b>12.2.1</b> Event count</a></li>
 <li class="chapter" data-level="12.2.2" data-path="glm.html"><a href="glm.html#negative-binomial-regression"><i class="fa fa-check"></i><b>12.2.2</b> Negative binomial regression</a></li>
 <li class="chapter" data-level="12.2.3" data-path="glm.html"><a href="glm.html#ordinal-outcomes"><i class="fa fa-check"></i><b>12.2.3</b> Ordinal outcomes</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Presentation</b></span></li>
-<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a><ul>
+<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="writing.html"><a href="writing.html#equations"><i class="fa fa-check"></i><b>13.1</b> Equations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a><ul>
-<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a><ul>
+<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a>
+<ul>
 <li class="chapter" data-level="14.1.1" data-path="tables.html"><a href="tables.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>14.1.1</b> Exporting the regression table</a></li>
 </ul></li>
 </ul></li>
@@ -228,184 +278,208 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basics" class="section level1">
+<div id="basics" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Basics</h1>
 <p>Remember that everything you do in <code>R</code> can be written as commands. Repeat what you did in the last chapter from your script window: write <code>2+2</code> and run the code (mark the code and press <code>CTRL+R</code> on Windows or <code>CMD+ENTER</code> on Mac). This should look like the output below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="basics.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>You are now able to conduct simple arithmetics. This shows that <code>R</code> can be used as a calculatur and you can now call yourself an <code>R</code> user (go put that on your CV before you continue). In other words, knowing how to use <code>R</code> is not a binary category where you either can use <code>R</code> or not, but a continuum where you will always be able to learn more. That’s great news! However, that also means that you will always be able to learn more.</p>
-<div id="numbers-as-data" class="section level2">
+<div id="numbers-as-data" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Numbers as data</h2>
 <p>Next, we will have to learn about variable assignments and in particular how we can work with <em>objects</em>. Everything you will use in <code>R</code> is saved in objects. This can be everything from a number or a word to complex datasets. A key advantage of this, compared to other statistical programmes, is that you can have multiple datasets open at the same time. If you, for example, want to connect two different surveys, you can have them both loaded in the memory at the same time and work with them. This is not possible in SPSS or Stata.</p>
 <p>To save something in an object (e.g. a variable), we need to use the <em>assignment operator</em>, <code>&lt;-</code>, which basically tells <code>R</code> that anything on the right side of the operator should be assigned to the object on the left side. Let us try to save the number 2 in the object <code>x</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="basics.html#cb9-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span></code></pre></div>
 <p>Now <code>x</code> will return the number 2 whenever we write <code>x</code>. Let us try to use our object in different simple operations. Write the operations below in your <code>R</code>-script and run them individually and see what happens.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
-
-x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>   <span class="co"># x times 2</span>
-
-x <span class="op">*</span><span class="st"> </span>x   <span class="co"># x times x</span>
-
-x <span class="op">+</span><span class="st"> </span>x   <span class="co"># x plus x</span></code></pre></div>
-<p>If it is working, <code>R</code> should return the values <code>2</code>, <code>4</code>, <code>4</code> and <code>4</code>. If you change the object <code>x</code> to have the number 3 instead of 2 (<code>x &lt;- 3</code>) and run the script again, you should get different results.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> This is great as you only need to change a single number to change the output from the whole procedure. Accordingly, when you are working with scripts, try to save as much you can in objects, so you only need to change information once, if you want to make changes. This will reduce the likelihood of making mistakes.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="basics.html#cb10-1" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb10-2"><a href="basics.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="basics.html#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">2</span>   <span class="co"># x times 2</span></span>
+<span id="cb10-4"><a href="basics.html#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="basics.html#cb10-5" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> x   <span class="co"># x times x</span></span>
+<span id="cb10-6"><a href="basics.html#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="basics.html#cb10-7" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> x   <span class="co"># x plus x</span></span></code></pre></div>
+<p>If it is working, <code>R</code> should return the values <code>2</code>, <code>4</code>, <code>4</code> and <code>4</code>. If you change the object <code>x</code> to have the number 3 instead of 2 (<code>x &lt;- 3</code>) and run the script again, you should get different results.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> This is great as you only need to change a single number to change the output from the whole procedure. Accordingly, when you are working with scripts, try to save as much you can in objects, so you only need to change information once, if you want to make changes. This will reduce the likelihood of making mistakes.</p>
 <p>We can also use our object to create other objects. In the example below, we will create a new object <code>y</code>. This object returns the sum of <code>x</code> and 7.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">7</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="basics.html#cb11-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">7</span></span></code></pre></div>
 <p>One thing to keep in mind is that we do not get the output in <code>y</code> right away. To get the output, we can type <code>y</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="basics.html#cb12-1" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
 <p>Alternatively, when we create the object, we can include it all in a parenthesis as we do below. This tells <code>R</code> that we do not only want to save some information in the object <code>y</code>, but that we also want to see what is saved in <code>y</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">7</span>)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="basics.html#cb14-1" aria-hidden="true" tabindex="-1"></a>(y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">7</span>)</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
 <p>Luckily, we are not limited to save only one number in an object. On the contrary, in most objects we will be working with, we will have multiple numbers. The code below will return a row of numbers from 1 to 10.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="basics.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p>We can save this row of numbers in an object (again using <code>&lt;-</code>), but we can also work with them directly, e.g. by taking every number in the row and add 2 to all of them.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basics.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>##  [1]  3  4  5  6  7  8  9 10 11 12</code></pre>
-<p>When you will be working with more numbers, you have to tell <code>R</code> that you are working with multiple numbers. To do this, we use the function <code>c()</code>. This tells <code>R</code> that we are working with a vector.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> The function <code>c()</code> is short for <em>concatenate</em> or <em>combine</em>. Remember that everything happening in <code>R</code> happens with functions. A vector can look like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</code></pre></div>
+<p>When you will be working with more numbers, you have to tell <code>R</code> that you are working with multiple numbers. To do this, we use the function <code>c()</code>. This tells <code>R</code> that we are working with a vector.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> The function <code>c()</code> is short for <em>concatenate</em> or <em>combine</em>. Remember that everything happening in <code>R</code> happens with functions. A vector can look like this:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 2 2 2</code></pre>
-<p>This is a <em>numerical</em> vector. A vector is a collection of values of the same type.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> We can save any vector in an object. In the code below we save four numbers (14, 6, 23, 2) in the object <code>x</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># save 14, 6, 23 and 2 in the object x</span>
-x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">23</span>, <span class="dv">2</span>)
-
-<span class="co"># show the output of x</span>
-x</code></pre></div>
+<p>This is a <em>numerical</em> vector. A vector is a collection of values of the same type.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> We can save any vector in an object. In the code below we save four numbers (14, 6, 23, 2) in the object <code>x</code>.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="basics.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save 14, 6, 23 and 2 in the object x</span></span>
+<span id="cb22-2"><a href="basics.html#cb22-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">23</span>, <span class="dv">2</span>)</span>
+<span id="cb22-3"><a href="basics.html#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="basics.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># show the output of x</span></span>
+<span id="cb22-5"><a href="basics.html#cb22-5" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 14  6 23  2</code></pre>
 <p>We can then use this vector to calculate new numbers (just as we did above with <code>1:10</code>), for example by multiplying all the numbers in the vector with 2.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate x times 2</span>
-x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="basics.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate x times 2</span></span>
+<span id="cb24-2"><a href="basics.html#cb24-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 28 12 46  4</code></pre>
-<p>If we are only interested in a single value from the vector, we can get this value by using brackets, i.e. <code>[ ]</code>, which you place just after the object (no space between the name of the object and the brackets!). By placing the number 3 in the brackets we get the third number in the object.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">3</span>]</code></pre></div>
+<p>If we are only interested in a single value from the vector, we can get this value by using brackets, i.e. <code>[ ]</code>, which you place just after the object (no space between the name of the object and the brackets!). By placing the number 3 in the brackets we get the third number in the object.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="basics.html#cb26-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 23</code></pre>
 <p>As you can see, we get the third element, 23. We can use the same procedure to get all values with the exception of one value by including a negative sign in the brackets. In the example below we will get all values except for 2. Also, note that since we are not assigning anything to an object (with <code>&lt;-</code>), we are not making any changes to <code>x</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="op">-</span><span class="dv">2</span>]</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="basics.html#cb28-1" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">-</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 14 23  2</code></pre>
 <p>Now we can try to use a series of functions on our object. The functions below will return different types of information such as the median, the mean, the standard deviation etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(x)     <span class="co"># length of vector, number of values</span>
-
-<span class="kw">min</span>(x)        <span class="co"># minima value</span>
-
-<span class="kw">max</span>(x)        <span class="co"># maxima value</span>
-
-<span class="kw">median</span>(x)     <span class="co"># the median</span>
-
-<span class="kw">sum</span>(x)        <span class="co"># the sum</span>
-
-<span class="kw">mean</span>(x)       <span class="co"># the mean</span>
-
-<span class="kw">var</span>(x)        <span class="co"># the variance</span>
-
-<span class="kw">sd</span>(x)         <span class="co"># the standard deviation</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="basics.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)     <span class="co"># length of vector, number of values</span></span>
+<span id="cb30-2"><a href="basics.html#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="basics.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(x)        <span class="co"># minima value</span></span>
+<span id="cb30-4"><a href="basics.html#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="basics.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(x)        <span class="co"># maxima value</span></span>
+<span id="cb30-6"><a href="basics.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="basics.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(x)     <span class="co"># the median</span></span>
+<span id="cb30-8"><a href="basics.html#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="basics.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)        <span class="co"># the sum</span></span>
+<span id="cb30-10"><a href="basics.html#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="basics.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)       <span class="co"># the mean</span></span>
+<span id="cb30-12"><a href="basics.html#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="basics.html#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)        <span class="co"># the variance</span></span>
+<span id="cb30-14"><a href="basics.html#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="basics.html#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)         <span class="co"># the standard deviation</span></span></code></pre></div>
 <p>The functions should return the values 4, 2, 23, 10, 45, 11.25, 86.25 and 9.287088.</p>
 <p>If we for some reason wants to add an extra number to our vector <code>x</code>, we can either create a new vector with all the numbers or just overwrite the existing vector with the addition of an extra number:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="dv">5</span>)
-
-x</code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basics.html#cb31-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">5</span>)</span>
+<span id="cb31-2"><a href="basics.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="basics.html#cb31-3" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 14  6 23  2  5</code></pre>
 <p>We now have five values in our vector instead of four. The value 5 has the last place in the vector but if we had added 5 before <code>x</code> in the code above, 5 would have been in the beginning of the vector.</p>
 <p>Try to use the <code>mean()</code> function on the new object <code>x</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(x)</code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basics.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>Now the mean is 10 (before we added the value 5 to the object the mean was 11.25).</p>
 </div>
-<div id="missing-values-na" class="section level2">
+<div id="missing-values-na" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Missing values (<code>NA</code>)</h2>
 <p>Up until now we have been lucky that all of our “data” has been easy to work with. However, in the real world - and thereby for most of the data we will work with - we will encounter missing values. In Stata you will see that missing values get a dot (‘.’). In <code>R</code>, all missing values are denoted <code>NA</code>. Let us try to add a missing value to our object <code>x</code> and take the mean.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="ot">NA</span>)
-
-<span class="kw">mean</span>(x) </code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="basics.html#cb35-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="cn">NA</span>)</span>
+<span id="cb35-2"><a href="basics.html#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="basics.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x) </span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>We do not get a mean now but just <code>NA</code>. The reason for this is that <code>R</code> is unable to calculate the mean of a vector with a missing value included. In order for <code>R</code> to calculate the mean now, we need to specify that it should remove the missing values before calculating the mean. To do this, we add <code>na.rm=TRUE</code> as an <em>option</em> to the function. Most functions have a series of options (more on this later), and the default option for the <code>mean()</code> function is not to ignore the missing values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basics.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<p>Now we get the same mean as before we added <code>NA</code> to the object.</p>
+<p>Now we get the same mean as before we added <code>NA</code> to the object. As we will see later, there are different types of <code>NA</code>’s, specifically <code>NA_real_</code> (a double vector), <code>NA_integer_</code> and <code>NA_character_</code>. However, as NA will always be coerced to the “correct” type when used inside <code>c()</code>, it is sufficient to know about <code>NA</code> for now.</p>
 </div>
-<div id="logical-operators" class="section level2">
+<div id="logical-operators" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Logical operators</h2>
 <p>In <code>R</code> a lot of what we will be doing is using logical operators, e.g. testing whether something is equal or similar to something else. This is in particular relevant when we have to recode objects and only use specific values. If something is true, we get the value <code>TRUE</code>, and if something is false, we get <code>FALSE</code>. Try to run the code below and see what information you get (and whether it makes sense).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span>
-
-x <span class="op">==</span><span class="st"> </span><span class="dv">2</span>        <span class="co"># equal to</span>
-
-x <span class="op">==</span><span class="st"> </span><span class="dv">3</span>        
-
-x <span class="op">!=</span><span class="st"> </span><span class="dv">2</span>        <span class="co"># not equal to</span>
-
-x <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>         <span class="co"># less than</span>
-
-x <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>         <span class="co"># greater than</span>
-
-x <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>        <span class="co"># less than or equal to</span>
-
-x <span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.01</span>     <span class="co"># greater than or equal to</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="basics.html#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb39-2"><a href="basics.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="basics.html#cb39-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="dv">2</span>        <span class="co"># equal to</span></span>
+<span id="cb39-4"><a href="basics.html#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="basics.html#cb39-5" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="dv">3</span>        </span>
+<span id="cb39-6"><a href="basics.html#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="basics.html#cb39-7" aria-hidden="true" tabindex="-1"></a>x <span class="sc">!=</span> <span class="dv">2</span>        <span class="co"># not equal to</span></span>
+<span id="cb39-8"><a href="basics.html#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="basics.html#cb39-9" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&lt;</span> <span class="dv">1</span>         <span class="co"># less than</span></span>
+<span id="cb39-10"><a href="basics.html#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="basics.html#cb39-11" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">1</span>         <span class="co"># greater than</span></span>
+<span id="cb39-12"><a href="basics.html#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="basics.html#cb39-13" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&lt;=</span> <span class="dv">2</span>        <span class="co"># less than or equal to</span></span>
+<span id="cb39-14"><a href="basics.html#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="basics.html#cb39-15" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;=</span> <span class="fl">2.01</span>     <span class="co"># greater than or equal to</span></span></code></pre></div>
 <p>The script will return <code>TRUE</code>, <code>FALSE</code>, <code>FALSE</code>, <code>FALSE</code>, <code>TRUE</code>, <code>TRUE</code> and <code>FALSE</code>. If you change <code>x</code> to 3, the script will (logically) return other values.</p>
 </div>
-<div id="text-as-data" class="section level2">
+<div id="text-as-data" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Text as data</h2>
-<p>In addition to numbers we can and will also work with text. The difference between text and numbers in <code>R</code> is that we use quotation marks to indicate that something is text (and not an object).<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> As an example, we will create an object called <code>p</code> with the political parties from the United Kingdom general election in 2017.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>, <span class="st">&quot;Scottish National Party&quot;</span>, 
-       <span class="st">&quot;Liberal Democrats&quot;</span>, <span class="st">&quot;Democratic Unionist Party&quot;</span>, <span class="st">&quot;Sinn Féin&quot;</span>) 
-
-p</code></pre></div>
-<pre><code>## [1] &quot;Conservative Party&quot;        &quot;Labour Party&quot;              &quot;Scottish National Party&quot;   &quot;Liberal Democrats&quot;        
+<p>In addition to numbers we can and will also work with text. The difference between text and numbers in <code>R</code> is that we use quotation marks to indicate that something is text (and not an object).<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> As an example, we will create an object called <code>p</code> with the political parties from the United Kingdom general election in 2017.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basics.html#cb40-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>, <span class="st">&quot;Scottish National Party&quot;</span>, </span>
+<span id="cb40-2"><a href="basics.html#cb40-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;Liberal Democrats&quot;</span>, <span class="st">&quot;Democratic Unionist Party&quot;</span>, <span class="st">&quot;Sinn Féin&quot;</span>) </span>
+<span id="cb40-3"><a href="basics.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="basics.html#cb40-4" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<pre><code>## [1] &quot;Conservative Party&quot;        &quot;Labour Party&quot;             
+## [3] &quot;Scottish National Party&quot;   &quot;Liberal Democrats&quot;        
 ## [5] &quot;Democratic Unionist Party&quot; &quot;Sinn Féin&quot;</code></pre>
-<p>To see what type of data we have in our object, <code>p</code>, we can use the function <code>class()</code>. This function returns information on the type of data we are having in the object. If we use the function on <code>p</code>, we can see that the object consists of characters (i.e. <em>“character”</em>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(p)</code></pre></div>
+<p>To see what type of data we have in our object, <code>p</code>, we can use the function <code>class()</code>. This function returns information on the type of data we are having in the object. If we use the function on <code>p</code>, we can see that the object consists of characters (i.e. <em>“character”</em>).</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="basics.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(p)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<p>To compare, we can do the same thing with our object <code>x</code>, which includes numerical values. Here we see that the function <code>class()</code> for <code>x</code> returns <code>&quot;numeric&quot;</code>. The different classes a vector can have are: <code>character</code> (text), <code>numeric</code> (numbers), <code>integer</code> (whole numbers), <code>factor</code> (categories) and <code>logical</code> (logical).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(x)</code></pre></div>
+<p>To compare, we can do the same thing with our object <code>x</code>, which includes numerical values. Here we see that the function <code>class()</code> for <code>x</code> returns <code>"numeric"</code>. The different classes a vector can have are: <code>character</code> (text), <code>numeric</code> (numbers), <code>integer</code> (whole numbers), <code>factor</code> (categories) and <code>logical</code> (logical).</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="basics.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>To test whether our object is numerical or not, we can use the function <code>is.numeric()</code>. If the object is numeric, we will get a <code>TRUE</code>. If not, we will get a <code>FALSE</code>. This logical structure can be used in a lot of different scenarios (as we will see later). Similar to <code>is.numeric()</code>, we have a function called <code>is.character()</code> that will show us whether the object is a charater or not.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.numeric</span>(x)
-
-<span class="kw">is.character</span>(x)</code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="basics.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(x)</span>
+<span id="cb46-2"><a href="basics.html#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="basics.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(x)</span></code></pre></div>
 <p>Try to use <code>is.numeric()</code> and <code>is.character()</code> on the object <code>p</code>.</p>
 <p>To get the number of characters for each element in our object, we can use the function <code>nchar()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nchar</span>(p)</code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="basics.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(p)</span></code></pre></div>
 <pre><code>## [1] 18 12 23 17 25  9</code></pre>
 <p>We can also convert the characters in different ways. First, we can convert all characters to uppercase with <code>toupper()</code>. Second, we can concert all characters to lowercase with <code>tolower()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">toupper</span>(p)</code></pre></div>
-<pre><code>## [1] &quot;CONSERVATIVE PARTY&quot;        &quot;LABOUR PARTY&quot;              &quot;SCOTTISH NATIONAL PARTY&quot;   &quot;LIBERAL DEMOCRATS&quot;        
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="basics.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(p)</span></code></pre></div>
+<pre><code>## [1] &quot;CONSERVATIVE PARTY&quot;        &quot;LABOUR PARTY&quot;             
+## [3] &quot;SCOTTISH NATIONAL PARTY&quot;   &quot;LIBERAL DEMOCRATS&quot;        
 ## [5] &quot;DEMOCRATIC UNIONIST PARTY&quot; &quot;SINN FÉIN&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tolower</span>(p) </code></pre></div>
-<pre><code>## [1] &quot;conservative party&quot;        &quot;labour party&quot;              &quot;scottish national party&quot;   &quot;liberal democrats&quot;        
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basics.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(p) </span></code></pre></div>
+<pre><code>## [1] &quot;conservative party&quot;        &quot;labour party&quot;             
+## [3] &quot;scottish national party&quot;   &quot;liberal democrats&quot;        
 ## [5] &quot;democratic unionist party&quot; &quot;sinn féin&quot;</code></pre>
 <p>In the same way we could get specific values from the object when it was numeric, we can get specific values when it is a character object as well.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p[<span class="dv">3</span>]</code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basics.html#cb53-1" aria-hidden="true" tabindex="-1"></a>p[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Scottish National Party&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p[<span class="op">-</span><span class="dv">3</span>]</code></pre></div>
-<pre><code>## [1] &quot;Conservative Party&quot;        &quot;Labour Party&quot;              &quot;Liberal Democrats&quot;         &quot;Democratic Unionist Party&quot;
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basics.html#cb55-1" aria-hidden="true" tabindex="-1"></a>p[<span class="sc">-</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Conservative Party&quot;        &quot;Labour Party&quot;             
+## [3] &quot;Liberal Democrats&quot;         &quot;Democratic Unionist Party&quot;
 ## [5] &quot;Sinn Féin&quot;</code></pre>
-<p>While <code>p</code> is a short name for an object and easy to write, it is not telling for what we actually have stored in the object. Let us create a new object called <code>party</code> with the same information as in <code>p</code>. When you name objects remember that they are case sensitive so <code>party</code> will be a different object than <code>Party</code>.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">party &lt;-<span class="st"> </span>p
-
-party</code></pre></div>
-<pre><code>## [1] &quot;Conservative Party&quot;        &quot;Labour Party&quot;              &quot;Scottish National Party&quot;   &quot;Liberal Democrats&quot;        
+<p>While <code>p</code> is a short name for an object and easy to write, it is not telling for what we actually have stored in the object. Let us create a new object called <code>party</code> with the same information as in <code>p</code>. When you name objects remember that they are case sensitive so <code>party</code> will be a different object than <code>Party</code>.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basics.html#cb57-1" aria-hidden="true" tabindex="-1"></a>party <span class="ot">&lt;-</span> p</span>
+<span id="cb57-2"><a href="basics.html#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="basics.html#cb57-3" aria-hidden="true" tabindex="-1"></a>party</span></code></pre></div>
+<pre><code>## [1] &quot;Conservative Party&quot;        &quot;Labour Party&quot;             
+## [3] &quot;Scottish National Party&quot;   &quot;Liberal Democrats&quot;        
 ## [5] &quot;Democratic Unionist Party&quot; &quot;Sinn Féin&quot;</code></pre>
 </div>
-<div id="data-frames" class="section level2">
-<h2><span class="header-section-number">2.5</span> Data frames</h2>
+<div id="repetition-and-sequence" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Repetition and sequence</h2>
+<p>When we need to repeat information or work with information with a pattern, there is most likely an easier way to get this information.</p>
+<p>For example, if we need to get the number 2 five times, instead of using <code>c(2, 2, 2, 2, 2)</code>, we can use the function <code>rep()</code> for repetition. First, we specify the element we would like to repeat and then the times we would like to repeat this element.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basics.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 2 2 2 2 2</code></pre>
+<p>Importantly, this also works with text.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="basics.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="st">&quot;Quantitative Politics with R&quot;</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Quantitative Politics with R&quot; &quot;Quantitative Politics with R&quot;
+## [3] &quot;Quantitative Politics with R&quot; &quot;Quantitative Politics with R&quot;
+## [5] &quot;Quantitative Politics with R&quot;</code></pre>
+<p>If we have a pattern, e.g. a sequence from 0 to 100 with breaks of 25, instead of using <code>c(0, 25, 50, 75, 100)</code>, we can use the <code>seq()</code> function where we first say the first number, the final number and then the increment of the sequence.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basics.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">25</span>)</span></code></pre></div>
+<pre><code>## [1]   0  25  50  75 100</code></pre>
+<p>The functions <code>rep()</code> and <code>seq()</code> can also be combined, e.g. if we would like to have the sequence repeated five times.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basics.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">25</span>), <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##  [1]   0  25  50  75 100   0  25  50  75 100   0  25  50  75 100   0  25  50  75
+## [20] 100   0  25  50  75 100</code></pre>
+</div>
+<div id="data-frames" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Data frames</h2>
 <p>In most cases, we will not be working with one variable (e.g. information on party names) but multiple variables. To do this in an easy way, we can create <em>data frames</em> which is similar to a dataset in SPSS and Stata. The good thing about <code>R</code>, however, is that we can have multiple data frames open at the same time. The cost of this is that we have to specify, when we do something in <code>R</code>, exactly what data frame we are using.</p>
-<p>Here we will create a data frame with more information about the parties from the United Kingdom general election, 2017.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
+<p>Here we will create a data frame with more information about the parties from the United Kingdom general election, 2017.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
 <p>As a first step we can create new objects with more information: <code>leader</code> (information on the party leader), <code>votes</code> (the vote share in percent), <code>seats</code> (the number of seats) and <code>seats_change</code> (change in seats from the previous election). Do note that the order is important as we are going to link these objects together in a minute, where the first value in each object is for the Conservative Party, the second for the Labour Party and so on.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">party &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>, <span class="st">&quot;Scottish National Party&quot;</span>, 
-       <span class="st">&quot;Liberal Democrats&quot;</span>, <span class="st">&quot;Democratic Unionist Party&quot;</span>, <span class="st">&quot;Sinn Féin&quot;</span>) 
-
-leader &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Theresa May&quot;</span>, <span class="st">&quot;Jeremy Corbyn&quot;</span>, <span class="st">&quot;Nicola Sturgeon&quot;</span>, 
-            <span class="st">&quot;Tim Farron&quot;</span>, <span class="st">&quot;Arlene Foster&quot;</span>, <span class="st">&quot;Gerry Adams&quot;</span>)
-
-votes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">42.4</span>, <span class="fl">40.0</span>, <span class="fl">3.0</span>, <span class="fl">7.4</span>, <span class="fl">0.9</span>, <span class="fl">0.7</span>)
-
-seats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">317</span>, <span class="dv">262</span>, <span class="dv">35</span>, <span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">7</span>)
-
-seats_change &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">13</span>, <span class="dv">30</span>, <span class="op">-</span><span class="dv">21</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basics.html#cb67-1" aria-hidden="true" tabindex="-1"></a>party <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Conservative Party&quot;</span>, <span class="st">&quot;Labour Party&quot;</span>, <span class="st">&quot;Scottish National Party&quot;</span>, </span>
+<span id="cb67-2"><a href="basics.html#cb67-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;Liberal Democrats&quot;</span>, <span class="st">&quot;Democratic Unionist Party&quot;</span>, <span class="st">&quot;Sinn Féin&quot;</span>) </span>
+<span id="cb67-3"><a href="basics.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="basics.html#cb67-4" aria-hidden="true" tabindex="-1"></a>leader <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Theresa May&quot;</span>, <span class="st">&quot;Jeremy Corbyn&quot;</span>, <span class="st">&quot;Nicola Sturgeon&quot;</span>, </span>
+<span id="cb67-5"><a href="basics.html#cb67-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Tim Farron&quot;</span>, <span class="st">&quot;Arlene Foster&quot;</span>, <span class="st">&quot;Gerry Adams&quot;</span>)</span>
+<span id="cb67-6"><a href="basics.html#cb67-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-7"><a href="basics.html#cb67-7" aria-hidden="true" tabindex="-1"></a>votes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">42.4</span>, <span class="fl">40.0</span>, <span class="fl">3.0</span>, <span class="fl">7.4</span>, <span class="fl">0.9</span>, <span class="fl">0.7</span>)</span>
+<span id="cb67-8"><a href="basics.html#cb67-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-9"><a href="basics.html#cb67-9" aria-hidden="true" tabindex="-1"></a>seats <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">317</span>, <span class="dv">262</span>, <span class="dv">35</span>, <span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">7</span>)</span>
+<span id="cb67-10"><a href="basics.html#cb67-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-11"><a href="basics.html#cb67-11" aria-hidden="true" tabindex="-1"></a>seats_change <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">13</span>, <span class="dv">30</span>, <span class="sc">-</span><span class="dv">21</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
 <p>The next thing we have to do is to connect the objects into a single object, i.e. our data frame. A data frame is a collection of different vectors of the same length. In other words, for the objects we have above, as they have the same number of information, they can be connected in a data frame. <code>R</code> will return an error message if the vectors do not have the same length.</p>
 <p>We can have different types of variables in a data frame, i.e. both numbers and text variables. To create our data frame, we will use the function <code>data.frame()</code> and save the data frame in the object <code>uk2017</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(party, leader, votes, seats, seats_change)
-
-uk2017 <span class="co"># show the content of the data frame</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="basics.html#cb68-1" aria-hidden="true" tabindex="-1"></a>uk2017 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(party, leader, votes, seats, seats_change)</span>
+<span id="cb68-2"><a href="basics.html#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="basics.html#cb68-3" aria-hidden="true" tabindex="-1"></a>uk2017 <span class="co"># show the content of the data frame</span></span></code></pre></div>
 <pre><code>##                       party          leader votes seats seats_change
 ## 1        Conservative Party     Theresa May  42.4   317          -13
 ## 2              Labour Party   Jeremy Corbyn  40.0   262           30
@@ -414,94 +488,98 @@ uk2017 <span class="co"># show the content of the data frame</span></code></pre>
 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2
 ## 6                 Sinn Féin     Gerry Adams   0.7     7            3</code></pre>
 <p>To see what type of object we are working with, we can use the function <code>class()</code> again to show that <code>uk2017</code> is a data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(uk2017)</code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="basics.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(uk2017)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <p>If we would like to know what class the individual variables in our data frame are, we can use the function <code>sapply()</code>. This function allows us to apply a function to a list or a vector. Below we apply <code>class()</code> on the individual variables in <code>uk2017</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(uk2017, class)</code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="basics.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(uk2017, class)</span></code></pre></div>
 <pre><code>##        party       leader        votes        seats seats_change 
-##     &quot;factor&quot;     &quot;factor&quot;    &quot;numeric&quot;    &quot;numeric&quot;    &quot;numeric&quot;</code></pre>
+##  &quot;character&quot;  &quot;character&quot;    &quot;numeric&quot;    &quot;numeric&quot;    &quot;numeric&quot;</code></pre>
 <p>Here we can see that we have data as a <code>factor</code> as well as numerical variables. We can get similar information about our data by using the function <code>str()</code>. This function returns information on the structure of the data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(uk2017)</code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="basics.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(uk2017)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    6 obs. of  5 variables:
-##  $ party       : Factor w/ 6 levels &quot;Conservative Party&quot;,..: 1 3 5 4 2 6
-##  $ leader      : Factor w/ 6 levels &quot;Arlene Foster&quot;,..: 5 3 4 6 1 2
+##  $ party       : chr  &quot;Conservative Party&quot; &quot;Labour Party&quot; &quot;Scottish National Party&quot; &quot;Liberal Democrats&quot; ...
+##  $ leader      : chr  &quot;Theresa May&quot; &quot;Jeremy Corbyn&quot; &quot;Nicola Sturgeon&quot; &quot;Tim Farron&quot; ...
 ##  $ votes       : num  42.4 40 3 7.4 0.9 0.7
 ##  $ seats       : num  317 262 35 12 10 7
 ##  $ seats_change: num  -13 30 -21 4 2 3</code></pre>
 <p>We can see that it is a data frame with 6 observations of 5 variables. If the rows (i.e. observations) have names, we can get these by using <code>rownames()</code>. We can get the names of the columns, i.e. the variables in our data frame, by using <code>colnames()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(uk2017)</code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="basics.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(uk2017)</span></code></pre></div>
 <pre><code>## [1] &quot;party&quot;        &quot;leader&quot;       &quot;votes&quot;        &quot;seats&quot;        &quot;seats_change&quot;</code></pre>
 <p>If we want to see the number of columns and rows in our data frame, we can use <code>ncol()</code> and <code>nrow()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(uk2017)</code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="basics.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(uk2017)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(uk2017)</code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="basics.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(uk2017)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p>If we are working with bigger data frames, e.g. a survey with thousands of respondents, it might not be useful to show the full data frame. One way to see a few of the observations is by using <code>head()</code>. If not specified further, this function will show the first six observations in the data frame. In the example below, we will tell <code>R</code> to show the first three observations</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(uk2017, <span class="dv">3</span>)  <span class="co"># show the first three rows</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="basics.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(uk2017, <span class="dv">3</span>)  <span class="co"># show the first three rows</span></span></code></pre></div>
 <pre><code>##                     party          leader votes seats seats_change
 ## 1      Conservative Party     Theresa May  42.4   317          -13
 ## 2            Labour Party   Jeremy Corbyn  40.0   262           30
 ## 3 Scottish National Party Nicola Sturgeon   3.0    35          -21</code></pre>
 <p>In the same way, we can use <code>tail()</code> to show the last observations in a data frame. Here we see the last four observations in our data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(uk2017, <span class="dv">4</span>)  <span class="co"># show the last four rows</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="basics.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(uk2017, <span class="dv">4</span>)  <span class="co"># show the last four rows</span></span></code></pre></div>
 <pre><code>##                       party          leader votes seats seats_change
 ## 3   Scottish National Party Nicola Sturgeon   3.0    35          -21
 ## 4         Liberal Democrats      Tim Farron   7.4    12            4
 ## 5 Democratic Unionist Party   Arlene Foster   0.9    10            2
 ## 6                 Sinn Féin     Gerry Adams   0.7     7            3</code></pre>
 <p>If you want to see your data frame in a new window, you can use the function <code>View()</code> (do note the capital letter V - not v). Again, <code>R</code> is very (case) sensitive.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(uk2017)</code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="basics.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(uk2017)</span></code></pre></div>
 <div class="figure"><span id="fig:View"></span>
 <img src="fig/View.png" alt="Data frame with View(), RStudio" width="80%" />
 <p class="caption">
 Figure 2.1: Data frame with View(), RStudio
 </p>
 </div>
+<p>In RStudio, there is a good addin to easily call <code>View()</code>. See this link for more info: <a href="https://github.com/fkeck/quickview">https://github.com/fkeck/quickview</a>.</p>
 <p>When you are working with variables in a data frame, you can use <code>$</code> as a <em>component selector</em> to select a variable in a data frame. This is the base R way, i.e. brackets and dollar signs. In the next chapter we will work with other functions that makes it easier to work with data frames.</p>
 <p>If we, for example, want to have all the vote shares in our data frame <code>uk2017</code>, we can write <code>uk2017$votes</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017<span class="op">$</span>votes</code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="basics.html#cb87-1" aria-hidden="true" tabindex="-1"></a>uk2017<span class="sc">$</span>votes</span></code></pre></div>
 <pre><code>## [1] 42.4 40.0  3.0  7.4  0.9  0.7</code></pre>
 <p>Contrary to working with a vector in a single dimension, we have two dimensions in a data frame (rows horisontally and columns vertically). Just as for a single vector, we need to work with the brackets, <code>[ ]</code>, in addition to our object. However, now we need to specify the rows <em>and</em> columns we are interested in. If we want to work with the first row, we need to specify <code>[1, ]</code> after the object. The comma is seperating the information on the rows and columns we want to work with. When we are not specifying anything after the comma, that means we want to have the information for <em>all</em> columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017[<span class="dv">1</span>,] <span class="co"># first row</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="basics.html#cb89-1" aria-hidden="true" tabindex="-1"></a>uk2017[<span class="dv">1</span>,] <span class="co"># first row</span></span></code></pre></div>
 <pre><code>##                party      leader votes seats seats_change
 ## 1 Conservative Party Theresa May  42.4   317          -13</code></pre>
 <p>Had we also added a number after the comma, we would get the information for that specific column. in the example below we want to have the information on the first row in the first column (i.e. the name of the party on the first row).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017[<span class="dv">1</span>, <span class="dv">1</span>] <span class="co"># first row, first column</span></code></pre></div>
-<pre><code>## [1] Conservative Party
-## 6 Levels: Conservative Party Democratic Unionist Party Labour Party Liberal Democrats ... Sinn Féin</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="basics.html#cb91-1" aria-hidden="true" tabindex="-1"></a>uk2017[<span class="dv">1</span>, <span class="dv">1</span>] <span class="co"># first row, first column</span></span></code></pre></div>
+<pre><code>## [1] &quot;Conservative Party&quot;</code></pre>
 <p>If we want to have the names of all parties, i.e. the information in the first column, we can specify that we want all rows but only for the first column.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017[, <span class="dv">1</span>] <span class="co"># first column</span></code></pre></div>
-<pre><code>## [1] Conservative Party        Labour Party              Scottish National Party   Liberal Democrats        
-## [5] Democratic Unionist Party Sinn Féin                
-## 6 Levels: Conservative Party Democratic Unionist Party Labour Party Liberal Democrats ... Sinn Féin</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="basics.html#cb93-1" aria-hidden="true" tabindex="-1"></a>uk2017[, <span class="dv">1</span>] <span class="co"># first column</span></span></code></pre></div>
+<pre><code>## [1] &quot;Conservative Party&quot;        &quot;Labour Party&quot;             
+## [3] &quot;Scottish National Party&quot;   &quot;Liberal Democrats&quot;        
+## [5] &quot;Democratic Unionist Party&quot; &quot;Sinn Féin&quot;</code></pre>
 <p>Interestingly, the functions we have talked about so far can all be applied to data frames. The <code>summary()</code> function is very useful if you want to get an overview of all variables in your data frame. For the numerical variables in the data frame, the function will return information such as the mean and the median.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(uk2017)</code></pre></div>
-<pre><code>##                        party               leader      votes            seats        seats_change     
-##  Conservative Party       :1   Arlene Foster  :1   Min.   : 0.700   Min.   :  7.0   Min.   :-21.0000  
-##  Democratic Unionist Party:1   Gerry Adams    :1   1st Qu.: 1.425   1st Qu.: 10.5   1st Qu.: -9.2500  
-##  Labour Party             :1   Jeremy Corbyn  :1   Median : 5.200   Median : 23.5   Median :  2.5000  
-##  Liberal Democrats        :1   Nicola Sturgeon:1   Mean   :15.733   Mean   :107.2   Mean   :  0.8333  
-##  Scottish National Party  :1   Theresa May    :1   3rd Qu.:31.850   3rd Qu.:205.2   3rd Qu.:  3.7500  
-##  Sinn Féin                :1   Tim Farron     :1   Max.   :42.400   Max.   :317.0   Max.   : 30.0000</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="basics.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(uk2017)</span></code></pre></div>
+<pre><code>##     party              leader              votes            seats      
+##  Length:6           Length:6           Min.   : 0.700   Min.   :  7.0  
+##  Class :character   Class :character   1st Qu.: 1.425   1st Qu.: 10.5  
+##  Mode  :character   Mode  :character   Median : 5.200   Median : 23.5  
+##                                        Mean   :15.733   Mean   :107.2  
+##                                        3rd Qu.:31.850   3rd Qu.:205.2  
+##                                        Max.   :42.400   Max.   :317.0  
+##   seats_change     
+##  Min.   :-21.0000  
+##  1st Qu.: -9.2500  
+##  Median :  2.5000  
+##  Mean   :  0.8333  
+##  3rd Qu.:  3.7500  
+##  Max.   : 30.0000</code></pre>
 <p>We can also use the functions on our variables as we did above, e.g. to get the maximum number of votes a party got with the function <code>max()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(uk2017<span class="op">$</span>votes)</code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="basics.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(uk2017<span class="sc">$</span>votes)</span></code></pre></div>
 <pre><code>## [1] 42.4</code></pre>
 <p>If we want to have the value of a specific variable in our data frame, we can use both <code>$</code> and <code>[ ]</code>. Below we get the second value in the variable <code>party</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017<span class="op">$</span>party[<span class="dv">2</span>]</code></pre></div>
-<pre><code>## [1] Labour Party
-## 6 Levels: Conservative Party Democratic Unionist Party Labour Party Liberal Democrats ... Sinn Féin</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="basics.html#cb99-1" aria-hidden="true" tabindex="-1"></a>uk2017<span class="sc">$</span>party[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Labour Party&quot;</code></pre>
 <p>To illustrate how we can combine a lot of what we have used above, we can get informatin on the name of the party that got the most votes. In order to do this, we specify that we would like to have the name of the party for the party where the number of votes equals the maximum number of votes. In other words, when <code>uk2017$votes</code> is equal to <code>max(uk2017$votes)</code>, we want to get the information on <code>uk2017$party</code>. We use the logical operator <code>==</code> to test whether something is equal to.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017<span class="op">$</span>party[uk2017<span class="op">$</span>votes <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(uk2017<span class="op">$</span>votes)]</code></pre></div>
-<pre><code>## [1] Conservative Party
-## 6 Levels: Conservative Party Democratic Unionist Party Labour Party Liberal Democrats ... Sinn Féin</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="basics.html#cb101-1" aria-hidden="true" tabindex="-1"></a>uk2017<span class="sc">$</span>party[uk2017<span class="sc">$</span>votes <span class="sc">==</span> <span class="fu">max</span>(uk2017<span class="sc">$</span>votes)]</span></code></pre></div>
+<pre><code>## [1] &quot;Conservative Party&quot;</code></pre>
 <p>As we can see, the Conservative Party got the most votes in the 2017 election. We can use the same procedure if we want to get information on the party that got the minimum number of votes. To do this we use <code>min()</code>. Here we can see that this is Sinn Féin in our data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017<span class="op">$</span>party[uk2017<span class="op">$</span>votes <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(uk2017<span class="op">$</span>votes)]</code></pre></div>
-<pre><code>## [1] Sinn Féin
-## 6 Levels: Conservative Party Democratic Unionist Party Labour Party Liberal Democrats ... Sinn Féin</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="basics.html#cb103-1" aria-hidden="true" tabindex="-1"></a>uk2017<span class="sc">$</span>party[uk2017<span class="sc">$</span>votes <span class="sc">==</span> <span class="fu">min</span>(uk2017<span class="sc">$</span>votes)]</span></code></pre></div>
+<pre><code>## [1] &quot;Sinn Féin&quot;</code></pre>
 <p>The sky is the limit when it comes to what we can do with data frames, including various types of statistical analyses. To give one example, we can use the <code>lm()</code> function to conduct an OLS regression with <code>votes</code> as the independent variable and <code>seats</code> as the dependent variable (more on this specific function in <code>R</code> later). First, we save the model in the object <code>uk2017_lm</code> and then use <code>summary()</code> to get the results.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(seats <span class="op">~</span><span class="st"> </span>votes, <span class="dt">data =</span> uk2017)
-
-<span class="kw">summary</span>(uk2017_lm)</code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="basics.html#cb105-1" aria-hidden="true" tabindex="-1"></a>uk2017_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(seats <span class="sc">~</span> votes, <span class="at">data =</span> uk2017)</span>
+<span id="cb105-2"><a href="basics.html#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-3"><a href="basics.html#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(uk2017_lm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = seats ~ votes, data = uk2017)
@@ -522,24 +600,26 @@ Figure 2.1: Data frame with View(), RStudio
 ## F-statistic: 161.2 on 1 and 4 DF,  p-value: 0.0002216</code></pre>
 <p>The coefficient for <code>votes</code> is positive and statistically significant (<span class="math inline">\(p&lt;0.05\)</span>). In other words, as the vote share increases, so does the number of seats.</p>
 <p>Last, when working with some of the functions in later chapters, you will encounter that we do not talk about data frames but so-called <em>tibbles</em>. In brief, they are also data frames but with some improvements. For most of the procedures used in this book, however, it is not too important whether your object is a data frame or a tibble. We can convert our <code>uk2017</code> data frame to a tibble with the <code>as_tible()</code> function (available in the <code>tidyverse</code> package).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as_tibble</span>(uk2017)</code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="basics.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(uk2017)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   party                     leader          votes seats seats_change
-##   &lt;fct&gt;                     &lt;fct&gt;           &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;
+##   &lt;chr&gt;                     &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 Conservative Party        Theresa May      42.4   317          -13
 ## 2 Labour Party              Jeremy Corbyn    40     262           30
 ## 3 Scottish National Party   Nicola Sturgeon   3      35          -21
 ## 4 Liberal Democrats         Tim Farron        7.4    12            4
 ## 5 Democratic Unionist Party Arlene Foster     0.9    10            2
 ## 6 Sinn Féin                 Gerry Adams       0.7     7            3</code></pre>
+<p>There are a few noteworthy differenfces between data frames and tibbles. First, if you print a tibble in R, it will not print more than 10 rows for some variables (in other words, it will not print hundreds of lines of data). Second, tibble is more restrictive in terms of what it does. Accordingly, it will not change the input you give (convert strings to factors), change names of variables or create row names.</p>
+<p>Below the variable names you can also see the type of variable, e.g. <code>&lt;fctr&gt;</code>. There are several different types. You will see integers (<code>int</code>), doubles/real numbers (<code>dbl</code>), character vectors/strings (<code>chr</code>), date-times (<code>dttm</code>). logical vectors (<code>lgl</code>), factors (<code>fctr</code>) and dates (<code>date</code>).</p>
 </div>
-<div id="import-and-export-data-frames" class="section level2">
-<h2><span class="header-section-number">2.6</span> Import and export data frames</h2>
+<div id="import-and-export-data-frames" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Import and export data frames</h2>
 <p>Most of the data frames we will be working with in <code>R</code> are not data frames we will build from scratch but on the contrary data frames we will import from other files such as files made for Stata, SPSS or Excel. The most useful filetype to use when you work with data in files is <code>.csv</code>, which stands for <em>comma-separated values</em>. This is an open file format and can be opened in any software. To export and import data frames to <code>.csv</code> files, we can use <code>write.csv()</code> and <code>read.csv()</code>.</p>
 <p>First of all we need to know where <code>R</code> is working from, i.e. what our <em>working directory</em> is. In other words, we need to tell <code>R</code> where it should be saving the file and - when we want to import a data frame - where to look for a file. To see where <code>R</code> is currently working from (the <em>working directory</em>) you can type <code>getwd()</code>. This will return the place where <code>R</code> is currently going to save the file if we do not change it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="basics.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <p>If you would like to change this, you can use the function <code>setwd()</code>. This function allows you to change the working directory to whatever folder on your computer you would like to use. In the code below I change the working directory to the folder <code>book</code> in the folder <code>qpolr</code> in the Dropbox folder. Do also note that we are using forward slash (<code>/</code>) and not backslash (<code>\</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;/Dropbox/qpolr/book&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="basics.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Dropbox/qpolr/book&quot;</span>)</span></code></pre></div>
 <p>If you cannot remember the destination, you can use the menu to find the folder you want to have as your working directory as shown in Figure <a href="basics.html#fig:setwd">2.2</a>. On a Mac, you can also use Option + CMD + C to copy the pathway to a file.</p>
 <div class="figure"><span id="fig:setwd"></span>
 <img src="fig/setwd.png" alt="How to change the working directory" width="50%" />
@@ -549,32 +629,32 @@ Figure 2.2: How to change the working directory
 </div>
 <p>An easy way to control the working directory is to open an <code>R</code>-script directly from the folder you want to have as your working directory. Specifically, instead of opening RStudio and finding the script, find the script in your folder and open RStudio that way. This will automatically set the working directory to the folder with the <code>R</code>-script.</p>
 <p>Once we know where we will save our data, we can use <code>write.csv()</code> to save the data. In the code below we first specify that we want to save the data frame <code>uk2017</code> and next the filename of the file (<code>uk2017.csv</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(uk2017, <span class="st">&quot;uk2017.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="basics.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(uk2017, <span class="st">&quot;uk2017.csv&quot;</span>)</span></code></pre></div>
 <p>Do note that we need to put the file in quotation marks. Next, we can import the file into <code>R</code> the next time we open <code>R</code> with the function <code>read.csv()</code> and save the data frame in the object <code>uk2017</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uk2017 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;uk2017.csv&quot;</span>)</code></pre></div>
-<p>As with most stuff in <code>R</code>, there are multiple ways of doing things. To import and export data, we have packages like <code>foreign</code> <span class="citation">(R Core Team, 2015)</span>, <code>rio</code> <span class="citation">(C. Chan, Chan, &amp; Leeper, 2016)</span> and <code>readr</code> <span class="citation">(H. Wickham &amp; Francois, 2015)</span>. If you install and load the package <code>rio</code>, you can use the functions <code>import()</code> and <code>export()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># export data with the rio package</span>
-<span class="kw">export</span>(uk2017, <span class="st">&quot;uk2017.csv&quot;</span>)
-
-<span class="co"># import data with the rio package</span>
-uk2017 &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;uk2017.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="basics.html#cb112-1" aria-hidden="true" tabindex="-1"></a>uk2017 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;uk2017.csv&quot;</span>)</span></code></pre></div>
+<p>As with most stuff in <code>R</code>, there are multiple ways of doing things. To import and export data, we have packages like <code>foreign</code> <span class="citation">(R Core Team, 2015)</span>, <code>rio</code> <span class="citation">(Chan, Chan, &amp; Leeper, 2016)</span> and <code>readr</code> <span class="citation">(H. Wickham &amp; Francois, 2015)</span>. If you install and load the package <code>rio</code>, you can use the functions <code>import()</code> and <code>export()</code>.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="basics.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># export data with the rio package</span></span>
+<span id="cb113-2"><a href="basics.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(uk2017, <span class="st">&quot;uk2017.csv&quot;</span>)</span>
+<span id="cb113-3"><a href="basics.html#cb113-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-4"><a href="basics.html#cb113-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import data with the rio package</span></span>
+<span id="cb113-5"><a href="basics.html#cb113-5" aria-hidden="true" tabindex="-1"></a>uk2017 <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;uk2017.csv&quot;</span>)</span></code></pre></div>
 </div>
-<div id="environment" class="section level2">
-<h2><span class="header-section-number">2.7</span> Environment</h2>
+<div id="environment" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Environment</h2>
 <p>We have worked with a series of different objects. To see what objects we have in our memory, we can look in the <em>Environment</em> window, but we can also use the function <code>ls()</code>(<em>ls</em> is short for <em>list objects</em>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
-<pre><code>##  [1] &quot;leader&quot;       &quot;p&quot;            &quot;party&quot;        &quot;seats&quot;        &quot;seats_change&quot; &quot;uk2017&quot;       &quot;uk2017_lm&quot;   
-##  [8] &quot;votes&quot;        &quot;x&quot;            &quot;y&quot;</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="basics.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;leader&quot;       &quot;p&quot;            &quot;party&quot;        &quot;seats&quot;        &quot;seats_change&quot;
+##  [6] &quot;uk2017&quot;       &quot;uk2017_lm&quot;    &quot;votes&quot;        &quot;x&quot;            &quot;y&quot;</code></pre>
 <p>If we would like to remove an object from the memory, we can use the function <code>rm()</code> (<em>rm</em> is short for <em>remove</em>). Below we use <code>rm()</code> to remove the object <code>x</code> and then <code>ls()</code> to check whether <code>x</code> is gone.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(x)
-
-<span class="kw">ls</span>()</code></pre></div>
-<pre><code>## [1] &quot;leader&quot;       &quot;p&quot;            &quot;party&quot;        &quot;seats&quot;        &quot;seats_change&quot; &quot;uk2017&quot;       &quot;uk2017_lm&quot;   
-## [8] &quot;votes&quot;        &quot;y&quot;</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="basics.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span>
+<span id="cb116-2"><a href="basics.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="basics.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;leader&quot;       &quot;p&quot;            &quot;party&quot;        &quot;seats&quot;        &quot;seats_change&quot;
+## [6] &quot;uk2017&quot;       &quot;uk2017_lm&quot;    &quot;votes&quot;        &quot;y&quot;</code></pre>
 <p>If you would like to remove <em>everything</em> in the memory, you can use <code>ls()</code> in combination with <code>rm()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
-
-<span class="kw">ls</span>()</code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="basics.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb118-2"><a href="basics.html#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="basics.html#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 
 </div>
 </div>
@@ -584,12 +664,12 @@ uk2017 &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>More specifically, <code>3</code>, <code>6</code>, <code>9</code> and <code>6</code>.<a href="basics.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>In the example with <code>1:10</code>, this is similar to writing <code>c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)</code> and <code>c(1:10)</code>. In other words, we have a hidden <code>c()</code> when we type <code>1:10</code>.<a href="basics.html#fnref2">↩</a></p></li>
-<li id="fn3"><p><code>c()</code> creates a vector with <em>all</em> elements in the parenthesis. Since a vector can only have one type of data, and not both numbers and text (cf. the next section), <code>c()</code> will ensure that all values are reduced to the level all values can work with. Consequently, if just one value is a letter and not a number, all values in the vector will be considered text.<a href="basics.html#fnref3">↩</a></p></li>
-<li id="fn4"><p>Alternatively, you can use ’ instead of “. If you want more information on when you should use ’ instead of”, see <a href="http://style.tidyverse.org/syntax.html#quotes" class="uri">http://style.tidyverse.org/syntax.html#quotes</a>.<a href="basics.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>If you want more information on how to name objects, see <a href="http://style.tidyverse.org/syntax.html#object-names" class="uri">http://style.tidyverse.org/syntax.html#object-names</a>.<a href="basics.html#fnref5">↩</a></p></li>
-<li id="fn6"><p>The information is taken from <a href="https://en.wikipedia.org/wiki/United_Kingdom_general_election,_2017" class="uri">https://en.wikipedia.org/wiki/United_Kingdom_general_election,_2017</a><a href="basics.html#fnref6">↩</a></p></li>
+<li id="fn1"><p>More specifically, <code>3</code>, <code>6</code>, <code>9</code> and <code>6</code>.<a href="basics.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>In the example with <code>1:10</code>, this is similar to writing <code>c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)</code> and <code>c(1:10)</code>. In other words, we have a hidden <code>c()</code> when we type <code>1:10</code>.<a href="basics.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p><code>c()</code> creates a vector with <em>all</em> elements in the parenthesis. Since a vector can only have one type of data, and not both numbers and text (cf. the next section), <code>c()</code> will ensure that all values are reduced to the level all values can work with. Consequently, if just one value is a letter and not a number, all values in the vector will be considered text.<a href="basics.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Alternatively, you can use ’ instead of “. If you want more information on when you should use ’ instead of,” see <a href="http://style.tidyverse.org/syntax.html#quotes">http://style.tidyverse.org/syntax.html#quotes</a>.<a href="basics.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>If you want more information on how to name objects, see <a href="http://style.tidyverse.org/syntax.html#object-names">http://style.tidyverse.org/syntax.html#object-names</a>.<a href="basics.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>The information is taken from <a href="https://en.wikipedia.org/wiki/United_Kingdom_general_election,_2017">https://en.wikipedia.org/wiki/United_Kingdom_general_election,_2017</a><a href="basics.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -653,7 +733,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

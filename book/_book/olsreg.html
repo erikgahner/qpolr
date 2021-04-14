@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 OLS regression | Quantitative Politics with R</title>
   <meta name="description" content="Chapter 11 OLS regression | Quantitative Politics with R" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 OLS regression | Quantitative Politics with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas" />
 
 
-<meta name="date" content="2019-11-29" />
+<meta name="date" content="2021-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="manipulating-plots.html"/>
 <link rel="next" href="glm.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,41 +54,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -102,24 +129,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <code>R</code>?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing <code>R</code></a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages"><i class="fa fa-check"></i><b>1.4</b> Installing <code>R</code> packages</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#problems-and-help"><i class="fa fa-check"></i><b>1.5</b> Problems and help</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a><ul>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#numbers-as-data"><i class="fa fa-check"></i><b>2.1</b> Numbers as data</a></li>
 <li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#missing-values-na"><i class="fa fa-check"></i><b>2.2</b> Missing values (<code>NA</code>)</a></li>
 <li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#logical-operators"><i class="fa fa-check"></i><b>2.3</b> Logical operators</a></li>
 <li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#text-as-data"><i class="fa fa-check"></i><b>2.4</b> Text as data</a></li>
-<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.5</b> Data frames</a></li>
-<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
-<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#repetition-and-sequence"><i class="fa fa-check"></i><b>2.5</b> Repetition and sequence</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data frames</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.7</b> Import and export data frames</a></li>
+<li class="chapter" data-level="2.8" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.8</b> Environment</a></li>
 </ul></li>
 <li class="part"><span><b>I Working with data</b></span></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
 <li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
@@ -129,14 +160,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.7" data-path="data.html"><a href="data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
 <li class="chapter" data-level="3.8" data-path="data.html"><a href="data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
 <li class="chapter" data-level="3.9" data-path="data.html"><a href="data.html#recoding-variables-case_when"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>case_when()</code></a></li>
-<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.10</b> Getting a variable from a data frame: <code>pull()</code></a></li>
+<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#choosing-rows-by-position-slice"><i class="fa fa-check"></i><b>3.10</b> Choosing rows by position: <code>slice()</code></a></li>
+<li class="chapter" data-level="3.11" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.11</b> Getting a variable from a data frame: <code>pull()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a><ul>
-<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a></li>
+<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="text.html"><a href="text.html#regular-expression-regex"><i class="fa fa-check"></i><b>4.1.1</b> Regular expression (regex)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="text.html"><a href="text.html#changing-the-case-of-strings"><i class="fa fa-check"></i><b>4.1.2</b> Changing the case of strings</a></li>
+<li class="chapter" data-level="4.1.3" data-path="text.html"><a href="text.html#subset-and-mutate-strings"><i class="fa fa-check"></i><b>4.1.3</b> Subset and mutate strings</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="text.html"><a href="text.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
 <li class="chapter" data-level="4.3" data-path="text.html"><a href="text.html#dates-and-time"><i class="fa fa-check"></i><b>4.3</b> Dates and time</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a><ul>
+<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="datadownload.html"><a href="datadownload.html#using-data-from-data-packages"><i class="fa fa-check"></i><b>5.1</b> Using data from data packages</a></li>
 <li class="chapter" data-level="5.2" data-path="datadownload.html"><a href="datadownload.html#download-data-from-webpages"><i class="fa fa-check"></i><b>5.2</b> Download data from webpages</a></li>
 <li class="chapter" data-level="5.3" data-path="datadownload.html"><a href="datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>5.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
@@ -147,37 +186,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.8" data-path="datadownload.html"><a href="datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>5.8</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 <li class="chapter" data-level="5.9" data-path="datadownload.html"><a href="datadownload.html#data-github-repositories"><i class="fa fa-check"></i><b>5.9</b> Data: GitHub repositories</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a><ul>
+<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="create.html"><a href="create.html#create-data-from-files"><i class="fa fa-check"></i><b>6.1</b> Create data from files</a></li>
 <li class="chapter" data-level="6.2" data-path="create.html"><a href="create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>6.2</b> Scrape data from tables</a></li>
 <li class="chapter" data-level="6.3" data-path="create.html"><a href="create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>6.3</b> Scrape political speeches</a></li>
-<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a><ul>
+<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="create.html"><a href="create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>6.4.1</b> Data on Twitter user</a></li>
 <li class="chapter" data-level="6.4.2" data-path="create.html"><a href="create.html#data-on-trends"><i class="fa fa-check"></i><b>6.4.2</b> Data on trends</a></li>
 <li class="chapter" data-level="6.4.3" data-path="create.html"><a href="create.html#data-on-tweets"><i class="fa fa-check"></i><b>6.4.3</b> Data on tweets</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-google-trends"><i class="fa fa-check"></i><b>6.5</b> Get data from Google Trends</a></li>
-<li class="chapter" data-level="6.6" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.6</b> Get data from Wikipedia</a></li>
+<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.5</b> Get data from Wikipedia</a></li>
 </ul></li>
 <li class="part"><span><b>II Data visualisation</b></span></li>
-<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="dataviz.html"><a href="dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>7.1</b> The basics of <code>ggplot2</code></a></li>
-<li class="chapter" data-level="7.2" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.2" data-path="dataviz.html"><a href="dataviz.html#data-1"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
 <li class="chapter" data-level="7.3" data-path="dataviz.html"><a href="dataviz.html#aesthetics"><i class="fa fa-check"></i><b>7.3</b> Aesthetics</a></li>
 <li class="chapter" data-level="7.4" data-path="dataviz.html"><a href="dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>7.4</b> Geometric objects</a></li>
 <li class="chapter" data-level="7.5" data-path="dataviz.html"><a href="dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>7.5</b> Theme adjustments</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a><ul>
+<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="presenting-distributions.html"><a href="presenting-distributions.html#bar-plot"><i class="fa fa-check"></i><b>8.1</b> Bar plot</a></li>
 <li class="chapter" data-level="8.2" data-path="presenting-distributions.html"><a href="presenting-distributions.html#histograms"><i class="fa fa-check"></i><b>8.2</b> Histograms</a></li>
 <li class="chapter" data-level="8.3" data-path="presenting-distributions.html"><a href="presenting-distributions.html#density-plots"><i class="fa fa-check"></i><b>8.3</b> Density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a><ul>
+<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="presenting-relationships.html"><a href="presenting-relationships.html#box-plot"><i class="fa fa-check"></i><b>9.1</b> Box plot</a></li>
 <li class="chapter" data-level="9.2" data-path="presenting-relationships.html"><a href="presenting-relationships.html#scatter-plots"><i class="fa fa-check"></i><b>9.2</b> Scatter plots</a></li>
 <li class="chapter" data-level="9.3" data-path="presenting-relationships.html"><a href="presenting-relationships.html#line-plots"><i class="fa fa-check"></i><b>9.3</b> Line plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="manipulating-plots.html"><a href="manipulating-plots.html#themes"><i class="fa fa-check"></i><b>10.1</b> Themes</a></li>
 <li class="chapter" data-level="10.2" data-path="manipulating-plots.html"><a href="manipulating-plots.html#colours"><i class="fa fa-check"></i><b>10.2</b> Colours</a></li>
 <li class="chapter" data-level="10.3" data-path="manipulating-plots.html"><a href="manipulating-plots.html#labels"><i class="fa fa-check"></i><b>10.3</b> Labels</a></li>
@@ -187,26 +231,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.7" data-path="manipulating-plots.html"><a href="manipulating-plots.html#saving-plots"><i class="fa fa-check"></i><b>10.7</b> Saving plots</a></li>
 </ul></li>
 <li class="part"><span><b>III Regression</b></span></li>
-<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a><ul>
+<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="olsreg.html"><a href="olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>11.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="11.2" data-path="olsreg.html"><a href="olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.2</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="11.3" data-path="olsreg.html"><a href="olsreg.html#saving-predictions"><i class="fa fa-check"></i><b>11.3</b> Saving predictions</a></li>
 <li class="chapter" data-level="11.4" data-path="olsreg.html"><a href="olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>11.4</b> Diagnostic tests</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a><ul>
+<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="glm.html"><a href="glm.html#binary-outcomes"><i class="fa fa-check"></i><b>12.1</b> Binary outcomes</a></li>
-<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a><ul>
+<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="glm.html"><a href="glm.html#event-count"><i class="fa fa-check"></i><b>12.2.1</b> Event count</a></li>
 <li class="chapter" data-level="12.2.2" data-path="glm.html"><a href="glm.html#negative-binomial-regression"><i class="fa fa-check"></i><b>12.2.2</b> Negative binomial regression</a></li>
 <li class="chapter" data-level="12.2.3" data-path="glm.html"><a href="glm.html#ordinal-outcomes"><i class="fa fa-check"></i><b>12.2.3</b> Ordinal outcomes</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Presentation</b></span></li>
-<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a><ul>
+<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="writing.html"><a href="writing.html#equations"><i class="fa fa-check"></i><b>13.1</b> Equations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a><ul>
-<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a><ul>
+<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a>
+<ul>
 <li class="chapter" data-level="14.1.1" data-path="tables.html"><a href="tables.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>14.1.1</b> Exporting the regression table</a></li>
 </ul></li>
 </ul></li>
@@ -228,18 +278,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="olsreg" class="section level1">
+<div id="olsreg" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> OLS regression</h1>
 <p>To provide a simple example of how to conduct an OLS regression, we will use the same data as in the visualisation chapter, i.e. the <code>states</code> data frame from the package <code>poliscidata</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poliscidata&quot;</span>)
-
-states &lt;-<span class="st"> </span>states</code></pre></div>
-<div id="bivariate-linear-regression" class="section level2">
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="olsreg.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;poliscidata&quot;</span>)</span>
+<span id="cb371-2"><a href="olsreg.html#cb371-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb371-3"><a href="olsreg.html#cb371-3" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> states</span></code></pre></div>
+<div id="bivariate-linear-regression" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Bivariate linear regression</h2>
 <p>To conduct a bivariate linear regression, we use the <code>lm()</code> function (short for linear models). We need to specify the dependent variable, independent variable and the data frame. Below we specify <code>obama2012</code> as the dependent variable and <code>abort_rate08</code> as the independent variable. Notice that we use the <code>~</code> symbol to separate the dependent variable from the independent variable. We save the output in the object <code>reg_obama</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama &lt;-<span class="st"> </span><span class="kw">lm</span>(obama2012 <span class="op">~</span><span class="st"> </span>abort_rate08, <span class="dt">data =</span> states)</code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="olsreg.html#cb372-1" aria-hidden="true" tabindex="-1"></a>reg_obama <span class="ot">&lt;-</span> <span class="fu">lm</span>(obama2012 <span class="sc">~</span> abort_rate08, <span class="at">data =</span> states)</span></code></pre></div>
 <p>If we type <code>reg_obama</code>, we can see the intercept and coefficient in the model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama</code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="olsreg.html#cb373-1" aria-hidden="true" tabindex="-1"></a>reg_obama</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = obama2012 ~ abort_rate08, data = states)
@@ -249,7 +299,7 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 ##      35.2589        0.8257</code></pre>
 <p>Here we see that the intercept is 35.26, which is the predicted vote share for Obama in 2012 when we extrapolate to a state with an abortion rate of 0. The coefficient is 0.83, which is the increase in the vote share for Obama when there is an one-unit increase in the abortion rate.</p>
 <p>However, this is not enough information. We need, for example, also information on the standard errors as well as model statistics. To get this, we use the function <code>summary()</code> on our object.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(reg_obama)</code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="olsreg.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg_obama)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = obama2012 ~ abort_rate08, data = states)
@@ -270,58 +320,59 @@ states &lt;-<span class="st"> </span>states</code></pre></div>
 ## F-statistic: 40.52 on 1 and 48 DF,  p-value: 6.912e-08</code></pre>
 <p>Here we can see that the estimate for <code>abort_rate08</code> is statistically significant. We can further see that the R-squared is 0.46 which indicates that 46% of the variation in the vote share is explained by our independent variable.</p>
 <p>To convert the results from our analysis into a data frame, we can use the package <code>broom</code> <span class="citation">(Robinson, 2018)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;broom&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="olsreg.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;broom&quot;</span>)</span></code></pre></div>
 <p>As a first example, we can save the estimates and test statistics in a data frame by using the function <code>tidy()</code>. The function is made to summarise information about fit components. We save the output in a new object <code>reg_obama_tidy</code> and show this output as well.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_tidy &lt;-<span class="st"> </span><span class="kw">tidy</span>(reg_obama)
-
-reg_obama_tidy</code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="olsreg.html#cb378-1" aria-hidden="true" tabindex="-1"></a>reg_obama_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(reg_obama)</span>
+<span id="cb378-2"><a href="olsreg.html#cb378-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-3"><a href="olsreg.html#cb378-3" aria-hidden="true" tabindex="-1"></a>reg_obama_tidy</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term         estimate std.error statistic  p.value
 ##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)    35.3       2.30      15.3  3.82e-20
 ## 2 abort_rate08    0.826     0.130      6.37 6.91e- 8</code></pre>
 <p>If we would also like to have the confidence intervals, we can add the <code>conf.int = TRUE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_tidy &lt;-<span class="st"> </span><span class="kw">tidy</span>(reg_obama, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)
-
-reg_obama_tidy</code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="olsreg.html#cb380-1" aria-hidden="true" tabindex="-1"></a>reg_obama_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(reg_obama, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb380-2"><a href="olsreg.html#cb380-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-3"><a href="olsreg.html#cb380-3" aria-hidden="true" tabindex="-1"></a>reg_obama_tidy</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 7
 ##   term         estimate std.error statistic  p.value conf.low conf.high
 ##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)    35.3       2.30      15.3  3.82e-20   30.6       39.9 
 ## 2 abort_rate08    0.826     0.130      6.37 6.91e- 8    0.565      1.09</code></pre>
 <p>This is useful if you would like to visualise the results. If we also want goodness of fit measures for the model, such as <span class="math inline">\(R^2\)</span>, we can use the function <code>glance()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glance</span>(reg_obama)</code></pre></div>
-<pre><code>## # A tibble: 1 x 11
-##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC deviance df.residual
-##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;
-## 1     0.458         0.446  7.65      40.5 0.0000000691     2  -172.  349.  355.    2812.          48</code></pre>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="olsreg.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(reg_obama)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.458         0.446  7.65      40.5 0.0000000691     1  -172.  349.  355.
+## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Often we also want to save predictions and residuals based on our model. To do this, we can use the function <code>augment()</code>. This function adds information about observations to our dataset. Below we save the output in the object <code>reg_obama_aug</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_aug &lt;-<span class="st"> </span><span class="kw">augment</span>(reg_obama)</code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="olsreg.html#cb384-1" aria-hidden="true" tabindex="-1"></a>reg_obama_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(reg_obama)</span></code></pre></div>
 <p>To see the data in the new object, use <code>head()</code>. Here you see that there is a variable called <code>.fitted</code>. This variable is the predicted value for each observation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(reg_obama_aug)</code></pre></div>
-<pre><code>## # A tibble: 6 x 9
-##   obama2012 abort_rate08 .fitted .se.fit .resid   .hat .sigma .cooksd .std.resid
-##       &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
-## 1      40.8         12      45.2    1.18  -4.36 0.0238   7.71 0.00404     -0.576
-## 2      38.4         12      45.2    1.18  -6.81 0.0238   7.67 0.00986     -0.900
-## 3      36.9          8.7    42.4    1.41  -5.56 0.0338   7.69 0.00954     -0.739
-## 4      44.4         15.2    47.8    1.08  -3.36 0.0201   7.72 0.00201     -0.443
-## 5      60.2         27.6    58.0    1.89   2.14 0.0612   7.73 0.00272      0.289
-## 6      51.4         15.7    48.2    1.08   3.23 0.0200   7.72 0.00185      0.426</code></pre>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="olsreg.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(reg_obama_aug)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+##   obama2012 abort_rate08 .fitted .resid   .hat .sigma .cooksd .std.resid
+##       &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1      40.8         12      45.2  -4.36 0.0238   7.71 0.00404     -0.576
+## 2      38.4         12      45.2  -6.81 0.0238   7.67 0.00986     -0.900
+## 3      36.9          8.7    42.4  -5.56 0.0338   7.69 0.00954     -0.739
+## 4      44.4         15.2    47.8  -3.36 0.0201   7.72 0.00201     -0.443
+## 5      60.2         27.6    58.0   2.14 0.0612   7.73 0.00272      0.289
+## 6      51.4         15.7    48.2   3.23 0.0200   7.72 0.00185      0.426</code></pre>
 <p>We can use this data frame to visualise the residuals (with the colour red below).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_obama_aug, <span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>obama2012)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>abort_rate08, <span class="dt">y=</span>obama2012, <span class="dt">yend=</span>.fitted), 
-        <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>abort_rate08, <span class="dt">y=</span>.fitted)) </code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="olsreg.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reg_obama_aug, <span class="fu">aes</span>(<span class="at">x=</span>abort_rate08, <span class="at">y=</span>obama2012)) <span class="sc">+</span></span>
+<span id="cb387-2"><a href="olsreg.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend=</span>abort_rate08, <span class="at">y=</span>obama2012, <span class="at">yend=</span>.fitted), </span>
+<span id="cb387-3"><a href="olsreg.html#cb387-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb387-4"><a href="olsreg.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb387-5"><a href="olsreg.html#cb387-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>abort_rate08, <span class="at">y=</span>.fitted)) </span></code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
 </div>
-<div id="multiple-linear-regression" class="section level2">
+<div id="multiple-linear-regression" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Multiple linear regression</h2>
 <p>To conduct a multiple linear regression, we simply need to add an extra variable to our model. Accordingly, the only difference between the example above and the example here is the addition of a new variable. Here, we want to examine whether the effect of <code>abort_rate08</code> holds when we control for population density (<code>density</code>). Notice that we add a <code>+</code> before adding the variable to the list of variables.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_full &lt;-<span class="st"> </span><span class="kw">lm</span>(obama2012 <span class="op">~</span><span class="st"> </span>abort_rate08 <span class="op">+</span><span class="st"> </span>density, <span class="dt">data =</span> states)</code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="olsreg.html#cb388-1" aria-hidden="true" tabindex="-1"></a>reg_obama_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(obama2012 <span class="sc">~</span> abort_rate08 <span class="sc">+</span> density, <span class="at">data =</span> states)</span></code></pre></div>
 <p>We use the <code>summary()</code> function to get the output of the model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(reg_obama_full)</code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="olsreg.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg_obama_full)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = obama2012 ~ abort_rate08 + density, data = states)
@@ -342,39 +393,39 @@ reg_obama_tidy</code></pre></div>
 ## Multiple R-squared:  0.4815, Adjusted R-squared:  0.4595 
 ## F-statistic: 21.83 on 2 and 47 DF,  p-value: 1.976e-07</code></pre>
 <p>In the output we see that the coefficient for <code>abort_rate08</code> is slightly smaller compared to the bivariate model but still statistically significant. Again we can use the <code>tidy()</code> function to get a data frame with the results.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_full_tidy &lt;-<span class="st"> </span><span class="kw">tidy</span>(reg_obama_full)</code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="olsreg.html#cb391-1" aria-hidden="true" tabindex="-1"></a>reg_obama_full_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(reg_obama_full)</span></code></pre></div>
 <p>We further calculate the 95% confidence intervals for the estimates.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_full_tidy &lt;-<span class="st"> </span>reg_obama_full_tidy <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">ci_low =</span> estimate <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>std.error,
-    <span class="dt">ci_high =</span> estimate <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>std.error
-  ) </code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="olsreg.html#cb392-1" aria-hidden="true" tabindex="-1"></a>reg_obama_full_tidy <span class="ot">&lt;-</span> reg_obama_full_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb392-2"><a href="olsreg.html#cb392-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb392-3"><a href="olsreg.html#cb392-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_low =</span> estimate <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> std.error,</span>
+<span id="cb392-4"><a href="olsreg.html#cb392-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_high =</span> estimate <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> std.error</span>
+<span id="cb392-5"><a href="olsreg.html#cb392-5" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div>
 <p>We can then visualise the results.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_obama_full_tidy, <span class="kw">aes</span>(estimate, term, <span class="dt">xmin =</span> ci_low, 
-                                <span class="dt">xmax =</span> ci_high, <span class="dt">height =</span> <span class="dv">0</span>)) <span class="op">+</span>
-<span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
-<span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="olsreg.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reg_obama_full_tidy, <span class="fu">aes</span>(estimate, term, <span class="at">xmin =</span> ci_low, </span>
+<span id="cb393-2"><a href="olsreg.html#cb393-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">xmax =</span> ci_high, <span class="at">height =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb393-3"><a href="olsreg.html#cb393-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb393-4"><a href="olsreg.html#cb393-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb393-5"><a href="olsreg.html#cb393-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_errorbarh</span>()</span></code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
 <p>In some cases the intercept is not relevant. In the code below, we use the <code>filter()</code> function to visualise all effects except for the intercept.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_obama_full_tidy <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(estimate, term, <span class="dt">xmin =</span> ci_low, 
-             <span class="dt">xmax =</span> ci_high, <span class="dt">height =</span> <span class="dv">0</span>)) <span class="op">+</span>
-<span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
-<span class="st">     </span><span class="kw">geom_errorbarh</span>()</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="olsreg.html#cb394-1" aria-hidden="true" tabindex="-1"></a>reg_obama_full_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb394-2"><a href="olsreg.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb394-3"><a href="olsreg.html#cb394-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(estimate, term, <span class="at">xmin =</span> ci_low, </span>
+<span id="cb394-4"><a href="olsreg.html#cb394-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">xmax =</span> ci_high, <span class="at">height =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb394-5"><a href="olsreg.html#cb394-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb394-6"><a href="olsreg.html#cb394-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb394-7"><a href="olsreg.html#cb394-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_errorbarh</span>()</span></code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
 </div>
-<div id="saving-predictions" class="section level2">
+<div id="saving-predictions" class="section level2" number="11.3">
 <h2><span class="header-section-number">11.3</span> Saving predictions</h2>
 <p>To save predictions, i.e. the predicted value on the outcome for each observation, we can use the <code>add_predictions()</code> function in the <code>modelr</code> package. Below we add predictions to the <code>states</code> data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;modelr&quot;</span>)
-
-states &lt;-<span class="st"> </span><span class="kw">add_predictions</span>(states, reg_obama_full)</code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="olsreg.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;modelr&quot;</span>)</span>
+<span id="cb395-2"><a href="olsreg.html#cb395-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb395-3"><a href="olsreg.html#cb395-3" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">add_predictions</span>(states, reg_obama_full)</span></code></pre></div>
 <p>The predictions are now saved in the <code>states</code> data frame with the variable name <code>pred</code>. The <code>add_residuals()</code> function can be used to do the same for the residuals.</p>
 </div>
-<div id="diagnostic-tests" class="section level2">
+<div id="diagnostic-tests" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> Diagnostic tests</h2>
 <p>To get diagnostic plots, we will use the <code>fortify()</code> function from <code>ggplot2</code>. This allows us to get the following variables realted to model fit statistics:</p>
 <ol style="list-style-type: decimal">
@@ -386,31 +437,31 @@ states &lt;-<span class="st"> </span><span class="kw">add_predictions</span>(sta
 <li><code>.stdresid</code>: Standardised residuals</li>
 </ol>
 <p>First, we use <code>fortify()</code> on our linear model:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg_fortify &lt;-<span class="st"> </span><span class="kw">fortify</span>(reg_obama_full)</code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="olsreg.html#cb396-1" aria-hidden="true" tabindex="-1"></a>reg_fortify <span class="ot">&lt;-</span> <span class="fu">fortify</span>(reg_obama_full)</span></code></pre></div>
 <p>To see how our residuals are in relation to our fitted values, we can plot <code>.fitted</code> and <code>.resid</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Residuals vs. Fitted&quot;</span>,
-       <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>,
-       <span class="dt">x =</span> <span class="st">&quot;Fitted values&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="olsreg.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reg_fortify, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb397-2"><a href="olsreg.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb397-3"><a href="olsreg.html#cb397-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb397-4"><a href="olsreg.html#cb397-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb397-5"><a href="olsreg.html#cb397-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Residuals vs. Fitted&quot;</span>,</span>
+<span id="cb397-6"><a href="olsreg.html#cb397-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Residuals&quot;</span>,</span>
+<span id="cb397-7"><a href="olsreg.html#cb397-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Fitted values&quot;</span>)</span></code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
 <p>To see whether our residuals are normally distributed, we create a normal Q-Q plot with the standardized residuals.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify) <span class="op">+</span>
-<span class="st">  </span><span class="kw">stat_qq</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> .stdresid)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_abline</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal Q-Q&quot;</span>,
-       <span class="dt">y =</span> <span class="st">&quot;Standardized residuals&quot;</span>,
-       <span class="dt">x =</span> <span class="st">&quot;Theoretical Quantiles&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="olsreg.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reg_fortify) <span class="sc">+</span></span>
+<span id="cb398-2"><a href="olsreg.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="fu">aes</span>(<span class="at">sample =</span> .stdresid)) <span class="sc">+</span></span>
+<span id="cb398-3"><a href="olsreg.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>() <span class="sc">+</span></span>
+<span id="cb398-4"><a href="olsreg.html#cb398-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Normal Q-Q&quot;</span>,</span>
+<span id="cb398-5"><a href="olsreg.html#cb398-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Standardized residuals&quot;</span>,</span>
+<span id="cb398-6"><a href="olsreg.html#cb398-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Theoretical Quantiles&quot;</span>)</span></code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
 <p>To estimate the influence of individual observations, we plot the Cook’s distance for each state.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(reg_fortify, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(.cooksd), <span class="dt">y =</span> .cooksd)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>()  <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
-       <span class="dt">y =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,
-       <span class="dt">x =</span> <span class="st">&quot;Obs. number&quot;</span>)</code></pre></div>
-<p><img src="qpolr_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="olsreg.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reg_fortify, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">seq_along</span>(.cooksd), <span class="at">y =</span> .cooksd)) <span class="sc">+</span></span>
+<span id="cb399-2"><a href="olsreg.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()  <span class="sc">+</span></span>
+<span id="cb399-3"><a href="olsreg.html#cb399-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,</span>
+<span id="cb399-4"><a href="olsreg.html#cb399-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Cook&#39;s distance&quot;</span>,</span>
+<span id="cb399-5"><a href="olsreg.html#cb399-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Obs. number&quot;</span>)</span></code></pre></div>
+<p><img src="qpolr_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
 <p>Last, an alternative way to get a series of diagnostics tests is to use the package <code>lindia</code>. This package gives the following functions you can use on an <code>lm</code> object:</p>
 <ul>
 <li><code>gg_reshist()</code>: Histogram of residuals</li>
@@ -422,10 +473,10 @@ states &lt;-<span class="st"> </span><span class="kw">add_predictions</span>(sta
 <li><code>gg_resleverage()</code>: Residual by leverage plot</li>
 <li><code>gg_cooksd()</code>: Cook’s distance plot with potential outliars labeled on top</li>
 </ul>
-<p>To generate all of the above diagnostic plots, you can use <code>gg_diagnose()</code>. More information on the <code>lindia</code> package can be found at <a href="https://github.com/yeukyul/lindia" class="uri">https://github.com/yeukyul/lindia</a>.</p>
+<p>To generate all of the above diagnostic plots, you can use <code>gg_diagnose()</code>. More information on the <code>lindia</code> package can be found at <a href="https://github.com/yeukyul/lindia">https://github.com/yeukyul/lindia</a>.</p>
 <p>Last, you can also use the package <code>gvlma</code>, Global Validation of Linear Models Assumptions. This package provide an overview of different assumptions and whether they are met on a specific model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;gvlma&quot;</span>)
-<span class="kw">summary</span>(<span class="kw">gvlma</span>(reg_obama_full))</code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="olsreg.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;gvlma&quot;</span>)</span>
+<span id="cb400-2"><a href="olsreg.html#cb400-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">gvlma</span>(reg_obama_full))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = obama2012 ~ abort_rate08 + density, data = states)
@@ -525,7 +576,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

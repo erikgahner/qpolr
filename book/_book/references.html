@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 References | Quantitative Politics with R</title>
   <meta name="description" content="Chapter 15 References | Quantitative Politics with R" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 References | Quantitative Politics with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Erik Gahner Larsen and Zoltán Fazekas" />
 
 
-<meta name="date" content="2019-11-29" />
+<meta name="date" content="2021-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="tables.html"/>
 
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,41 +54,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -102,24 +129,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <code>R</code>?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing <code>R</code></a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages"><i class="fa fa-check"></i><b>1.4</b> Installing <code>R</code> packages</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#problems-and-help"><i class="fa fa-check"></i><b>1.5</b> Problems and help</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a><ul>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#numbers-as-data"><i class="fa fa-check"></i><b>2.1</b> Numbers as data</a></li>
 <li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#missing-values-na"><i class="fa fa-check"></i><b>2.2</b> Missing values (<code>NA</code>)</a></li>
 <li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#logical-operators"><i class="fa fa-check"></i><b>2.3</b> Logical operators</a></li>
 <li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#text-as-data"><i class="fa fa-check"></i><b>2.4</b> Text as data</a></li>
-<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.5</b> Data frames</a></li>
-<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.6</b> Import and export data frames</a></li>
-<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.7</b> Environment</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#repetition-and-sequence"><i class="fa fa-check"></i><b>2.5</b> Repetition and sequence</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data frames</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#import-and-export-data-frames"><i class="fa fa-check"></i><b>2.7</b> Import and export data frames</a></li>
+<li class="chapter" data-level="2.8" data-path="basics.html"><a href="basics.html#environment"><i class="fa fa-check"></i><b>2.8</b> Environment</a></li>
 </ul></li>
 <li class="part"><span><b>I Working with data</b></span></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a><ul>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data management</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#selecting-variables-select"><i class="fa fa-check"></i><b>3.1</b> Selecting variables: <code>select()</code></a></li>
 <li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#selecting-observations-filter"><i class="fa fa-check"></i><b>3.2</b> Selecting observations: <code>filter()</code></a></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#sorting-observations-arrange"><i class="fa fa-check"></i><b>3.3</b> Sorting observations: <code>arrange()</code></a></li>
@@ -129,14 +160,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.7" data-path="data.html"><a href="data.html#running-functions-on-variables-apply"><i class="fa fa-check"></i><b>3.7</b> Running functions on variables: <code>apply()</code></a></li>
 <li class="chapter" data-level="3.8" data-path="data.html"><a href="data.html#aggregating-variables-summarize-and-group_by"><i class="fa fa-check"></i><b>3.8</b> Aggregating variables: <code>summarize()</code> and <code>group_by()</code></a></li>
 <li class="chapter" data-level="3.9" data-path="data.html"><a href="data.html#recoding-variables-case_when"><i class="fa fa-check"></i><b>3.9</b> Recoding variables: <code>case_when()</code></a></li>
-<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.10</b> Getting a variable from a data frame: <code>pull()</code></a></li>
+<li class="chapter" data-level="3.10" data-path="data.html"><a href="data.html#choosing-rows-by-position-slice"><i class="fa fa-check"></i><b>3.10</b> Choosing rows by position: <code>slice()</code></a></li>
+<li class="chapter" data-level="3.11" data-path="data.html"><a href="data.html#getting-a-variable-from-a-data-frame-pull"><i class="fa fa-check"></i><b>3.11</b> Getting a variable from a data frame: <code>pull()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a><ul>
-<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a></li>
+<li class="chapter" data-level="4" data-path="text.html"><a href="text.html"><i class="fa fa-check"></i><b>4</b> Manipulating text</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="text.html"><a href="text.html#strings"><i class="fa fa-check"></i><b>4.1</b> Strings</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="text.html"><a href="text.html#regular-expression-regex"><i class="fa fa-check"></i><b>4.1.1</b> Regular expression (regex)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="text.html"><a href="text.html#changing-the-case-of-strings"><i class="fa fa-check"></i><b>4.1.2</b> Changing the case of strings</a></li>
+<li class="chapter" data-level="4.1.3" data-path="text.html"><a href="text.html#subset-and-mutate-strings"><i class="fa fa-check"></i><b>4.1.3</b> Subset and mutate strings</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="text.html"><a href="text.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
 <li class="chapter" data-level="4.3" data-path="text.html"><a href="text.html#dates-and-time"><i class="fa fa-check"></i><b>4.3</b> Dates and time</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a><ul>
+<li class="chapter" data-level="5" data-path="datadownload.html"><a href="datadownload.html"><i class="fa fa-check"></i><b>5</b> Get existing data</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="datadownload.html"><a href="datadownload.html#using-data-from-data-packages"><i class="fa fa-check"></i><b>5.1</b> Using data from data packages</a></li>
 <li class="chapter" data-level="5.2" data-path="datadownload.html"><a href="datadownload.html#download-data-from-webpages"><i class="fa fa-check"></i><b>5.2</b> Download data from webpages</a></li>
 <li class="chapter" data-level="5.3" data-path="datadownload.html"><a href="datadownload.html#data-european-social-survey-essurvey"><i class="fa fa-check"></i><b>5.3</b> Data: European Social Survey (<code>essurvey</code>)</a></li>
@@ -147,37 +186,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.8" data-path="datadownload.html"><a href="datadownload.html#data-world-development-indicators-wdi"><i class="fa fa-check"></i><b>5.8</b> Data: World Development Indicators (<code>WDI</code>)</a></li>
 <li class="chapter" data-level="5.9" data-path="datadownload.html"><a href="datadownload.html#data-github-repositories"><i class="fa fa-check"></i><b>5.9</b> Data: GitHub repositories</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a><ul>
+<li class="chapter" data-level="6" data-path="create.html"><a href="create.html"><i class="fa fa-check"></i><b>6</b> Create data</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="create.html"><a href="create.html#create-data-from-files"><i class="fa fa-check"></i><b>6.1</b> Create data from files</a></li>
 <li class="chapter" data-level="6.2" data-path="create.html"><a href="create.html#scrape-data-from-tables"><i class="fa fa-check"></i><b>6.2</b> Scrape data from tables</a></li>
 <li class="chapter" data-level="6.3" data-path="create.html"><a href="create.html#scrape-political-speeches"><i class="fa fa-check"></i><b>6.3</b> Scrape political speeches</a></li>
-<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a><ul>
+<li class="chapter" data-level="6.4" data-path="create.html"><a href="create.html#get-data-from-twitter"><i class="fa fa-check"></i><b>6.4</b> Get data from Twitter</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="create.html"><a href="create.html#data-on-twitter-user"><i class="fa fa-check"></i><b>6.4.1</b> Data on Twitter user</a></li>
 <li class="chapter" data-level="6.4.2" data-path="create.html"><a href="create.html#data-on-trends"><i class="fa fa-check"></i><b>6.4.2</b> Data on trends</a></li>
 <li class="chapter" data-level="6.4.3" data-path="create.html"><a href="create.html#data-on-tweets"><i class="fa fa-check"></i><b>6.4.3</b> Data on tweets</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-google-trends"><i class="fa fa-check"></i><b>6.5</b> Get data from Google Trends</a></li>
-<li class="chapter" data-level="6.6" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.6</b> Get data from Wikipedia</a></li>
+<li class="chapter" data-level="6.5" data-path="create.html"><a href="create.html#get-data-from-wikipedia"><i class="fa fa-check"></i><b>6.5</b> Get data from Wikipedia</a></li>
 </ul></li>
 <li class="part"><span><b>II Data visualisation</b></span></li>
-<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="7" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>7</b> Introduction to <code>ggplot2</code></a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="dataviz.html"><a href="dataviz.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>7.1</b> The basics of <code>ggplot2</code></a></li>
-<li class="chapter" data-level="7.2" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.2" data-path="dataviz.html"><a href="dataviz.html#data-1"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
 <li class="chapter" data-level="7.3" data-path="dataviz.html"><a href="dataviz.html#aesthetics"><i class="fa fa-check"></i><b>7.3</b> Aesthetics</a></li>
 <li class="chapter" data-level="7.4" data-path="dataviz.html"><a href="dataviz.html#geometric-objects"><i class="fa fa-check"></i><b>7.4</b> Geometric objects</a></li>
 <li class="chapter" data-level="7.5" data-path="dataviz.html"><a href="dataviz.html#theme-adjustments"><i class="fa fa-check"></i><b>7.5</b> Theme adjustments</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a><ul>
+<li class="chapter" data-level="8" data-path="presenting-distributions.html"><a href="presenting-distributions.html"><i class="fa fa-check"></i><b>8</b> Presenting distributions</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="presenting-distributions.html"><a href="presenting-distributions.html#bar-plot"><i class="fa fa-check"></i><b>8.1</b> Bar plot</a></li>
 <li class="chapter" data-level="8.2" data-path="presenting-distributions.html"><a href="presenting-distributions.html#histograms"><i class="fa fa-check"></i><b>8.2</b> Histograms</a></li>
 <li class="chapter" data-level="8.3" data-path="presenting-distributions.html"><a href="presenting-distributions.html#density-plots"><i class="fa fa-check"></i><b>8.3</b> Density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a><ul>
+<li class="chapter" data-level="9" data-path="presenting-relationships.html"><a href="presenting-relationships.html"><i class="fa fa-check"></i><b>9</b> Presenting relationships</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="presenting-relationships.html"><a href="presenting-relationships.html#box-plot"><i class="fa fa-check"></i><b>9.1</b> Box plot</a></li>
 <li class="chapter" data-level="9.2" data-path="presenting-relationships.html"><a href="presenting-relationships.html#scatter-plots"><i class="fa fa-check"></i><b>9.2</b> Scatter plots</a></li>
 <li class="chapter" data-level="9.3" data-path="presenting-relationships.html"><a href="presenting-relationships.html#line-plots"><i class="fa fa-check"></i><b>9.3</b> Line plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a><ul>
+<li class="chapter" data-level="10" data-path="manipulating-plots.html"><a href="manipulating-plots.html"><i class="fa fa-check"></i><b>10</b> Manipulating plots</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="manipulating-plots.html"><a href="manipulating-plots.html#themes"><i class="fa fa-check"></i><b>10.1</b> Themes</a></li>
 <li class="chapter" data-level="10.2" data-path="manipulating-plots.html"><a href="manipulating-plots.html#colours"><i class="fa fa-check"></i><b>10.2</b> Colours</a></li>
 <li class="chapter" data-level="10.3" data-path="manipulating-plots.html"><a href="manipulating-plots.html#labels"><i class="fa fa-check"></i><b>10.3</b> Labels</a></li>
@@ -187,26 +231,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.7" data-path="manipulating-plots.html"><a href="manipulating-plots.html#saving-plots"><i class="fa fa-check"></i><b>10.7</b> Saving plots</a></li>
 </ul></li>
 <li class="part"><span><b>III Regression</b></span></li>
-<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a><ul>
+<li class="chapter" data-level="11" data-path="olsreg.html"><a href="olsreg.html"><i class="fa fa-check"></i><b>11</b> OLS regression</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="olsreg.html"><a href="olsreg.html#bivariate-linear-regression"><i class="fa fa-check"></i><b>11.1</b> Bivariate linear regression</a></li>
 <li class="chapter" data-level="11.2" data-path="olsreg.html"><a href="olsreg.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.2</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="11.3" data-path="olsreg.html"><a href="olsreg.html#saving-predictions"><i class="fa fa-check"></i><b>11.3</b> Saving predictions</a></li>
 <li class="chapter" data-level="11.4" data-path="olsreg.html"><a href="olsreg.html#diagnostic-tests"><i class="fa fa-check"></i><b>11.4</b> Diagnostic tests</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a><ul>
+<li class="chapter" data-level="12" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>12</b> Generalized linear models</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="glm.html"><a href="glm.html#binary-outcomes"><i class="fa fa-check"></i><b>12.1</b> Binary outcomes</a></li>
-<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a><ul>
+<li class="chapter" data-level="12.2" data-path="glm.html"><a href="glm.html#other-models"><i class="fa fa-check"></i><b>12.2</b> Other models</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="glm.html"><a href="glm.html#event-count"><i class="fa fa-check"></i><b>12.2.1</b> Event count</a></li>
 <li class="chapter" data-level="12.2.2" data-path="glm.html"><a href="glm.html#negative-binomial-regression"><i class="fa fa-check"></i><b>12.2.2</b> Negative binomial regression</a></li>
 <li class="chapter" data-level="12.2.3" data-path="glm.html"><a href="glm.html#ordinal-outcomes"><i class="fa fa-check"></i><b>12.2.3</b> Ordinal outcomes</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Presentation</b></span></li>
-<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a><ul>
+<li class="chapter" data-level="13" data-path="writing.html"><a href="writing.html"><i class="fa fa-check"></i><b>13</b> Writing</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="writing.html"><a href="writing.html#equations"><i class="fa fa-check"></i><b>13.1</b> Equations</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a><ul>
-<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a><ul>
+<li class="chapter" data-level="14" data-path="tables.html"><a href="tables.html"><i class="fa fa-check"></i><b>14</b> Tables</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="tables.html"><a href="tables.html#regression-tables"><i class="fa fa-check"></i><b>14.1</b> Regression tables</a>
+<ul>
 <li class="chapter" data-level="14.1.1" data-path="tables.html"><a href="tables.html#exporting-the-regression-table"><i class="fa fa-check"></i><b>14.1.1</b> Exporting the regression table</a></li>
 </ul></li>
 </ul></li>
@@ -228,110 +278,100 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1">
+<div id="references" class="section level1" number="15">
 <h1><span class="header-section-number">Chapter 15</span> References</h1>
 <!--
 To remove the indentation of the first entry.
 -->
-
+<p></p>
 <!--
 To create a hanging indent and spacing between entries.  These three lines may need to be removed for styles that don't require the hanging indent.
 -->
-<p>  </p>
 <!--
 This is just for testing with more citations for the bibliography at the end.  Add other entries into the list here if you'd like them to appear in the bibliography even if they weren't explicitly cited in the document.
 -->
 
-<div id="refs" class="references">
-<div>
-<p>Anderson, D., Heiss, A., &amp; Rosenberg, J. (2019). <em>Equatiomatic: Transform models into latex equations</em>. Retrieved from <a href="https://github.com/datalorax/equatiomatic" class="uri">https://github.com/datalorax/equatiomatic</a></p>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-andersonetal2019" class="csl-entry">
+Anderson, D., Heiss, A., &amp; Rosenberg, J. (2019). <em>Equatiomatic: Transform models into LaTeX equations</em>. Retrieved from <a href="https://github.com/datalorax/equatiomatic">https://github.com/datalorax/equatiomatic</a>
 </div>
-<div>
-<p>Arel-Bundock, V. (2018). <em>WDI: World development indicators (world bank)</em>. Retrieved from <a href="https://CRAN.R-project.org/package=WDI" class="uri">https://CRAN.R-project.org/package=WDI</a></p>
+<div id="ref-wdi" class="csl-entry">
+Arel-Bundock, V. (2018). <em>WDI: World development indicators (world bank)</em>. Retrieved from <a href="https://CRAN.R-project.org/package=WDI">https://CRAN.R-project.org/package=WDI</a>
 </div>
-<div>
-<p>Ares, M., &amp; Hernández, E. (2017). The corrosive effect of corruption on trust in politicians: Evidence from a natural experiment. <em>Research &amp; Politics</em>, <em>4</em>(2).</p>
+<div id="ref-careja2016" class="csl-entry">
+Careja, R., Elmelund‐Præstekær, C., Klitgaard, M. B., &amp; Larsen, E. G. (2016). Direct and indirect welfare chauvinism as party strategies: An analysis of the danish people’s party. <em>Scandinavian Political Studies</em>, <em>39</em>(4), 435–457.
 </div>
-<div>
-<p>Careja, R., Elmelund‐Præstekær, C., Klitgaard, M. B., &amp; Larsen, E. G. (2016). Direct and indirect welfare chauvinism as party strategies: An analysis of the danish people’s party. <em>Scandinavian Political Studies</em>, <em>39</em>(4), 435–457.</p>
+<div id="ref-chanetal2016" class="csl-entry">
+Chan, C., Chan, G. C. H., &amp; Leeper, T. J. (2016). <em>Rio: A swiss-army knife for data file i/o</em>.
 </div>
-<div>
-<p>Chan, C., Chan, G. C. H., &amp; Leeper, T. J. (2016). <em>Rio: A swiss-army knife for data file i/o</em>.</p>
+<div id="ref-essurvey" class="csl-entry">
+Cimentada, J. (2018). <em>Essurvey: Download data from the european social survey on the fly</em>. Retrieved from <a href="https://CRAN.R-project.org/package=essurvey">https://CRAN.R-project.org/package=essurvey</a>
 </div>
-<div>
-<p>Cimentada, J. (2018). <em>Essurvey: Download data from the european social survey on the fly</em>. Retrieved from <a href="https://CRAN.R-project.org/package=essurvey" class="uri">https://CRAN.R-project.org/package=essurvey</a></p>
+<div id="ref-vdem" class="csl-entry">
+Coppedge, M., Gerring, J., Lindberg, S. I., Skaaning, S.-E., Teorell, J., Altman, D., … Staton, J. (2017). <span class="nocase">V-Dem Codebook v7.1</span>. Varieties of Democracy (V-Dem) Project. Retrieved from <a href="https://www.v-dem.net/en/data/data-version-7-1/">https://www.v-dem.net/en/data/data-version-7-1/</a>
 </div>
-<div>
-<p>Coppedge, M., Gerring, J., Lindberg, S. I., Skaaning, S.-E., Teorell, J., Altman, D., … Staton, J. (2017). V-Dem Codebook v7.1. Varieties of Democracy (V-Dem) Project. Retrieved from <a href="https://www.v-dem.net/en/data/data-version-7-1/" class="uri">https://www.v-dem.net/en/data/data-version-7-1/</a></p>
+<div id="ref-fieldetal2012" class="csl-entry">
+Field, A., Miles, J., &amp; Field, Z. (2012). <em>Discovering statistics using r</em>. London: SAGE Publications.
 </div>
-<div>
-<p>Field, A., Miles, J., &amp; Field, Z. (2012). <em>Discovering statistics using r</em>. London: SAGE Publications.</p>
+<div id="ref-foxweisberg2011" class="csl-entry">
+Fox, J., &amp; Weisberg, S. (2011). <em>An <span>R</span> companion to applied regression</em> (Second). Thousand Oaks <span>CA</span>: Sage. Retrieved from <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion">http://socserv.socsci.mcmaster.ca/jfox/Books/Companion</a>
 </div>
-<div>
-<p>Fox, J., &amp; Weisberg, S. (2011). <em>An R companion to applied regression</em> (Second). Thousand Oaks CA: Sage. Retrieved from <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion" class="uri">http://socserv.socsci.mcmaster.ca/jfox/Books/Companion</a></p>
+<div id="ref-healy2019" class="csl-entry">
+Healy, Kieran. (2019). <em>Gssr: General social survey data for use in r</em>. Retrieved from <a href="http://kjhealy.github.io/gssr">http://kjhealy.github.io/gssr</a>
 </div>
-<div>
-<p>Healy, K. (2019). <em>Gssr: General social survey data for use in r</em>. Retrieved from <a href="http://kjhealy.github.io/gssr" class="uri">http://kjhealy.github.io/gssr</a></p>
+<div id="ref-healymoody2014" class="csl-entry">
+Healy, K., &amp; Moody, J. (2014). Data visualization in sociology. <em>Annual Review of Sociology</em>, <em>40</em>, 105–128.
 </div>
-<div>
-<p>Healy, K., &amp; Moody, J. (2014). Data visualization in sociology. <em>Annual Review of Sociology</em>, <em>40</em>, 105–128.</p>
+<div id="ref-hlavac2015" class="csl-entry">
+Hlavac, M. (2015). <em>Stargazer: Well-formatted regression and summary statistics tables</em>. Cambridge, USA: Harvard University. Retrieved from <a href="http://CRAN.R-project.org/package=stargazer">http://CRAN.R-project.org/package=stargazer</a>
 </div>
-<div>
-<p>Hlavac, M. (2015). <em>Stargazer: Well-formatted regression and summary statistics tables</em>. Cambridge, USA: Harvard University. Retrieved from <a href="http://CRAN.R-project.org/package=stargazer" class="uri">http://CRAN.R-project.org/package=stargazer</a></p>
+<div id="ref-rtweet-package" class="csl-entry">
+Kearney, M. W. (2018). <em>Rtweet: Collecting twitter data</em>. Retrieved from <a href="https://cran.r-project.org/package=rtweet">https://cran.r-project.org/package=rtweet</a>
 </div>
-<div>
-<p>Kearney, M. W. (2018). <em>Rtweet: Collecting twitter data</em>. Retrieved from <a href="https://cran.r-project.org/package=rtweet" class="uri">https://cran.r-project.org/package=rtweet</a></p>
+<div id="ref-keyeslewis2016" class="csl-entry">
+Keyes, O., &amp; Lewis, J. (2016). <em>Pageviews: An API client for wikimedia traffic data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=pageviews">https://CRAN.R-project.org/package=pageviews</a>
 </div>
-<div>
-<p>Keyes, O., &amp; Lewis, J. (2016). <em>Pageviews: An api client for wikimedia traffic data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=pageviews" class="uri">https://CRAN.R-project.org/package=pageviews</a></p>
+<div id="ref-larsen2018" class="csl-entry">
+Larsen, E. G. (2018). Welfare retrenchments and government support: Evidence from a natural experiment. <em>European Sociological Review</em>, <em>34</em>(1), 40–51.
 </div>
-<div>
-<p>Larsen, E. G. (2018). Welfare retrenchments and government support: Evidence from a natural experiment. <em>European Sociological Review</em>, <em>34</em>(1), 40–51.</p>
+<div id="ref-manifestoR" class="csl-entry">
+Lewandowski, J., &amp; Merz, N. (2018). <em>manifestoR: Access and process data and documents of the manifesto project</em>. Retrieved from <a href="https://CRAN.R-project.org/package=manifestoR">https://CRAN.R-project.org/package=manifestoR</a>
 </div>
-<div>
-<p>Lewandowski, J., &amp; Merz, N. (2018). <em>ManifestoR: Access and process data and documents of the manifesto project</em>. Retrieved from <a href="https://CRAN.R-project.org/package=manifestoR" class="uri">https://CRAN.R-project.org/package=manifestoR</a></p>
+<div id="ref-martherus2019" class="csl-entry">
+Martherus, J. (2019). <em>Anesr: Easy access to ANES data</em>.
 </div>
-<div>
-<p>Martherus, J. (2019). <em>Anesr: Easy access to anes data</em>.</p>
+<div id="ref-monoganiii2015" class="csl-entry">
+Monogan III, J. E. (2015). <em>Political analysis using r</em>. New York: Springer.
 </div>
-<div>
-<p>Massicotte, P., &amp; Eddelbuettel, D. (2019). <em>GtrendsR: Perform and display google trends queries</em>. Retrieved from <a href="https://CRAN.R-project.org/package=gtrendsR" class="uri">https://CRAN.R-project.org/package=gtrendsR</a></p>
+<div id="ref-rcoreteam2015foreign" class="csl-entry">
+R Core Team. (2015). <em>Foreign: Read data stored by minitab, s, SAS, SPSS, stata, systat, weka, dBase, ...</em> Retrieved from <a href="http://CRAN.R-project.org/package=foreign">http://CRAN.R-project.org/package=foreign</a>
 </div>
-<div>
-<p>Monogan III, J. E. (2015). <em>Political analysis using r</em>. New York: Springer.</p>
+<div id="ref-Robinson2018" class="csl-entry">
+Robinson, D. (2018). <em>Broom: Convert statistical analysis objects into tidy data frames</em>. Retrieved from <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a>
 </div>
-<div>
-<p>Parry, J. (2019). <em>Trendyy: A tidy wrapper around ’gtrendsR’</em>. Retrieved from <a href="https://CRAN.R-project.org/package=trendyy" class="uri">https://CRAN.R-project.org/package=trendyy</a></p>
+<div id="ref-tidytext2016" class="csl-entry">
+Silge, J., &amp; Robinson, D. (2016). Tidytext: Text mining and analysis using tidy data principles in r. <em>JOSS</em>, <em>1</em>(3). http://doi.org/<a href="https://doi.org/10.21105/joss.00037">10.21105/joss.00037</a>
 </div>
-<div>
-<p>R Core Team. (2015). <em>Foreign: Read data stored by minitab, s, sas, spss, stata, systat, weka, dBase, ...</em> Retrieved from <a href="http://CRAN.R-project.org/package=foreign" class="uri">http://CRAN.R-project.org/package=foreign</a></p>
+<div id="ref-tufte1983" class="csl-entry">
+Tufte, E. R. (1983). <em>The visual display of quantitative information</em>. Graphics Press.
 </div>
-<div>
-<p>Robinson, D. (2018). <em>Broom: Convert statistical analysis objects into tidy data frames</em>. Retrieved from <a href="https://CRAN.R-project.org/package=broom" class="uri">https://CRAN.R-project.org/package=broom</a></p>
+<div id="ref-wickham2009" class="csl-entry">
+Wickham, H. (2009). <em>ggplot2: Elegant graphics for data analysis</em>. Springer-Verlag New York. Retrieved from <a href="http://ggplot2.org">http://ggplot2.org</a>
 </div>
-<div>
-<p>Silge, J., &amp; Robinson, D. (2016). Tidytext: Text mining and analysis using tidy data principles in r. <em>JOSS</em>, <em>1</em>(3). <a href="http://doi.org/10.21105/joss.00037" class="uri">http://doi.org/10.21105/joss.00037</a></p>
+<div id="ref-wickham2014" class="csl-entry">
+Wickham, H. (2014). <em>Advanced r</em>. Chapman &amp; Hall/CRC The R Series.
 </div>
-<div>
-<p>Tufte, E. R. (1983). <em>The visual display of quantitative information</em>. Graphics Press.</p>
+<div id="ref-wickham2017" class="csl-entry">
+Wickham, Hadley. (2017). <em>Tidyverse: Easily install and load the ’tidyverse’</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>
 </div>
-<div>
-<p>Wickham, H. (2009). <em>Ggplot2: Elegant graphics for data analysis</em>. Springer-Verlag New York. Retrieved from <a href="http://ggplot2.org" class="uri">http://ggplot2.org</a></p>
+<div id="ref-wickhametal2019" class="csl-entry">
+Wickham, Hadley, Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., … Yutani, H. (2019). Welcome to the tidyverse. <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686.
 </div>
-<div>
-<p>Wickham, H. (2014). <em>Advanced r</em>. Chapman &amp; Hall/CRC The R Series.</p>
+<div id="ref-wickhamfrancois2015" class="csl-entry">
+Wickham, H., &amp; Francois, R. (2015). <em>Readr: Read tabular data</em>. Retrieved from <a href="http://CRAN.R-project.org/package=readr">http://CRAN.R-project.org/package=readr</a>
 </div>
-<div>
-<p>Wickham, H. (2017). <em>Tidyverse: Easily install and load the ’tidyverse’</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a></p>
-</div>
-<div>
-<p>Wickham, H., &amp; Francois, R. (2015). <em>Readr: Read tabular data</em>. Retrieved from <a href="http://CRAN.R-project.org/package=readr" class="uri">http://CRAN.R-project.org/package=readr</a></p>
-</div>
-<div>
-<p>Wickham, H., &amp; Francois, R. (2016). <em>Dplyr: A grammar of data manipulation</em>. Retrieved from <a href="http://CRAN.R-project.org/package=dplyr" class="uri">http://CRAN.R-project.org/package=dplyr</a></p>
-</div>
-<div>
-<p>Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., … Yutani, H. (2019). Welcome to the tidyverse. <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686.</p>
+<div id="ref-wickhamfrancois2016" class="csl-entry">
+Wickham, Hadley, &amp; Francois, R. (2016). <em>Dplyr: A grammar of data manipulation</em>. Retrieved from <a href="http://CRAN.R-project.org/package=dplyr">http://CRAN.R-project.org/package=dplyr</a>
 </div>
 </div>
 </div>
@@ -410,7 +450,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
