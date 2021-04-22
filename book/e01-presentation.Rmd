@@ -10,6 +10,30 @@ editor_options:
 
 Good quantitative analysis is not only about doing stuff in `R`. In fact, you will not be showing your audience your results directly in `R`, but export the out in form of tables, figures, numbers, equations etc. Here, we will provide some advice on how to report your analysis.
 
+## Interpretations
+
+When you have done your quantitative analysis, it is also important to provide interpretations of the results. In most cases, you will need to rely on knowledge within your subject matter to understand the importance and relevance of your findings. However, there are tools that can help you with your interpretations as well.
+
+The package `effectsize` provides a series of functions that can help you with your interpretations. You can find a list of all interpretation functions available here [https://easystats.github.io/effectsize/reference/index.html#section-interpretation](https://easystats.github.io/effectsize/reference/index.html#section-interpretation).
+
+The `interpret_r()` function, for example, let you interpret the magnitude of a correlation coefficient.
+
+Let us first load the package and then use `interpret_r()` to find out whether 0.3 is a large effect:
+
+```{r, message=FALSE, warning=FALSE}
+library("effectsize")
+
+interpret_r(0.3)
+```
+
+We can see that the effect size is large and to make this interpretation we rely on the rules provided by `funder2019`. You can check the help page for the function to see what other rules are available. Let us, for example, see how changing the rules to those by `lovakov2021` will matter for our interpretation.
+
+```{r, message=FALSE, warning=FALSE}
+interpret_r(0.3, rules = "lovakov2021")
+```
+
+Now we see that the effect size is medium. This shows that, while these interpretation functions are good to help ease the interpretation, they should not be used without knowledge of the context in which you make an interpretation and without knowing the potential limitations of the specific interpretation rule.
+
 ## Equations
 
 To transform statistical models into equations, i.e. to ensure that you can communicate the equation of the model you are estimating, we recommend that you use the `equatiomatic` package [@andersonetal2019]. You can read more about the package on [https://github.com/datalorax/equatiomatic](https://github.com/datalorax/equatiomatic). First, load the package (and install it if you haven't already done so).
